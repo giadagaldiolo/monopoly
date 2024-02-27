@@ -1,3 +1,5 @@
 public class Main {
-    //xd
+    public static void main(String[] args) {
+
+    }
 }
