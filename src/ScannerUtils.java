@@ -23,7 +23,7 @@ public class ScannerUtils {
 
     }
 
-    public static char inputSimboloGiocatore( final int numeroGiocatore){
+    public static char inputSimboloGiocatore(final int numeroGiocatore){
         String inputUtente;
         do{
             System.out.println("Inserisci simbolo giocatore " + numeroGiocatore);
