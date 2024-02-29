@@ -76,7 +76,7 @@ public class Tabellone {
                 if (i > 0 && i < Costanti.RIGHE-1 && j > 0 && j < Costanti.CASELLE_PER_RIGA-1) {
                     caselle[i][j] = null;
                 } else {
-                    pedaggio = (int) (Math.random() * (Costanti.IMPORTO_PEDAGGIO_MAX-Costanti.IMPORTO_PEDAGGIO_MIN+1) + Costanti.IMPORTO_PEDAGGIO_MIN);
+                    pedaggio = (int) (Math.random() * ((Costanti.IMPORTO_PEDAGGIO_MAX-Costanti.IMPORTO_PEDAGGIO_MIN+1) + Costanti.IMPORTO_PEDAGGIO_MIN));
                     if (i == Costanti.RIGHE-1 && j == Costanti.CASELLE_PER_RIGA-1)
                         nome = "Via";
                     caselle[i][j] = new Casella(nome, pedaggio, id++);

@@ -6,6 +6,9 @@ public class Costanti {
     public static final int IMPORTO_PEDAGGIO_MIN = 50;
     public static final int IMPORTO_PEDAGGIO_MAX = 150;
     public static final int NUMERO_GIOCATORI = 2;
+    public static final int NUMERO_DADO_MIN = 1;
+    public static final int NUMERO_DADO_MAX = 4;
+
 
 
 }

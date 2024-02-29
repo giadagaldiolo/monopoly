@@ -17,4 +17,20 @@ public class Giocatore {
     public int getSoldi() {
         return soldi;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setTurnoTrue() {
+        this.turno = true;
+    }
+
+    public void setTurnoFalse() {
+        this.turno = false;
+    }
+
+    public boolean isTurno() {
+        return turno;
+    }
 }

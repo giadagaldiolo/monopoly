@@ -18,7 +18,7 @@ public class Gioco {
             char simbolo = ScannerUtils.inputSimboloGiocatore(i + 1);
             giocatori[i] = new Giocatore(nome,simbolo, 0);
             tabellone.modificaCasella(simbolo, Costanti.RIGHE-1, Costanti.CASELLE_PER_RIGA-1, i);
-
+            // distribuisci soldi ad ogni giocatore
         }
     }
 
@@ -31,23 +31,39 @@ public class Gioco {
 
     private void handleGame() {
         Giocatore currentGiocatore = giocatori[0];
+        currentGiocatore.setTurnoTrue();
         int scelta;
         do {
+            System.out.println("è il turno di " + currentGiocatore.getNome());
             scelta = mostraMenu();
             switch (scelta){
                 case 1:
                     System.out.println(currentGiocatore.getSoldi());
                     break;
                 case 2:
-                    // genera numero random
+                    int passi = (int) (Math.random() * ((Costanti.NUMERO_DADO_MAX - Costanti.NUMERO_DADO_MIN +1) + Costanti.NUMERO_DADO_MIN));
                     // sposta giocatore
                     // fai pagare
-                    // cambia currentGiocatore
+                    cambiaGiocatore();
+                    tabellone.mostra();
                     break;
             }
         } while (scelta != 2);
     }
-    
+
+    private void cambiaGiocatore() {
+        for (int i = 0; i < giocatori.length; i++) {
+            if (giocatori[i].isTurno()) {
+                giocatori[i].setTurnoFalse();
+                if (i == giocatori.length - 1) {
+                    giocatori[0].setTurnoTrue();
+                } else {
+                    giocatori[i+1].setTurnoTrue();
+                }
+                return;
+            }
+        }
+    }
     private boolean controllosimboli(char simbolo){
         boolean trovato = false;
         for (Giocatore giocatore : giocatori) {
@@ -60,6 +76,8 @@ public class Gioco {
         return trovato;
         
     }
+
+
 
     private void creaTabellone() {
         this.tabellone = new Tabellone();
