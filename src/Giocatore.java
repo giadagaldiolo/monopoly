@@ -10,8 +10,5 @@ public class Giocatore {
         this.soldi = soldi;
     }
 
-    public char getSimboloGiocatore() {
-        return simbolo;
-    }
 
 }

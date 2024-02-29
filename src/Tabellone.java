@@ -57,9 +57,10 @@ public class Tabellone {
                 System.out.print(spazio.repeat((Costanti.LARGHEZZA_CASELLA -2)));
                 break;
             case 4:
+
                 StringBuilder quintaRiga = new StringBuilder();
                 for (int i = 0; i < currentCell.getNumGiocatori(); i++)
-                    quintaRiga.append(currentCell.getGiocatore(i)).append(" ");
+                    quintaRiga.append(currentCell.getCharGiocatore(i)).append(" ");
                 System.out.print(quintaRiga + spazio.repeat(((Costanti.LARGHEZZA_CASELLA -2) - quintaRiga.length())));
                 break;
         }
@@ -68,6 +69,7 @@ public class Tabellone {
     public void crea() {
         String nome = "Pedaggio";
         int pedaggio;
+        int id = 0;
         this.caselle = new Casella[Costanti.RIGHE][Costanti.CASELLE_PER_RIGA];
         for (int i = 0; i < Costanti.RIGHE; i++) {
             for (int j = 0; j < Costanti.CASELLE_PER_RIGA; j++) {
@@ -77,9 +79,13 @@ public class Tabellone {
                     pedaggio = (int) (Math.random() * (Costanti.IMPORTO_PEDAGGIO_MAX-Costanti.IMPORTO_PEDAGGIO_MIN+1) + Costanti.IMPORTO_PEDAGGIO_MIN);
                     if (i == Costanti.RIGHE-1 && j == Costanti.CASELLE_PER_RIGA-1)
                         nome = "Via";
-                    caselle[i][j] = new Casella(nome, pedaggio);
+                    caselle[i][j] = new Casella(nome, pedaggio, id++);
                 }
             }
         }
+    }
+
+    public void modificaCasella(char simbolo, int i, int j, int giocatore) {
+        caselle[i][j].aggiungiCarattere(simbolo, giocatore);
     }
 }
