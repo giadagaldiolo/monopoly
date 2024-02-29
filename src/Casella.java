@@ -9,7 +9,7 @@ public class Casella {
         this.nome = nome;
         this.pedaggio = pedaggio;
         this.ID = id;
-        this.giocatoripresenti = giocatoripresenti;
+
     }
 
     public String getNome() {
