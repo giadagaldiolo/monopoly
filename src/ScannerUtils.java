@@ -34,8 +34,30 @@ public class ScannerUtils {
             }
             System.out.println("Inserire soltanto e almeno un carattere");
         }while (true);
+    }
 
+    public static int readIntegerInRange(int min, int max) {
+        int inputUser = 0;
+        boolean correctInput = false;
+        while (!correctInput) {
+            System.out.println("Please enter a number between " + min + " and " + max + ":");
+            if (scanner.hasNextInt()) {
+                inputUser = scanner.nextInt();
+                if (inputUser < min || inputUser > max)
+                    System.out.println("Error: number not in range.");
+                else
+                    correctInput = true;
+            } else {
+                System.out.println("Error: input is not a number.");
+                emptyTheScanner();
+            }
+        }
+        emptyTheScanner();
+        return inputUser;
+    }
 
+    private static void emptyTheScanner() {
+        scanner.nextLine();
     }
 
 

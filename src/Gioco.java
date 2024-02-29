@@ -7,10 +7,11 @@ public class Gioco {
         creaTabellone();
         creaGiocatori();
         tabellone.mostra();
+        handleGame();
     }
 
     private void creaGiocatori() {
-        this.giocatori = new Giocatore[2];
+        this.giocatori = new Giocatore[Costanti.NUMERO_GIOCATORI];
         for (int i = 0; i < giocatori.length; i++) {
             String nome = ScannerUtils.inputNomeGiocatore(i+1);
 
@@ -19,6 +20,32 @@ public class Gioco {
             tabellone.modificaCasella(simbolo, Costanti.RIGHE-1, Costanti.CASELLE_PER_RIGA-1, i);
 
         }
+    }
+
+    private int mostraMenu() {
+        System.out.println("1. Mostra capitale giocatore corrente");
+        System.out.println("2. Tira il dado");
+        System.out.print("Scelta: ");
+        return ScannerUtils.readIntegerInRange(1,2);
+    }
+
+    private void handleGame() {
+        Giocatore currentGiocatore = giocatori[0];
+        int scelta;
+        do {
+            scelta = mostraMenu();
+            switch (scelta){
+                case 1:
+                    System.out.println(currentGiocatore.getSoldi());
+                    break;
+                case 2:
+                    // genera numero random
+                    // sposta giocatore
+                    // fai pagare
+                    // cambia currentGiocatore
+                    break;
+            }
+        } while (scelta != 2);
     }
     
     private boolean controllosimboli(char simbolo){
@@ -37,7 +64,6 @@ public class Gioco {
     private void creaTabellone() {
         this.tabellone = new Tabellone();
         tabellone.crea();
-
     }
 
 }

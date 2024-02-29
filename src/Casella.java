@@ -2,7 +2,7 @@ public class Casella {
     private String nome="Pedaggio"; //la casella via si chiama via
     private int pedaggio;
     private char[] giocatoripresenti = {' ', ' '}; // poi aggiustiamo la costante
-    private int cntGiocatori =2;
+    private int cntGiocatori = Costanti.NUMERO_GIOCATORI;
     private final int ID;
 
     public Casella(String nome, int pedaggio, int id) {

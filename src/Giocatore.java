@@ -13,4 +13,8 @@ public class Giocatore {
     public char getSimbolo() {
         return simbolo;
     }
+
+    public int getSoldi() {
+        return soldi;
+    }
 }
