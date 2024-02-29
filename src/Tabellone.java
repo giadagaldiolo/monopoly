@@ -1,37 +1,27 @@
 public class Tabellone {
-    private static Casella[][] caselle;
-    private static final int RIGHE = 5;
-    private static final int CASELLE_PER_RIGA = 5;
-    private static final int LARGHEZZA_CASELLA = 22;
-    private static final int IMPORTO_DEL_VIA = 100;
-    private static final int IMPORTO_PEDAGGIO_MIN = 50;
-    private static final int IMPORTO_PEDAGGIO_MAX = 150;
+    private Casella[][] caselle ;
 
 
-    public Tabellone(Casella[][] caselle) {
-        Tabellone.caselle = caselle;
-    }
-
-    public static void mostra(){
+    public void mostra(){
         Casella currentCell;
         String spazio = " ";
         String trattino = "-";
 
-        for (int i = 0; i < CASELLE_PER_RIGA; i++) {
-            if (i == 0 || i == 1 || i == CASELLE_PER_RIGA -1)
-                System.out.print(trattino.repeat((LARGHEZZA_CASELLA * CASELLE_PER_RIGA)));
+        for (int i = 0; i < Costanti.CASELLE_PER_RIGA; i++) {
+            if (i == 0 || i == 1 || i == Costanti.CASELLE_PER_RIGA -1)
+                System.out.print(trattino.repeat((Costanti.LARGHEZZA_CASELLA * Costanti.CASELLE_PER_RIGA)));
             else {
-                System.out.print(trattino.repeat(LARGHEZZA_CASELLA));
-                System.out.print(spazio.repeat((LARGHEZZA_CASELLA * (CASELLE_PER_RIGA-2))));
-                System.out.print(trattino.repeat(LARGHEZZA_CASELLA));
+                System.out.print(trattino.repeat(Costanti.LARGHEZZA_CASELLA));
+                System.out.print(spazio.repeat((Costanti.LARGHEZZA_CASELLA * (Costanti.CASELLE_PER_RIGA-2))));
+                System.out.print(trattino.repeat(Costanti.LARGHEZZA_CASELLA));
             }
             System.out.println();
 
             for (int d = 0; d < 5; d++) {
-                for (int col = 0; col < CASELLE_PER_RIGA; col++) {
+                for (int col = 0; col < Costanti.CASELLE_PER_RIGA; col++) {
                     currentCell = caselle[i][col];
                     if (currentCell == null)
-                        System.out.print(spazio.repeat(LARGHEZZA_CASELLA));
+                        System.out.print(spazio.repeat(Costanti.LARGHEZZA_CASELLA));
                     else {
                         System.out.print("|");
                         stampaDettagliCasella(d, currentCell);
@@ -41,58 +31,55 @@ public class Tabellone {
                 System.out.println();
             }
         }
-        System.out.print(trattino.repeat((LARGHEZZA_CASELLA * CASELLE_PER_RIGA)));
+        System.out.print(trattino.repeat((Costanti.LARGHEZZA_CASELLA * Costanti.CASELLE_PER_RIGA)));
     }
 
-    private static void stampaDettagliCasella(final int d, final Casella currentCell) {
+    private void stampaDettagliCasella(final int d, final Casella currentCell) {
         String spazio = " ";
         switch (d) {
             case 0:
                 String primaRiga = currentCell.getNome(); // Per sapere quanti spazi aggiungere
-                System.out.print(primaRiga + spazio.repeat(((LARGHEZZA_CASELLA -2) - primaRiga.length()))); //Tolgo 2 che sono i caratteri ||
+                System.out.print(primaRiga + spazio.repeat(((Costanti.LARGHEZZA_CASELLA -2) - primaRiga.length()))); //Tolgo 2 che sono i caratteri ||
                 break;
             case 1:
                 String secondaRiga = "";
                 if (currentCell.getNome().equals("Via")) {
-                    secondaRiga = "Ritira " + IMPORTO_DEL_VIA;
+                    secondaRiga = "Ritira " + Costanti.IMPORTO_DEL_VIA;
                 } else {
                     secondaRiga = "Paga " + currentCell.getPedaggio();
                 }
-                System.out.print(secondaRiga + spazio.repeat(((LARGHEZZA_CASELLA-2) - secondaRiga.length())));
+                System.out.print(secondaRiga + spazio.repeat(((Costanti.LARGHEZZA_CASELLA-2) - secondaRiga.length())));
                 break;
             case 2: // per adesso non si deve stampare niente
-                System.out.print(spazio.repeat((LARGHEZZA_CASELLA -2)));
+                System.out.print(spazio.repeat((Costanti.LARGHEZZA_CASELLA -2)));
                 break;
             case 3: // per adesso non si deve stampare niente
-                System.out.print(spazio.repeat((LARGHEZZA_CASELLA -2)));
+                System.out.print(spazio.repeat((Costanti.LARGHEZZA_CASELLA -2)));
                 break;
             case 4:
                 StringBuilder quintaRiga = new StringBuilder();
                 for (int i = 0; i < currentCell.getNumGiocatori(); i++)
                     quintaRiga.append(currentCell.getGiocatore(i)).append(" ");
-                System.out.print(quintaRiga + spazio.repeat(((LARGHEZZA_CASELLA -2) - quintaRiga.length())));
+                System.out.print(quintaRiga + spazio.repeat(((Costanti.LARGHEZZA_CASELLA -2) - quintaRiga.length())));
                 break;
         }
     }
 
-    public static Casella[][] crea() {
+    public void crea() {
         String nome = "Pedaggio";
         int pedaggio;
-        Casella[][] caselle = new Casella[RIGHE][CASELLE_PER_RIGA];
-        for (int i = 0; i < RIGHE; i++) {
-            for (int j = 0; j < CASELLE_PER_RIGA; j++) {
-                if (i == 1 && j == 1 || i == 1 && j == 2 || i == 1 && j == 3 ||
-                        i == 2 && j == 1 || i == 2 && j == 2 || i == 2 && j == 3 ||
-                        i == 3 && j == 1 || i == 3 && j == 2 || i == 3 && j == 3) {
+        this.caselle = new Casella[Costanti.RIGHE][Costanti.CASELLE_PER_RIGA];
+        for (int i = 0; i < Costanti.RIGHE; i++) {
+            for (int j = 0; j < Costanti.CASELLE_PER_RIGA; j++) {
+                if (i > 0 && i < Costanti.RIGHE-1 && j > 0 && j < Costanti.CASELLE_PER_RIGA-1) {
                     caselle[i][j] = null;
                 } else {
-                    pedaggio = (int) (Math.random() * (IMPORTO_PEDAGGIO_MAX-IMPORTO_PEDAGGIO_MIN+1) + IMPORTO_PEDAGGIO_MIN);
-                    if (i == RIGHE-1 && j == CASELLE_PER_RIGA-1)
+                    pedaggio = (int) (Math.random() * (Costanti.IMPORTO_PEDAGGIO_MAX-Costanti.IMPORTO_PEDAGGIO_MIN+1) + Costanti.IMPORTO_PEDAGGIO_MIN);
+                    if (i == Costanti.RIGHE-1 && j == Costanti.CASELLE_PER_RIGA-1)
                         nome = "Via";
                     caselle[i][j] = new Casella(nome, pedaggio);
                 }
             }
         }
-        return caselle;
     }
 }
