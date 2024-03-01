@@ -4,18 +4,26 @@ public class Gioco {
     private Giocatore[] giocatori;
     private Banca banca;
     private Dado dado;
+    private int giocatoreCorrente=0;
 
     public Gioco() {
         creaGioco();
-        tabellone.mostra();
-        handleGame();
+        gameFlow();
+
     }
-    public void creaGioco(){
+    private void creaGioco(){
         creaTabellone();
         creaGiocatori();
         creaDado();
+        tabellone.mostra();
 
     }
+    private void gameFlow(){
+        while (true) {
+            handleGame(); // ds programmare il limite
+        }
+    }
+
     private void creaDado(){
         this.dado=new Dado(Costanti.NUMERO_DADO_MIN,Costanti.NUMERO_DADO_MAX);
 
@@ -46,7 +54,7 @@ public class Gioco {
     }
 
     private void handleGame() {
-        Giocatore currentGiocatore = giocatori[0];
+        Giocatore currentGiocatore = giocatori[giocatoreCorrente];
         currentGiocatore.setTurnoTrue();
         int scelta;
         do {
@@ -59,12 +67,14 @@ public class Gioco {
                 case 2:
                     int passi = this.dado.lancioDadi();
                     System.out.println(passi);
-                    movimentoGiocatore(passi,0);
+                    movimentoGiocatore(passi,giocatoreCorrente);
 
                     // sposta giocatore
                     // fai pagare
-                    cambiaGiocatore();
+                    //cambiaGiocatore();
+                    turnoSucessivo();
                     tabellone.mostra();
+
                     break;
             }
         } while (scelta != 2);
@@ -72,7 +82,7 @@ public class Gioco {
 
     private void cambiaGiocatore() {
         for (int i = 0; i < giocatori.length; i++) {
-            if (giocatori[i].isTurno()) {
+            if (giocatori[i].isTurno()) {            // per adesso non serve
                 giocatori[i].setTurnoFalse();
                 if (i == giocatori.length - 1) {
                     giocatori[0].setTurnoTrue();
@@ -82,6 +92,15 @@ public class Gioco {
                 return;
             }
         }
+    }
+    private void turnoSucessivo(){
+        if (this.giocatoreCorrente==(this.giocatori.length-1)){
+            this.giocatoreCorrente=0;
+        }else{
+            this.giocatoreCorrente++;
+        }
+
+
     }
     private boolean controllosimboli(char simbolo){
         boolean trovato = false;

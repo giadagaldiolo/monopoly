@@ -86,7 +86,7 @@ public class Tabellone {
     }
 
     public void modificaCasella(char simbolo, int i, int j, int giocatore) {
-        System.out.println(i + " "+ j );
+
         caselle[i][j].aggiungiCarattere(simbolo, giocatore);
     }
 
