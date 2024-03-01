@@ -1,9 +1,16 @@
 import java.util.Random;
 
 public class Dado {
-    private Random random= new Random();
+    private final Random random= new Random();
+    private int max;
+    private int min;
+    public Dado(int min,int max){
+        this.max=max+1;
+        this.min=min;
+
+    }
 
     public int lancioDadi(){
-        return random.nextInt(Costanti.NUMERO_DADO_MIN,Costanti.NUMERO_DADO_MAX+1);
+        return random.nextInt(min,max);
     }
 }

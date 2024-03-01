@@ -17,7 +17,7 @@ public class Gioco {
 
     }
     private void creaDado(){
-        this.dado=new Dado();
+        this.dado=new Dado(Costanti.NUMERO_DADO_MIN,Costanti.NUMERO_DADO_MAX);
 
     }
 
@@ -58,6 +58,7 @@ public class Gioco {
                     break;
                 case 2:
                     int passi = this.dado.lancioDadi();
+                    System.out.println(passi);
 
                     // sposta giocatore
                     // fai pagare
