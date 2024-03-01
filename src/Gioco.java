@@ -12,10 +12,15 @@ public class Gioco {
 
     private void creaGiocatori() {
         this.giocatori = new Giocatore[Costanti.NUMERO_GIOCATORI];
+        char simbolo;
         for (int i = 0; i < giocatori.length; i++) {
             String nome = ScannerUtils.inputNomeGiocatore(i+1);
+            do {
+                simbolo = ScannerUtils.inputSimboloGiocatore(i + 1);
 
-            char simbolo = ScannerUtils.inputSimboloGiocatore(i + 1);
+            }while (controllosimboli(simbolo));
+
+
             giocatori[i] = new Giocatore(nome,simbolo, 0);
             tabellone.modificaCasella(simbolo, Costanti.RIGHE-1, Costanti.CASELLE_PER_RIGA-1, i);
             // distribuisci soldi ad ogni giocatore
@@ -67,7 +72,8 @@ public class Gioco {
     private boolean controllosimboli(char simbolo){
         boolean trovato = false;
         for (Giocatore giocatore : giocatori) {
-            if (giocatore.getSimbolo()==simbolo){
+            if ( giocatore != null && giocatore.getSimbolo()==simbolo){
+                System.out.println("Simbolo gia utilizzato dal giocatore: " + giocatore.getNome());
                 trovato= true;
                 break;
             }
