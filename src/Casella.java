@@ -3,12 +3,14 @@ public class Casella {
     private int pedaggio;
     private char[] giocatoripresenti = {' ', ' '}; // poi aggiustiamo la costante
     private int cntGiocatori = Costanti.NUMERO_GIOCATORI;
-    private final int ID;
+    private final Cordinate cordinate;
 
-    public Casella(String nome, int pedaggio, int id) {
+
+    public Casella(String nome, int pedaggio,int y, int x) {
         this.nome = nome;
         this.pedaggio = pedaggio;
-        this.ID = id;
+        this.cordinate= new Cordinate(y,x);
+
 
     }
 

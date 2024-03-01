@@ -59,6 +59,7 @@ public class Gioco {
                 case 2:
                     int passi = this.dado.lancioDadi();
                     System.out.println(passi);
+                    movimentoGiocatore(passi,0);
 
                     // sposta giocatore
                     // fai pagare
@@ -102,5 +103,20 @@ public class Gioco {
         this.tabellone = new Tabellone();
         tabellone.crea();
     }
+
+    private void movimentoGiocatore(int passi,int giocatore){
+        cambioSimbolo(giocatore,' ');
+        this.giocatori[giocatore].cambioCasella(passi);
+        cambioSimbolo(giocatore,this.giocatori[giocatore].getSimbolo());
+
+
+    }
+    private void cambioSimbolo(int giocatore,char simbolo){
+        int [] cordinateAttuali= this.giocatori[giocatore].cordinate();
+        this.tabellone.modificaCasella(simbolo,cordinateAttuali[0],cordinateAttuali[1],giocatore);
+
+    }
+
+
 
 }

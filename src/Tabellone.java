@@ -79,13 +79,17 @@ public class Tabellone {
                     pedaggio = (int) (Math.random() * ((Costanti.IMPORTO_PEDAGGIO_MAX-Costanti.IMPORTO_PEDAGGIO_MIN+1) + Costanti.IMPORTO_PEDAGGIO_MIN));
                     if (i == Costanti.RIGHE-1 && j == Costanti.CASELLE_PER_RIGA-1)
                         nome = "Via";
-                    caselle[i][j] = new Casella(nome, pedaggio, id++);
+                    caselle[i][j] = new Casella(nome, pedaggio,i,j);
                 }
             }
         }
     }
 
     public void modificaCasella(char simbolo, int i, int j, int giocatore) {
+
         caselle[i][j].aggiungiCarattere(simbolo, giocatore);
     }
+
+
+
 }

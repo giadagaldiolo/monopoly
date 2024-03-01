@@ -3,7 +3,9 @@ public class Giocatore {
     private char simbolo;
     private int soldi;
     private boolean turno;
-    private int casellaCorrente=0;
+    private int yMax=Costanti.RIGHE-1;
+    private int xMax= Costanti.CASELLE_PER_RIGA-1;
+    private Cordinate cordinate= new Cordinate(yMax,xMax);
 
     public Giocatore(String nome, char simbolo, int soldi) {
         this.nome = nome;
@@ -23,6 +25,11 @@ public class Giocatore {
         return nome;
     }
 
+    public int [] cordinate(){
+        int cordinate[]= {this.cordinate.getY(),this.cordinate.getX()};
+        return cordinate;
+    }
+
     public void setTurnoTrue() {
         this.turno = true;
     }
@@ -34,8 +41,60 @@ public class Giocatore {
     public boolean isTurno() {
         return turno;
     }
-
-    private void cambioCasella(int dado){
-        this.casellaCorrente+=dado;
+    public void cambioCasella(int dado){
+        if (dado==0){
+            return;
+        }else {
+            cambioCordinate(dado);
+        }
     }
+
+    private void cambioCordinate(int dado){
+        int nuovaCordinataX=this.cordinate.getX();
+        int nuovaCordinataY= this.cordinate.getY();
+
+        if (nuovaCordinataY==this.yMax){
+
+            if (nuovaCordinataX==0){
+                nuovaCordinataY-=1;
+                this.cordinate.setY(nuovaCordinataY);
+
+            }else{
+                nuovaCordinataX-=1;
+                this.cordinate.setX(nuovaCordinataX);
+
+            }
+        }
+        else if (nuovaCordinataY==0){
+            if (nuovaCordinataX==0){
+                nuovaCordinataX+=1;
+                this.cordinate.setX(nuovaCordinataX);
+
+            }else{
+                nuovaCordinataY+=1;
+                this.cordinate.setY(nuovaCordinataY);
+
+            }
+
+        }
+        else {
+            if (nuovaCordinataX==0){
+                nuovaCordinataY-=1;
+                this.cordinate.setY(nuovaCordinataY);
+
+            }else {
+                nuovaCordinataY+=1;
+                this.cordinate.setY(nuovaCordinataY);
+
+            }
+        }
+        cambioCasella(dado-1);
+
+
+    }
+
+
+
+
+
 }
