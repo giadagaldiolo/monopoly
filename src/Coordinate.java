@@ -1,8 +1,8 @@
-public class Cordinate {
+public class Coordinate {
     private int x;
     private int y;
 
-    public Cordinate(int y, int x) {
+    public Coordinate(int y, int x) {
         this.x = x;
         this.y = y;
     }

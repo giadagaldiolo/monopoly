@@ -4,6 +4,7 @@ public class Gioco {
     private Giocatore[] giocatori;
     private Banca banca;
     private Dado dado;
+
     private int giocatoreCorrente=0;
 
     public Gioco() {
@@ -37,7 +38,7 @@ public class Gioco {
             do {
                 simbolo = ScannerUtils.inputSimboloGiocatore(i + 1);
 
-            }while (controllosimboli(simbolo));
+            }while (controlloSimboli(simbolo));
 
 
             giocatori[i] = new Giocatore(nome,simbolo, 0);
@@ -102,7 +103,7 @@ public class Gioco {
 
 
     }
-    private boolean controllosimboli(char simbolo){
+    private boolean controlloSimboli(char simbolo){
         boolean trovato = false;
         for (Giocatore giocatore : giocatori) {
             if ( giocatore != null && giocatore.getSimbolo()==simbolo){
@@ -131,8 +132,8 @@ public class Gioco {
 
     }
     private void cambioSimbolo(int giocatore,char simbolo){
-        int [] cordinateAttuali= this.giocatori[giocatore].cordinate();
-        this.tabellone.modificaCasella(simbolo,cordinateAttuali[0],cordinateAttuali[1],giocatore);
+        int [] coordinateAttuali= this.giocatori[giocatore].cordinate();
+        this.tabellone.modificaCasella(simbolo,coordinateAttuali[0],coordinateAttuali[1],giocatore);
 
     }
 

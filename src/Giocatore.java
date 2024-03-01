@@ -3,9 +3,10 @@ public class Giocatore {
     private char simbolo;
     private int soldi;
     private boolean turno;
-    private int yMax=Costanti.RIGHE-1;
-    private int xMax= Costanti.CASELLE_PER_RIGA-1;
-    private Cordinate cordinate= new Cordinate(yMax,xMax);
+    private final int  yMax=Costanti.RIGHE-1;
+    private final int  xMax= Costanti.CASELLE_PER_RIGA-1;
+
+    private Coordinate coordinate = new Coordinate(yMax,xMax);
 
     public Giocatore(String nome, char simbolo, int soldi) {
         this.nome = nome;
@@ -26,7 +27,7 @@ public class Giocatore {
     }
 
     public int [] cordinate(){
-        int cordinate[]= {this.cordinate.getY(),this.cordinate.getX()};
+        int cordinate[]= {this.coordinate.getY(),this.coordinate.getX()};
         return cordinate;
     }
 
@@ -45,55 +46,55 @@ public class Giocatore {
         if (dado==0){
             return;
         }else {
-            cambioCordinate(dado);
+            cambioCoordinate(dado);
         }
     }
 
-    private void cambioCordinate(int dado){
-        int nuovaCordinataX=this.cordinate.getX();
-        int nuovaCordinataY= this.cordinate.getY();
 
 
-        if (nuovaCordinataY==this.yMax){
+    private void cambioCoordinate(int dado){
+        int nuovaCoordinataX=this.coordinate.getX();
+        int nuovaCoordinataY= this.coordinate.getY();
+        int somma =nuovaCoordinataY+nuovaCoordinataX;
+        int sinistraSopra = -1;
+        int destraSotto = 1;
+        if ( controlloAngoli(somma,nuovaCoordinataY) ){
 
-            if (nuovaCordinataX==0){
-                nuovaCordinataY-=1;
-                this.cordinate.setY(nuovaCordinataY);
-
-            }else{
-                nuovaCordinataX-=1;
-                this.cordinate.setX(nuovaCordinataX);
-
-            }
-        }
-        else if (nuovaCordinataY==0){
-            if (nuovaCordinataX==this.xMax){
-                nuovaCordinataY+=1;
-                this.cordinate.setY(nuovaCordinataY);
-
-            }else{
-                nuovaCordinataX+=1;
-                this.cordinate.setX(nuovaCordinataX);
-
-            }
-
-        }
-        else {
-            if (nuovaCordinataX==0){
-                nuovaCordinataY-=1;
-                this.cordinate.setY(nuovaCordinataY);
+            if (nuovaCoordinataY==this.yMax){
+                movimentoOrizzontale(sinistraSopra,nuovaCoordinataX);
 
             }else {
-                nuovaCordinataY+=1;
-                this.cordinate.setY(nuovaCordinataY);
+                movimentoOrizzontale(destraSotto,nuovaCoordinataX);
+            }
+
+        }else{
+
+            if (nuovaCoordinataX==this.xMax){
+                movimentoVerticale(destraSotto,nuovaCoordinataY);
+
+
+            }else {
+                movimentoVerticale(sinistraSopra,nuovaCoordinataY);
 
             }
+
         }
-
         cambioCasella(dado-1);
+    }
+    private boolean controlloAngoli(int somma , int nuovaCoordinataY){
+        return (this.xMax < somma && nuovaCoordinataY==this.yMax) || (this.xMax > somma && nuovaCoordinataY==0);
+    }
 
+    private void movimentoOrizzontale(int movimento,int x){ // sinistra -1 destra 1
+        x+=movimento;
+        this.coordinate.setX(x);
+    }
+    private void movimentoVerticale(int movimento,int y){ // sopra -1 , sotto 1
+        y+=movimento;
+        this.coordinate.setY(y);
 
     }
+
 
 
 
