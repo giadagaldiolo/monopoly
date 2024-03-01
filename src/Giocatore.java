@@ -52,6 +52,8 @@ public class Giocatore {
     private void cambioCordinate(int dado){
         int nuovaCordinataX=this.cordinate.getX();
         int nuovaCordinataY= this.cordinate.getY();
+        System.out.println("cordinate iniziali :");
+        System.out.println(nuovaCordinataY + " " + nuovaCordinataX);
 
         if (nuovaCordinataY==this.yMax){
 
@@ -66,13 +68,13 @@ public class Giocatore {
             }
         }
         else if (nuovaCordinataY==0){
-            if (nuovaCordinataX==0){
-                nuovaCordinataX+=1;
-                this.cordinate.setX(nuovaCordinataX);
-
-            }else{
+            if (nuovaCordinataX==this.xMax){
                 nuovaCordinataY+=1;
                 this.cordinate.setY(nuovaCordinataY);
+
+            }else{
+                nuovaCordinataX+=1;
+                this.cordinate.setX(nuovaCordinataX);
 
             }
 
@@ -88,6 +90,8 @@ public class Giocatore {
 
             }
         }
+        System.out.println("cordinate finali :");
+        System.out.println(nuovaCordinataY + " " + nuovaCordinataX);
         cambioCasella(dado-1);
 
 
