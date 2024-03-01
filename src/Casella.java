@@ -33,5 +33,6 @@ public class Casella {
     public char[] getArrayCaratteri() {
         return giocatoripresenti;
     }
+
 }
 

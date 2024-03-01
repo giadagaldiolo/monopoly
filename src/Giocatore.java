@@ -3,6 +3,7 @@ public class Giocatore {
     private char simbolo;
     private int soldi;
     private boolean turno;
+    private int casellaCorrente=0;
 
     public Giocatore(String nome, char simbolo, int soldi) {
         this.nome = nome;
@@ -32,5 +33,9 @@ public class Giocatore {
 
     public boolean isTurno() {
         return turno;
+    }
+
+    private void cambioCasella(int dado){
+        this.casellaCorrente+=dado;
     }
 }

@@ -1,13 +1,24 @@
+
 public class Gioco {
     private Tabellone tabellone;
     private Giocatore[] giocatori;
     private Banca banca;
+    private Dado dado;
 
     public Gioco() {
-        creaTabellone();
-        creaGiocatori();
+        creaGioco();
         tabellone.mostra();
         handleGame();
+    }
+    public void creaGioco(){
+        creaTabellone();
+        creaGiocatori();
+        creaDado();
+
+    }
+    private void creaDado(){
+        this.dado=new Dado();
+
     }
 
     private void creaGiocatori() {
@@ -46,7 +57,8 @@ public class Gioco {
                     System.out.println(currentGiocatore.getSoldi());
                     break;
                 case 2:
-                    int passi = (int) (Math.random() * ((Costanti.NUMERO_DADO_MAX - Costanti.NUMERO_DADO_MIN +1) + Costanti.NUMERO_DADO_MIN));
+                    int passi = this.dado.lancioDadi();
+
                     // sposta giocatore
                     // fai pagare
                     cambiaGiocatore();
