@@ -42,7 +42,7 @@ public class Gioco {
 
 
             giocatori[i] = new Giocatore(nome,simbolo, 0);
-            tabellone.modificaCasella(simbolo, Costanti.RIGHE-1, Costanti.CASELLE_PER_RIGA-1, i);
+            tabellone.modificaCasella(giocatori[i].getSimbolo(), Costanti.RIGHE-1, Costanti.CASELLE_PER_RIGA-1, i);
             // distribuisci soldi ad ogni giocatore
         }
     }
@@ -106,7 +106,7 @@ public class Gioco {
     private boolean controlloSimboli(char simbolo){
         boolean trovato = false;
         for (Giocatore giocatore : giocatori) {
-            if ( giocatore != null && giocatore.getSimbolo()==simbolo){
+            if ( giocatore != null && giocatore.getSimboloChar()==simbolo){
                 System.out.println("Simbolo gia utilizzato dal giocatore: " + giocatore.getNome());
                 trovato= true;
                 break;
@@ -125,13 +125,13 @@ public class Gioco {
     }
 
     private void movimentoGiocatore(int passi,int giocatore){
-        cambioSimbolo(giocatore,' ');
+        cambioSimbolo(giocatore," ");
         this.giocatori[giocatore].cambioCasella(passi);
         cambioSimbolo(giocatore,this.giocatori[giocatore].getSimbolo());
 
 
     }
-    private void cambioSimbolo(int giocatore,char simbolo){
+    private void cambioSimbolo(int giocatore,String simbolo){
         int [] coordinateAttuali= this.giocatori[giocatore].cordinate();
         this.tabellone.modificaCasella(simbolo,coordinateAttuali[0],coordinateAttuali[1],giocatore);
 

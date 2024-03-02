@@ -3,6 +3,7 @@ public class Tabellone {
 
 
     public void mostra(){
+
         Casella currentCell;
         String spazio = " ";
         String trattino = "-";
@@ -60,9 +61,17 @@ public class Tabellone {
             case 4:
 
                 StringBuilder quintaRiga = new StringBuilder();
-                for (int i = 0; i < currentCell.getNumGiocatori(); i++)
+                int spaziDaFare=currentCell.getNumGiocatori()*currentCell.getNumGiocatori();
+
+
+                for (int i = 0; i < currentCell.getNumGiocatori(); i++) {
                     quintaRiga.append(currentCell.getCharGiocatore(i)).append(" ");
-                System.out.print(quintaRiga + spazio.repeat(((Costanti.LARGHEZZA_CASELLA -2) - quintaRiga.length())));
+
+
+
+                }
+
+                System.out.print(quintaRiga + spazio.repeat((Costanti.LARGHEZZA_CASELLA -2)-spaziDaFare));
                 break;
         }
     }
@@ -85,7 +94,7 @@ public class Tabellone {
         }
     }
 
-    public void modificaCasella(char simbolo, int i, int j, int giocatore) {
+    public void modificaCasella(String simbolo, int i, int j, int giocatore) {
 
 
         caselle[i][j].aggiungiCarattere(simbolo, giocatore);

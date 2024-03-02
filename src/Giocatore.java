@@ -1,8 +1,10 @@
 public class Giocatore {
     private String nome;
-    private char simbolo;
+    private String simbolo;
+    private char simboloChar;
     private int soldi;
     private boolean turno;
+    private String colore;
     private final int  yMax=Costanti.RIGHE-1;
     private final int  xMax= Costanti.CASELLE_PER_RIGA-1;
 
@@ -10,17 +12,24 @@ public class Giocatore {
 
     public Giocatore(String nome, char simbolo, int soldi) {
         this.nome = nome;
-        this.simbolo = simbolo;
+        this.simboloChar=simbolo;
         this.soldi = soldi;
+        this.colore=Colori.sceltaColore();
+        this.simbolo = colore+simbolo+Costanti.ANSI_RESET;
     }
 
-    public char getSimbolo() {
+    public String getSimbolo() {
         return simbolo;
+    }
+    public char getSimboloChar() {
+        return simboloChar;
     }
 
     public int getSoldi() {
         return soldi;
     }
+
+
 
     public String getNome() {
         return nome;
@@ -94,6 +103,7 @@ public class Giocatore {
         this.coordinate.setY(y);
 
     }
+
 
 
 

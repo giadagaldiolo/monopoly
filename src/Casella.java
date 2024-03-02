@@ -3,7 +3,7 @@ import java.util.Random;
 public class Casella {
     private String nome="Pedaggio"; //la casella via si chiama via
     private int pedaggio;
-    private char[] giocatoripresenti = {' ', ' '}; // poi aggiustiamo la costante
+    private String[] giocatoripresenti = {" ", " "}; // poi aggiustiamo la costante
     private int cntGiocatori = Costanti.NUMERO_GIOCATORI;
     private final Coordinate coordinate;
 
@@ -26,18 +26,15 @@ public class Casella {
     public int getNumGiocatori() {
         return cntGiocatori;
     }
-    public char getCharGiocatore(final int i) {
+    public String getCharGiocatore(final int i) {
         return giocatoripresenti[i];
     }
 
-
-    public void aggiungiCarattere(char ch, int giocatore) {
+    public void aggiungiCarattere(String ch, int giocatore) {
         giocatoripresenti[giocatore] = ch;
     }
 
-    public char[] getArrayCaratteri() {
-        return giocatoripresenti;
-    }
+
 
 }
 
