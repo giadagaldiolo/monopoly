@@ -7,8 +7,8 @@ public class Tabellone {
         String spazio = " ";
         String trattino = "-";
 
-        for (int i = 0; i < Costanti.CASELLE_PER_RIGA; i++) {
-            if (i == 0 || i == 1 || i == Costanti.CASELLE_PER_RIGA -1)
+        for (int i = 0; i < Costanti.RIGHE; i++) {
+            if (i == 0 || i == 1 || i == Costanti.RIGHE -1)
                 System.out.print(trattino.repeat((Costanti.LARGHEZZA_CASELLA * Costanti.CASELLE_PER_RIGA)));
             else {
                 System.out.print(trattino.repeat(Costanti.LARGHEZZA_CASELLA));
@@ -19,6 +19,7 @@ public class Tabellone {
 
             for (int d = 0; d < 5; d++) {
                 for (int col = 0; col < Costanti.CASELLE_PER_RIGA; col++) {
+
                     currentCell = caselle[i][col];
                     if (currentCell == null)
                         System.out.print(spazio.repeat(Costanti.LARGHEZZA_CASELLA));
@@ -76,16 +77,16 @@ public class Tabellone {
                 if (i > 0 && i < Costanti.RIGHE-1 && j > 0 && j < Costanti.CASELLE_PER_RIGA-1) {
                     caselle[i][j] = null;
                 } else {
-                    pedaggio = (int) (Math.random() * ((Costanti.IMPORTO_PEDAGGIO_MAX-Costanti.IMPORTO_PEDAGGIO_MIN+1) + Costanti.IMPORTO_PEDAGGIO_MIN));
                     if (i == Costanti.RIGHE-1 && j == Costanti.CASELLE_PER_RIGA-1)
                         nome = "Via";
-                    caselle[i][j] = new Casella(nome, pedaggio,i,j);
+                    caselle[i][j] = new Casella(nome,i,j);
                 }
             }
         }
     }
 
     public void modificaCasella(char simbolo, int i, int j, int giocatore) {
+
 
         caselle[i][j].aggiungiCarattere(simbolo, giocatore);
     }

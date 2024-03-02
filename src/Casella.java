@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Casella {
     private String nome="Pedaggio"; //la casella via si chiama via
     private int pedaggio;
@@ -6,9 +8,10 @@ public class Casella {
     private final Coordinate coordinate;
 
 
-    public Casella(String nome, int pedaggio,int y, int x) {
+    public Casella(String nome,int y, int x) {
         this.nome = nome;
-        this.pedaggio = pedaggio;
+        Random random = new Random();
+        this.pedaggio = random.nextInt(Costanti.IMPORTO_PEDAGGIO_MIN,Costanti.IMPORTO_PEDAGGIO_MAX+1);
         this.coordinate = new Coordinate(y,x);
 
 

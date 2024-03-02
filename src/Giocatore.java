@@ -55,10 +55,10 @@ public class Giocatore {
     private void cambioCoordinate(int dado){
         int nuovaCoordinataX=this.coordinate.getX();
         int nuovaCoordinataY= this.coordinate.getY();
-        int somma =nuovaCoordinataY+nuovaCoordinataX;
+        int prodotto = nuovaCoordinataY*nuovaCoordinataX;
         int sinistraSopra = -1;
         int destraSotto = 1;
-        if ( controlloAngoli(somma,nuovaCoordinataY) ){
+        if ( controlloAngoli(prodotto,nuovaCoordinataY,nuovaCoordinataX) ){
 
             if (nuovaCoordinataY==this.yMax){
                 movimentoOrizzontale(sinistraSopra,nuovaCoordinataX);
@@ -81,8 +81,8 @@ public class Giocatore {
         }
         cambioCasella(dado-1);
     }
-    private boolean controlloAngoli(int somma , int nuovaCoordinataY){
-        return (this.xMax < somma && nuovaCoordinataY==this.yMax) || (this.xMax > somma && nuovaCoordinataY==0);
+    private boolean controlloAngoli(int prodotto , int nuovaCoordinataY, int nuovaCoordinataX){
+        return (prodotto!=0 && nuovaCoordinataY==this.yMax) || (prodotto!=xMax*yMax && nuovaCoordinataY==0 && nuovaCoordinataX!=this.xMax)  ;
     }
 
     private void movimentoOrizzontale(int movimento,int x){ // sinistra -1 destra 1
