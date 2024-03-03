@@ -31,6 +31,10 @@ public class Casella {
         giocatoripresenti[giocatore] = ch;
     }
 
+    public int getPedaggio() {
+        return pedaggio;
+    }
+
     public static void printTrattiniCasella(int i){
         String spazio = " ";
         String trattino = "-";
@@ -60,12 +64,8 @@ public class Casella {
     public void mostra(int d){
 
         System.out.print(this.colore);
-
         stampaDettagliCasella(d);
-
         System.out.print(Costanti.ANSI_RESET);
-
-
 
 
     }
@@ -88,7 +88,7 @@ public class Casella {
                 if (this.nome.equals("Via")) {
                     secondaRiga = "Ritira " + Costanti.IMPORTO_DEL_VIA;
                 } else {
-                    secondaRiga = "Paga " + this.pedaggio;
+                    secondaRiga = "Paga " + Math.abs(this.pedaggio);
                 }
                 System.out.print(secondaRiga + spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - secondaRiga.length())));
                 break;

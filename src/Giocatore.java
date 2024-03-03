@@ -15,7 +15,7 @@ public class Giocatore {
         this.nome = nome;
         this.simboloChar=simbolo;
         this.soldi = soldi;
-        this.colore=Colori.sceltaColore(false);
+        this.colore = Colori.sceltaColore(false);
         this.simbolo = colore+simbolo+Costanti.ANSI_RESET;
     }
 
@@ -23,12 +23,13 @@ public class Giocatore {
         return simbolo;
     }
 
-
     public int getSoldi() {
         return soldi;
     }
 
-
+    public void setSoldi(final int soldi) {
+        this.soldi += soldi;
+    }
 
     public String getNome() {
         return nome;
@@ -50,9 +51,9 @@ public class Giocatore {
         return turno;
     }
     public void cambioCasella(int dado){
-        if (dado==0){
+        if (dado == 0){
             return;
-        }else {
+        } else {
             cambioCoordinate(dado);
         }
     }
@@ -99,7 +100,6 @@ public class Giocatore {
         boolean risposta = giocatoreDaControllare==this.simboloChar;
         if (risposta){
             System.out.println("Simbolo gia utilizzato dal giocatore: " + this.nome);
-
         }
         return risposta;
 
@@ -107,14 +107,5 @@ public class Giocatore {
     public static boolean checkForNullGiocatore(Giocatore giocatore){
         return giocatore == null;
     }
-
-
-
-
-
-
-
-
-
 
 }

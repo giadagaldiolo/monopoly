@@ -27,9 +27,9 @@ public class ScannerUtils {
         String inputUtente;
         do {
             System.out.println("Inserisci simbolo giocatore " + numeroGiocatore);
-            inputUtente = scanner.nextLine().strip(); // non posso mettere this perche static
+            inputUtente = scanner.nextLine().strip().toUpperCase(); // non posso mettere this perche static
             if ((inputUtente.length()==1) && (!inputUtente.isBlank())){
-                return (char) (inputUtente.charAt(0) -32);
+                return inputUtente.charAt(0);
             }
             System.out.println("Inserire soltanto e almeno un carattere");
         } while (true);

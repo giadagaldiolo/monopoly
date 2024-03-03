@@ -2,7 +2,7 @@
 public class Gioco {
     private Tabellone tabellone;
     private Giocatore[] giocatori;
-    private Banca banca;
+    private Banca banca = new Banca(Costanti.IMPORTO_INIZIALE_BANCA);
     private Dado dado;
 
     private int giocatoreCorrente=0;
@@ -41,8 +41,8 @@ public class Gioco {
 
             giocatori[i] = new Giocatore(nome,simbolo, 0);
             tabellone.modificaCasella(giocatori[i].getSimbolo(), Costanti.RIGHE-1, Costanti.CASELLE_PER_RIGA-1, i);
-            // distribuisci soldi ad ogni giocatore
         }
+        distribuisciImportoIniziale();
     }
 
     private int mostraMenu() {
@@ -57,7 +57,7 @@ public class Gioco {
         currentGiocatore.setTurnoTrue();
         int scelta;
         do {
-            System.out.println("è il turno di " + currentGiocatore.getNome());
+            System.out.println("E' il turno di " + currentGiocatore.getNome());
             scelta = mostraMenu();
             switch (scelta){
                 case 1:
@@ -68,12 +68,12 @@ public class Gioco {
                     System.out.println(passi);
                     movimentoGiocatore(passi,giocatoreCorrente);
 
-                    // fai pagare
+                    int[] coordinateAttuali = currentGiocatore.getCoordinate();
+                    tabellone.faiPagare(coordinateAttuali[0],coordinateAttuali[1], currentGiocatore);
 
                     // da dividere in funzioni piu piccole
                     turnoSucessivo();
                     tabellone.mostra();
-
                     break;
             }
         } while (scelta != 2);
@@ -84,8 +84,6 @@ public class Gioco {
         }else{
             this.giocatoreCorrente++;
         }
-
-
     }
     private boolean controlloSimboli(char simbolo){
         boolean trovato = false;
@@ -98,8 +96,12 @@ public class Gioco {
         return trovato;
     }
 
-
-
+    private void distribuisciImportoIniziale() {
+        for (Giocatore giocatore : giocatori) {
+            giocatore.setSoldi(Costanti.IMPORTO_INIZIALE_GIOCATORE);
+            Banca.setImporto(-Costanti.IMPORTO_INIZIALE_GIOCATORE);
+        }
+    }
 
     private void creaTabellone() {
         this.tabellone = new Tabellone();

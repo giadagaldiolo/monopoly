@@ -50,6 +50,12 @@ public class Tabellone {
         caselle[i][j].aggiungiCarattere(simbolo, giocatore);
     }
 
+    public void faiPagare(int i, int j, Giocatore giocatore) {
+        giocatore.setSoldi(caselle[i][j].getPedaggio());
+    }
+
+
+
 
 
 }
