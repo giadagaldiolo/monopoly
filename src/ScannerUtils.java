@@ -25,15 +25,14 @@ public class ScannerUtils {
 
     public static char inputSimboloGiocatore(final int numeroGiocatore){
         String inputUtente;
-        do{
+        do {
             System.out.println("Inserisci simbolo giocatore " + numeroGiocatore);
             inputUtente = scanner.nextLine().strip(); // non posso mettere this perche static
             if ((inputUtente.length()==1) && (!inputUtente.isBlank())){
-                return inputUtente.charAt(0);
-
+                return (char) (inputUtente.charAt(0) -32);
             }
             System.out.println("Inserire soltanto e almeno un carattere");
-        }while (true);
+        } while (true);
     }
 
     public static int readIntegerInRange(int min, int max) {

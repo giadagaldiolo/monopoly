@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class Casella {
-    private String nome="Pedaggio"; //la casella via si chiama via
+    private String nome;
     private int pedaggio;
     private String[] giocatoripresenti = {" ", " "}; // poi aggiustiamo la costante
     private int cntGiocatori = Costanti.NUMERO_GIOCATORI;
@@ -52,10 +52,8 @@ public class Casella {
 
         String trattino = "-";
         System.out.print(coloreTrattini);
-        System.out.print(trattino.repeat((Costanti.LARGHEZZA_CASELLA * Costanti.CASELLE_PER_RIGA)));
+        System.out.println(trattino.repeat((Costanti.LARGHEZZA_CASELLA * Costanti.CASELLE_PER_RIGA)));
         System.out.print(Costanti.ANSI_RESET);
-
-
 
     }
 
@@ -101,11 +99,9 @@ public class Casella {
                 System.out.print(spazio.repeat((Costanti.LARGHEZZA_CASELLA - 2)));
                 break;
             case 4:
-
                 StringBuilder quintaRiga = new StringBuilder();
                 int numeroGiocatori=getNumGiocatori();
-                int spaziDaFare =  numeroGiocatori* numeroGiocatori;
-
+                int spaziDaFare = numeroGiocatori * numeroGiocatori;
 
                 for (int i = 0; i < numeroGiocatori; i++) {
                     quintaRiga.append(getCharGiocatore(i)).append(" ");

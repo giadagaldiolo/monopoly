@@ -34,7 +34,7 @@ public class Giocatore {
         return nome;
     }
 
-    public int [] coordinate(){
+    public int [] getCoordinate(){
         return new int[]{this.coordinate.getY(),this.coordinate.getX()};
     }
 
@@ -65,31 +65,24 @@ public class Giocatore {
         int prodotto = nuovaCoordinataY*nuovaCoordinataX;
         int sinistraSopra = -1;
         int destraSotto = 1;
-        if ( controlloAngoli(prodotto,nuovaCoordinataY,nuovaCoordinataX) ){
+        if (controlloAngoli(prodotto,nuovaCoordinataY,nuovaCoordinataX) ){
 
             if (nuovaCoordinataY==this.yMax){
                 movimentoOrizzontale(sinistraSopra,nuovaCoordinataX);
-
-            }else {
+            } else {
                 movimentoOrizzontale(destraSotto,nuovaCoordinataX);
             }
-
-        }else{
-
+        } else{
             if (nuovaCoordinataX==this.xMax){
                 movimentoVerticale(destraSotto,nuovaCoordinataY);
-
-
-            }else {
+            } else {
                 movimentoVerticale(sinistraSopra,nuovaCoordinataY);
-
             }
-
         }
         cambioCasella(dado-1);
     }
     private boolean controlloAngoli(int prodotto , int nuovaCoordinataY, int nuovaCoordinataX){
-        return (prodotto!=0 && nuovaCoordinataY==this.yMax) || (prodotto!=xMax*yMax && nuovaCoordinataY==0 && nuovaCoordinataX!=this.xMax)  ;
+        return (prodotto!=0 && nuovaCoordinataY==this.yMax) || (nuovaCoordinataY==0 && nuovaCoordinataX!=this.xMax);
     }
 
     private void movimentoOrizzontale(int movimento,int x){ // sinistra -1 destra 1
@@ -103,12 +96,12 @@ public class Giocatore {
     }
 
     public boolean isSimboloUguale(char giocatoreDaControllare){
-        boolean risposta= giocatoreDaControllare==this.simboloChar;
+        boolean risposta = giocatoreDaControllare==this.simboloChar;
         if (risposta){
             System.out.println("Simbolo gia utilizzato dal giocatore: " + this.nome);
 
         }
-        return risposta ;
+        return risposta;
 
     }
     public static boolean checkForNullGiocatore(Giocatore giocatore){

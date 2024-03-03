@@ -3,7 +3,6 @@ public class Tabellone {
 
 
     public void mostra(){
-
         Casella currentCell;
         String spazio = " ";
 
@@ -48,7 +47,6 @@ public class Tabellone {
     }
 
     public void modificaCasella(String simbolo, int i, int j, int giocatore) {
-
         caselle[i][j].aggiungiCarattere(simbolo, giocatore);
     }
 

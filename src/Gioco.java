@@ -21,7 +21,7 @@ public class Gioco {
     }
     private void gameFlow(){
         while (true) {
-            handleGame(); // ds programmare il limite
+            handleGame(); // da programmare il limite
         }
     }
 
@@ -37,9 +37,7 @@ public class Gioco {
             String nome = ScannerUtils.inputNomeGiocatore(i+1);
             do {
                 simbolo = ScannerUtils.inputSimboloGiocatore(i + 1);
-
-            }while (controlloSimboli(simbolo));
-
+            } while (controlloSimboli(simbolo));
 
             giocatori[i] = new Giocatore(nome,simbolo, 0);
             tabellone.modificaCasella(giocatori[i].getSimbolo(), Costanti.RIGHE-1, Costanti.CASELLE_PER_RIGA-1, i);
@@ -70,9 +68,8 @@ public class Gioco {
                     System.out.println(passi);
                     movimentoGiocatore(passi,giocatoreCorrente);
 
-                    // sposta giocatore
                     // fai pagare
-                    //cambiaGiocatore();
+
                     // da dividere in funzioni piu piccole
                     turnoSucessivo();
                     tabellone.mostra();
@@ -80,20 +77,6 @@ public class Gioco {
                     break;
             }
         } while (scelta != 2);
-    }
-
-    private void cambiaGiocatore() {
-        for (int i = 0; i < giocatori.length; i++) {
-            if (giocatori[i].isTurno()) {            // per adesso non serve
-                giocatori[i].setTurnoFalse();
-                if (i == giocatori.length - 1) {
-                    giocatori[0].setTurnoTrue();
-                } else {
-                    giocatori[i+1].setTurnoTrue();
-                }
-                return;
-            }
-        }
     }
     private void turnoSucessivo(){
         if (this.giocatoreCorrente==(this.giocatori.length-1)){
@@ -107,7 +90,7 @@ public class Gioco {
     private boolean controlloSimboli(char simbolo){
         boolean trovato = false;
         for (Giocatore giocatore : giocatori) {
-            if ( !(Giocatore.checkForNullGiocatore(giocatore)) && giocatore.isSimboloUguale(simbolo)){
+            if (!(Giocatore.checkForNullGiocatore(giocatore)) && giocatore.isSimboloUguale(simbolo)){
                 trovato= true;
                 break;
             }
@@ -127,11 +110,9 @@ public class Gioco {
         cambioSimbolo(giocatore," ");
         this.giocatori[giocatore].cambioCasella(passi);
         cambioSimbolo(giocatore,this.giocatori[giocatore].getSimbolo());
-
-
     }
     private void cambioSimbolo(int giocatore,String simbolo){
-        int [] coordinateAttuali= this.giocatori[giocatore].coordinate();
+        int[] coordinateAttuali = this.giocatori[giocatore].getCoordinate();
         this.tabellone.modificaCasella(simbolo,coordinateAttuali[0],coordinateAttuali[1],giocatore);
 
     }

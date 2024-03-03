@@ -21,7 +21,6 @@ public class Colori {
         }
         colore = colore + numeroColore + "m";
         return colore ;
-
     }
 
 
@@ -34,7 +33,7 @@ public class Colori {
             }
 
         }
-        System.out.println(utilizzato);
+//        System.out.println(utilizzato);
         return utilizzato;
 
     }
