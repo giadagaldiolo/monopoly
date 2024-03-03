@@ -73,6 +73,7 @@ public class Gioco {
                     // sposta giocatore
                     // fai pagare
                     //cambiaGiocatore();
+                    // da dividere in funzioni piu piccole
                     turnoSucessivo();
                     tabellone.mostra();
 
@@ -106,16 +107,14 @@ public class Gioco {
     private boolean controlloSimboli(char simbolo){
         boolean trovato = false;
         for (Giocatore giocatore : giocatori) {
-            if ( !(checkForNullGiocatore(giocatore)) && giocatore.isSimboloUguale(simbolo)){
+            if ( !(Giocatore.checkForNullGiocatore(giocatore)) && giocatore.isSimboloUguale(simbolo)){
                 trovato= true;
                 break;
             }
         }
         return trovato;
     }
-    private boolean checkForNullGiocatore(Giocatore giocatore){
-        return giocatore == null;
-    }
+
 
 
 

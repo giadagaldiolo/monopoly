@@ -113,6 +113,9 @@ public class Giocatore {
         return risposta ;
 
     }
+    public static boolean checkForNullGiocatore(Giocatore giocatore){
+        return giocatore == null;
+    }
 
 
 
