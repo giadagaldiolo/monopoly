@@ -5,25 +5,24 @@ public class Giocatore {
     private int soldi;
     private boolean turno;
     private String colore;
+
     private final int  yMax=Costanti.RIGHE-1;
     private final int  xMax= Costanti.CASELLE_PER_RIGA-1;
 
-    private Coordinate coordinate = new Coordinate(yMax,xMax);
+    private final Coordinate coordinate = new Coordinate(yMax,xMax);
 
     public Giocatore(String nome, char simbolo, int soldi) {
         this.nome = nome;
         this.simboloChar=simbolo;
         this.soldi = soldi;
-        this.colore=Colori.sceltaColore();
+        this.colore=Colori.sceltaColore(false);
         this.simbolo = colore+simbolo+Costanti.ANSI_RESET;
     }
 
     public String getSimbolo() {
         return simbolo;
     }
-    public char getSimboloChar() {
-        return simboloChar;
-    }
+
 
     public int getSoldi() {
         return soldi;
@@ -35,9 +34,8 @@ public class Giocatore {
         return nome;
     }
 
-    public int [] cordinate(){
-        int cordinate[]= {this.coordinate.getY(),this.coordinate.getX()};
-        return cordinate;
+    public int [] coordinate(){
+        return new int[]{this.coordinate.getY(),this.coordinate.getX()};
     }
 
     public void setTurnoTrue() {

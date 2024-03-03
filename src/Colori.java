@@ -7,16 +7,19 @@ public class Colori {
 
 
 
-    public static String sceltaColore(){
+    public static String sceltaColore(boolean ripetuto){
         Random random = new Random();
         String colore ="\u001B[3";
         int numeroColore;
         do {
             numeroColore = random.nextInt(Costanti.ANSI_MIN, Costanti.ANSI_MAX + 1);
 
-        }while (isColoreUtilizzato(numeroColore));
-        coloriUsati[++cntColori]=numeroColore;
-        colore=colore+numeroColore+"m";
+        }while (  !ripetuto && isColoreUtilizzato(numeroColore ));
+        if (!ripetuto) {
+            coloriUsati[++cntColori] = numeroColore;
+
+        }
+        colore = colore + numeroColore + "m";
         return colore ;
 
     }

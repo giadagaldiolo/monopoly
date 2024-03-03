@@ -131,7 +131,7 @@ public class Gioco {
 
     }
     private void cambioSimbolo(int giocatore,String simbolo){
-        int [] coordinateAttuali= this.giocatori[giocatore].cordinate();
+        int [] coordinateAttuali= this.giocatori[giocatore].coordinate();
         this.tabellone.modificaCasella(simbolo,coordinateAttuali[0],coordinateAttuali[1],giocatore);
 
     }

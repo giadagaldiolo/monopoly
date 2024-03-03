@@ -6,11 +6,13 @@ public class Tabellone {
 
         Casella currentCell;
         String spazio = " ";
-        String trattino = "-";
+
 
         for (int i = 0; i < Costanti.RIGHE; i++) {
             Casella.printTrattiniCasella(i);
+
             for (int d = 0; d < 5; d++) {
+
                 for (int col = 0; col < Costanti.CASELLE_PER_RIGA; col++) {
                     currentCell = caselle[i][col];
                     if (Casella.checkForNull(currentCell))
@@ -22,7 +24,8 @@ public class Tabellone {
                 System.out.println();
             }
         }
-        System.out.print(trattino.repeat((Costanti.LARGHEZZA_CASELLA * Costanti.CASELLE_PER_RIGA)));
+        Casella.printUltimaRiga();
+
     }
 
 

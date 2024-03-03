@@ -5,7 +5,9 @@ public class Casella {
     private int pedaggio;
     private String[] giocatoripresenti = {" ", " "}; // poi aggiustiamo la costante
     private int cntGiocatori = Costanti.NUMERO_GIOCATORI;
+    private static final String coloreTrattini = Colori.sceltaColore(true);
     private final Coordinate coordinate;
+    private final String colore;
 
 
     public Casella(String nome,int y, int x) {
@@ -13,16 +15,11 @@ public class Casella {
         Random random = new Random();
         this.pedaggio = random.nextInt(Costanti.IMPORTO_PEDAGGIO_MIN,Costanti.IMPORTO_PEDAGGIO_MAX+1);
         this.coordinate = new Coordinate(y,x);
+        this.colore= Colori.sceltaColore(true);
 
 
     }
 
-    public String getNome() {
-        return nome;
-    }
-    public int getPedaggio() {
-        return pedaggio;
-    }
     public int getNumGiocatori() {
         return cntGiocatori;
     }
@@ -37,6 +34,8 @@ public class Casella {
     public static void printTrattiniCasella(int i){
         String spazio = " ";
         String trattino = "-";
+        System.out.print(coloreTrattini);
+
         if (i == 0 || i == 1 || i == Costanti.RIGHE -1) {
             System.out.print(trattino.repeat((Costanti.LARGHEZZA_CASELLA * Costanti.CASELLE_PER_RIGA)));
         } else {
@@ -44,15 +43,31 @@ public class Casella {
             System.out.print(spazio.repeat((Costanti.LARGHEZZA_CASELLA * (Costanti.CASELLE_PER_RIGA-2))));
             System.out.print(trattino.repeat(Costanti.LARGHEZZA_CASELLA));
         }
-        System.out.println();
+        System.out.println(Costanti.ANSI_RESET);
+
+
+    }
+
+    public  static void printUltimaRiga(){
+
+        String trattino = "-";
+        System.out.print(coloreTrattini);
+        System.out.print(trattino.repeat((Costanti.LARGHEZZA_CASELLA * Costanti.CASELLE_PER_RIGA)));
+        System.out.print(Costanti.ANSI_RESET);
+
+
 
     }
 
     public void mostra(int d){
 
-        System.out.print("|");
+        System.out.print(this.colore);
+
         stampaDettagliCasella(d);
-        System.out.print("|");
+
+        System.out.print(Costanti.ANSI_RESET);
+
+
 
 
     }
@@ -62,6 +77,8 @@ public class Casella {
     }
 
     private void stampaDettagliCasella(int d) {
+        System.out.print("|");
+
         String spazio = " ";
         switch (d) {
             case 0:
@@ -93,10 +110,14 @@ public class Casella {
                 for (int i = 0; i < numeroGiocatori; i++) {
                     quintaRiga.append(getCharGiocatore(i)).append(" ");
                 }
+
                 System.out.print(quintaRiga + spazio.repeat((Costanti.LARGHEZZA_CASELLA -2)-spaziDaFare));
+                System.out.print(this.colore); // ripeto il colore perche si resetta con i simboli del giocatore
+
                 break;
 
         }
+        System.out.print("|");
     }
 
 
