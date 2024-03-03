@@ -106,15 +106,15 @@ public class Gioco {
     private boolean controlloSimboli(char simbolo){
         boolean trovato = false;
         for (Giocatore giocatore : giocatori) {
-            if ( giocatore != null && giocatore.getSimboloChar()==simbolo){
-                System.out.println("Simbolo gia utilizzato dal giocatore: " + giocatore.getNome());
+            if ( !(checkForNullGiocatore(giocatore)) && giocatore.isSimboloUguale(simbolo)){
                 trovato= true;
                 break;
             }
-
         }
         return trovato;
-        
+    }
+    private boolean checkForNullGiocatore(Giocatore giocatore){
+        return giocatore == null;
     }
 
 

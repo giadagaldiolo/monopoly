@@ -104,6 +104,19 @@ public class Giocatore {
 
     }
 
+    public boolean isSimboloUguale(char giocatoreDaControllare){
+        boolean risposta= giocatoreDaControllare==this.simboloChar;
+        if (risposta){
+            System.out.println("Simbolo gia utilizzato dal giocatore: " + this.nome);
+
+        }
+        return risposta ;
+
+    }
+
+
+
+
 
 
 
