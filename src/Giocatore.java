@@ -1,4 +1,5 @@
 public class Giocatore {
+    public static int nGiocatoriInGioco= Costanti.NUMERO_GIOCATORI;
     private String nome;
     private String simbolo;
     private char simboloChar;
@@ -6,6 +7,7 @@ public class Giocatore {
     private boolean turno;
     private final int  yMax=Costanti.RIGHE-1;
     private final int  xMax= Costanti.CASELLE_PER_RIGA-1;
+    private boolean bancarotta=false;
 
     private final Coordinate coordinate = new Coordinate(yMax,xMax);
 
@@ -30,10 +32,15 @@ public class Giocatore {
 
     public void setSoldi(final int soldi) {
         this.soldi += soldi;
+        controlloSoldi();
+
     }
 
-    public void controlloSoldi(){
+    private void controlloSoldi(){
         if(soldi <= 0){
+            System.out.println("Il giocatore "+ nome +" ha perso" );
+            this.bancarotta=true;
+            nGiocatoriInGioco--;
 
         }
     }

@@ -19,11 +19,12 @@ public class Gioco {
     }
     private void gameFlow() {
         Giocatore giocatore = null;
-        while (giocatore == null) {
+        while (Giocatore.nGiocatoriInGioco>1) {
             handleGame();
-            giocatore = controlloBancarotta();
+
         }
-        System.out.println(giocatore.getNome() + " ha perso");
+        System.out.println("fine");
+
     }
 
     private void creaDado(){
@@ -91,7 +92,7 @@ public class Gioco {
     }
     private boolean controlloSimboli(char simbolo){
         boolean trovato = false;
-        for (Giocatore giocatore : giocatori) {
+        for (Giocatore giocatore : giocatori) { // da spostare in qualche modo nella classe giocatore
             if (!(Giocatore.checkForNullGiocatore(giocatore)) && giocatore.isSimboloUguale(simbolo)){
                 trovato= true;
                 break;
@@ -116,13 +117,6 @@ public class Gioco {
         this.tabellone.modificaCasella(simbolo,coordinateAttuali[0],coordinateAttuali[1],giocatore);
     }
 
-    private Giocatore controlloBancarotta() {
-        for (Giocatore giocatore : giocatori) {
-            if (giocatore.getSoldi() <= 0)
-                return giocatore;
-        }
-        return null;
-    }
 
 
 
