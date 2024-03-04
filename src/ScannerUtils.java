@@ -16,7 +16,6 @@ public class ScannerUtils {
             nome = scanner.nextLine().strip(); // non posso mettere this perche static
             if ((nome.length()<=charMax) && (!nome.isBlank())){
                 return nome;
-
             }
             System.out.println("Il nome deve avere massimo " + charMax +" caratteri e non deve essere vuoto");
         }while (true);
@@ -39,15 +38,15 @@ public class ScannerUtils {
         int inputUser = 0;
         boolean correctInput = false;
         while (!correctInput) {
-            System.out.println("Please enter a number between " + min + " and " + max + ":");
+            System.out.println("Inserisci un numero tra " + min + " e " + max + ":");
             if (scanner.hasNextInt()) {
                 inputUser = scanner.nextInt();
                 if (inputUser < min || inputUser > max)
-                    System.out.println("Error: number not in range.");
+                    System.out.println("Errore: il numero non è valido.");
                 else
                     correctInput = true;
             } else {
-                System.out.println("Error: input is not a number.");
+                System.out.println("Errore: non hai inserito un numero.");
                 emptyTheScanner();
             }
         }
