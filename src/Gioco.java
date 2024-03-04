@@ -19,7 +19,7 @@ public class Gioco {
     }
     private void gameFlow() {
         Giocatore giocatore = null;
-        while (Giocatore.nGiocatoriInGioco>1) {
+        while (Giocatore. getnGiocatoriInGioco()>1) {
             handleGame();
         }
         System.out.println("fine");
@@ -79,7 +79,7 @@ public class Gioco {
         dado.stampaDado(passi);
         movimentoGiocatore(passi,numeroGiocatoreCorrente);
         pagamentoPedaggio(currentGiocatore);
-        if (Giocatore.nGiocatoriInGioco<=1){
+        if (Giocatore. getnGiocatoriInGioco()<=1){
             return;
         }
         turnoSucessivo();

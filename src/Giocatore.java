@@ -1,5 +1,5 @@
 public class Giocatore {
-    public static int nGiocatoriInGioco= Costanti.NUMERO_GIOCATORI;
+    private static int nGiocatoriInGioco= Costanti.NUMERO_GIOCATORI;
     private String nome;
     private String simbolo;
     private char simboloChar;
@@ -20,6 +20,10 @@ public class Giocatore {
         this.simbolo = colore +simbolo+Costanti.ANSI_RESET;
 
 
+    }
+
+    public static int getnGiocatoriInGioco() {
+        return nGiocatoriInGioco;
     }
 
     public String getSimbolo() {
