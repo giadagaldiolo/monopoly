@@ -32,6 +32,12 @@ public class Giocatore {
         this.soldi += soldi;
     }
 
+    public void controlloSoldi(){
+        if(soldi <= 0){
+
+        }
+    }
+
     public String getNome() {
         return nome;
     }

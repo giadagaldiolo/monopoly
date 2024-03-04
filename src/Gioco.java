@@ -77,8 +77,9 @@ public class Gioco {
             this.numeroGiocatoreCorrente++;
         }
     }
-    private void turno( Giocatore currentGiocatore){
+    private void turno(Giocatore currentGiocatore){
         int passi = this.dado.lancioDadi();
+        dado.stampaDado(passi);
         movimentoGiocatore(passi,numeroGiocatoreCorrente);
         pagamentoPedaggio(currentGiocatore);
         turnoSucessivo();
