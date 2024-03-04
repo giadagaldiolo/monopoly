@@ -3,19 +3,32 @@ import java.util.Random;
 public class Casella {
     private String nome;
     private int pedaggio;
-    private String[] giocatoripresenti = {" ", " "}; // poi aggiustiamo la costante
+
     private int cntGiocatori = Costanti.NUMERO_GIOCATORI;
+    private String[] giocatoripresenti = new String[cntGiocatori]; // poi aggiustiamo la costante
     private static final String coloreTrattini = Colori.sceltaColore(true);
     private final Coordinate coordinate;
     private final String colore;
 
 
     public Casella(String nome,int y, int x) {
+        svuotaCasella();
         this.nome = nome;
         Random random = new Random();
         this.pedaggio = random.nextInt(Costanti.IMPORTO_PEDAGGIO_MIN,Costanti.IMPORTO_PEDAGGIO_MAX+1);
         this.coordinate = new Coordinate(y,x);
         this.colore= Colori.sceltaColore(true);
+        
+
+
+
+    }
+
+    private void svuotaCasella(){
+        for (int i = 0; i < giocatoripresenti.length; i++) {
+            this.giocatoripresenti[i]=" ";
+            
+        }
 
 
     }
@@ -101,7 +114,7 @@ public class Casella {
             case 4:
                 StringBuilder quintaRiga = new StringBuilder();
                 int numeroGiocatori=getNumGiocatori();
-                int spaziDaFare = numeroGiocatori * numeroGiocatori;
+                int spaziDaFare = Costanti.LARGHEZZA_CASELLA-(Costanti.LARGHEZZA_CASELLA-(2*numeroGiocatori));  // 2 sono i | |
 
                 for (int i = 0; i < numeroGiocatori; i++) {
                     quintaRiga.append(getCharGiocatore(i)).append(" ");
