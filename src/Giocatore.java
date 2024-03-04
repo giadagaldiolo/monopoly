@@ -40,17 +40,6 @@ public class Giocatore {
         return new int[]{this.coordinate.getY(),this.coordinate.getX()};
     }
 
-    public void setTurnoTrue() {
-        this.turno = true;
-    }
-
-    public void setTurnoFalse() {
-        this.turno = false;
-    }
-
-    public boolean isTurno() {
-        return turno;
-    }
     public void cambioCasella(int dado){
         if (dado == 0){
             return;

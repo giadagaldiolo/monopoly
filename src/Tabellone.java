@@ -30,7 +30,6 @@ public class Tabellone {
 
     public void crea() {
         String nome = "Pedaggio";
-        int pedaggio;
 
         this.caselle = new Casella[Costanti.RIGHE][Costanti.CASELLE_PER_RIGA];
         for (int i = 0; i < Costanti.RIGHE; i++) {
@@ -51,7 +50,7 @@ public class Tabellone {
     }
 
     public void faiPagare(int i, int j, Giocatore giocatore) {
-        giocatore.setSoldi(caselle[i][j].getPedaggio());
+        giocatore.setSoldi(-caselle[i][j].getPedaggio());
     }
 
 
