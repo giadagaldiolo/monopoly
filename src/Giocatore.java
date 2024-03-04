@@ -4,19 +4,20 @@ public class Giocatore {
     private char simboloChar;
     private int soldi;
     private boolean turno;
-    private String colore;
-
     private final int  yMax=Costanti.RIGHE-1;
     private final int  xMax= Costanti.CASELLE_PER_RIGA-1;
 
     private final Coordinate coordinate = new Coordinate(yMax,xMax);
 
-    public Giocatore(String nome, char simbolo, int soldi) {
+    public Giocatore(String nome, char simbolo) {
         this.nome = nome;
         this.simboloChar=simbolo;
-        this.soldi = soldi;
-        this.colore = Colori.sceltaColore(false);
-        this.simbolo = colore+simbolo+Costanti.ANSI_RESET;
+        this.soldi =Costanti.IMPORTO_INIZIALE_GIOCATORE;
+        Banca.setImporto(-Costanti.IMPORTO_INIZIALE_GIOCATORE);
+        String colore = Colori.sceltaColore(false);
+        this.simbolo = colore +simbolo+Costanti.ANSI_RESET;
+
+
     }
 
     public String getSimbolo() {
@@ -61,6 +62,7 @@ public class Giocatore {
 
 
     private void cambioCoordinate(int dado){
+
         int nuovaCoordinataX=this.coordinate.getX();
         int nuovaCoordinataY= this.coordinate.getY();
         int prodotto = nuovaCoordinataY*nuovaCoordinataX;

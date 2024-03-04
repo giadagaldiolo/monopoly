@@ -2,10 +2,10 @@
 public class Gioco {
     private Tabellone tabellone;
     private Giocatore[] giocatori;
-    private Banca banca = new Banca(Costanti.IMPORTO_INIZIALE_BANCA);
+
     private Dado dado;
 
-    private int giocatoreCorrente=0;
+    private int numeroGiocatoreCorrente=0;
 
     public Gioco() {
         creaGioco();
@@ -39,10 +39,10 @@ public class Gioco {
                 simbolo = ScannerUtils.inputSimboloGiocatore(i + 1);
             } while (controlloSimboli(simbolo));
 
-            giocatori[i] = new Giocatore(nome,simbolo, 0);
+            giocatori[i] = new Giocatore(nome,simbolo);
             tabellone.modificaCasella(giocatori[i].getSimbolo(), Costanti.RIGHE-1, Costanti.CASELLE_PER_RIGA-1, i);
         }
-        distribuisciImportoIniziale();
+
     }
 
     private int mostraMenu() {
@@ -53,8 +53,8 @@ public class Gioco {
     }
 
     private void handleGame() {
-        Giocatore currentGiocatore = giocatori[giocatoreCorrente];
-        currentGiocatore.setTurnoTrue();
+        Giocatore currentGiocatore = giocatori[numeroGiocatoreCorrente];
+        //currentGiocatore.setTurnoTrue();
         int scelta;
         do {
             System.out.println("E' il turno di " + currentGiocatore.getNome());
@@ -64,26 +64,32 @@ public class Gioco {
                     System.out.println(currentGiocatore.getSoldi());
                     break;
                 case 2:
-                    int passi = this.dado.lancioDadi();
-                    System.out.println(passi);
-                    movimentoGiocatore(passi,giocatoreCorrente);
+                    turno(currentGiocatore);
 
-                    int[] coordinateAttuali = currentGiocatore.getCoordinate();
-                    tabellone.faiPagare(coordinateAttuali[0],coordinateAttuali[1], currentGiocatore);
-
-                    // da dividere in funzioni piu piccole
-                    turnoSucessivo();
-                    tabellone.mostra();
                     break;
             }
         } while (scelta != 2);
     }
     private void turnoSucessivo(){
-        if (this.giocatoreCorrente==(this.giocatori.length-1)){
-            this.giocatoreCorrente=0;
+        if (this.numeroGiocatoreCorrente==(this.giocatori.length-1)){
+            this.numeroGiocatoreCorrente=0;
         }else{
-            this.giocatoreCorrente++;
+            this.numeroGiocatoreCorrente++;
         }
+    }
+    private void turno( Giocatore currentGiocatore){
+        int passi = this.dado.lancioDadi();
+        movimentoGiocatore(passi,numeroGiocatoreCorrente);
+        pagamentoPedaggio(currentGiocatore);
+        turnoSucessivo();
+        tabellone.mostra();
+
+    }
+
+    private void pagamentoPedaggio(Giocatore currentGiocatore){
+        int[] coordinateAttuali = currentGiocatore.getCoordinate();
+        tabellone.faiPagare(coordinateAttuali[0],coordinateAttuali[1], currentGiocatore);
+
     }
     private boolean controlloSimboli(char simbolo){
         boolean trovato = false;
@@ -96,12 +102,7 @@ public class Gioco {
         return trovato;
     }
 
-    private void distribuisciImportoIniziale() {
-        for (Giocatore giocatore : giocatori) {
-            giocatore.setSoldi(Costanti.IMPORTO_INIZIALE_GIOCATORE);
-            Banca.setImporto(-Costanti.IMPORTO_INIZIALE_GIOCATORE);
-        }
-    }
+
 
     private void creaTabellone() {
         this.tabellone = new Tabellone();

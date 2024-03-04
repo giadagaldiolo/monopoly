@@ -9,7 +9,7 @@ public class Costanti {
     public static final int NUMERO_DADO_MIN = 1;
     public static final int NUMERO_DADO_MAX = 4;
     public static final String ANSI_RESET = "\u001B[0m";
-    public static final int ANSI_MIN = 1;
+    public static final int ANSI_MIN = 0;
     public static final int ANSI_MAX = 7;
     public static final int IMPORTO_INIZIALE_GIOCATORE = 2000;
     public static final int IMPORTO_INIZIALE_BANCA = 1000000;
