@@ -22,7 +22,7 @@ public class Giocatore {
 
     }
 
-    public static int getnGiocatoriInGioco() {
+    public static int getNGiocatoriInGioco() {
         return nGiocatoriInGioco;
     }
 
@@ -41,7 +41,7 @@ public class Giocatore {
     }
 
     private void controlloSoldi(){
-        if(soldi <= 0){
+        if(this.soldi <= 0){
             System.out.println("Il giocatore "+ nome +" ha perso" );
             this.bancarotta=true;
             nGiocatoriInGioco--;

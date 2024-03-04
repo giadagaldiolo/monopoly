@@ -22,6 +22,10 @@ public class ScannerUtils {
 
     }
 
+
+
+
+
     public static char inputSimboloGiocatore(final int numeroGiocatore){
         String inputUtente;
         do {

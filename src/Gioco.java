@@ -14,13 +14,14 @@ public class Gioco {
         creaTabellone();
         creaGiocatori();
         creaDado();
-        tabellone.mostra();
+
 
     }
     private void gameFlow() {
-        Giocatore giocatore = null;
-        while (Giocatore. getnGiocatoriInGioco()>1) {
+        tabellone.mostra();
+        while (Giocatore.getNGiocatoriInGioco()>1) {
             handleGame();
+
         }
         System.out.println("fine");
 
@@ -32,14 +33,9 @@ public class Gioco {
 
     private void creaGiocatori() {
         this.giocatori = new Giocatore[Costanti.NUMERO_GIOCATORI];
-        char simbolo;
-        for (int i = 0; i < giocatori.length; i++) {
-            String nome = ScannerUtils.inputNomeGiocatore(i+1);
-            do {
-                simbolo = ScannerUtils.inputSimboloGiocatore(i + 1);
-            } while (controlloSimboli(simbolo));
 
-            giocatori[i] = new Giocatore(nome,simbolo);
+        for (int i = 0; i < giocatori.length; i++) {
+            inserisciGiocatore(i);
             tabellone.modificaCasella(giocatori[i].getSimbolo(), Costanti.RIGHE-1, Costanti.CASELLE_PER_RIGA-1, i);
         }
     }
@@ -49,6 +45,17 @@ public class Gioco {
         System.out.println("2. Tira il dado");
         System.out.print("Scelta: ");
         return ScannerUtils.readIntegerInRange(1,2);
+    }
+
+    private void inserisciGiocatore(int i){
+        char simbolo;
+        String nome = ScannerUtils.inputNomeGiocatore(i+1);
+        do {
+            simbolo = ScannerUtils.inputSimboloGiocatore(i + 1);
+        } while (controlloSimboli(simbolo));
+
+        this.giocatori[i] = new Giocatore(nome,simbolo);
+
     }
 
     private void handleGame() {
@@ -76,14 +83,12 @@ public class Gioco {
     }
     private void turno(Giocatore currentGiocatore){
         int passi = this.dado.lancioDadi();
-        dado.stampaDado(passi);
         movimentoGiocatore(passi,numeroGiocatoreCorrente);
         pagamentoPedaggio(currentGiocatore);
-        if (Giocatore. getnGiocatoriInGioco()<=1){
-            return;
-        }
-        turnoSucessivo();
         tabellone.mostra();
+        dado.stampaDado(passi);
+        turnoSucessivo();
+
 
     }
 
@@ -95,7 +100,7 @@ public class Gioco {
     }
     private boolean controlloSimboli(char simbolo){
         boolean trovato = false;
-        for (Giocatore giocatore : giocatori) { // da spostare in qualche modo nella classe giocatore
+        for (Giocatore giocatore : giocatori) { // da spostare se si trova il modo
             if (!(Giocatore.checkForNullGiocatore(giocatore)) && giocatore.isSimboloUguale(simbolo)){
                 trovato= true;
                 break;
