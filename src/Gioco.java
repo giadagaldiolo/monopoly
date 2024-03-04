@@ -21,7 +21,6 @@ public class Gioco {
         Giocatore giocatore = null;
         while (Giocatore.nGiocatoriInGioco>1) {
             handleGame();
-
         }
         System.out.println("fine");
 
@@ -80,6 +79,9 @@ public class Gioco {
         dado.stampaDado(passi);
         movimentoGiocatore(passi,numeroGiocatoreCorrente);
         pagamentoPedaggio(currentGiocatore);
+        if (Giocatore.nGiocatoriInGioco<=1){
+            return;
+        }
         turnoSucessivo();
         tabellone.mostra();
 
@@ -88,6 +90,7 @@ public class Gioco {
     private void pagamentoPedaggio(Giocatore currentGiocatore){
         int[] coordinateAttuali = currentGiocatore.getCoordinate();
         tabellone.faiPagare(coordinateAttuali[0],coordinateAttuali[1], currentGiocatore);
+
 
     }
     private boolean controlloSimboli(char simbolo){
