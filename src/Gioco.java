@@ -18,7 +18,7 @@ public class Gioco {
 
     }
     private void gameFlow() {
-        tabellone.mostra();
+        System.out.println(tabellone);
         while (Giocatore.getNGiocatoriInGioco()>1) {
             handleGame();
 
@@ -28,7 +28,7 @@ public class Gioco {
     }
 
     private void creaDado(){
-        this.dado = new Dado(Costanti.NUMERO_DADO_MIN, Costanti.NUMERO_DADO_MAX);
+        this.dado = new Dado();
     }
 
     private void creaGiocatori() {
@@ -85,7 +85,7 @@ public class Gioco {
         int passi = this.dado.lancioDadi();
         movimentoGiocatore(passi,numeroGiocatoreCorrente);
         pagamentoPedaggio(currentGiocatore);
-        tabellone.mostra();
+        System.out.println(tabellone);
         dado.stampaDado(passi);
         turnoSucessivo();
 

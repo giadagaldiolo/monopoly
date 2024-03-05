@@ -2,7 +2,7 @@ public class Coordinate {
     private int x;
     private int y;
 
-    public Coordinate(int y, int x) {
+    public Coordinate(int y, int x) { // TODO controllo
         this.x = x;
         this.y = y;
     }

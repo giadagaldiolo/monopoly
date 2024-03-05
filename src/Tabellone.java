@@ -2,7 +2,7 @@ public class Tabellone {
     private Casella[][] caselle ;
 
 
-    public void mostra(){
+    public String toString(){
         Casella currentCell;
         String spazio = " ";
 
@@ -24,6 +24,7 @@ public class Tabellone {
             }
         }
         Casella.printUltimaRiga();
+        return "";
 
     }
 
@@ -39,7 +40,7 @@ public class Tabellone {
                 } else {
                     if (i == Costanti.RIGHE-1 && j == Costanti.CASELLE_PER_RIGA-1)
                         nome = "Via";
-                    caselle[i][j] = new Casella(nome,i,j);
+                    caselle[i][j] = new Casella(nome, i, j); //i,j
                 }
             }
         }

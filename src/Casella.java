@@ -1,26 +1,23 @@
 import java.util.Random;
 
-public class Casella {
+public class Casella extends  Coordinate{
     private String nome;
     private int pedaggio;
 
     private int cntGiocatori = Costanti.NUMERO_GIOCATORI;
     private String[] giocatoripresenti = new String[cntGiocatori]; // poi aggiustiamo la costante
     private static final String coloreTrattini = Colori.sceltaColore(true);
-    private final Coordinate coordinate;
+    //private final Coordinate coordinate;
     private final String colore;
 
 
-    public Casella(String nome,int y, int x) {
+    public Casella(String nome, int y, int x){ // assi
+        super(y,x);
         svuotaCasella();
         this.nome = nome;
         Random random = new Random();
         this.pedaggio = random.nextInt(Costanti.IMPORTO_PEDAGGIO_MIN,Costanti.IMPORTO_PEDAGGIO_MAX+1);
-        this.coordinate = new Coordinate(y,x);
         this.colore= Colori.sceltaColore(true);
-        
-
-
 
     }
 
@@ -75,12 +72,9 @@ public class Casella {
     }
 
     public void mostra(int d){
-
         System.out.print(this.colore);
         stampaDettagliCasella(d);
         System.out.print(Costanti.ANSI_RESET);
-
-
     }
 
     public static boolean checkForNull(Casella casella){

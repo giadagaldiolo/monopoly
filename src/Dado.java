@@ -1,17 +1,10 @@
 import java.util.Random;
 
 public class Dado {
-    private int max=4;
-    private int min=1;
-    public Dado(int min,int max){
-        this.max=max+1;
-        this.min=min;
-
-    }
 
     public int lancioDadi(){
-        Random random= new Random();
-        return random.nextInt(min,max);
+        Random random = new Random();
+        return random.nextInt(Costanti.NUMERO_DADO_MIN,Costanti.NUMERO_DADO_MAX+1);
     }
 
     public void stampaDado(int mossa){
@@ -20,7 +13,7 @@ public class Dado {
                 System.out.println("""
                         * * * * * *
                         *         *
-                        *    0    *
+                        *    ●    *
                         *         *
                         * * * * * *
                         
@@ -30,9 +23,9 @@ public class Dado {
             case 2:
                 System.out.println("""
                         * * * * * *
-                        * 0       *
+                        * ●       *
                         *         *
-                        *       0 *
+                        *       ● *
                         * * * * * *
                         
                         E' uscito 2
@@ -41,9 +34,9 @@ public class Dado {
             case 3:
                 System.out.println("""
                         * * * * * *
-                        * 0       *
-                        *    0    *
-                        *       0 *
+                        * ●       *
+                        *    ●    *
+                        *       ● *
                         * * * * * *
                         
                         E' uscito 3
@@ -52,9 +45,9 @@ public class Dado {
             case 4:
                 System.out.println("""
                         * * * * * *
-                        * 0     0 *
+                        * ●     ● *
                         *         *
-                        * 0     0 *
+                        * ●     ● *
                         * * * * * *
                         
                         E' uscito 4
