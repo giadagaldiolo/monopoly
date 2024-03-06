@@ -82,14 +82,11 @@ public class Gioco {
         }
     }
     private void turno(Giocatore currentGiocatore){
-        int passi = this.dado.lancioDadi();
-        movimentoGiocatore(passi,numeroGiocatoreCorrente);
+        movimentoGiocatore(dado.lancioDadi(),numeroGiocatoreCorrente);
         pagamentoPedaggio(currentGiocatore);
         System.out.println(tabellone);
-        dado.stampaDado(passi);
+        System.out.println(dado);
         turnoSucessivo();
-
-
     }
 
     private void pagamentoPedaggio(Giocatore currentGiocatore){

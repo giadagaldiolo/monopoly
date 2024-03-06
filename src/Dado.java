@@ -1,16 +1,21 @@
 import java.util.Random;
 
 public class Dado {
+    private int ultimoLancio;
 
     public int lancioDadi(){
         Random random = new Random();
-        return random.nextInt(Costanti.NUMERO_DADO_MIN,Costanti.NUMERO_DADO_MAX+1);
+        return this.ultimoLancio = random.nextInt(Costanti.NUMERO_DADO_MIN,Costanti.NUMERO_DADO_MAX+1);
     }
 
-    public void stampaDado(int mossa){
-        switch (mossa){
+
+
+    public String toString(){
+
+        String stringa="";
+        switch (this.ultimoLancio){
             case 1:
-                System.out.println("""
+                stringa=("""
                         * * * * * *
                         *         *
                         *    ●    *
@@ -21,7 +26,7 @@ public class Dado {
                         """);
                 break;
             case 2:
-                System.out.println("""
+                stringa=("""
                         * * * * * *
                         * ●       *
                         *         *
@@ -32,7 +37,7 @@ public class Dado {
                         """);
                 break;
             case 3:
-                System.out.println("""
+                stringa=("""
                         * * * * * *
                         * ●       *
                         *    ●    *
@@ -43,7 +48,7 @@ public class Dado {
                         """);
                 break;
             case 4:
-                System.out.println("""
+                stringa=("""
                         * * * * * *
                         * ●     ● *
                         *         *
@@ -54,5 +59,6 @@ public class Dado {
                         """);
                 break;
         }
+        return stringa;
     }
 }
