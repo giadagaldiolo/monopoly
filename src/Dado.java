@@ -12,53 +12,45 @@ public class Dado {
 
     public String toString(){
 
-        String stringa="";
-        switch (this.ultimoLancio){
-            case 1:
-                stringa=("""
-                        * * * * * *
-                        *         *
-                        *    ●    *
-                        *         *
-                        * * * * * *
-                        
-                        E' uscito 1
-                        """);
-                break;
-            case 2:
-                stringa=("""
-                        * * * * * *
-                        * ●       *
-                        *         *
-                        *       ● *
-                        * * * * * *
-                        
-                        E' uscito 2
-                        """);
-                break;
-            case 3:
-                stringa=("""
-                        * * * * * *
-                        * ●       *
-                        *    ●    *
-                        *       ● *
-                        * * * * * *
-                        
-                        E' uscito 3
-                        """);
-                break;
-            case 4:
-                stringa=("""
-                        * * * * * *
-                        * ●     ● *
-                        *         *
-                        * ●     ● *
-                        * * * * * *
-                        
-                        E' uscito 4
-                        """);
-                break;
-        }
+        String stringa = switch (this.ultimoLancio) {
+            case 1 -> ("""
+                    * * * * * *
+                    *         *
+                    *    ●    *
+                    *         *
+                    * * * * * *
+                                            
+                    E' uscito 1
+                    """);
+            case 2 -> ("""
+                    * * * * * *
+                    * ●       *
+                    *         *
+                    *       ● *
+                    * * * * * *
+                                            
+                    E' uscito 2
+                    """);
+            case 3 -> ("""
+                    * * * * * *
+                    * ●       *
+                    *    ●    *
+                    *       ● *
+                    * * * * * *
+                                            
+                    E' uscito 3
+                    """);
+            case 4 -> ("""
+                    * * * * * *
+                    * ●     ● *
+                    *         *
+                    * ●     ● *
+                    * * * * * *
+                                            
+                    E' uscito 4
+                    """);
+            default -> "";
+        };
         return stringa;
     }
 }
