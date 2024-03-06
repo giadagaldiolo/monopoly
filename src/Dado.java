@@ -12,7 +12,7 @@ public class Dado {
 
     public String toString(){
 
-        String stringa = switch (this.ultimoLancio) {
+        return switch (this.ultimoLancio) {
             case 1 -> ("""
                     * * * * * *
                     *         *
@@ -51,6 +51,5 @@ public class Dado {
                     """);
             default -> "";
         };
-        return stringa;
     }
 }
