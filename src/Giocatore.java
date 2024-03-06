@@ -72,21 +72,17 @@ public class Giocatore {
         int nuovaCoordinataX=this.coordinate.getX();
         int nuovaCoordinataY= this.coordinate.getY();
         int prodotto = nuovaCoordinataY*nuovaCoordinataX;
-        int sinistraSopra = -1;
-        int destraSotto = 1;
+        int movimento = 1; // destraSotto = 1 // sinistraSopra = -1
         if (controlloAngoli(prodotto,nuovaCoordinataY,nuovaCoordinataX) ){
-
             if (nuovaCoordinataY==this.yMax){
-                movimentoOrizzontale(sinistraSopra,nuovaCoordinataX);
-            } else {
-                movimentoOrizzontale(destraSotto,nuovaCoordinataX);
+                movimento*=-1;
             }
-        } else{
-            if (nuovaCoordinataX==this.xMax){
-                movimentoVerticale(destraSotto,nuovaCoordinataY);
-            } else {
-                movimentoVerticale(sinistraSopra,nuovaCoordinataY);
+            movimentoOrizzontale(movimento,nuovaCoordinataX);
+        }else{
+            if (nuovaCoordinataX!=this.xMax){
+                movimento*=-1;
             }
+            movimentoVerticale(movimento,nuovaCoordinataY);
         }
         cambioCasella(dado-1);
     }
