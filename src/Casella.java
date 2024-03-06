@@ -14,7 +14,7 @@ public class Casella extends  Coordinate{
     public Casella(String nome, int y, int x){ // assi
         super(y,x);
         svuotaCasella();
-        this.nome = nome;
+        this.nome = nome == null || nome.isBlank() ? "Nome sconosciuto" : nome;
         Random random = new Random();
         this.pedaggio = random.nextInt(Costanti.IMPORTO_PEDAGGIO_MIN,Costanti.IMPORTO_PEDAGGIO_MAX+1);
         this.colore= Colori.sceltaColore(true);

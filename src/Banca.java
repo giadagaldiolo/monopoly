@@ -2,8 +2,10 @@ public class Banca {
     private static int importo = Costanti.IMPORTO_INIZIALE_BANCA;
 
     public Banca(int importo) {
-        this.importo = importo;
+        Banca.importo = isNull(importo) ? Costanti.IMPORTO_INIZIALE_BANCA : importo;
     }
+
+    private boolean isNull(int importo) { return (importo <= 0); }
 
     public static void setImporto(final int importo) {
         if (importo >= Banca.importo)

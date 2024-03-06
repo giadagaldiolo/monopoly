@@ -2,9 +2,9 @@ public class Coordinate {
     private int x; // casella
     private int y; // riga
 
-    public Coordinate(int y, int x) { // TODO controllo
-        this.x = x;
-        this.y = y;
+    public Coordinate(int y, int x) {
+        this.x = controlloX(x) ? Costanti.CASELLE_PER_RIGA : x;
+        this.y = controlloY(y) ? Costanti.RIGHE : y;
     }
 
 
@@ -29,9 +29,6 @@ public class Coordinate {
             return;
         }
         this.x = x;
-
-
-
     }
 
     public void setY(int y) {
