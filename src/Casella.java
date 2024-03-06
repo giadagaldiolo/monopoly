@@ -4,8 +4,8 @@ public class Casella extends  Coordinate{
     private String nome;
     private int pedaggio;
 
-    private int cntGiocatori = Costanti.NUMERO_GIOCATORI;
-    private String[] giocatoripresenti = new String[cntGiocatori]; // poi aggiustiamo la costante
+    private int giocatoriMassimi = Costanti.NUMERO_GIOCATORI;
+    private String[] giocatoriPresenti = new String[giocatoriMassimi]; // poi aggiustiamo la costante
     private static final String coloreTrattini = Colori.sceltaColore(true);
     //private final Coordinate coordinate;
     private final String colore;
@@ -14,31 +14,34 @@ public class Casella extends  Coordinate{
     public Casella(String nome, int y, int x){ // assi
         super(y,x);
         svuotaCasella();
-        this.nome = nome == null || nome.isBlank() ? "Nome sconosciuto" : nome;
+        this.nome = checkForNullNome(nome) ? "Nome sconosciuto" : nome;
         Random random = new Random();
         this.pedaggio = random.nextInt(Costanti.IMPORTO_PEDAGGIO_MIN,Costanti.IMPORTO_PEDAGGIO_MAX+1);
         this.colore= Colori.sceltaColore(true);
 
     }
 
+    private boolean checkForNullNome(String nome){
+        return nome == null || nome.isBlank();
+
+    }
+
     private void svuotaCasella(){
-        for (int i = 0; i < giocatoripresenti.length; i++) {
-            this.giocatoripresenti[i]=" ";
+        for (int i = 0; i < giocatoriPresenti.length; i++) {
+            this.giocatoriPresenti[i]=" ";
             
         }
 
 
     }
 
-    public int getNumGiocatori() {
-        return cntGiocatori;
-    }
+
     public String getCharGiocatore(final int i) {
-        return giocatoripresenti[i];
+        return giocatoriPresenti[i];
     }
 
     public void aggiungiCarattere(String ch, int giocatore) {
-        giocatoripresenti[giocatore] = ch;
+        giocatoriPresenti[giocatore] = ch;
     }
 
     public int getPedaggio() {
@@ -107,7 +110,7 @@ public class Casella extends  Coordinate{
                 break;
             case 4:
                 StringBuilder quintaRiga = new StringBuilder();
-                int numeroGiocatori=getNumGiocatori();
+                int numeroGiocatori=this.giocatoriMassimi;
                 int spaziDaFare = Costanti.LARGHEZZA_CASELLA-(Costanti.LARGHEZZA_CASELLA-(2*numeroGiocatori));  // 2 sono i | |
 
                 for (int i = 0; i < numeroGiocatori; i++) {

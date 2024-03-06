@@ -12,14 +12,22 @@ public class Giocatore {
     private final Coordinate coordinate = new Coordinate(yMax,xMax);
 
     public Giocatore(String nome, char simbolo) {
-        this.nome = nome == null || nome.isBlank() ? "Nome sconosciuto" : nome;
-        this.simboloChar = simbolo == ' ' ? 'X' : simbolo;
+        this.nome = controlloNome(nome) ? "Nome sconosciuto" : nome;
+        this.simboloChar = controlloSimbolo(simbolo) ? 'X' : simbolo;
         this.soldi = Costanti.IMPORTO_INIZIALE_GIOCATORE;
         Banca.setImporto(-Costanti.IMPORTO_INIZIALE_GIOCATORE);
         String colore = Colori.sceltaColore(false);
         this.simbolo = colore +simbolo+Costanti.ANSI_RESET;
 
     }
+
+    private boolean controlloNome(String nome){
+        return nome == null || nome.isBlank();
+    }
+    private boolean controlloSimbolo(char simbolo){
+        return simbolo==' ' ;
+    }
+
 
 
     public static int getNGiocatoriInGioco() {
