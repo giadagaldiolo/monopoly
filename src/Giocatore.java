@@ -12,12 +12,14 @@ public class Giocatore {
     private final Coordinate coordinate = new Coordinate(yMax,xMax);
 
     public Giocatore(String nome, char simbolo) {
+
         this.nome = controlloNome(nome) ? "Nome sconosciuto" : nome;
         this.simboloChar = controlloSimbolo(simbolo) ? 'X' : simbolo;
         this.soldi = Costanti.IMPORTO_INIZIALE_GIOCATORE;
         Banca.setImporto(-Costanti.IMPORTO_INIZIALE_GIOCATORE);
         String colore = Colori.sceltaColore(false);
         this.simbolo = colore +simbolo+Costanti.ANSI_RESET;
+
 
     }
 

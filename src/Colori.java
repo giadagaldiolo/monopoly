@@ -23,9 +23,20 @@ public class Colori {
         return colore ;
     }
 
+    private static void resetContatoreColori(){
+
+        if (cntColori>=coloriUsati.length-1){
+            cntColori=0;
+            coloriUsati= new int[Costanti.ANSI_MAX-Costanti.ANSI_MIN+1];
+        }
+    }
+
+
+
 
     private static Boolean isColoreUtilizzato(int coloreScelto){
         boolean utilizzato=false;
+        resetContatoreColori();
         for (int colore : coloriUsati) {
             if (colore==coloreScelto){
                 utilizzato=true;

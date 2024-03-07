@@ -37,7 +37,9 @@ public class Gioco {
         for (int i = 0; i < giocatori.length; i++) {
             inserisciGiocatore(i);
             tabellone.modificaCasella(giocatori[i].getSimbolo(), Costanti.RIGHE-1, Costanti.CASELLE_PER_RIGA-1, i);
+
         }
+
     }
 
     private int mostraMenu() {
@@ -55,6 +57,7 @@ public class Gioco {
         } while (controlloSimboli(simbolo));
 
         this.giocatori[i] = new Giocatore(nome,simbolo);
+
 
     }
 
@@ -98,11 +101,14 @@ public class Gioco {
     private boolean controlloSimboli(char simbolo){
         boolean trovato = false;
         for (Giocatore giocatore : giocatori) { // da spostare se si trova il modo
+
             if (!(Giocatore.checkForNullGiocatore(giocatore)) && giocatore.isSimboloUguale(simbolo)){
                 trovato= true;
                 break;
             }
         }
+
+
         return trovato;
     }
 

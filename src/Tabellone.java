@@ -47,6 +47,7 @@ public class Tabellone {
     }
 
     public void modificaCasella(String simbolo, int i, int j, int giocatore) {
+
         caselle[i][j].aggiungiCarattere(simbolo, giocatore);
     }
 
