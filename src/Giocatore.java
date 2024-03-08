@@ -1,18 +1,20 @@
-public class Giocatore {
+public class Giocatore extends Coordinate {
     private static int nGiocatoriInGioco= Costanti.NUMERO_GIOCATORI;
     private String nome;
     private String simbolo;
     private char simboloChar;
     private int soldi;
     private boolean turno;
-    private final int  yMax =Costanti.RIGHE-1;
-    private final int  xMax = Costanti.CASELLE_PER_RIGA-1;
+    private final int  yMax;
+    private final int  xMax;
     private boolean bancarotta=false;
 
-    private final Coordinate coordinate = new Coordinate(yMax,xMax);
 
-    public Giocatore(String nome, char simbolo) {
 
+    public Giocatore(String nome, char simbolo,int yMax,int xMax) {
+        super(yMax,xMax);
+        this.yMax=yMax;
+        this.xMax=xMax;
         this.nome = controlloNome(nome) ? "Nome sconosciuto" : nome;
         this.simboloChar = controlloSimbolo(simbolo) ? 'X' : simbolo;
         this.soldi = Costanti.IMPORTO_INIZIALE_GIOCATORE;
@@ -64,23 +66,23 @@ public class Giocatore {
     }
 
     public int [] getCoordinate(){
-        return new int[]{this.coordinate.getY(),this.coordinate.getX()};
+        return new int[]{super.getY(),super.getX()};
     }
 
     public void cambioCasella(int dado){
-        if (dado == 0){
-            return;
-        } else {
+        if (dado>0){
             cambioCoordinate(dado);
+
         }
+
     }
 
 
 
     private void cambioCoordinate(int dado){
 
-        int nuovaCoordinataX=this.coordinate.getX();
-        int nuovaCoordinataY= this.coordinate.getY();
+        int nuovaCoordinataX=super.getX();
+        int nuovaCoordinataY= super.getY();
         int prodotto = nuovaCoordinataY*nuovaCoordinataX;
         int movimento = 1; // destraSotto = 1 // sinistraSopra = -1
         if (controlloAngoli(prodotto,nuovaCoordinataY,nuovaCoordinataX) ){
@@ -102,11 +104,11 @@ public class Giocatore {
 
     private void movimentoOrizzontale(int movimento,int x){ // sinistra -1 destra 1
         x+=movimento;
-        this.coordinate.setX(x);
+        super.setX(x);
     }
     private void movimentoVerticale(int movimento,int y){ // sopra -1 , sotto 1
         y+=movimento;
-        this.coordinate.setY(y);
+        super.setY(y);
 
     }
 

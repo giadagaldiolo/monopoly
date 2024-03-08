@@ -56,7 +56,7 @@ public class Gioco {
             simbolo = ScannerUtils.inputSimboloGiocatore(i + 1);
         } while (controlloSimboli(simbolo));
 
-        this.giocatori[i] = new Giocatore(nome,simbolo);
+        this.giocatori[i] = new Giocatore(nome,simbolo,Costanti.RIGHE-1,Costanti.CASELLE_PER_RIGA-1);
 
 
     }
