@@ -5,26 +5,26 @@ public class Tabellone {
     public String toString(){
         Casella currentCell;
         String spazio = " ";
-
+        StringBuilder tabellone=new StringBuilder();
 
         for (int i = 0; i < Costanti.RIGHE; i++) {
-            Casella.printTrattiniCasella(i);
-
+            tabellone.append(Casella.trattiniCasella(i));
             for (int d = 0; d < 5; d++) {
-
                 for (int col = 0; col < Costanti.CASELLE_PER_RIGA; col++) {
                     currentCell = caselle[i][col];
-                    if (Casella.checkForNull(currentCell))
-                        System.out.print(spazio.repeat(Costanti.LARGHEZZA_CASELLA));
+                    if (Casella.checkForNull(currentCell)) {
+                        tabellone.append(spazio.repeat(Costanti.LARGHEZZA_CASELLA));
+                    }
                     else {
-                        currentCell.mostra(d);
+                        tabellone.append(currentCell.casellaString(d));
                     }
                 }
-                System.out.println();
+                tabellone.append("\n");
             }
         }
-        Casella.printUltimaRiga();
-        return "";
+
+        tabellone.append(Casella.ultimaRiga());
+        return tabellone.toString();
 
     }
 

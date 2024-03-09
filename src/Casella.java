@@ -48,50 +48,60 @@ public class Casella extends  Coordinate{
         return pedaggio;
     }
 
-    public static void printTrattiniCasella(int i){
+    public static String trattiniCasella(int i){
         String spazio = " ";
         String trattino = "-";
-        System.out.print(coloreTrattini);
+
+        StringBuilder trattini=new StringBuilder(); // tolti tutti i sout e salvato tutto in una stringa
+        trattini.append(coloreTrattini);
+
 
         if (i == 0 || i == 1 || i == Costanti.RIGHE -1) {
-            System.out.print(trattino.repeat((Costanti.LARGHEZZA_CASELLA * Costanti.CASELLE_PER_RIGA)));
+            trattini.append(trattino.repeat(Costanti.LARGHEZZA_CASELLA * Costanti.CASELLE_PER_RIGA));
+
         } else {
-            System.out.print(trattino.repeat(Costanti.LARGHEZZA_CASELLA));
-            System.out.print(spazio.repeat((Costanti.LARGHEZZA_CASELLA * (Costanti.CASELLE_PER_RIGA-2))));
-            System.out.print(trattino.repeat(Costanti.LARGHEZZA_CASELLA));
+            trattini.append(trattino.repeat(Costanti.LARGHEZZA_CASELLA));
+            trattini.append(spazio.repeat(Costanti.LARGHEZZA_CASELLA * (Costanti.CASELLE_PER_RIGA-2)));
+            trattini.append(trattino.repeat(Costanti.LARGHEZZA_CASELLA));
+
         }
-        System.out.println(Costanti.ANSI_RESET);
+        trattini.append("\n"+Costanti.ANSI_RESET);
+
+        return trattini.toString();
 
 
     }
 
-    public  static void printUltimaRiga(){
-
+    public static String ultimaRiga(){
+        StringBuilder ultimaRiga=new StringBuilder();
         String trattino = "-";
-        System.out.print(coloreTrattini);
-        System.out.println(trattino.repeat((Costanti.LARGHEZZA_CASELLA * Costanti.CASELLE_PER_RIGA)));
-        System.out.print(Costanti.ANSI_RESET);
+        ultimaRiga.append(coloreTrattini);
+        ultimaRiga.append(trattino.repeat((Costanti.LARGHEZZA_CASELLA * Costanti.CASELLE_PER_RIGA)));
+        ultimaRiga.append(Costanti.ANSI_RESET);
+       return ultimaRiga.toString();
 
     }
 
-    public void mostra(int d){
-        System.out.print(this.colore);
-        stampaDettagliCasella(d);
-        System.out.print(Costanti.ANSI_RESET);
+    public String casellaString(int d){
+        StringBuilder casella=new StringBuilder();
+        casella.append(this.colore);
+        casella.append(dettagliCasella(d));
+        casella.append(Costanti.ANSI_RESET);
+        return casella.toString();
     }
 
     public static boolean checkForNull(Casella casella){
         return casella==null;
     }
 
-    private void stampaDettagliCasella(int d) {
-        System.out.print("|");
-
+    private String dettagliCasella(int d) {
+        StringBuilder dettagli=new StringBuilder();
+        dettagli.append("|");
         String spazio = " ";
         switch (d) {
             case 0:
                 String primaRiga = this.nome; // Per sapere quanti spazi aggiungere
-                System.out.print(primaRiga + spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - primaRiga.length()))); //Tolgo 2 che sono i caratteri ||
+                dettagli.append(primaRiga).append(spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - primaRiga.length())));
                 break;
             case 1:
                 String secondaRiga = "";
@@ -100,13 +110,16 @@ public class Casella extends  Coordinate{
                 } else {
                     secondaRiga = "Paga " + Math.abs(this.pedaggio);
                 }
-                System.out.print(secondaRiga + spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - secondaRiga.length())));
+                dettagli.append(secondaRiga).append(spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - secondaRiga.length())));
+
                 break;
             case 2: // per adesso non si deve stampare niente
-                System.out.print(spazio.repeat((Costanti.LARGHEZZA_CASELLA - 2)));
+                dettagli.append(spazio.repeat((Costanti.LARGHEZZA_CASELLA - 2)));
+
                 break;
             case 3: // per adesso non si deve stampare niente
-                System.out.print(spazio.repeat((Costanti.LARGHEZZA_CASELLA - 2)));
+
+                dettagli.append(spazio.repeat((Costanti.LARGHEZZA_CASELLA - 2)));
                 break;
             case 4:
                 StringBuilder quintaRiga = new StringBuilder();
@@ -117,14 +130,14 @@ public class Casella extends  Coordinate{
 
                     quintaRiga.append(getCharGiocatore(i)).append(" ");
                 }
-
-                System.out.print(quintaRiga + spazio.repeat((Costanti.LARGHEZZA_CASELLA -2)-spaziDaFare));
-                System.out.print(this.colore); // ripeto il colore perche si resetta con i simboli del giocatore
-
+                dettagli.append(quintaRiga).append(spazio.repeat((Costanti.LARGHEZZA_CASELLA - 2) - spaziDaFare));
+                dettagli.append(this.colore);
                 break;
 
         }
-        System.out.print("|");
+        dettagli.append("|");
+
+        return  dettagli.toString();
     }
 
 
