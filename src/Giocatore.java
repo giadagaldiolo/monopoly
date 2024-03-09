@@ -15,15 +15,26 @@ public class Giocatore extends Coordinate {
         super(yMax,xMax);
         this.yMax=yMax;
         this.xMax=xMax;
-        this.nome = controlloNome(nome) ? "Nome sconosciuto" : nome;
-        this.simboloChar = controlloSimbolo(simbolo) ? 'X' : simbolo;
-        this.soldi = Costanti.IMPORTO_INIZIALE_GIOCATORE;
-        Banca.setImporto(-Costanti.IMPORTO_INIZIALE_GIOCATORE);
-        String colore = Colori.sceltaColore(false);
-        this.simbolo = colore +simbolo+Costanti.ANSI_RESET;
+        impostaCaratteristiche(nome,simbolo);
+        impostaColore();
+
 
 
     }
+   private void impostaCaratteristiche(String nome,char simbolo){
+
+       this.nome = controlloNome(nome) ? "Nome sconosciuto" : nome;
+       this.simboloChar = controlloSimbolo(simbolo) ? 'X' : simbolo;
+       this.soldi = Costanti.IMPORTO_INIZIALE_GIOCATORE;
+       Banca.setImporto(-Costanti.IMPORTO_INIZIALE_GIOCATORE);
+
+
+   }
+   private void impostaColore(){
+       String colore = Colori.sceltaColore(false);
+       this.simbolo = colore+this.simboloChar+Costanti.ANSI_RESET;
+
+   }
 
     private boolean controlloNome(String nome){
         return nome == null || nome.isBlank();

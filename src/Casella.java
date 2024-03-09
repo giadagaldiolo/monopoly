@@ -114,6 +114,7 @@ public class Casella extends  Coordinate{
                 int spaziDaFare = Costanti.LARGHEZZA_CASELLA-(Costanti.LARGHEZZA_CASELLA-(2*numeroGiocatori));  // 2 sono i | |
 
                 for (int i = 0; i < numeroGiocatori; i++) {
+
                     quintaRiga.append(getCharGiocatore(i)).append(" ");
                 }
 

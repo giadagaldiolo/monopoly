@@ -5,7 +5,7 @@ public class Costanti {
     public static final int IMPORTO_DEL_VIA = 100;
     public static final int IMPORTO_PEDAGGIO_MIN = 50;
     public static final int IMPORTO_PEDAGGIO_MAX = 150;
-    public static final int NUMERO_GIOCATORI = 10; //fino a 10 giocatori data l'ampiezza della casella
+    public static final int NUMERO_GIOCATORI = 2; //fino a 10 giocatori data l'ampiezza della casella
     public static final int NUMERO_DADO_MIN = 1;
     public static final int NUMERO_DADO_MAX = 4;
     public static final String ANSI_RESET = "\u001B[0m";

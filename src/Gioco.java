@@ -36,6 +36,7 @@ public class Gioco {
 
         for (int i = 0; i < giocatori.length; i++) {
             inserisciGiocatore(i);
+
             tabellone.modificaCasella(giocatori[i].getSimbolo(), Costanti.RIGHE-1, Costanti.CASELLE_PER_RIGA-1, i);
 
         }
@@ -54,9 +55,11 @@ public class Gioco {
         String nome = ScannerUtils.inputNomeGiocatore(i+1);
         do {
             simbolo = ScannerUtils.inputSimboloGiocatore(i + 1);
+
         } while (controlloSimboli(simbolo));
 
         this.giocatori[i] = new Giocatore(nome,simbolo,Costanti.RIGHE-1,Costanti.CASELLE_PER_RIGA-1);
+
 
 
     }

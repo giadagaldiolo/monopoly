@@ -11,14 +11,14 @@ public class ScannerUtils {
     public static String inputNomeGiocatore(final int numeroGiocatore){
         String nome;
 
-        do {
+        while (true){
             System.out.println("Inserisci nome giocatore " + numeroGiocatore);
             nome = scanner.nextLine().strip(); // non posso mettere this perche static
             if ((nome.length()<=charMax) && (!nome.isBlank())){
                 return nome;
             }
             System.out.println("Il nome deve avere massimo " + charMax +" caratteri e non deve essere vuoto");
-        }while (true);
+        }
 
     }
 
@@ -28,14 +28,14 @@ public class ScannerUtils {
 
     public static char inputSimboloGiocatore(final int numeroGiocatore){
         String inputUtente;
-        do {
+        while (true) {
             System.out.println("Inserisci simbolo giocatore " + numeroGiocatore);
             inputUtente = scanner.nextLine().strip().toUpperCase(); // non posso mettere this perche static
             if ((inputUtente.length()==1) && (!inputUtente.isBlank())){
                 return inputUtente.charAt(0);
             }
             System.out.println("Inserire soltanto e almeno un carattere");
-        } while (true);
+        }
     }
 
     public static int readIntegerInRange(int min, int max) {
