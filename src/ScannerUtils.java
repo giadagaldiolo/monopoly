@@ -9,11 +9,9 @@ public class ScannerUtils {
     }
 
     public static String inputNomeGiocatore(final int numeroGiocatore){
-        String nome;
-
         while (true){
             System.out.println("Inserisci nome giocatore " + numeroGiocatore);
-            nome = scanner.nextLine().strip(); // non posso mettere this perche static
+            String nome = scanner.nextLine().strip(); // non posso mettere this perche static
             if ((nome.length()<=charMax) && (!nome.isBlank())){
                 return nome;
             }
@@ -24,13 +22,10 @@ public class ScannerUtils {
 
 
 
-
-
     public static char inputSimboloGiocatore(final int numeroGiocatore){
-        String inputUtente;
         while (true) {
             System.out.println("Inserisci simbolo giocatore " + numeroGiocatore);
-            inputUtente = scanner.nextLine().strip().toUpperCase(); // non posso mettere this perche static
+            String inputUtente = scanner.nextLine().strip().toUpperCase(); // non posso mettere this perche static
             if ((inputUtente.length()==1) && (!inputUtente.isBlank())){
                 return inputUtente.charAt(0);
             }
@@ -39,28 +34,23 @@ public class ScannerUtils {
     }
 
     public static int readIntegerInRange(int min, int max) {
-        int inputUser = 0;
-        boolean correctInput = false;
-        while (!correctInput) {
+        while (true) {
             System.out.println("Inserisci un numero tra " + min + " e " + max + ":");
             if (scanner.hasNextInt()) {
-                inputUser = scanner.nextInt();
-                if (inputUser < min || inputUser > max)
-                    System.out.println("Errore: il numero non è valido.");
-                else
-                    correctInput = true;
-            } else {
+                int inputUser = scanner.nextInt();
+                if (!(inputUser < min || inputUser > max)){
+                    emptyTheScanner();
+                    return inputUser;
+                }
+                System.out.println("Errore: il numero non è valido.");
+            }else {
                 System.out.println("Errore: non hai inserito un numero.");
-                emptyTheScanner();
             }
+            emptyTheScanner();
         }
-        emptyTheScanner();
-        return inputUser;
     }
 
-    private static void emptyTheScanner() {
-        scanner.nextLine();
-    }
+    private static void emptyTheScanner() { scanner.nextLine(); }
 
 
 

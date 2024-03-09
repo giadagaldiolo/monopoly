@@ -4,8 +4,8 @@ public class Casella extends  Coordinate{
     private String nome;
     private int pedaggio;
 
-    private int giocatoriMassimi = Costanti.NUMERO_GIOCATORI;
-    private String[] giocatoriPresenti = new String[giocatoriMassimi]; // poi aggiustiamo la costante
+    private int nGiocatoriPresenti = 0;
+    private String[] giocatoriPresenti = new String[Costanti.NUMERO_GIOCATORI]; // poi aggiustiamo la costante
     private static final String coloreTrattini = Colori.sceltaColore(true);
 
     private final String colore;
@@ -38,6 +38,11 @@ public class Casella extends  Coordinate{
     }
 
     public void aggiungiCarattere(String ch, int giocatore) {
+        if (ch.isBlank()){
+            nGiocatoriPresenti--;
+        }else{
+            nGiocatoriPresenti++;
+        }
         giocatoriPresenti[giocatore] = ch;
     }
 
@@ -90,12 +95,17 @@ public class Casella extends  Coordinate{
                 break;
             case 5:
                 StringBuilder quintaRiga = new StringBuilder();
-                int numeroGiocatori=this.giocatoriMassimi;
-                int spaziDaFare = Costanti.LARGHEZZA_CASELLA-(Costanti.LARGHEZZA_CASELLA-(2*numeroGiocatori));  // 2 sono i | |
-                for (int i = 0; i < numeroGiocatori; i++) {
+                int spaziDaFare = Costanti.LARGHEZZA_CASELLA-(Costanti.LARGHEZZA_CASELLA-(2*this.nGiocatoriPresenti));
 
-                    quintaRiga.append(getCharGiocatore(i)).append(" ");
+                  // 2 sono i | |
+                for (int i = 0; i < Costanti.NUMERO_GIOCATORI; i++) {
+                    String giocatore=getCharGiocatore(i);
+                    if (giocatore.isBlank()) continue;
+                    quintaRiga.append(giocatore).append(" ");
+
+
                 }
+
                 dettagli.append(quintaRiga).append(spazio.repeat((Costanti.LARGHEZZA_CASELLA - 2) - spaziDaFare));
                 dettagli.append(this.colore);
                 break;
