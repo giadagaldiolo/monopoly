@@ -7,7 +7,7 @@ public class Casella extends  Coordinate{
     private int giocatoriMassimi = Costanti.NUMERO_GIOCATORI;
     private String[] giocatoriPresenti = new String[giocatoriMassimi]; // poi aggiustiamo la costante
     private static final String coloreTrattini = Colori.sceltaColore(true);
-    //private final Coordinate coordinate;
+
     private final String colore;
 
 
@@ -29,12 +29,9 @@ public class Casella extends  Coordinate{
     private void svuotaCasella(){
         for (int i = 0; i < giocatoriPresenti.length; i++) {
             this.giocatoriPresenti[i]=" ";
-            
         }
 
-
     }
-
 
     public String getCharGiocatore(final int i) {
         return giocatoriPresenti[i];
@@ -48,39 +45,6 @@ public class Casella extends  Coordinate{
         return pedaggio;
     }
 
-    public static String trattiniCasella(int i){
-        String spazio = " ";
-        String trattino = "-";
-
-        StringBuilder trattini=new StringBuilder(); // tolti tutti i sout e salvato tutto in una stringa
-        trattini.append(coloreTrattini);
-
-
-        if (i == 0 || i == 1 || i == Costanti.RIGHE -1) {
-            trattini.append(trattino.repeat(Costanti.LARGHEZZA_CASELLA * Costanti.CASELLE_PER_RIGA));
-
-        } else {
-            trattini.append(trattino.repeat(Costanti.LARGHEZZA_CASELLA));
-            trattini.append(spazio.repeat(Costanti.LARGHEZZA_CASELLA * (Costanti.CASELLE_PER_RIGA-2)));
-            trattini.append(trattino.repeat(Costanti.LARGHEZZA_CASELLA));
-
-        }
-        trattini.append("\n"+Costanti.ANSI_RESET);
-
-        return trattini.toString();
-
-
-    }
-
-    public static String ultimaRiga(){
-        StringBuilder ultimaRiga=new StringBuilder();
-        String trattino = "-";
-        ultimaRiga.append(coloreTrattini);
-        ultimaRiga.append(trattino.repeat((Costanti.LARGHEZZA_CASELLA * Costanti.CASELLE_PER_RIGA)));
-        ultimaRiga.append(Costanti.ANSI_RESET);
-       return ultimaRiga.toString();
-
-    }
 
     public String casellaString(int d){
         StringBuilder casella=new StringBuilder();
@@ -96,14 +60,23 @@ public class Casella extends  Coordinate{
 
     private String dettagliCasella(int d) {
         StringBuilder dettagli=new StringBuilder();
-        dettagli.append("|");
+
+        boolean PrimaUltimaRiga=d>0 && d<Costanti.RIGHE_CASELLA-1;
+        if (PrimaUltimaRiga) dettagli.append("|");
         String spazio = " ";
+        String trattino = "-";
+        String righette=trattino.repeat((Costanti.LARGHEZZA_CASELLA));
         switch (d) {
-            case 0:
+            case 0: case 6:
+                StringBuilder trattini=new StringBuilder(); // tolti tutti i sout e salvato tutto in una stringa
+                dettagli.append(righette);
+                dettagli.append(spazio.repeat(1));
+                break;
+            case 1:
                 String primaRiga = this.nome; // Per sapere quanti spazi aggiungere
                 dettagli.append(primaRiga).append(spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - primaRiga.length())));
                 break;
-            case 1:
+            case 2: // per adesso non si deve stampare niente
                 String secondaRiga = "";
                 if (this.nome.equals("Via")) {
                     secondaRiga = "Ritira " + Costanti.IMPORTO_DEL_VIA;
@@ -111,21 +84,14 @@ public class Casella extends  Coordinate{
                     secondaRiga = "Paga " + Math.abs(this.pedaggio);
                 }
                 dettagli.append(secondaRiga).append(spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - secondaRiga.length())));
-
                 break;
-            case 2: // per adesso non si deve stampare niente
-                dettagli.append(spazio.repeat((Costanti.LARGHEZZA_CASELLA - 2)));
-
-                break;
-            case 3: // per adesso non si deve stampare niente
-
+            case 3: case 4: // per adesso non si deve stampare niente
                 dettagli.append(spazio.repeat((Costanti.LARGHEZZA_CASELLA - 2)));
                 break;
-            case 4:
+            case 5:
                 StringBuilder quintaRiga = new StringBuilder();
                 int numeroGiocatori=this.giocatoriMassimi;
                 int spaziDaFare = Costanti.LARGHEZZA_CASELLA-(Costanti.LARGHEZZA_CASELLA-(2*numeroGiocatori));  // 2 sono i | |
-
                 for (int i = 0; i < numeroGiocatori; i++) {
 
                     quintaRiga.append(getCharGiocatore(i)).append(" ");
@@ -135,7 +101,8 @@ public class Casella extends  Coordinate{
                 break;
 
         }
-        dettagli.append("|");
+        if (PrimaUltimaRiga) dettagli.append("|").append(spazio); // if in una sola riga // spazio per avere tutte le le caselle separate come sopra
+
 
         return  dettagli.toString();
     }

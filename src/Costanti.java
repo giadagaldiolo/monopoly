@@ -14,6 +14,7 @@ public class Costanti {
     public static final int IMPORTO_INIZIALE_GIOCATORE = 2000;
     public static final int IMPORTO_INIZIALE_BANCA = 1000000;
     public static final int IMPORTO_PER_BANCAROTTA = 1000000;
+    public static final int RIGHE_CASELLA = 7;
 
 
 

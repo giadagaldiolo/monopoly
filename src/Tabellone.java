@@ -8,12 +8,11 @@ public class Tabellone {
         StringBuilder tabellone=new StringBuilder();
 
         for (int i = 0; i < Costanti.RIGHE; i++) {
-            tabellone.append(Casella.trattiniCasella(i));
-            for (int d = 0; d < 5; d++) {
+            for (int d = 0; d < Costanti.RIGHE_CASELLA; d++) {
                 for (int col = 0; col < Costanti.CASELLE_PER_RIGA; col++) {
                     currentCell = caselle[i][col];
                     if (Casella.checkForNull(currentCell)) {
-                        tabellone.append(spazio.repeat(Costanti.LARGHEZZA_CASELLA));
+                        tabellone.append(spazio.repeat(Costanti.LARGHEZZA_CASELLA+1)); // +1 per lo spazio aggiunto per separare le caselle
                     }
                     else {
                         tabellone.append(currentCell.casellaString(d));
@@ -23,7 +22,6 @@ public class Tabellone {
             }
         }
 
-        tabellone.append(Casella.ultimaRiga());
         return tabellone.toString();
 
     }
