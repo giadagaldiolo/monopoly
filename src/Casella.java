@@ -17,6 +17,7 @@ public class Casella extends  Coordinate{
         this.nome = checkForNullNome(nome) ? "Nome sconosciuto" : nome;
         Random random = new Random();
         this.pedaggio = random.nextInt(Costanti.IMPORTO_PEDAGGIO_MIN,Costanti.IMPORTO_PEDAGGIO_MAX+1);
+        if (this.nome.equals("Via")) this.pedaggio=Costanti.IMPORTO_DEL_VIA;
         this.colore= Colori.sceltaColore(true);
 
     }
@@ -84,10 +85,11 @@ public class Casella extends  Coordinate{
             case 2: // per adesso non si deve stampare niente
                 String secondaRiga = "";
                 if (this.nome.equals("Via")) {
-                    secondaRiga = "Ritira " + Costanti.IMPORTO_DEL_VIA;
+                    secondaRiga = "Ritira " + this.pedaggio;
                 } else {
-                    secondaRiga = "Paga " + Math.abs(this.pedaggio);
+                    secondaRiga = "Paga " + this.pedaggio;
                 }
+
                 dettagli.append(secondaRiga).append(spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - secondaRiga.length())));
                 break;
             case 3: case 4: // per adesso non si deve stampare niente
@@ -115,6 +117,9 @@ public class Casella extends  Coordinate{
 
 
         return  dettagli.toString();
+    }
+    public String getNome(){
+        return this.nome;
     }
 
 

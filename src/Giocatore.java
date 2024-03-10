@@ -82,6 +82,7 @@ public class Giocatore extends Coordinate {
 
     public void cambioCasella(int dado){
         if (dado>0){
+
             cambioCoordinate(dado);
 
         }
@@ -91,7 +92,6 @@ public class Giocatore extends Coordinate {
 
 
     private void cambioCoordinate(int dado){
-
         int nuovaCoordinataX=super.getX();
         int nuovaCoordinataY= super.getY();
         int prodotto = nuovaCoordinataY*nuovaCoordinataX;
@@ -107,10 +107,21 @@ public class Giocatore extends Coordinate {
             }
             movimentoVerticale(movimento,nuovaCoordinataY);
         }
+
+        if (isGiroCompleto()){
+            setSoldi(Costanti.IMPORTO_DEL_VIA);
+            Banca.setImporto(-Costanti.IMPORTO_DEL_VIA);
+        }
         cambioCasella(dado-1);
     }
     private boolean controlloAngoli(int prodotto , int nuovaCoordinataY, int nuovaCoordinataX){
         return (prodotto!=0 && nuovaCoordinataY==this.yMax) || (nuovaCoordinataY==0 && nuovaCoordinataX!=this.xMax);
+    }
+
+
+
+    private boolean isGiroCompleto(){
+        return super.getX()==this.xMax && super.getY()==this.yMax;
     }
 
     private void movimentoOrizzontale(int movimento,int x){ // sinistra -1 destra 1

@@ -8,9 +8,12 @@ public class Banca {
     private boolean isNull(int importo) { return (importo <= 0); }
 
     public static void setImporto(final int importo) {
-        if (importo >= Banca.importo)
+        if (importo >= Banca.importo && importo<0)
             aggiungiSoldiImporto();
         Banca.importo += importo;
+    }
+    public static int getImporto(){
+        return importo;
     }
 
     private static void aggiungiSoldiImporto() {

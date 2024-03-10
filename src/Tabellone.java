@@ -50,7 +50,11 @@ public class Tabellone {
     }
 
     public void faiPagare(int i, int j, Giocatore giocatore) {
-        giocatore.setSoldi(-caselle[i][j].getPedaggio());
+        int pedaggio=caselle[i][j].getPedaggio();
+        if (!(caselle[i][j].getNome().equals("Via"))) {
+            giocatore.setSoldi(-pedaggio);
+            Banca.setImporto(pedaggio);
+        }
     }
 
 
