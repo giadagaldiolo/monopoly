@@ -8,7 +8,6 @@ public class Gioco {
     public Gioco() {
         creaGioco();
         gameFlow();
-
     }
     private void creaGioco(){
         creaTabellone();
@@ -21,10 +20,8 @@ public class Gioco {
         System.out.println(tabellone);
         while (Giocatore.getNGiocatoriInGioco()>1) {
             handleGame();
-
         }
-        System.out.println("fine");
-
+        fineGioco();
     }
 
     private void creaDado(){
@@ -131,7 +128,26 @@ public class Gioco {
         this.tabellone.modificaCasella(simbolo,coordinateAttuali[0],coordinateAttuali[1],giocatore);
     }
 
+    private void fineGioco() {
+            for (int i = 0; i < giocatori.length; i++) {
+                if (!giocatori[i].getBancarotta())
+                {
+                    System.out.println("""
+                            * * * * * * * * * * * * * * * * * * * * * * *
+                            *                                           *
+                            *              PARTITA FINITA!              *
+                            *               Il giocatore                *""");
 
+                    System.out.println("                  "+giocatori[i].getNome()+"                      ");
+                    System.out.println("""
+                            *            ha vinto la partita            *
+                            *              CONRATULAZIONE!              *
+                            *                                           *
+                            * * * * * * * * * * * * * * * * * * * * * * *
+                          
+                            """);
+                }
 
-
+            }
+    }
 }
