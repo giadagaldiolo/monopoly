@@ -130,24 +130,39 @@ public class Gioco {
 
     private void fineGioco() {
             for (int i = 0; i < giocatori.length; i++) {
-                if (!giocatori[i].getBancarotta())
+                if (!giocatori[i].isBancarotta())
                 {
-                    System.out.println("""
+                    String stringaDaStampare = getStringaDaStampare(giocatori[i]);
+                    System.out.print("""
                             * * * * * * * * * * * * * * * * * * * * * * *
                             *                                           *
                             *              PARTITA FINITA!              *
-                            *               Il giocatore                *""");
-
-                    System.out.println("                  "+giocatori[i].getNome()+"                      ");
+                            *               Il giocatore                *
+                            """);
+                    System.out.println(stringaDaStampare);
                     System.out.println("""
                             *            ha vinto la partita            *
-                            *              CONRATULAZIONE!              *
+                            *              CONGRATULAZIONI!             *
                             *                                           *
                             * * * * * * * * * * * * * * * * * * * * * * *
-                          
+                                                                         
                             """);
                 }
 
             }
+    }
+
+    private String getStringaDaStampare(Giocatore giocatore) {
+        StringBuilder stringaDaStampare = new StringBuilder();
+        String stringaNome = giocatore.getNome();
+        String spazio = " ";
+        int spaziRichiesti = (43 - stringaNome.length()) / 2;
+        stringaDaStampare.append("*").append(spazio.repeat(spaziRichiesti)).append(stringaNome).append(spazio.repeat(spaziRichiesti));
+        if (stringaNome.length() % 2 == 0) {
+            stringaDaStampare.append(" *");
+        } else {
+            stringaDaStampare.append("*");
+        }
+        return stringaDaStampare.toString();
     }
 }

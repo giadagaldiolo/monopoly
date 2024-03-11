@@ -72,7 +72,7 @@ public class Giocatore extends Coordinate {
         }
     }
 
-    public boolean getBancarotta(){return bancarotta; }
+    public boolean isBancarotta(){return bancarotta; }
 
     public String getNome() {
         return nome;

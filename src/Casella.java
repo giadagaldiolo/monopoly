@@ -82,7 +82,7 @@ public class Casella extends  Coordinate{
                 String primaRiga = this.nome; // Per sapere quanti spazi aggiungere
                 dettagli.append(primaRiga).append(spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - primaRiga.length())));
                 break;
-            case 2: // per adesso non si deve stampare niente
+            case 2:
                 String secondaRiga = "";
                 if (this.nome.equals("Via")) {
                     secondaRiga = "Ritira " + this.pedaggio;
