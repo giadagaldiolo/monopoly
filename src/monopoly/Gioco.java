@@ -137,37 +137,34 @@ public class Gioco {
     private void fineGioco() {
         for (Giocatore giocatore : giocatori) {
             if (!giocatore.isBancarotta()) {
-                String stringaDaStampare = getStringaDaStampare(giocatore);
-                System.out.print("""
+                String nomeGiocatore = getStringaDaStampare(giocatore.getNome());
+                String stringaFinale = giocatore.getColore()+ """
                         * * * * * * * * * * * * * * * * * * * * * * *
                         *                                           *
                         *              PARTITA FINITA!              *
                         *               Il giocatore                *
-                        """);
-                System.out.println(stringaDaStampare);
-                System.out.println("""
+                        *%s*
                         *            ha vinto la partita            *
                         *              CONGRATULAZIONI!             *
                         *                                           *
                         * * * * * * * * * * * * * * * * * * * * * * *
-                                                                     
-                        """);
+                                                                  
+                        """.formatted(nomeGiocatore);
+
+                System.out.println(stringaFinale);
+                break;
+
             }
+
 
         }
     }
 
-    private String getStringaDaStampare(Giocatore giocatore) {
-        StringBuilder stringaDaStampare = new StringBuilder();
-        String stringaNome = giocatore.getNome();
+    private String getStringaDaStampare(String giocatore) {
+        int larghezzaSchermata=43;
+        int nSpaziRichiestiTotali = ((larghezzaSchermata - giocatore.length()));
+        int nSpaziRichiestiPrima = (nSpaziRichiestiTotali/2);
         String spazio = " ";
-        int spaziRichiesti = (43 - stringaNome.length()) / 2;
-        stringaDaStampare.append("*").append(spazio.repeat(spaziRichiesti)).append(stringaNome).append(spazio.repeat(spaziRichiesti));
-        if (stringaNome.length() % 2 == 0) {
-            stringaDaStampare.append(" *");
-        } else {
-            stringaDaStampare.append("*");
-        }
-        return stringaDaStampare.toString();
+        return spazio.repeat(nSpaziRichiestiPrima) + giocatore + spazio.repeat(nSpaziRichiestiTotali-nSpaziRichiestiPrima);
     }
 }

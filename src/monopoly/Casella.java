@@ -11,7 +11,7 @@ public class Casella extends Coordinate {
 
     private int nGiocatoriPresenti = 0;
     private String[] giocatoriPresenti = new String[Costanti.NUMERO_GIOCATORI]; // poi aggiustiamo la costante
-    private static final String coloreTrattini = Colori.sceltaColore(true);
+
 
     private final String colore;
 
@@ -58,11 +58,9 @@ public class Casella extends Coordinate {
 
 
     public String casellaString(int d){
-        StringBuilder casella=new StringBuilder();
-        casella.append(this.colore);
-        casella.append(dettagliCasella(d));
-        casella.append(Costanti.ANSI_RESET);
-        return casella.toString();
+        return this.colore +
+                dettagliCasella(d) +
+                Costanti.ANSI_RESET;
     }
 
     public static boolean checkForNull(Casella casella){
@@ -90,7 +88,7 @@ public class Casella extends Coordinate {
                 dettagli.append(primaRiga).append(spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - primaRiga.length())));
                 break;
             case 2:
-                String secondaRiga = "";
+                String secondaRiga;
                 if (this.nome.equals("Via")) {
                     secondaRiga = "Ritira " + this.pedaggio;
                 } else {

@@ -16,9 +16,7 @@ public class Banca {
             aggiungiSoldiImporto();
         Banca.importo += importo;
     }
-    public static int getImporto(){
-        return importo;
-    }
+
 
     private static void aggiungiSoldiImporto() {
         Banca.importo += Costanti.IMPORTO_PER_BANCAROTTA;

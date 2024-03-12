@@ -15,7 +15,6 @@ public class Dado {
 
     @Override
     public String toString(){
-
         return switch (this.ultimoLancio) {
             case 1 -> ("""
                     * * * * * *

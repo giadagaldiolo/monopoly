@@ -15,6 +15,7 @@ public class Giocatore extends Coordinate {
     private boolean turno;
     private final int  yMax;
     private final int  xMax;
+    private  String colore;
     private boolean bancarotta=false;
 
 
@@ -40,6 +41,7 @@ public class Giocatore extends Coordinate {
    }
    private void impostaColore(){
        String colore = Colori.sceltaColore(false);
+       this.colore=colore;
        this.simbolo = colore+this.simboloChar+Costanti.ANSI_RESET;
 
    }
@@ -138,7 +140,7 @@ public class Giocatore extends Coordinate {
         x+=movimento;
         super.setX(x);
     }
-    private void movimentoVerticale(int movimento,int y){ // sopra -1 , sotto 1
+    private void movimentoVerticale(int movimento,int y){ // sopra -1, sotto 1
         y+=movimento;
         super.setY(y);
 
@@ -156,4 +158,7 @@ public class Giocatore extends Coordinate {
         return giocatore == null;
     }
 
+    public String getColore() {
+        return colore;
+    }
 }
