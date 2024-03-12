@@ -1,6 +1,11 @@
-import java.util.Random;
+package monopoly;
 
-public class Casella extends  Coordinate{
+import monopoly.utilita.Costanti;
+
+import java.util.Random;
+import monopoly.utilita.Colori;
+
+public class Casella extends Coordinate {
     private String nome;
     private int pedaggio;
 
@@ -113,7 +118,7 @@ public class Casella extends  Coordinate{
                 break;
 
         }
-        if (PrimaUltimaRiga) dettagli.append("|").append(spazio); // if in una sola riga // spazio per avere tutte le le caselle separate come sopra
+        if (PrimaUltimaRiga) dettagli.append("|").append(spazio); // if in una sola riga // spazio per avere tutte le caselle separate come sopra
 
 
         return  dettagli.toString();

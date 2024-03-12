@@ -1,3 +1,7 @@
+package monopoly.componentigioco;
+
+import monopoly.utilita.Costanti;
+
 import java.util.Random;
 
 public class Dado {

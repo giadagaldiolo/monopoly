@@ -1,3 +1,5 @@
+package monopoly.utilita;
+
 import java.util.Scanner;
 
 public class ScannerUtils {

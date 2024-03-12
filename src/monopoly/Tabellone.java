@@ -1,3 +1,8 @@
+package monopoly;
+
+import monopoly.componentigioco.Giocatore;
+import monopoly.utilita.Costanti;
+
 public class Tabellone {
     private Casella[][] caselle ;
 

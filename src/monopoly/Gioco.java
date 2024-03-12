@@ -1,3 +1,9 @@
+package monopoly;
+
+import monopoly.componentigioco.Dado;
+import monopoly.componentigioco.Giocatore;
+import monopoly.utilita.Costanti;
+import monopoly.utilita.ScannerUtils;
 
 public class Gioco {
     private Tabellone tabellone;

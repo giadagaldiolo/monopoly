@@ -1,3 +1,11 @@
+package monopoly.componentigioco;
+
+import monopoly.utilita.Costanti;
+import monopoly.Coordinate;
+import monopoly.Banca;
+import monopoly.utilita.Colori;
+
+
 public class Giocatore extends Coordinate {
     private static int nGiocatoriInGioco= Costanti.NUMERO_GIOCATORI;
     private String nome;

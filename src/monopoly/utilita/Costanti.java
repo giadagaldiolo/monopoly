@@ -1,3 +1,5 @@
+package monopoly.utilita;
+
 public class Costanti {
     public static final int RIGHE = 5;
     public static final int CASELLE_PER_RIGA = 5;

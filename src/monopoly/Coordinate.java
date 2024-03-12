@@ -1,3 +1,7 @@
+package monopoly;
+
+import monopoly.utilita.Costanti;
+
 public class Coordinate {
     private int x; // casella
     private int y; // riga

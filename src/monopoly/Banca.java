@@ -1,3 +1,7 @@
+package monopoly;
+
+import monopoly.utilita.Costanti;
+
 public class Banca {
     private static int importo = Costanti.IMPORTO_INIZIALE_BANCA;
 
