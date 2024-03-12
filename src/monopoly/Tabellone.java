@@ -17,7 +17,7 @@ public class Tabellone {
                 for (int col = 0; col < Costanti.CASELLE_PER_RIGA; col++) {
                     currentCell = caselle[i][col];
                     if (Casella.checkForNull(currentCell)) {
-                        tabellone.append(Costanti.COLORE_SFONDO_NULL).append(spazio.repeat(Costanti.LARGHEZZA_CASELLA+1)); // +1 per lo spazio aggiunto per separare le caselle
+                        tabellone.append(Costanti.COLORE_SFONDO_NULL).append(spazio.repeat(Costanti.LARGHEZZA_CASELLA+2)); // +2 per lo spazio aggiunto per separare le caselle
                     }
                     else {
                         tabellone.append(currentCell.casellaString(d));

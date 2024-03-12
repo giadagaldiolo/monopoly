@@ -13,7 +13,7 @@ public class Costanti {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final int ANSI_MIN = 210;
     public static final int ANSI_MAX = 230;
-    public static final int IMPORTO_INIZIALE_GIOCATORE = 20000;
+    public static final int IMPORTO_INIZIALE_GIOCATORE = 200;
     public static final int IMPORTO_INIZIALE_BANCA = 1000000;
     public static final int IMPORTO_PER_BANCAROTTA = 1000000;
     public static final int RIGHE_CASELLA = 7;

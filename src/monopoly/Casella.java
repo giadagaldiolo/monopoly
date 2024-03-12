@@ -71,15 +71,17 @@ public class Casella extends Coordinate {
 
     private String dettagliCasella(int d) {
         StringBuilder dettagli=new StringBuilder();
-
-        boolean PrimaUltimaRiga=d>0 && d<Costanti.RIGHE_CASELLA-1;
-        if (PrimaUltimaRiga) dettagli.append("|");
         String spazio = " ";
         String trattino = "-";
         String righette=trattino.repeat((Costanti.LARGHEZZA_CASELLA));
+        dettagli.append(spazio);
+
+        boolean PrimaUltimaRiga=d>0 && d<Costanti.RIGHE_CASELLA-1;
+        if (PrimaUltimaRiga) dettagli.append("|");
+
+
         switch (d) {
             case 0: case 6:
-                StringBuilder trattini=new StringBuilder(); // tolti tutti i sout e salvato tutto in una stringa
                 dettagli.append(righette);
                 dettagli.append(spazio.repeat(1));
                 break;

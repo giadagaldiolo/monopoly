@@ -135,27 +135,26 @@ public class Gioco {
     }
 
     private void fineGioco() {
-            for (int i = 0; i < giocatori.length; i++) {
-                if (!giocatori[i].isBancarotta())
-                {
-                    String stringaDaStampare = getStringaDaStampare(giocatori[i]);
-                    System.out.print("""
-                            * * * * * * * * * * * * * * * * * * * * * * *
-                            *                                           *
-                            *              PARTITA FINITA!              *
-                            *               Il giocatore                *
-                            """);
-                    System.out.println(stringaDaStampare);
-                    System.out.println("""
-                            *            ha vinto la partita            *
-                            *              CONGRATULAZIONI!             *
-                            *                                           *
-                            * * * * * * * * * * * * * * * * * * * * * * *
-                                                                         
-                            """);
-                }
-
+        for (Giocatore giocatore : giocatori) {
+            if (!giocatore.isBancarotta()) {
+                String stringaDaStampare = getStringaDaStampare(giocatore);
+                System.out.print("""
+                        * * * * * * * * * * * * * * * * * * * * * * *
+                        *                                           *
+                        *              PARTITA FINITA!              *
+                        *               Il giocatore                *
+                        """);
+                System.out.println(stringaDaStampare);
+                System.out.println("""
+                        *            ha vinto la partita            *
+                        *              CONGRATULAZIONI!             *
+                        *                                           *
+                        * * * * * * * * * * * * * * * * * * * * * * *
+                                                                     
+                        """);
             }
+
+        }
     }
 
     private String getStringaDaStampare(Giocatore giocatore) {
