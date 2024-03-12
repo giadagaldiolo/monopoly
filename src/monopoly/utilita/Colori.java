@@ -11,7 +11,7 @@ public class Colori {
 
     public static String sceltaColore(boolean ripetuto){
         Random random = new Random();
-        String colore ="\u001B[3";
+        String colore ="\u001B[38;5;";
         int numeroColore;
         do {
             numeroColore = random.nextInt(Costanti.ANSI_MIN, Costanti.ANSI_MAX + 1);
