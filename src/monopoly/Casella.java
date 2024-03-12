@@ -107,8 +107,9 @@ public class Casella extends Coordinate {
                   // 2 sono i | |
                 for (int i = 0; i < Costanti.NUMERO_GIOCATORI; i++) {
                     String giocatore=getCharGiocatore(i);
-                    if (giocatore.isBlank()) continue;
-                    quintaRiga.append(giocatore).append(" ");
+
+                    if (!(giocatore.isBlank())) quintaRiga.append(giocatore).append(Costanti.COLORE_SFONDO).append(" ");
+
 
 
                 }

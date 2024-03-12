@@ -11,7 +11,7 @@ public class Colori {
 
     public static String sceltaColore(boolean ripetuto){
         Random random = new Random();
-        String colore ="\u001B[38;5;";
+        String colore ="\u001B[1;38;5;";  // bold;background/coloreScritta;? ; colore
         int numeroColore;
         do {
             numeroColore = random.nextInt(Costanti.ANSI_MIN, Costanti.ANSI_MAX + 1);
@@ -22,7 +22,8 @@ public class Colori {
 
         }
         colore = colore + numeroColore + "m";
-        return colore ;
+        if (ripetuto) colore+=Costanti.COLORE_SFONDO;
+        return colore  ;
     }
 
     private static void resetContatoreColori(){
