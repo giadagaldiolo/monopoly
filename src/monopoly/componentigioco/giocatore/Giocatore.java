@@ -1,6 +1,8 @@
 package monopoly.componentigioco.giocatore;
 
 import monopoly.componentigioco.Banca;
+import monopoly.componentigioco.giocatore.funzionalita.MovimentoGiocatore;
+import monopoly.componentigioco.giocatore.funzionalita.MovimentoGiocatoreSupporto;
 import monopoly.utilita.Costanti;
 import monopoly.utilita.Colori;
 

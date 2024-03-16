@@ -1,4 +1,4 @@
-package monopoly.componentigioco.giocatore;
+package monopoly.componentigioco.giocatore.funzionalita;
 
 
 public interface MovimentoGiocatoreSupporto {
