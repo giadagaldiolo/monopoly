@@ -1,7 +1,7 @@
 package monopoly;
 
 import monopoly.componentigioco.Dado;
-import monopoly.componentigioco.Giocatore;
+import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.componentigioco.Tabellone;
 import monopoly.utilita.Costanti;
 import monopoly.utilita.ScannerUtils;
@@ -127,7 +127,7 @@ public class Gioco {
 
     private void movimentoGiocatore(int passi,int giocatore){
         cambioSimbolo(giocatore," ");
-        this.giocatori[giocatore].cambioCasella(passi);
+        this.giocatori[giocatore].spostamentoGiocatore(passi);
         cambioSimbolo(giocatore,this.giocatori[giocatore].getSimbolo());
     }
     private void cambioSimbolo(int giocatore,String simbolo){

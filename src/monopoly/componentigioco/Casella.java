@@ -6,19 +6,17 @@ import monopoly.utilita.Costanti;
 import java.util.Random;
 import monopoly.utilita.Colori;
 
-public class Casella extends Coordinate {
+public class Casella {
     private String nome;
     private int pedaggio;
-
+    private Coordinate coordinate;
     private int nGiocatoriPresenti = 0;
     private String[] giocatoriPresenti = new String[Costanti.NUMERO_GIOCATORI]; // poi aggiustiamo la costante
-
-
     private final String colore;
 
 
     public Casella(String nome, int y, int x){ // assi
-        super(y,x);
+        this.coordinate=new Coordinate(y,x);
         svuotaCasella();
         this.nome = checkForNullNome(nome) ? "Nome sconosciuto" : nome;
         Random random = new Random();

@@ -9,7 +9,7 @@ public abstract class Colori  {
 
 
 
-    public static String sceltaColore(boolean ripetuto){
+    public static String sceltaColore(boolean ripetuto){ // ripetuto false se non vuoi che si ripetano i colori
         Random random = new Random();
         String colore ="\u001B[1;38;5;";  // bold;background/coloreScritta;? ; colore
         int numeroColore;
@@ -22,7 +22,7 @@ public abstract class Colori  {
 
         }
         colore = colore + numeroColore + "m";
-        if (ripetuto) colore+=Costanti.COLORE_SFONDO;
+        if (ripetuto) colore+=Costanti.COLORE_SFONDO; // da migliorare in futuro se serve per lo sfondo
         return colore  ;
     }
 
@@ -46,7 +46,6 @@ public abstract class Colori  {
             }
 
         }
-//        System.out.println(utilizzato);
         return utilizzato;
 
     }

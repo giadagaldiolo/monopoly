@@ -1,28 +1,27 @@
-package monopoly.componentigioco;
+package monopoly.componentigioco.giocatore;
 
+import monopoly.componentigioco.Banca;
 import monopoly.utilita.Costanti;
-import monopoly.Coordinate;
 import monopoly.utilita.Colori;
 
 
-public class Giocatore extends Coordinate {
+public class Giocatore  implements MovimentoGiocatoreSupporto {
     private static int nGiocatoriInGioco= Costanti.NUMERO_GIOCATORI;
     private String nome;
     private String simbolo;
     private char simboloChar;
     private int soldi;
     private boolean turno;
-    private final int  yMax;
-    private final int  xMax;
     private  String colore;
     private boolean bancarotta=false;
+    private final MovimentoGiocatoreSupporto movimentoGiocatore; // se faccio cosi invece di usare direttamente la classe limito le funzioni
 
 
 
     public Giocatore(String nome, char simbolo,int yMax,int xMax) {
-        super(yMax,xMax);
-        this.yMax=yMax;
-        this.xMax=xMax;
+
+        this.movimentoGiocatore= new MovimentoGiocatore(xMax,yMax);
+
         impostaCaratteristiche(nome,simbolo);
         impostaColore();
 
@@ -88,62 +87,34 @@ public class Giocatore extends Coordinate {
     }
 
     public int [] getCoordinate(){
-        return new int[]{super.getY(),super.getX()};
+        return new int[]{getY(),getX()};
     }
-
-    public void cambioCasella(int dado){
-        if (dado>0){
-
-            cambioCoordinate(dado);
-
-        }
-
+    @Override
+    public int getX() {
+        return this.movimentoGiocatore.getX();
     }
-
-
-
-    private void cambioCoordinate(int dado){
-        int nuovaCoordinataX=super.getX();
-        int nuovaCoordinataY= super.getY();
-        int prodotto = nuovaCoordinataY*nuovaCoordinataX;
-        int movimento = 1; // destraSotto = 1 // sinistraSopra = -1
-        if (controlloAngoli(prodotto,nuovaCoordinataY,nuovaCoordinataX) ){
-            if (nuovaCoordinataY==this.yMax){
-                movimento*=-1;
+    @Override
+    public int getY() {
+        return this.movimentoGiocatore.getY();
+    }
+    public void spostamentoGiocatore(int dado){
+        for (int i = dado; i >0 ; i--) {
+            if (cambioCoordinate()){ // controlla se completa un giro
+                setSoldi(Costanti.IMPORTO_DEL_VIA);
+                Banca.setImporto(-Costanti.IMPORTO_DEL_VIA);
             }
-            movimentoOrizzontale(movimento,nuovaCoordinataX);
-        }else{
-            if (nuovaCoordinataX!=this.xMax){
-                movimento*=-1;
-            }
-            movimentoVerticale(movimento,nuovaCoordinataY);
         }
 
-        if (isGiroCompleto()){
-            setSoldi(Costanti.IMPORTO_DEL_VIA);
-            Banca.setImporto(-Costanti.IMPORTO_DEL_VIA);
-        }
-        cambioCasella(dado-1);
-    }
-    private boolean controlloAngoli(int prodotto , int nuovaCoordinataY, int nuovaCoordinataX){
-        return (prodotto!=0 && nuovaCoordinataY==this.yMax) || (nuovaCoordinataY==0 && nuovaCoordinataX!=this.xMax);
+
     }
 
 
-
-    private boolean isGiroCompleto(){
-        return super.getX()==this.xMax && super.getY()==this.yMax;
-    }
-
-    private void movimentoOrizzontale(int movimento,int x){ // sinistra -1 destra 1
-        x+=movimento;
-        super.setX(x);
-    }
-    private void movimentoVerticale(int movimento,int y){ // sopra -1, sotto 1
-        y+=movimento;
-        super.setY(y);
+    @Override
+    public boolean cambioCoordinate(){
+        return this.movimentoGiocatore.cambioCoordinate();
 
     }
+
 
     public boolean isSimboloUguale(char giocatoreDaControllare){
         boolean risposta = giocatoreDaControllare==this.simboloChar;
