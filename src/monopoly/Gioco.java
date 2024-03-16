@@ -2,6 +2,7 @@ package monopoly;
 
 import monopoly.componentigioco.Dado;
 import monopoly.componentigioco.Giocatore;
+import monopoly.componentigioco.Tabellone;
 import monopoly.utilita.Costanti;
 import monopoly.utilita.ScannerUtils;
 

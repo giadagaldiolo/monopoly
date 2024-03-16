@@ -1,5 +1,6 @@
-package monopoly;
+package monopoly.componentigioco;
 
+import monopoly.Coordinate;
 import monopoly.utilita.Costanti;
 
 import java.util.Random;

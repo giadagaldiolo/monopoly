@@ -1,4 +1,4 @@
-package monopoly;
+package monopoly.componentigioco;
 
 import monopoly.utilita.Costanti;
 

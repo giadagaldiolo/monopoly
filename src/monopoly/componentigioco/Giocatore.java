@@ -2,7 +2,6 @@ package monopoly.componentigioco;
 
 import monopoly.utilita.Costanti;
 import monopoly.Coordinate;
-import monopoly.Banca;
 import monopoly.utilita.Colori;
 
 
