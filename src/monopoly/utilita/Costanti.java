@@ -1,6 +1,6 @@
 package monopoly.utilita;
 
-public class Costanti {
+public abstract class  Costanti {
     public static final int RIGHE = 5;
     public static final int CASELLE_PER_RIGA = 5;
     public static final int LARGHEZZA_CASELLA = 22;

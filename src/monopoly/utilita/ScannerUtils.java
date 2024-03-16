@@ -2,7 +2,7 @@ package monopoly.utilita;
 
 import java.util.Scanner;
 
-public class ScannerUtils {
+public abstract class  ScannerUtils {
     private static final Scanner scanner=new Scanner(System.in);
     private static final int charMax=8;
 

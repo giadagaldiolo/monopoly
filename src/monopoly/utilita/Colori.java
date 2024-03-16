@@ -2,7 +2,7 @@ package monopoly.utilita;
 
 import java.util.Random;
 
-public class Colori {
+public abstract class Colori  {
 
     private static int [] coloriUsati= new int[Costanti.ANSI_MAX-Costanti.ANSI_MIN+1];
     private static int cntColori=0;
@@ -33,7 +33,6 @@ public class Colori {
             coloriUsati= new int[Costanti.ANSI_MAX-Costanti.ANSI_MIN+1];
         }
     }
-
 
 
 

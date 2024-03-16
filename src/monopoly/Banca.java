@@ -2,19 +2,27 @@ package monopoly;
 
 import monopoly.utilita.Costanti;
 
-public class Banca {
+public abstract  class  Banca {
     private static int importo = Costanti.IMPORTO_INIZIALE_BANCA;
 
     public Banca(int importo) {
-        Banca.importo = isNull(importo) ? Costanti.IMPORTO_INIZIALE_BANCA : importo;
+        Banca.importo = isValido(importo) ? Costanti.IMPORTO_INIZIALE_BANCA : importo;
     }
 
-    private boolean isNull(int importo) { return (importo <= 0); }
+    private boolean isValido(int importo) { return (importo <= 0); }
 
     public static void setImporto(final int importo) {
-        if (importo >= Banca.importo && importo<0)
+
+        if (controlloImportoBanca(importo)) {
+            System.out.println("Soldi aggiunti alla banca");
             aggiungiSoldiImporto();
+        }
         Banca.importo += importo;
+
+    }
+
+    private static boolean controlloImportoBanca(final int importo){
+        return ((Banca.importo+importo)<=0);
     }
 
 

@@ -2,7 +2,7 @@ package monopoly;
 
 import monopoly.utilita.Costanti;
 
-public abstract class Coordinate  {
+public abstract class Coordinate  { // forse è meglio la composizione
     private int x; // casella
     private int y; // riga
 
