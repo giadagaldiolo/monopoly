@@ -4,7 +4,6 @@ import monopoly.componentigioco.Dado;
 import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.componentigioco.Tabellone;
 import monopoly.schermate.SchermataFinale;
-import monopoly.schermate.SchermataInterface;
 import monopoly.utilita.Costanti;
 import monopoly.utilita.ScannerUtils;
 
@@ -109,8 +108,7 @@ public class Gioco {
     private void fineGioco() {
         for (Giocatore giocatore : giocatori) {
             if (!giocatore.isBancarotta()) {
-                SchermataInterface fine =new SchermataFinale(giocatore);
-                System.out.println(fine);
+                System.out.println(new SchermataFinale(giocatore));
                 break;
             }
         }
