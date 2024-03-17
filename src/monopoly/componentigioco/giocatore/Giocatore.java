@@ -103,7 +103,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
     }
     public void spostamentoGiocatore(int dado){
         for (int i = dado; i >0 ; i--) {
-            if (cambioCoordinate()){ // controlla se completa un giro
+            if (cambioCoordinate() && i>1){ // controlla se completa un giro
                 addSoldi(Costanti.IMPORTO_DEL_VIA);
                 Banca.addImporto(-Costanti.IMPORTO_DEL_VIA);
             }
@@ -118,19 +118,29 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
     public boolean cambioCoordinate(){
         return this.movimentoGiocatore.cambioCoordinate();
 
+
     }
 
-    @Override
+
+    private void pagamentoPedaggio(Tabellone tabellone){
+        if (isTabellone(tabellone)) {
+            int importo = tabellone.getImporto(getY(), getX());
+            addSoldi(importo);
+            Banca.addImporto(-importo);
+        }
+
+
+    }
+
     public void updatePosizione(int passi, Tabellone tabellone,int giocatore){
-        cambioSimbolo(" ",tabellone,giocatore);
-        spostamentoGiocatore(passi);
-        cambioSimbolo(this.simbolo,tabellone,giocatore);
+        if (isTabellone(tabellone)) {
+            spostaSimbolo(" ", tabellone, giocatore);
+            spostamentoGiocatore(passi);
+            spostaSimbolo(this.simbolo, tabellone, giocatore);
+            pagamentoPedaggio(tabellone);
+        }
 
 
-    }
-    private void cambioSimbolo(String simbolo,Tabellone tabellone,int giocatore){
-
-        tabellone.modificaCasella(simbolo,getY(),getX(),giocatore);
     }
 
 

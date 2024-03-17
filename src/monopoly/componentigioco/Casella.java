@@ -91,7 +91,7 @@ public class Casella {
                 if (this.nome.equals("Via")) {
                     secondaRiga = "Ritira " + this.pedaggio;
                 } else {
-                    secondaRiga = "Paga " + this.pedaggio;
+                    secondaRiga = "Paga " + Math.abs(this.pedaggio);
                 }
 
                 dettagli.append(secondaRiga).append(spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - secondaRiga.length())));

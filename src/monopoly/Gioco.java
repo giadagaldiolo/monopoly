@@ -65,7 +65,6 @@ public class Gioco {
         this.giocatori[i] = new Giocatore(nome,simbolo,Costanti.RIGHE-1,Costanti.CASELLE_PER_RIGA-1);
 
 
-
     }
 
     private void handleGame() {
@@ -93,18 +92,12 @@ public class Gioco {
     }
     private void turno(Giocatore currentGiocatore){
         currentGiocatore.updatePosizione(dado.lancioDadi(),tabellone,numeroGiocatoreCorrente);
-        pagamentoPedaggio(currentGiocatore);
         System.out.println(tabellone);
         System.out.println(dado);
         turnoSuccessivo();
     }
 
-    private void pagamentoPedaggio(Giocatore currentGiocatore){
-        int[] coordinateAttuali = currentGiocatore.getCoordinate();
-        tabellone.faiPagare(coordinateAttuali[0],coordinateAttuali[1], currentGiocatore);
 
-
-    }
     private boolean controlloSimboli(char simbolo){
         boolean trovato = false;
         for (Giocatore giocatore : giocatori) { // da spostare se si trova il modo

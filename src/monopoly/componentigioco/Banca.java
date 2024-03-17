@@ -17,7 +17,9 @@ public abstract  class  Banca {
             System.out.println("Soldi aggiunti alla banca");
             aggiungiSoldiImporto();
         }
+
         Banca.importo += importo;
+        System.out.println(Banca.importo);
 
     }
 

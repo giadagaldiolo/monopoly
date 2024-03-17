@@ -54,12 +54,9 @@ public class Tabellone {
         caselle[i][j].aggiungiCarattere(simbolo, giocatore);
     }
 
-    public void faiPagare(int i, int j, Giocatore giocatore) {
-        int pedaggio=caselle[i][j].getPedaggio();
-        if (!(caselle[i][j].getNome().equals("Via"))) {
-            giocatore.addSoldi(-pedaggio);
-            Banca.addImporto(pedaggio);
-        }
+    public int getImporto(int i, int j) {
+        return caselle[i][j].getPedaggio();
+
     }
 
 

@@ -62,11 +62,10 @@ public class MovimentoGiocatore  implements MovimentoGiocatoreSupporto {
     public int getY() {
         return this.coordinate.getY();
     }
-@Override
-    public void updatePosizione(int passi, Tabellone tabellone,int giocatore){
-    System.out.println("Giocatore spostato");
 
-    }
+
+
+
 
 
 }
