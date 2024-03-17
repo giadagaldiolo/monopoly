@@ -11,6 +11,7 @@ public class Gioco {
     private Giocatore[] giocatori;
     private Dado dado;
     private int numeroGiocatoreCorrente = 0;
+    private final MenuInterfaccia menuGioco= new MenuGioco(); // cosi non si possono usare altri metodi di menuGioco che non sono presenti nella interfaccia
 
     public Gioco() {
         creaGioco();
@@ -26,7 +27,8 @@ public class Gioco {
     private void gameFlow() {
         System.out.println(tabellone);
         while (Giocatore.getNGiocatoriInGioco()>1) {
-            handleGame();
+            menuTurno();
+
         }
         fineGioco();
     }
@@ -40,18 +42,10 @@ public class Gioco {
 
         for (int i = 0; i < giocatori.length; i++) {
             inserisciGiocatore(i);
-
             tabellone.modificaCasella(giocatori[i].getSimbolo(), Costanti.RIGHE-1, Costanti.CASELLE_PER_RIGA-1, i);
 
         }
 
-    }
-
-    private int mostraMenu() {
-        System.out.println("1. Mostra capitale giocatore corrente");
-        System.out.println("2. Tira il dado");
-        System.out.print("Scelta: ");
-        return ScannerUtils.readIntegerInRange(1,2);
     }
 
     private void inserisciGiocatore(int i){
@@ -64,25 +58,15 @@ public class Gioco {
 
         this.giocatori[i] = new Giocatore(nome,simbolo,Costanti.RIGHE-1,Costanti.CASELLE_PER_RIGA-1);
 
-
     }
 
-    private void handleGame() {
+    private void menuTurno() {
         Giocatore currentGiocatore = giocatori[numeroGiocatoreCorrente];
-        int scelta;
-        do {
-            System.out.println("E' il turno di " + currentGiocatore.getNome());
-            scelta = mostraMenu();
-            switch (scelta){
-                case 1:
-                    System.out.println(currentGiocatore.getSoldi());
-                    break;
-                case 2:
-                    turno(currentGiocatore);
-                    break;
-            }
-        } while (scelta != 2);
+        this.menuGioco.menu(currentGiocatore);
+        turno(currentGiocatore);
+
     }
+
     private void turnoSuccessivo(){
         if (this.numeroGiocatoreCorrente==(this.giocatori.length-1)){
             this.numeroGiocatoreCorrente=0;
@@ -91,10 +75,12 @@ public class Gioco {
         }
     }
     private void turno(Giocatore currentGiocatore){
-        currentGiocatore.updatePosizione(dado.lancioDadi(),tabellone,numeroGiocatoreCorrente);
-        System.out.println(tabellone);
-        System.out.println(dado);
-        turnoSuccessivo();
+       if (isGiocatore(currentGiocatore)) {
+            currentGiocatore.updatePosizione(dado.lancioDadi(), tabellone, numeroGiocatoreCorrente);
+            System.out.println(tabellone);
+            System.out.println(dado);
+            turnoSuccessivo();
+        }
     }
 
 
@@ -107,8 +93,6 @@ public class Gioco {
                 break;
             }
         }
-
-
         return trovato;
     }
 
@@ -147,10 +131,18 @@ public class Gioco {
     }
 
     private String getStringaDaStampare(String giocatore) {
-        int larghezzaSchermata=43;
-        int nSpaziRichiestiTotali = ((larghezzaSchermata - giocatore.length()));
-        int nSpaziRichiestiPrima = (nSpaziRichiestiTotali/2);
-        String spazio = " ";
-        return spazio.repeat(nSpaziRichiestiPrima) + giocatore + spazio.repeat(nSpaziRichiestiTotali-nSpaziRichiestiPrima);
+        if (!giocatore.isBlank()) {
+            int larghezzaSchermata = 43;
+            int nSpaziRichiestiTotali = ((larghezzaSchermata - giocatore.length()));
+            int nSpaziRichiestiPrima = (nSpaziRichiestiTotali / 2);
+            String spazio = " ";
+            return spazio.repeat(nSpaziRichiestiPrima) + giocatore + spazio.repeat(nSpaziRichiestiTotali - nSpaziRichiestiPrima);
+        }else {
+            return "Stringa vuota";
+        }
+    }
+
+    private boolean isGiocatore(Giocatore giocatore){
+        return giocatore!=null;
     }
 }
