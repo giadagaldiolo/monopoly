@@ -19,7 +19,7 @@ public class MenuGioco implements MenuInterfaccia{
             do {
                 System.out.println("E' il turno di " + currentGiocatore.getNome());
                 System.out.println(this);
-                scelta = ScannerUtils.readIntegerInRange(1,2);;
+                scelta = ScannerUtils.readIntegerInRange(1,2);
                 if (scelta == 1) {
                     System.out.println(currentGiocatore.getSoldi());
                 }
