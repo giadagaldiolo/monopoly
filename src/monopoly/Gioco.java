@@ -3,6 +3,8 @@ package monopoly;
 import monopoly.componentigioco.Dado;
 import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.componentigioco.Tabellone;
+import monopoly.schermate.SchermataFinale;
+import monopoly.schermate.SchermataInterface;
 import monopoly.utilita.Costanti;
 import monopoly.utilita.ScannerUtils;
 
@@ -107,40 +109,13 @@ public class Gioco {
     private void fineGioco() {
         for (Giocatore giocatore : giocatori) {
             if (!giocatore.isBancarotta()) {
-                String nomeGiocatore = getStringaDaStampare(giocatore.getNome());
-                String stringaFinale = giocatore.getColore()+ """
-                        * * * * * * * * * * * * * * * * * * * * * * *
-                        *                                           *
-                        *              PARTITA FINITA!              *
-                        *               Il giocatore                *
-                        *%s*
-                        *            ha vinto la partita            *
-                        *              CONGRATULAZIONI!             *
-                        *                                           *
-                        * * * * * * * * * * * * * * * * * * * * * * *
-                                                                  
-                        """.formatted(nomeGiocatore);
-
-                System.out.println(stringaFinale);
+                SchermataInterface fine =new SchermataFinale(giocatore);
+                System.out.println(fine);
                 break;
-
             }
-
-
         }
     }
 
-    private String getStringaDaStampare(String giocatore) {
-        if (!giocatore.isBlank()) {
-            int larghezzaSchermata = 43;
-            int nSpaziRichiestiTotali = ((larghezzaSchermata - giocatore.length()));
-            int nSpaziRichiestiPrima = (nSpaziRichiestiTotali / 2);
-            String spazio = " ";
-            return spazio.repeat(nSpaziRichiestiPrima) + giocatore + spazio.repeat(nSpaziRichiestiTotali - nSpaziRichiestiPrima);
-        }else {
-            return "Stringa vuota";
-        }
-    }
 
     private boolean isGiocatore(Giocatore giocatore){
         return giocatore!=null;

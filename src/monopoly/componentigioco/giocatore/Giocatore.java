@@ -115,8 +115,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
     @Override
     public boolean cambioCoordinate(){
         return this.movimentoGiocatore.cambioCoordinate();
-
-
     }
 
 
