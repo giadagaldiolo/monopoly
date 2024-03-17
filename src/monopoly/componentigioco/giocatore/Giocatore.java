@@ -1,6 +1,7 @@
 package monopoly.componentigioco.giocatore;
 
 import monopoly.componentigioco.Banca;
+import monopoly.componentigioco.Tabellone;
 import monopoly.componentigioco.giocatore.funzionalita.MovimentoGiocatore;
 import monopoly.componentigioco.giocatore.funzionalita.MovimentoGiocatoreSupporto;
 import monopoly.utilita.Costanti;
@@ -109,6 +110,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
         }
 
 
+
     }
 
 
@@ -116,6 +118,19 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
     public boolean cambioCoordinate(){
         return this.movimentoGiocatore.cambioCoordinate();
 
+    }
+
+    @Override
+    public void updatePosizione(int passi, Tabellone tabellone,int giocatore){
+        cambioSimbolo(" ",tabellone,giocatore);
+        spostamentoGiocatore(passi);
+        cambioSimbolo(this.simbolo,tabellone,giocatore);
+
+
+    }
+    private void cambioSimbolo(String simbolo,Tabellone tabellone,int giocatore){
+
+        tabellone.modificaCasella(simbolo,getY(),getX(),giocatore);
     }
 
 

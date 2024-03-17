@@ -1,6 +1,7 @@
 package monopoly.componentigioco.giocatore.funzionalita;
 
 import monopoly.Coordinate;
+import monopoly.componentigioco.Tabellone;
 
 public class MovimentoGiocatore  implements MovimentoGiocatoreSupporto {
     Coordinate coordinate;
@@ -61,5 +62,11 @@ public class MovimentoGiocatore  implements MovimentoGiocatoreSupporto {
     public int getY() {
         return this.coordinate.getY();
     }
+@Override
+    public void updatePosizione(int passi, Tabellone tabellone,int giocatore){
+    System.out.println("Giocatore spostato");
+
+    }
+
 
 }

@@ -92,7 +92,7 @@ public class Gioco {
         }
     }
     private void turno(Giocatore currentGiocatore){
-        movimentoGiocatore(dado.lancioDadi(),numeroGiocatoreCorrente);
+        currentGiocatore.updatePosizione(dado.lancioDadi(),tabellone,numeroGiocatoreCorrente);
         pagamentoPedaggio(currentGiocatore);
         System.out.println(tabellone);
         System.out.println(dado);
@@ -125,15 +125,7 @@ public class Gioco {
         tabellone.crea();
     }
 
-    private void movimentoGiocatore(int passi,int giocatore){
-        cambioSimbolo(giocatore," ");
-        this.giocatori[giocatore].spostamentoGiocatore(passi);
-        cambioSimbolo(giocatore,this.giocatori[giocatore].getSimbolo());
-    }
-    private void cambioSimbolo(int giocatore,String simbolo){
-        int[] coordinateAttuali = this.giocatori[giocatore].getCoordinate();
-        this.tabellone.modificaCasella(simbolo,coordinateAttuali[0],coordinateAttuali[1],giocatore);
-    }
+
 
     private void fineGioco() {
         for (Giocatore giocatore : giocatori) {
