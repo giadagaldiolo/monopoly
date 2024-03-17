@@ -7,7 +7,7 @@ public class SchermataIniziale implements SchermataInterface{
     @Override
     public String toString() {
         String colore = "\u001B[1;38;5;183m";
-        return colore +"""
+        return colore + """
                  __       __                                                    __          \s
                 |  \\     /  \\                                                  |  \\         \s
                 | $$\\   /  $$  ______   _______    ______    ______    ______  | $$ __    __\s
@@ -19,10 +19,9 @@ public class SchermataIniziale implements SchermataInterface{
                  \\$$      \\$$  \\$$$$$$  \\$$   \\$$  \\$$$$$$ | $$$$$$$   \\$$$$$$  \\$$ _\\$$$$$$$
                                                            | $$                    |  \\__| $$
                                                            | $$                     \\$$    $$
-                                                            \\$$                      \\$$$$$$\s                                              
-                
-                Premere invio per Iniziare...
-                """+ Costanti.ANSI_RESET;
+                                                            \\$$                      \\$$$$$$
+                                
+                Premere invio per Iniziare...""" + Costanti.ANSI_RESET;
     }
 
 
