@@ -1,6 +1,6 @@
 package monopoly.componentigioco;
 
-import monopoly.componentigioco.giocatore.Giocatore;
+
 import monopoly.utilita.Costanti;
 
 public class Tabellone {

@@ -90,9 +90,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
         return nome;
     }
 
-    public int [] getCoordinate(){
-        return new int[]{getY(),getX()};
-    }
+
     @Override
     public int getX() {
         return this.movimentoGiocatore.getX();
