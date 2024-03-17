@@ -4,6 +4,7 @@ import monopoly.componentigioco.Dado;
 import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.componentigioco.Tabellone;
 import monopoly.schermate.SchermataFinale;
+import monopoly.schermate.SchermataIniziale;
 import monopoly.utilita.Costanti;
 import monopoly.utilita.ScannerUtils;
 
@@ -15,6 +16,13 @@ public class Gioco {
     private final MenuInterfaccia menuGioco= new MenuGioco(); // cosi non si possono usare altri metodi di menuGioco che non sono presenti nella interfaccia
 
     public Gioco() {
+        System.out.println(new SchermataIniziale());
+        ScannerUtils.emptyTheScanner();
+        avviaGioco();
+
+    }
+
+    private void avviaGioco(){
         creaGioco();
         gameFlow();
     }

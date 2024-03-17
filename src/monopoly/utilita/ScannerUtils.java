@@ -24,6 +24,8 @@ public abstract class  ScannerUtils {
 
 
 
+
+
     public static char inputSimboloGiocatore(final int numeroGiocatore){
         while (true) {
             System.out.println("Inserisci simbolo giocatore " + numeroGiocatore);
@@ -52,7 +54,7 @@ public abstract class  ScannerUtils {
         }
     }
 
-    private static void emptyTheScanner() { scanner.nextLine(); }
+    public static void emptyTheScanner() { scanner.nextLine(); }
 
 
 

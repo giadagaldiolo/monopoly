@@ -4,13 +4,23 @@ import monopoly.componentigioco.giocatore.Giocatore;
 
 public class SchermataFinale implements SchermataInterface {
     private final Giocatore vincitore;
+    private final String colore;
     public SchermataFinale(Giocatore vincitore){
-        this.vincitore=vincitore;
+        this.vincitore = isGiocatore(vincitore) ? vincitore : giocatoreDefault() ;
+        this.colore=vincitore.getColore();
+
+    }
+    private Giocatore giocatoreDefault(){
+        return new Giocatore("Sconosciuto",'S',0,0);
+    }
+
+    private boolean isGiocatore(Giocatore vincitore){
+        return vincitore!=null;
     }
     @Override
     public String toString(){
         String nomeGiocatore = getStringaDaStampare(this.vincitore.getNome());
-        return this.vincitore.getColore()+ """
+        return this.colore+ """
                         * * * * * * * * * * * * * * * * * * * * * * *
                         *                                           *
                         *              PARTITA FINITA!              *
@@ -35,5 +45,6 @@ public class SchermataFinale implements SchermataInterface {
             return "Stringa vuota";
         }
     }
+
 
 }
