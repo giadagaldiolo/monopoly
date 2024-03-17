@@ -20,7 +20,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
 
 
 
-    public Giocatore(String nome, char simbolo,int yMax,int xMax) {
+    public Giocatore(String nome, char simbolo, int yMax, int xMax) {
 
         this.movimentoGiocatore= new MovimentoGiocatore(xMax,yMax);
 
@@ -35,7 +35,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
        this.nome = controlloNome(nome) ? "Nome sconosciuto" : nome;
        this.simboloChar = controlloSimbolo(simbolo) ? 'X' : simbolo;
        this.soldi = Costanti.IMPORTO_INIZIALE_GIOCATORE;
-       Banca.setImporto(-Costanti.IMPORTO_INIZIALE_GIOCATORE);
+       Banca.addImporto(-Costanti.IMPORTO_INIZIALE_GIOCATORE);
 
 
    }
@@ -67,11 +67,12 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
         return soldi;
     }
 
-    public void setSoldi(final int soldi) {
+    public void addSoldi(final int soldi) {
         this.soldi += soldi;
         controlloSoldi();
 
     }
+
 
     private void controlloSoldi(){
         if(this.soldi <= 0){
@@ -102,8 +103,8 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
     public void spostamentoGiocatore(int dado){
         for (int i = dado; i >0 ; i--) {
             if (cambioCoordinate()){ // controlla se completa un giro
-                setSoldi(Costanti.IMPORTO_DEL_VIA);
-                Banca.setImporto(-Costanti.IMPORTO_DEL_VIA);
+                addSoldi(Costanti.IMPORTO_DEL_VIA);
+                Banca.addImporto(-Costanti.IMPORTO_DEL_VIA);
             }
         }
 

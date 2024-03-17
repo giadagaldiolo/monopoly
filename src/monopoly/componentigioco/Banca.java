@@ -11,7 +11,7 @@ public abstract  class  Banca {
 
     private boolean isValido(int importo) { return (importo <= 0); }
 
-    public static void setImporto(final int importo) {
+    public static void addImporto(final int importo) {
 
         if (controlloImportoBanca(importo)) {
             System.out.println("Soldi aggiunti alla banca");

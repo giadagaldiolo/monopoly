@@ -84,7 +84,7 @@ public class Gioco {
             }
         } while (scelta != 2);
     }
-    private void turnoSucessivo(){
+    private void turnoSuccessivo(){
         if (this.numeroGiocatoreCorrente==(this.giocatori.length-1)){
             this.numeroGiocatoreCorrente=0;
         } else{
@@ -96,7 +96,7 @@ public class Gioco {
         pagamentoPedaggio(currentGiocatore);
         System.out.println(tabellone);
         System.out.println(dado);
-        turnoSucessivo();
+        turnoSuccessivo();
     }
 
     private void pagamentoPedaggio(Giocatore currentGiocatore){
