@@ -3,9 +3,9 @@ package monopoly;
 import monopoly.componentigioco.Dado;
 import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.componentigioco.Tabellone;
+import monopoly.schermate.Schermata;
 import monopoly.schermate.SchermataFinale;
 import monopoly.schermate.SchermataIniziale;
-import monopoly.utilita.Costanti;
 import monopoly.utilita.ScannerUtils;
 
 public class Gioco {
@@ -14,9 +14,11 @@ public class Gioco {
     private Dado dado;
     private int numeroGiocatoreCorrente = 0;
     private final MenuInterfaccia menuGioco= new MenuGioco(); // cosi non si possono usare altri metodi di menuGioco che non sono presenti nella interfaccia
+    private Schermata schermataCorrente= new SchermataIniziale();
 
     public Gioco() {
-        System.out.println(new SchermataIniziale());
+
+        System.out.println(this.schermataCorrente);
         ScannerUtils.emptyTheScanner();
         avviaGioco();
 
@@ -47,25 +49,7 @@ public class Gioco {
     }
 
     private void creaGiocatori() {
-        this.giocatori = new Giocatore[Costanti.NUMERO_GIOCATORI];
-
-        for (int i = 0; i < giocatori.length; i++) {
-            inserisciGiocatore(i);
-            tabellone.modificaCasella(giocatori[i].getSimbolo(), Costanti.RIGHE-1, Costanti.CASELLE_PER_RIGA-1, i);
-
-        }
-
-    }
-
-    private void inserisciGiocatore(int i){
-        char simbolo;
-        String nome = ScannerUtils.inputNomeGiocatore(i+1);
-        do {
-            simbolo = ScannerUtils.inputSimboloGiocatore(i + 1);
-
-        } while (controlloSimboli(simbolo));
-
-        this.giocatori[i] = new Giocatore(nome,simbolo,Costanti.RIGHE-1,Costanti.CASELLE_PER_RIGA-1);
+        this.giocatori= new SchermataIniziale().creaGiocatori(this.tabellone);
 
     }
 
@@ -93,19 +77,6 @@ public class Gioco {
     }
 
 
-    private boolean controlloSimboli(char simbolo){
-        boolean trovato = false;
-        for (Giocatore giocatore : giocatori) { // da spostare se si trova il modo
-
-            if (!(Giocatore.checkForNullGiocatore(giocatore)) && giocatore.isSimboloUguale(simbolo)){
-                trovato= true;
-                break;
-            }
-        }
-        return trovato;
-    }
-
-
     private void creaTabellone() {
         this.tabellone = new Tabellone();
         tabellone.crea();
@@ -116,7 +87,8 @@ public class Gioco {
     private void fineGioco() {
         for (Giocatore giocatore : giocatori) {
             if (!giocatore.isBancarotta()) {
-                System.out.println(new SchermataFinale(giocatore));
+                this.schermataCorrente=new SchermataFinale(giocatore);
+                System.out.println(this.schermataCorrente);
                 break;
             }
         }

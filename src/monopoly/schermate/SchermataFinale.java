@@ -2,7 +2,7 @@ package monopoly.schermate;
 
 import monopoly.componentigioco.giocatore.Giocatore;
 
-public class SchermataFinale implements SchermataInterface {
+public class SchermataFinale extends Schermata{
     private final Giocatore vincitore;
     private final String colore;
     public SchermataFinale(Giocatore vincitore){
