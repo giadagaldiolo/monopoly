@@ -34,7 +34,7 @@ public class SchermataIniziale extends Schermata{
             tabellone.modificaCasella(giocatori[i].getSimbolo(), Costanti.RIGHE-1, Costanti.CASELLE_PER_RIGA-1, i);
 
         }
-        return  giocatori;
+        return giocatori;
 
     }
 

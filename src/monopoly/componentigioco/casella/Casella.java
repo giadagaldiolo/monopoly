@@ -1,4 +1,4 @@
-package monopoly.componentigioco;
+package monopoly.componentigioco.casella;
 
 import monopoly.Coordinate;
 import monopoly.utilita.Costanti;
