@@ -3,27 +3,17 @@ package monopoly.componentigioco.casella;
 import monopoly.Coordinate;
 import monopoly.utilita.Costanti;
 
-import java.util.Random;
-import monopoly.utilita.Colori;
-
-public class Casella {
+public abstract class Casella {
     private String nome;
-    private int pedaggio;
     private Coordinate coordinate;
     private int nGiocatoriPresenti = 0;
     private String[] giocatoriPresenti = new String[Costanti.NUMERO_GIOCATORI]; // poi aggiustiamo la costante
-    private final String colore;
 
 
     public Casella(String nome, int y, int x){ // assi
         this.coordinate=new Coordinate(y,x);
         svuotaCasella();
         this.nome = checkForNullNome(nome) ? "Nome sconosciuto" : nome;
-        Random random = new Random();
-        this.pedaggio = random.nextInt(Costanti.IMPORTO_PEDAGGIO_MIN,Costanti.IMPORTO_PEDAGGIO_MAX+1);
-        if (this.nome.equals("Via")) this.pedaggio=Costanti.IMPORTO_DEL_VIA;
-        this.colore= Colori.sceltaColore(true);
-
     }
 
     private boolean checkForNullNome(String nome){
@@ -51,13 +41,9 @@ public class Casella {
         giocatoriPresenti[giocatore] = ch;
     }
 
-    public int getPedaggio() {
-        return pedaggio;
-    }
-
 
     public String casellaString(int d){
-        return this.colore +
+        return getColore() +
                 dettagliCasella(d) +
                 Costanti.ANSI_RESET;
     }
@@ -87,13 +73,13 @@ public class Casella {
                 dettagli.append(primaRiga).append(spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - primaRiga.length())));
                 break;
             case 2:
-                String secondaRiga;
-                if (this.nome.equals("Via")) {
-                    secondaRiga = "Ritira " + this.pedaggio;
-                } else {
-                    secondaRiga = "Paga " + Math.abs(this.pedaggio);
-                }
-
+                String secondaRiga = switch (this.nome) {
+                    case "Via" -> "Ritira " + Costanti.IMPORTO_DEL_VIA;
+                    case "Parcheggio" -> "";
+                    case "Tassa di lusso" -> "Paga " + Costanti.IMPORTO_TASSA_LUSSO;
+                    case "Tassa patrimoniale" -> "Paga 10% del patrimonio";
+                    default -> "Paga " + Math.abs(getPedaggio());
+                };
                 dettagli.append(secondaRiga).append(spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - secondaRiga.length())));
                 break;
             case 3: case 4: // per adesso non si deve stampare niente
@@ -110,11 +96,10 @@ public class Casella {
                     if (!(giocatore.isBlank())) quintaRiga.append(giocatore).append(Costanti.COLORE_SFONDO).append(" ");
 
 
-
                 }
 
                 dettagli.append(quintaRiga).append(spazio.repeat((Costanti.LARGHEZZA_CASELLA - 2) - spaziDaFare));
-                dettagli.append(this.colore);
+                dettagli.append(getColore());
                 break;
 
         }
@@ -128,6 +113,8 @@ public class Casella {
     }
 
 
+    public abstract int getPedaggio();
+    public abstract String getColore();
 
 }
 

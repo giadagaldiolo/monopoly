@@ -1,7 +1,7 @@
 package monopoly.componentigioco;
 
 
-import monopoly.componentigioco.casella.Casella;
+import monopoly.componentigioco.casella.*;
 import monopoly.utilita.Costanti;
 
 public class Tabellone {
@@ -42,11 +42,27 @@ public class Tabellone {
                 if (i > 0 && i < Costanti.RIGHE-1 && j > 0 && j < Costanti.CASELLE_PER_RIGA-1) {
                     caselle[i][j] = null;
                 } else {
-                    if (i == Costanti.RIGHE-1 && j == Costanti.CASELLE_PER_RIGA-1)
-                        nome = "Via";
-                    caselle[i][j] = new Casella(nome, i, j); //i,j
+                    scegliNome(i, j);
                 }
             }
+        }
+    }
+
+    public void scegliNome(int i, int j) {
+        if (i == Costanti.RIGHE-1 && j == Costanti.CASELLE_PER_RIGA-1) {
+            caselle[i][j] = new Via("Via", i, j);
+        } else if (i == 0 && j == Costanti.CASELLE_PER_RIGA/2) {
+            caselle[i][j] = new Stazione("Stazione Nord", i, j);
+        } else if (i == Costanti.RIGHE-1 && j == Costanti.CASELLE_PER_RIGA/2) {
+            caselle[i][j] = new Stazione("Stazione Sud", i, j);
+        } else if (i == Costanti.RIGHE/2 && j == 0) {
+            caselle[i][j] = new Stazione("Stazione Ovest", i, j);
+        } else if (i == Costanti.RIGHE/2 && j == Costanti.CASELLE_PER_RIGA-1) {
+            caselle[i][j] = new Stazione("Stazione Est", i, j);
+        } else if (i == 0 && j == 0) {
+            caselle[i][j] = new Parcheggio("Parcheggio", i, j);
+        } else {
+            caselle[i][j] = new Proprieta("Proprieta", i, j); // Mancano le due tasse
         }
     }
 
