@@ -132,10 +132,10 @@ public abstract class Casella implements CasellaInterface {
 
     public  int getPedaggio(){
         return this.pedaggio;
-    };
+    }
     public String getColore(){
         return this.colore;
-    };
+    }
 
     public void setPedaggio(int pedaggio) {
         this.pedaggio = pedaggio;
