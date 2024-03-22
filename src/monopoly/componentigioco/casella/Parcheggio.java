@@ -12,4 +12,8 @@ public class Parcheggio extends Casella {
     public void setPedaggioDefault() {
         super.setPedaggio(0);
     }
+    @Override
+    public void setTipoDefault(){
+        super.setTipoCasella(TipoCasella.PARCHEGGIO);
+    }
 }

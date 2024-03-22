@@ -22,4 +22,6 @@ public abstract class  Costanti {
     public static final int IMPORTO_TASSA_LUSSO = -200;
 
 
+
+
 }

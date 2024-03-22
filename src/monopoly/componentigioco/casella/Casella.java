@@ -7,12 +7,22 @@ import monopoly.utilita.Costanti;
 import java.util.Random;
 
 public abstract class Casella implements CasellaInterface {
+    private static int caselleRimaste =(Costanti.CASELLE_PER_RIGA*2+(Costanti.RIGHE-2)*2);
     private int pedaggio = 0;
     private String colore;
     private String nome;
     private Coordinate coordinate;
+    private TipoCasella tipoCasella;
     private int nGiocatoriPresenti = 0;
     private String[] giocatoriPresenti = new String[Costanti.NUMERO_GIOCATORI]; // poi aggiustiamo la costante
+
+    public static int getCaselleRimaste() {
+        return caselleRimaste;
+    }
+
+    public static void addCaselleRimaste(int caselleRimaste) {
+        Casella.caselleRimaste += caselleRimaste;
+    }
 
     @Override
     public void setColoreDefault() {
@@ -24,6 +34,14 @@ public abstract class Casella implements CasellaInterface {
         Random random = new Random();
         this.pedaggio = random.nextInt(Costanti.IMPORTO_PEDAGGIO_MIN,Costanti.IMPORTO_PEDAGGIO_MAX+1);
     }
+    @Override
+    public void setTipoDefault() {
+        this.tipoCasella = TipoCasella.PROPRIETA;
+    }
+
+    public void setTipoCasella(TipoCasella tipoCasella) {
+        this.tipoCasella = tipoCasella;
+    }
 
     public Casella(String nome, int y, int x){ // assi
         this.coordinate=new Coordinate(y,x);
@@ -31,6 +49,7 @@ public abstract class Casella implements CasellaInterface {
         this.nome = checkForNullNome(nome) ? "Nome sconosciuto" : nome;
         setColoreDefault();
         setPedaggioDefault();
+        setTipoDefault();
     }
 
     private boolean checkForNullNome(String nome){

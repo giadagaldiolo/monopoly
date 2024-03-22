@@ -9,6 +9,9 @@ public class Via extends Casella {
         super(nome, y, x);
         //forse deve essere nero
     }
+    public void setTipoDefault(){
+        super.setTipoCasella(TipoCasella.VIA);
+    }
 
     @Override
     public void setPedaggioDefault() {

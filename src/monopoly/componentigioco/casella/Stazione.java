@@ -9,5 +9,8 @@ public class Stazione extends Casella{
         super(nome, y, x);
         //deve essere nero
     }
+    public void setTipoDefault(){
+        super.setTipoCasella(TipoCasella.STAZIONE);
+    }
 
 }

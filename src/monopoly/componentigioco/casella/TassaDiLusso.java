@@ -8,6 +8,9 @@ public class TassaDiLusso extends Casella {
         super(nome, y, x);
 
     }
+    public void setTipoDefault(){
+        super.setTipoCasella(TipoCasella.TASSA);
+    }
 
     @Override
     public void setPedaggioDefault() {

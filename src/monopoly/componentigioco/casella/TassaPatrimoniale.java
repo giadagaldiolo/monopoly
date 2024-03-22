@@ -6,6 +6,9 @@ public class TassaPatrimoniale extends Casella {
         super(nome, y, x);
         //pedaggio?
     }
+    public void setTipoDefault(){
+        super.setTipoCasella(TipoCasella.TASSA);
+    }
 
 
 }
