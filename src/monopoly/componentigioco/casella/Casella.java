@@ -1,19 +1,36 @@
 package monopoly.componentigioco.casella;
 
 import monopoly.Coordinate;
+import monopoly.utilita.Colori;
 import monopoly.utilita.Costanti;
 
-public abstract class Casella {
+import java.util.Random;
+
+public abstract class Casella implements CasellaInterface {
+    private int pedaggio = 0;
+    private String colore;
     private String nome;
     private Coordinate coordinate;
     private int nGiocatoriPresenti = 0;
     private String[] giocatoriPresenti = new String[Costanti.NUMERO_GIOCATORI]; // poi aggiustiamo la costante
 
+    @Override
+    public void setColoreDefault() {
+        this.colore= Colori.sceltaColore(true);
+    }
+
+    @Override
+    public void setPedaggioDefault() {
+        Random random = new Random();
+        this.pedaggio = random.nextInt(Costanti.IMPORTO_PEDAGGIO_MIN,Costanti.IMPORTO_PEDAGGIO_MAX+1);
+    }
 
     public Casella(String nome, int y, int x){ // assi
         this.coordinate=new Coordinate(y,x);
         svuotaCasella();
         this.nome = checkForNullNome(nome) ? "Nome sconosciuto" : nome;
+        setColoreDefault();
+        setPedaggioDefault();
     }
 
     private boolean checkForNullNome(String nome){
@@ -74,9 +91,9 @@ public abstract class Casella {
                 break;
             case 2:
                 String secondaRiga = switch (this.nome) {
-                    case "Via" -> "Ritira " + Costanti.IMPORTO_DEL_VIA;
+                    case "Via" -> "Ritira " + this.pedaggio;
                     case "Parcheggio" -> "";
-                    case "Tassa di lusso" -> "Paga " + Costanti.IMPORTO_TASSA_LUSSO;
+                    case "Tassa di lusso" -> "Paga " + this.pedaggio;
                     case "Tassa patrimoniale" -> "Paga 10% del patrimonio";
                     default -> "Paga " + Math.abs(getPedaggio());
                 };
@@ -113,8 +130,15 @@ public abstract class Casella {
     }
 
 
-    public abstract int getPedaggio();
-    public abstract String getColore();
+    public  int getPedaggio(){
+        return this.pedaggio;
+    };
+    public String getColore(){
+        return this.colore;
+    };
 
+    public void setPedaggio(int pedaggio) {
+        this.pedaggio = pedaggio;
+    }
 }
 
