@@ -1,13 +1,13 @@
 package monopoly.utilita;
 
 public abstract class  Costanti {
-    public static final int RIGHE = 9;
-    public static final int CASELLE_PER_RIGA = 9;
+    public static final int RIGHE = 5;
+    public static final int CASELLE_PER_RIGA = 5;
     public static final int LARGHEZZA_CASELLA = 22;
     public static final int IMPORTO_DEL_VIA = 100;
     public static final int IMPORTO_PEDAGGIO_MIN = -150;
     public static final int IMPORTO_PEDAGGIO_MAX = -50;
-    public static final int NUMERO_GIOCATORI = 4; //fino a 10 giocatori data l'ampiezza della casella
+    public static final int NUMERO_GIOCATORI = 2; //fino a 10 giocatori data l'ampiezza della casella
     public static final int NUMERO_DADO_MIN = 1;
     public static final int NUMERO_DADO_MAX = 4;
     public static final String ANSI_RESET = "\u001B[0m";
