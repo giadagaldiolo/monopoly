@@ -4,7 +4,7 @@ import monopoly.utilita.Costanti;
 
 public class TassaDiLusso extends Casella {
 
-    public TassaDiLusso(String nome, int y, int x) {
+    public TassaDiLusso(int y, int x) {
         super(y, x);
 
     }

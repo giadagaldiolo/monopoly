@@ -2,7 +2,6 @@ package monopoly.componentigioco.casella;
 
 import monopoly.utilita.Costanti;
 
-import java.util.Random;
 
 public enum NomiCaselle {
     MARRONE(new String[]{"Vicolo Corto", "Vicolo Stretto"},172),
@@ -33,19 +32,7 @@ public enum NomiCaselle {
         return nomi;
     }
 
-    private void mischiaNomi(){
-        if (isNomi()){
-        for (int i = 0; i < nomi.length; i++) {
-            Random random = new Random();
-            String tmp;
-            int numeroRandom= random.nextInt(nomi.length);
-            tmp =nomi[numeroRandom];
-            nomi[numeroRandom]=nomi[i];
-            nomi[i]=tmp;
 
-        }
-        }
-    }
     private boolean isNomi(){
         return nomi!=null;
     }
@@ -68,7 +55,7 @@ public enum NomiCaselle {
         }
 
         this.nomi=nuoviNomi;
-        mischiaNomi();
+
 
     }
 }

@@ -5,7 +5,7 @@ import monopoly.utilita.Costanti;
 public class Via extends Casella {
 
 
-    public Via(String nome, int y, int x) {
+    public Via(int y, int x) {
         super(y, x);
         //forse deve essere nero
     }

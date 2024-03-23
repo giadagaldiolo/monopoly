@@ -1,12 +1,10 @@
 package monopoly.componentigioco.casella;
 
-import monopoly.utilita.Costanti;
-
 import java.util.Random;
 
 public abstract class  NomiHelper {
     private static int ultimoColore=0;
-    private static int ultimoNome=0;
+
     private static NomiCaselle [] nomiCaselle = NomiCaselle.values();
 
     private static void mischiaColori(){
@@ -19,9 +17,6 @@ public abstract class  NomiHelper {
             nomiCaselle[numeroRandom]=nomiCaselle[i];
             nomiCaselle[i]=tmp;
 
-
-
-
         }
     }
 
@@ -29,16 +24,27 @@ public abstract class  NomiHelper {
 
     public static  String[] sceltaNomeColore(){
         mischiaColori();
-        String[] nomeColore = new String[2];
         while (!controlloNomiRimasti(nomiCaselle)){
             prossimoColore();
         }
+        return sceltaRandom();
+    }
+
+
+    private static String[] sceltaRandom(){
+        String[] nomeColore = new String[2];
         NomiCaselle categoriaCasella =nomiCaselle[ultimoColore];
-        nomeColore[0]= categoriaCasella.getNomi()[ultimoNome];
+        String[] nomi =categoriaCasella.getNomi();
+
+        nomeColore[0]= nomi[numeroRandom(nomi.length)];
         categoriaCasella.removeName(nomeColore[0]);
         nomeColore[1]= categoriaCasella.getColore();
-
         return nomeColore;
+
+    }
+    private static int numeroRandom(int limite){
+        Random random =new Random();
+        return random.nextInt(limite);
     }
 
     private static boolean controlloNomiRimasti(NomiCaselle[] nomiCaselle){

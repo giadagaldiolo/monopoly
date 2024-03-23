@@ -1,7 +1,7 @@
 package monopoly.componentigioco.casella;
 
 import monopoly.Coordinate;
-import monopoly.utilita.Colori;
+
 import monopoly.utilita.Costanti;
 
 import java.util.Random;
