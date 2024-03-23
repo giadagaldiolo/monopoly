@@ -9,7 +9,7 @@ public enum NomiCaselle {
     GIALLO(new String[]{"Viale Costantino", "Viale Traiano", "Piazza Giulio Cesare"}),
     VERDE(new String[]{"Via Roma", "Corso Impero", "Largo Augusto"}),
     BLU(new String[]{"Viale dei Giardini", "Parco della Vittoria"}),
-    NERO(new String[]{"Stazione Sud", "Stazione Nord", "Stazione Est", "Stazione Ovest", "Società Acqua Potabile", "Società Elettrica","Tassa di Lusso","Tassa Patrimoniale"});
+    NERO(new String[]{"Parcheggio","Stazione Sud", "Stazione Nord", "Stazione Est", "Stazione Ovest", "Società Acqua Potabile", "Società Elettrica","Tassa di Lusso","Tassa Patrimoniale","Via"});
 
     private final String [] nomi;
 
@@ -17,4 +17,7 @@ public enum NomiCaselle {
         this.nomi=nomi;
     }
 
+    public String[] getNomi() {
+        return nomi;
+    }
 }

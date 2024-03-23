@@ -47,6 +47,8 @@ public class Tabellone {
             }
         }
     }
+    
+
 
     public void scegliNome(int i, int j) {
         if (i == Costanti.RIGHE-1 && j == Costanti.CASELLE_PER_RIGA-1) {

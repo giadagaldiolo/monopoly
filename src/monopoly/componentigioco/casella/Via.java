@@ -6,12 +6,10 @@ public class Via extends Casella {
 
 
     public Via(String nome, int y, int x) {
-        super(nome, y, x);
+        super(y, x);
         //forse deve essere nero
     }
-    public void setTipoDefault(){
-        super.setTipoCasella(TipoCasella.VIA);
-    }
+
 
     @Override
     public void setPedaggioDefault() {
