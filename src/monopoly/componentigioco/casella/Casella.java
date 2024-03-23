@@ -19,12 +19,6 @@ public abstract class Casella implements CasellaInterface {
 
 
 
-
-    @Override
-    public void setColoreDefault() {
-        this.colore= Colori.sceltaColore(true);
-    }
-
     @Override
     public void setPedaggioDefault() {
         Random random = new Random();
@@ -36,8 +30,7 @@ public abstract class Casella implements CasellaInterface {
     public Casella(int y, int x){ // assi
         this.coordinate=new Coordinate(y,x);
         svuotaCasella();
-        setNomeDefault();
-        setColoreDefault();
+        setNomeColoreDefault();
         setPedaggioDefault();
 
     }
@@ -150,8 +143,11 @@ public abstract class Casella implements CasellaInterface {
     }
 
     @Override
-    public void setNomeDefault(){
-        this.nome = NomiHelper.sceltaNome();
+    public void setNomeColoreDefault(){
+        String[] nomeColore = NomiHelper.sceltaNomeColore();
+        this.nome=nomeColore[0];
+        this.colore=nomeColore[1];
+
     }
 
     public void setPedaggio(int pedaggio) {
