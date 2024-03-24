@@ -16,23 +16,25 @@ public class Stazione extends Casella{
 
     private void setCasella(Casella [][] caselle){
         int y=0 ,x=0;
-        y = switch (stazioniRimaste) {
+        x = switch (stazioniRimaste) {
             case 1 -> Costanti.CASELLE_PER_RIGA / 2;
             case 2 -> {
-                x = Costanti.RIGHE - 1;
+                y = Costanti.RIGHE - 1;
                 yield Costanti.CASELLE_PER_RIGA / 2;
             }
             case 3 -> {
-                x = Costanti.RIGHE / 2;
+                y = Costanti.RIGHE / 2;
                 yield 0;
             }
             case 4 -> {
-                x = Costanti.RIGHE / 2;
+                y = Costanti.RIGHE / 2;
                 yield Costanti.CASELLE_PER_RIGA - 1;
             }
-            default -> y;
+            default -> x;
         };
         setCoordinate(new Coordinate(y,x));
+
+
         caselle[y][x]=this;
         stazioniRimaste--;
 
