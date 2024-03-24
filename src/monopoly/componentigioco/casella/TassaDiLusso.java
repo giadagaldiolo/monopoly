@@ -1,15 +1,16 @@
 package monopoly.componentigioco.casella;
 
-import monopoly.Coordinate;
 import monopoly.utilita.Costanti;
 
-public class TassaDiLusso extends Casella {
+public class TassaDiLusso extends Tassa {
 
-    public TassaDiLusso(int y, int x) {
+    public TassaDiLusso(Casella[][] caselle) {
         super();
-        setCoordinate(new Coordinate(y,x));
+        setCasella(caselle);
+
 
     }
+
     @Override
     public void setNomeColoreDefault(){
         NomiCaselle tipo=NomiCaselle.TASSE;

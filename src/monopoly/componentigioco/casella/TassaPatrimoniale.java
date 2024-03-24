@@ -1,13 +1,11 @@
 package monopoly.componentigioco.casella;
 
-import monopoly.Coordinate;
 
-public class TassaPatrimoniale extends Casella {
+public class TassaPatrimoniale extends Tassa {
 
-    public TassaPatrimoniale(int y, int x) {
+    public TassaPatrimoniale(Casella[][] caselle) {
         super();
-        setCoordinate(new Coordinate(y,x));
-
+        setCasella(caselle);
     }
     @Override
     public String infoCasella() {

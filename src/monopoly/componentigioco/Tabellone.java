@@ -66,7 +66,7 @@ public class Tabellone {
             new Stazione(caselle);
         }
         this.caselle[0][0] = new Parcheggio();
-        TassaHelper.creaTasse(this.caselle);
+        Tassa.creaTasse(this.caselle);
 
 
     }
