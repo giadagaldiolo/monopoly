@@ -27,14 +27,16 @@ public abstract class Casella implements CasellaInterface {
 
 
 
-    public Casella(int y, int x){ // assi
-        this.coordinate=new Coordinate(y,x);
+    public Casella(){ // assi
         svuotaCasella();
         setNomeColoreDefault();
         setPedaggioDefault();
 
     }
 
+    public void setCoordinate(Coordinate coordinate) {
+        this.coordinate=coordinate;
+    }
 
     private boolean checkForNullNome(String nome){
         return nome == null || nome.isBlank();
@@ -144,10 +146,17 @@ public abstract class Casella implements CasellaInterface {
 
     @Override
     public void setNomeColoreDefault(){
+
         String[] nomeColore = NomiHelper.sceltaNomeColore();
         this.nome=nomeColore[0];
+
         this.colore=nomeColore[1];
 
+    }
+
+    public void setNomeColore(String nome , String colore){
+        this.nome=nome;
+        this.colore=colore;
     }
 
     public void setPedaggio(int pedaggio) {

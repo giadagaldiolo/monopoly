@@ -4,6 +4,8 @@ import monopoly.utilita.Costanti;
 
 
 public enum NomiCaselle {
+    TRENO(new String[]{"Stazione Ovest", "Stazione Est","Stazione Sud","Stazione Nord"},231),
+    SINGOLE (new String[]{"Parcheggio","VIA"},231),
     MARRONE(new String[]{"Vicolo Corto", "Vicolo Stretto"},172),
     AZZURO(new String[]{"Bastioni Gran Sasso", "Viale Monterosa", "Viale Vesuvio"},87),
     ROSA(new String[]{"Via Accademia", "Corso Ateneo", "Piazza Università"},13),
@@ -12,7 +14,7 @@ public enum NomiCaselle {
     GIALLO(new String[]{"Viale Costantino", "Viale Traiano", "Piazza Giulio Cesare"},220),
     VERDE(new String[]{"Via Roma", "Corso Impero", "Largo Augusto"},155),
     BLU(new String[]{"Viale dei Giardini", "Parco della Vittoria"},21),
-    NERO(new String[]{"Parcheggio","Stazione Sud", "Stazione Nord", "Stazione Est", "Stazione Ovest", "Società Acqua Potabile", "Società Elettrica","Tassa di Lusso","Tassa Patrimoniale","Via"},231);
+    NERO(new String[]{"Società Acqua Potabile", "Società Elettrica","Tassa di Lusso","Tassa Patrimoniale"},231);
 
     private String [] nomi;
 
@@ -30,6 +32,10 @@ public enum NomiCaselle {
 
     public String[] getNomi() {
         return nomi;
+    }
+
+    public String getNome(int i){
+        return  nomi[i];
     }
 
 

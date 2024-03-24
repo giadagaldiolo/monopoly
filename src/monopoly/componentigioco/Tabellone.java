@@ -37,6 +37,7 @@ public class Tabellone {
         String nome = "Pedaggio";
 
         this.caselle = new Casella[Costanti.RIGHE][Costanti.CASELLE_PER_RIGA];
+        caselleSpeciali();
         for (int i = 0; i < Costanti.RIGHE; i++) {
             for (int j = 0; j < Costanti.CASELLE_PER_RIGA; j++) {
                 if (i > 0 && i < Costanti.RIGHE-1 && j > 0 && j < Costanti.CASELLE_PER_RIGA-1) {
@@ -47,25 +48,24 @@ public class Tabellone {
             }
         }
     }
+
+    private void caselleSpeciali(){
+        int righeMatrice=Costanti.RIGHE-1;
+        int elementiMatrice=Costanti.CASELLE_PER_RIGA-1;
+        int numeroStazioni=4;
+        this.caselle[righeMatrice][elementiMatrice] = new Via();
+        for (int i = 0; i <numeroStazioni ; i++) {
+            new Stazione(caselle);
+        }
+        this.caselle[0][0] = new Parcheggio();
+
+    }
     
 
 
     public void scegliNome(int i, int j) {
-        if (i == Costanti.RIGHE-1 && j == Costanti.CASELLE_PER_RIGA-1) {
-            caselle[i][j] = new Via( i, j);
-        } else if (i == 0 && j == Costanti.CASELLE_PER_RIGA/2) {
-            caselle[i][j] = new Stazione(i, j);
-        } else if (i == Costanti.RIGHE-1 && j == Costanti.CASELLE_PER_RIGA/2) {
-            caselle[i][j] = new Stazione(i, j);
-        } else if (i == Costanti.RIGHE/2 && j == 0) {
-            caselle[i][j] = new Stazione(i, j);
-        } else if (i == Costanti.RIGHE/2 && j == Costanti.CASELLE_PER_RIGA-1) {
-            caselle[i][j] = new Stazione(i, j);
-        } else if (i == 0 && j == 0) {
-            caselle[i][j] = new Parcheggio(i, j);
-        } else {
-            caselle[i][j] = new Proprieta(i, j); // Mancano le due tasse
-        }
+        if (caselle[i][j]==null) caselle[i][j] = new Proprieta(i, j); // Mancano le due tasse
+
     }
 
     public void modificaCasella(String simbolo, int i, int j, int giocatore) {
