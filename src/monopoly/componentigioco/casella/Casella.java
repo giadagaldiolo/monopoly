@@ -97,13 +97,8 @@ public abstract class Casella implements CasellaInterface {
                 dettagli.append(primaRiga).append(spazio.repeat(nSpazi ));
                 break;
             case 2:
-                String secondaRiga = switch (this.nome) {
-                    case "Via" -> "Ritira " + this.pedaggio;
-                    case "Parcheggio" -> "";
-                    case "Tassa di lusso" -> "Paga " + this.pedaggio;
-                    case "Tassa patrimoniale" -> "Paga 10% del patrimonio";
-                    default -> "Paga " + Math.abs(getPedaggio());
-                };
+
+                String secondaRiga =infoCasella();
                 dettagli.append(secondaRiga).append(spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - secondaRiga.length())));
                 break;
             case 3: case 4: // per adesso non si deve stampare niente
@@ -157,6 +152,10 @@ public abstract class Casella implements CasellaInterface {
     public void setNomeColore(String nome , String colore){
         this.nome=nome;
         this.colore=colore;
+    }
+    @Override
+    public String infoCasella() {
+        return "Paga " + Math.abs(this.pedaggio);
     }
 
     public void setPedaggio(int pedaggio) {

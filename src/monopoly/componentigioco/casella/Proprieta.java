@@ -10,4 +10,6 @@ public class Proprieta extends Casella {
         setCoordinate(new Coordinate(y,x));
     }
 
+
+
 }

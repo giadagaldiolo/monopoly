@@ -9,6 +9,16 @@ public class TassaPatrimoniale extends Casella {
         setCoordinate(new Coordinate(y,x));
 
     }
+    @Override
+    public String infoCasella() {
+        return "Paga 10% del patrimonio";
+    }
+    @Override
+    public void setNomeColoreDefault(){
+        NomiCaselle tipo=NomiCaselle.TASSE;
+        super.setNomeColore(tipo.getNome(0),tipo.getColore());
+
+    }
 
 
 

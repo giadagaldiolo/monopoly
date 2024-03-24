@@ -10,6 +10,12 @@ public class TassaDiLusso extends Casella {
         setCoordinate(new Coordinate(y,x));
 
     }
+    @Override
+    public void setNomeColoreDefault(){
+        NomiCaselle tipo=NomiCaselle.TASSE;
+        super.setNomeColore(tipo.getNome(0),tipo.getColore());
+
+    }
 
 
     @Override

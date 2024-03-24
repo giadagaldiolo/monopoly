@@ -23,6 +23,8 @@ public class Parcheggio extends Casella {
         super.setPedaggio(0);
     }
 
-
-
+    @Override
+    public String infoCasella() {
+        return "";
+    }
 }

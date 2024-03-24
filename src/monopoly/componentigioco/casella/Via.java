@@ -12,7 +12,6 @@ public class Via extends Casella {
 
     }
 
-
     @Override
     public void setPedaggioDefault() {
         setPedaggio(Costanti.IMPORTO_DEL_VIA);
@@ -22,5 +21,9 @@ public class Via extends Casella {
         NomiCaselle tipo=NomiCaselle.SINGOLE;
         super.setNomeColore(tipo.getNome(1),tipo.getColore());
 
+    }
+    @Override
+    public String infoCasella() {
+        return "Ritira " + this.getPedaggio();
     }
 }

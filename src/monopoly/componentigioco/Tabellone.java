@@ -4,6 +4,8 @@ package monopoly.componentigioco;
 import monopoly.componentigioco.casella.*;
 import monopoly.utilita.Costanti;
 
+
+
 public class Tabellone {
     private Casella[][] caselle ;
 
@@ -40,7 +42,7 @@ public class Tabellone {
         caselleSpeciali();
         for (int i = 0; i < Costanti.RIGHE; i++) {
             for (int j = 0; j < Costanti.CASELLE_PER_RIGA; j++) {
-                if (i > 0 && i < Costanti.RIGHE-1 && j > 0 && j < Costanti.CASELLE_PER_RIGA-1) {
+                if (controlloPosizione(i,j)) { // controlla se non è ai lati
                     caselle[i][j] = null;
                 } else {
                     scegliNome(i, j);
@@ -49,22 +51,35 @@ public class Tabellone {
         }
     }
 
+    public static boolean controlloPosizione(int i ,int j){
+        return i > 0 && i < Costanti.RIGHE-1 && j > 0 && j < Costanti.CASELLE_PER_RIGA-1;
+    }
+
     private void caselleSpeciali(){
+
         int righeMatrice=Costanti.RIGHE-1;
         int elementiMatrice=Costanti.CASELLE_PER_RIGA-1;
         int numeroStazioni=4;
+
         this.caselle[righeMatrice][elementiMatrice] = new Via();
         for (int i = 0; i <numeroStazioni ; i++) {
             new Stazione(caselle);
         }
         this.caselle[0][0] = new Parcheggio();
+        TassaHelper.creaTasse(this.caselle);
+
 
     }
+
+
     
 
 
     public void scegliNome(int i, int j) {
-        if (caselle[i][j]==null) caselle[i][j] = new Proprieta(i, j); // Mancano le due tasse
+        if (caselle[i][j]==null){
+            caselle[i][j] = new Proprieta(i, j);
+
+        }  // Mancano le due tasse
 
     }
 
