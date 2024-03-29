@@ -1,9 +1,10 @@
 package monopoly.componentigioco.casella;
 
-
 import monopoly.utilita.Costanti;
 
 public class TassaPatrimoniale extends Tassa {
+
+
 
     public TassaPatrimoniale(Casella[][] caselle) {
         super();
@@ -22,7 +23,13 @@ public class TassaPatrimoniale extends Tassa {
 
     @Override
     public void setPedaggioDefault() {
-        super.setPedaggio(Costanti.PERCENTUALE_TASSA_PATRIMONIALE);
+        super.setPedaggio(0);
     }
+    @Override
+    public void setPedaggio( int soldiGiocatore) {
+        super.setPedaggio((int) -(Costanti.PERCENTUALE_TASSA_PATRIMONIALE*soldiGiocatore));
+
+    }
+
 
 }

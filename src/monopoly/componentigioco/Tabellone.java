@@ -80,13 +80,17 @@ public class Tabellone {
         caselle[i][j].aggiungiCarattere(simbolo, giocatore);
     }
 
-    public int getImporto(int i, int j) {
+    private int getImporto(int i, int j) {
         return caselle[i][j].getPedaggio();
 
     }
+    public int getImporto(int i, int j, int soldiGiocatore ){
+        if (isTassaPatrimoniale(i,j)) caselle[i][j].setPedaggio(soldiGiocatore);
+        return getImporto(i,j);
 
+    }
 
-    public boolean isTassaPatrimoniale(int i, int j) {
-        return caselle[i][j].getNome().equals("Tassa Patrimoniale");
+    private boolean isTassaPatrimoniale(int i, int j) {
+        return caselle[i][j] instanceof TassaPatrimoniale;
     }
 }

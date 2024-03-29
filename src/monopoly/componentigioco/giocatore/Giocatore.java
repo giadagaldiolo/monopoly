@@ -116,9 +116,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
 
     private void pagamentoPedaggio(Tabellone tabellone){
         if (isTabellone(tabellone)) {
-            int importo = tabellone.getImporto(getY(), getX());
-            if (tabellone.isTassaPatrimoniale(getY(), getX()))
-                importo = -getSoldi() * importo / 100;
+            int importo = tabellone.getImporto(getY(), getX(),this.soldi);
             addSoldi(importo);
             Banca.addImporto(-importo);
         }
