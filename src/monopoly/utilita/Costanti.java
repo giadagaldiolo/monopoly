@@ -17,7 +17,7 @@ public abstract class  Costanti {
     public static final int IMPORTO_INIZIALE_BANCA = 1000000;
     public static final int IMPORTO_PER_BANCAROTTA = 1000000;
     public static final int RIGHE_CASELLA = 7; //righe dei dettagli della casella
-    public static final String COLORE_SFONDO = "\u001B[1;48;5;233m";
+    public static final String COLORE_SFONDO = "\u001B[1;48;5;237m";
     public static final String COLORE_SFONDO_NULL = "\u001B[1;48;5;234m";
     public static final int IMPORTO_TASSA_LUSSO = -200;
     public static final int PERCENTUALE_TASSA_PATRIMONIALE = 10;
