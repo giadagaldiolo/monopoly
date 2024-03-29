@@ -28,8 +28,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
         impostaCaratteristiche(nome,simbolo);
         impostaColore();
 
-
-
     }
    private void impostaCaratteristiche(String nome,char simbolo){
 
@@ -101,13 +99,11 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
     }
     public void spostamentoGiocatore(int dado){
         for (int i = dado; i >0 ; i--) {
-            if (cambioCoordinate() && i>1){ // controlla se completa un giro
+            if (cambioCoordinate() && i>1){ // controlla se completa un giro durante il turno
                 addSoldi(Costanti.IMPORTO_DEL_VIA);
                 Banca.addImporto(-Costanti.IMPORTO_DEL_VIA);
             }
         }
-
-
 
     }
 
@@ -121,11 +117,11 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
     private void pagamentoPedaggio(Tabellone tabellone){
         if (isTabellone(tabellone)) {
             int importo = tabellone.getImporto(getY(), getX());
+            if (tabellone.isTassaPatrimoniale(getY(), getX()))
+                importo = -getSoldi() * importo / 100;
             addSoldi(importo);
             Banca.addImporto(-importo);
         }
-
-
     }
 
     public void updatePosizione(int passi, Tabellone tabellone,int giocatore){
@@ -135,8 +131,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
             spostaSimbolo(this.simbolo, tabellone, giocatore);
             pagamentoPedaggio(tabellone);
         }
-
-
     }
 
 

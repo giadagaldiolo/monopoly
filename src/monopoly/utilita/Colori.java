@@ -16,10 +16,9 @@ public abstract class Colori  {
         do {
             numeroColore = random.nextInt(Costanti.ANSI_MIN, Costanti.ANSI_MAX + 1);
 
-        }while (  !ripetuto && isColoreUtilizzato(numeroColore ));
+        }while (!ripetuto && isColoreUtilizzato(numeroColore));
         if (!ripetuto) {
             coloriUsati[++cntColori] = numeroColore;
-
         }
         colore = colore + numeroColore + "m";
         if (ripetuto) colore+=Costanti.COLORE_SFONDO; // da migliorare in futuro se serve per lo sfondo

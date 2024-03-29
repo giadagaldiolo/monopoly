@@ -13,9 +13,8 @@ public class Parcheggio extends Casella {
     }
     @Override
     public void setNomeColoreDefault(){
-        NomiCaselle tipo=NomiCaselle.SINGOLE;
+        NomiCaselle tipo = NomiCaselle.SINGOLE;
         super.setNomeColore(tipo.getNome(0),tipo.getColore());
-
     }
 
     @Override

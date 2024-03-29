@@ -59,11 +59,9 @@ public enum NomiCaselle {
             nuoviNomi= new String[this.nomi.length-1];
             for (String name : nomi) {
                 if (!(name.equals(nome))) {
-                    nuoviNomi[c] = name;
-                    c++;
+                    nuoviNomi[c++] = name;
                 }
             }
-
         }
 
         this.nomi=nuoviNomi;

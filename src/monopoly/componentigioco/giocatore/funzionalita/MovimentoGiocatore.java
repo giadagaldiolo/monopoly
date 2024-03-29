@@ -32,7 +32,6 @@ public class MovimentoGiocatore  implements MovimentoGiocatoreSupporto {
             }
             movimentoVerticale(movimento,nuovaCoordinataY);
         }
-        //setSoldi(Costanti.IMPORTO_DEL_VIA);
         return isGiroCompleto();
     }
     private boolean controlloAngoli(int prodotto , int nuovaCoordinataY, int nuovaCoordinataX){

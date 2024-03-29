@@ -32,9 +32,8 @@ public class Gioco {
         creaTabellone();
         creaGiocatori();
         creaDado();
-
-
     }
+
     private void gameFlow() {
         System.out.println(tabellone);
         while (Giocatore.getNGiocatoriInGioco()>1) {

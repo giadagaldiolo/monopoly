@@ -8,9 +8,9 @@ import java.util.Random;
 
 public abstract class Tassa extends Casella {
 
-    public static void creaTasse(Casella [][] caselle){
+    public static void creaTasse(Casella[][] caselle){
         new TassaDiLusso(caselle);
-        new  TassaPatrimoniale(caselle);
+        new TassaPatrimoniale(caselle);
 
     }
 

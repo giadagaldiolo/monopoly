@@ -12,7 +12,6 @@ public abstract class  NomiHelper {
 
     private static void mischiaColori(){
 
-
         for (int i = caselleNotRandom; i < nomiCaselle.length; i++) {
             Random random = new Random();
             NomiCaselle tmp;
@@ -21,7 +20,6 @@ public abstract class  NomiHelper {
             tmp =nomiCaselle[numeroRandom];
             nomiCaselle[numeroRandom]=nomiCaselle[i];
             nomiCaselle[i]=tmp;
-
         }
 
     }
@@ -63,8 +61,6 @@ public abstract class  NomiHelper {
 
     private static boolean controlloNomiRimasti(){
             return (nomiCaselle[ultimoColore].getNomi()!=null);
-
-
 
     }
     private static void prossimoColore(){

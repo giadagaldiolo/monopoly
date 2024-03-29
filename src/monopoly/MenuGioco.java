@@ -7,9 +7,8 @@ public class MenuGioco implements MenuInterfaccia{
     @Override
     public String toString(){
         return """
-                1. Mostra capitale giocatore corrente
+                1. Mostra il capitale del giocatore corrente
                 2. Tira il dado
-                Scelta:\s
                 """;
     }
     @Override
@@ -18,10 +17,11 @@ public class MenuGioco implements MenuInterfaccia{
             int scelta;
             do {
                 System.out.println("E' il turno di " + currentGiocatore.getNome());
-                System.out.println(this);
+                System.out.print(this);
                 scelta = ScannerUtils.readIntegerInRange(1,2);
                 if (scelta == 1) {
-                    System.out.println(currentGiocatore.getSoldi());
+                    System.out.println("Il tuo capitale ammonta a " + currentGiocatore.getSoldi());
+                    System.out.println();
                 }
             } while (scelta != 2);
         }

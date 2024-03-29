@@ -31,7 +31,6 @@ public abstract class Casella implements CasellaInterface {
         svuotaCasella();
         setNomeColoreDefault();
         setPedaggioDefault();
-
     }
 
     public void setCoordinate(Coordinate coordinate) {
@@ -112,9 +111,8 @@ public abstract class Casella implements CasellaInterface {
                 for (int i = 0; i < Costanti.NUMERO_GIOCATORI; i++) {
                     String giocatore=getCharGiocatore(i);
 
-                    if (!(giocatore.isBlank())) quintaRiga.append(giocatore).append(Costanti.COLORE_SFONDO).append(" ");
-
-
+                    if (!(giocatore.isBlank()))
+                        quintaRiga.append(giocatore).append(Costanti.COLORE_SFONDO).append(" ");
                 }
 
                 dettagli.append(quintaRiga).append(spazio.repeat((Costanti.LARGHEZZA_CASELLA - 2) - spaziDaFare));
@@ -141,12 +139,9 @@ public abstract class Casella implements CasellaInterface {
 
     @Override
     public void setNomeColoreDefault(){
-
         String[] nomeColore = NomiHelper.sceltaNomeColore();
         this.nome=nomeColore[0];
-
         this.colore=nomeColore[1];
-
     }
 
     public void setNomeColore(String nome , String colore){

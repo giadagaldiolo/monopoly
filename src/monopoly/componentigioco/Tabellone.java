@@ -56,7 +56,6 @@ public class Tabellone {
     }
 
     private void caselleSpeciali(){
-
         int righeMatrice=Costanti.RIGHE-1;
         int elementiMatrice=Costanti.CASELLE_PER_RIGA-1;
         int numeroStazioni=4;
@@ -67,24 +66,17 @@ public class Tabellone {
         }
         this.caselle[0][0] = new Parcheggio();
         Tassa.creaTasse(this.caselle);
-
-
     }
-
-
-    
 
 
     public void scegliNome(int i, int j) {
         if (caselle[i][j]==null){
             caselle[i][j] = new Proprieta(i, j);
-
-        }  // Mancano le due tasse
+        }
 
     }
 
     public void modificaCasella(String simbolo, int i, int j, int giocatore) {
-
         caselle[i][j].aggiungiCarattere(simbolo, giocatore);
     }
 
@@ -94,7 +86,7 @@ public class Tabellone {
     }
 
 
-
-
-
+    public boolean isTassaPatrimoniale(int i, int j) {
+        return caselle[i][j].getNome().equals("Tassa Patrimoniale");
+    }
 }

@@ -10,8 +10,6 @@ public class Stazione extends Casella{
     public Stazione(Casella [][] caselle) {
         super();
         setCasella(caselle);
-
-        //deve essere nero
     }
 
     private void setCasella(Casella [][] caselle){
@@ -42,7 +40,7 @@ public class Stazione extends Casella{
 
     @Override
     public void setNomeColoreDefault(){
-        NomiCaselle tipo=NomiCaselle.TRENO;
+        NomiCaselle tipo = NomiCaselle.TRENO;
         super.setNomeColore(tipo.getNome(stazioniRimaste-1),tipo.getColore());
 
     }
