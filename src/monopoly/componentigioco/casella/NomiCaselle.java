@@ -12,7 +12,7 @@ public enum NomiCaselle {
     GRIGIO(new String[]{"Via Verdi", "Corso Raffaello", "Piazza Dante"},244),
     ROSSO(new String[]{"Via Marco Polo", "Corso Magellano", "Largo Colombo"},9),
     GIALLO(new String[]{"Viale Costantino", "Viale Traiano", "Piazza Giulio Cesare"},220),
-    VERDE(new String[]{"Via Roma", "Corso Impero", "Largo Augusto"},155),
+    VERDE(new String[]{"Via Roma", "Corso Impero", "Largo Augusto"},28),
     BLU(new String[]{"Viale dei Giardini", "Parco della Vittoria"},21),
     TASSE(new String[]{"Tassa di Lusso","Tassa Patrimoniale"},233),
     SOCIETA(new String[]{"Società Acqua Potabile", "Società Elettrica"},233);
