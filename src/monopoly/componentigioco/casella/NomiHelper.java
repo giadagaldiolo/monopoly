@@ -3,7 +3,7 @@ package monopoly.componentigioco.casella;
 import java.util.Random;
 
 public abstract class  NomiHelper {
-    private static final int caselleNotRandom=2;
+    private static final int caselleNotRandom = 2;
     private static int ultimoColore=caselleNotRandom;
 
     private static NomiCaselle [] nomiCaselle = NomiCaselle.values();
@@ -25,11 +25,10 @@ public abstract class  NomiHelper {
     }
 
 
-    public static  String[] sceltaNomeColore(){
+    protected static  String[] sceltaNomeColore(){
         mischiaColori();
         int c=0;
         while (!controlloNomiRimasti()){
-
             prossimoColore();
             c++;
             if (c>nomiCaselle.length) return casellaSconosciuta();
@@ -61,11 +60,9 @@ public abstract class  NomiHelper {
 
     private static boolean controlloNomiRimasti(){
             return (nomiCaselle[ultimoColore].getNomi()!=null);
-
     }
     private static void prossimoColore(){
         if (ultimoColore+1<nomiCaselle.length){
-
         ultimoColore++;
         } else {
             ultimoColore=caselleNotRandom;

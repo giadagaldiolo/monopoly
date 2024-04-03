@@ -61,7 +61,7 @@ public class Tabellone {
         int numeroStazioni=4;
 
         this.caselle[righeMatrice][elementiMatrice] = new Via();
-        for (int i = 0; i <numeroStazioni ; i++) {
+        for (int i = 0; i < numeroStazioni ; i++) {
             new Stazione(caselle);
         }
         this.caselle[0][0] = new Parcheggio();
@@ -69,11 +69,10 @@ public class Tabellone {
     }
 
 
-    public void scegliNome(int i, int j) {
-        if (caselle[i][j]==null){
+    private void scegliNome(int i, int j) {
+        if (caselle[i][j] == null){
             caselle[i][j] = new Proprieta(i, j);
         }
-
     }
 
     public void modificaCasella(String simbolo, int i, int j, int giocatore) {
@@ -82,12 +81,10 @@ public class Tabellone {
 
     private int getImporto(int i, int j) {
         return caselle[i][j].getPedaggio();
-
     }
     public int getImporto(int i, int j, int soldiGiocatore ){
         if (isTassaPatrimoniale(i,j)) caselle[i][j].setPedaggio(soldiGiocatore);
         return getImporto(i,j);
-
     }
 
     private boolean isTassaPatrimoniale(int i, int j) {

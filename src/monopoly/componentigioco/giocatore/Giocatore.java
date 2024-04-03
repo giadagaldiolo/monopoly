@@ -66,12 +66,11 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
         return soldi;
     }
 
-    public void addSoldi(final int soldi) {
+    private void addSoldi(final int soldi) {
         this.soldi += soldi;
         controlloSoldi();
 
     }
-
 
     private void controlloSoldi(){
         if(this.soldi <= 0){

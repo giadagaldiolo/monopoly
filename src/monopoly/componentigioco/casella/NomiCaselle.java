@@ -55,7 +55,7 @@ public enum NomiCaselle {
         int c=0;
         if (nomiRimasti<=0){
             nuoviNomi=null;
-        }else {
+        } else {
             nuoviNomi= new String[this.nomi.length-1];
             for (String name : nomi) {
                 if (!(name.equals(nome))) {
