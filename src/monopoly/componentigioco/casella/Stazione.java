@@ -4,6 +4,11 @@ package monopoly.componentigioco.casella;
 import monopoly.Coordinate;
 import monopoly.utilita.Costanti;
 
+/**
+ * <i>Classe figlia di Casella riguardante le stazioni.</i> <p>
+ * {@link #stazioniRimaste} serve per adesso a controllare il numero di stazioni da generare.
+ */
+
 public class Stazione extends Casella{
     static int stazioniRimaste=4; // da migliorare
 
@@ -11,6 +16,15 @@ public class Stazione extends Casella{
         super();
         setCasella(caselle);
     }
+
+    /**
+     *
+     * Il metodo, tramite uno switch che controlla che stazione è da creare grazie a {@link #stazioniRimaste}, si occupa di trovare le coordinate corrispondenti alla stazione creata.<p>
+     * Una volta trovate le coordinate possiamo salvare nel array <font color ="green"> caselle </font> l'oggetto stazione nella posizione giusta.<p>
+     * Le modifiche a  <font color ="green"> caselle </font> influenzeranno anche {@link monopoly.componentigioco.Tabellone#caselle} dato che si passa una <i>reference</i>.<p>
+     * Infine diminuisco l'attributo di classe {@link #stazioniRimaste}
+     * @param caselle per rendere più facile la creazione delle caselle ho preferito crearle dentro la classe Stazione.<p>
+     */
 
     private void setCasella(Casella [][] caselle){
         int y=0 ,x=0;
@@ -38,6 +52,13 @@ public class Stazione extends Casella{
 
     }
 
+    /**
+     * A differenza del metodo della classe padre {@link Casella} il nome è scelto dall'istanza treno del enum {@link NomiCaselle}.<p>
+     * Per far ciò salviamo in una variabile detta <font color ="green"> tipo </font> l'istanza del enum {@link NomiCaselle} da prendere in considerazione,<p>
+     * Infine chiamiamo il metodo della classe padre per settare Nome e colore {@link #setNomeColore(String nome, String colore)}.<p>
+     * @see NomiCaselle#getNome(int indiceNome) tipo.getNome(int indiceNome);
+     * @see NomiCaselle#getColore() tipo.getColore().
+     */
     @Override
     public void setNomeColoreDefault(){
         NomiCaselle tipo = NomiCaselle.TRENO;
