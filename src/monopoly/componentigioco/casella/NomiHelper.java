@@ -59,7 +59,7 @@ public abstract class  NomiHelper {
     }
 
     /**
-     * Metodo per continuare a creare caselle proprietà in assenza di nomi
+     * Metodo per continuare a creare caselle {@link Proprieta} in assenza di nomi
      * @return String[] contenete il nome <font color="green">"????"</font>  e il colore corrispondente alla prima categoria del enum {@link NomiCaselle}.
      */
     private static String[] casellaSconosciuta(){
@@ -68,11 +68,11 @@ public abstract class  NomiHelper {
     }
 
     /**
-     * Questo metodo sceglie, dalla categoria con almeno un nome trovata da {@link #sceltaNomeColore()} il nome e colore della casella,
+     * Questo metodo sceglie, dalla categoria con almeno un nome trovata da {@link #sceltaNomeColore()} ,il nome e colore della casella
      * salvandole in un array.<p>
      * Utilizza gli attributi di classe {@link #ultimoColore} e {@link #nomiCaselle}.<p>
      * Genera un numero Random con il metodo {@link #numeroRandom(int nomiDisponibili)} per poter scegliere il nome.<p>
-     * il metodo inoltre chiama {@link NomiCaselle#removeName(String nomeTrovato)} che si occupa di eliminare dal enum il nome appenaTrovato per evitare doppioni. <p>
+     * il metodo inoltre chiama {@link NomiCaselle#removeName(String nomeTrovato)} che si occupa di eliminare dal enum il nome appena trovato per evitare doppioni. <p>
      * La rimozione funziona date le proprietà statiche del enum.
      * @return un array con il <i>nome(posizione 0) e colore (posizione 1)</i>.
      */
