@@ -68,17 +68,25 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
 
     private void addSoldi(final int soldi) {
         this.soldi += soldi;
-        controlloSoldi();
+
 
     }
 
-    private void controlloSoldi(){
+    private void controlloSoldi(Tabellone tabellone,int nGiocatore){
         if(this.soldi <= 0){
             System.out.println("Il giocatore "+ nome +" ha perso" );
-            this.bancarotta=true;
-            nGiocatoriInGioco--;
+            cancellaGiocatore();
+            spostaSimbolo(this.simbolo, tabellone, nGiocatore);
 
         }
+    }
+
+    private void cancellaGiocatore(){
+        this.bancarotta=true;
+        this.simbolo="";
+        this.simboloChar=' ';
+        nGiocatoriInGioco--;
+
     }
 
     public boolean isBancarotta(){return bancarotta; }
@@ -113,12 +121,21 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
     }
 
 
-    private void pagamentoPedaggio(Tabellone tabellone){
+    private void pagamentoPedaggio(Tabellone tabellone,int nGiocatore){
         if (isTabellone(tabellone)) {
             int importo = tabellone.getImporto(getY(), getX(),this.soldi);
+            Banca.addImporto(calcoloSoldiBanca(importo));
             addSoldi(importo);
-            Banca.addImporto(-importo);
+            controlloSoldi(tabellone,nGiocatore);
+
         }
+    }
+
+    private int calcoloSoldiBanca(int pedaggio){
+        int soldiDaAggiungere=-pedaggio;
+        if (pedaggio>0 || (soldiDaAggiungere <this.soldi)) return soldiDaAggiungere;
+        return this.soldi;
+
     }
 
     public void updatePosizione(int passi, Tabellone tabellone,int giocatore){
@@ -126,7 +143,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
             spostaSimbolo(" ", tabellone, giocatore);
             spostamentoGiocatore(passi);
             spostaSimbolo(this.simbolo, tabellone, giocatore);
-            pagamentoPedaggio(tabellone);
+            pagamentoPedaggio(tabellone,giocatore);
         }
     }
 
