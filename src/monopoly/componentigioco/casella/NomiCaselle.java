@@ -1,6 +1,10 @@
 package monopoly.componentigioco.casella;
 
 import monopoly.utilita.Costanti;
+/*
+ metodi enum statici ma solo se chiamo una categoria
+ se aggiungo a un metodo static posso utilizzarlo direttamente con solo il nome del enum.
+ */
 
 
 public enum NomiCaselle {

@@ -5,7 +5,7 @@ import monopoly.Coordinate;
 import monopoly.utilita.Costanti;
 
 public class Stazione extends Casella{
-    static int stazioniRimaste=4;
+    static int stazioniRimaste=4; // da migliorare
 
     public Stazione(Casella [][] caselle) {
         super();

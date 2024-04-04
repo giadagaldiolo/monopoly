@@ -8,7 +8,9 @@ public abstract class Colori  {
     private static int cntColori=0;
 
 
-
+    /**
+     * @deprecated la parte di scelta colori che riguarda le caselle
+     */
     public static String sceltaColore(boolean ripetuto){ // ripetuto false se non vuoi che si ripetano i colori
         Random random = new Random();
         String colore ="\u001B[1;38;5;";  // bold;background/coloreScritta;? ; colore
@@ -34,7 +36,10 @@ public abstract class Colori  {
     }
 
 
-
+    /**
+     * @param coloreScelto
+     * @return void
+     */
     private static Boolean isColoreUtilizzato(int coloreScelto){
         boolean utilizzato=false;
         resetContatoreColori();
