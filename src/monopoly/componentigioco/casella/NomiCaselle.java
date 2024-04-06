@@ -9,7 +9,7 @@ import monopoly.utilita.Costanti;
 
 /**
  * <i>Enum utile per gestire i nomi, colori e tipi delle caselle</i><p>
- * Ogni istanza contiene un <i>array String</i> con i rispettivi nomi e un <i>int </i> corrispondente al colore <p>.
+ * Ogni istanza contiene un <i>array String</i> con i rispettivi nomi e un <i>int </i> corrispondente al colore. <p>
  */
 public enum NomiCaselle {
     TRENO(new String[]{"Stazione Nord","Stazione Sud","Stazione Ovest","Stazione Est"},233),
@@ -59,7 +59,7 @@ public enum NomiCaselle {
     /**
      * <p> Un getter che contiene contiene il metodo {@link #removeName(String nomeTrovato)}.</p>
      * @param i Indice indicante il nome da prendere in considerazione nel array {@link #nomi}
-     * @return String Il nome nella posizione <font color ="green"> i </font> del array {@link #nomi}
+     * @return String Il nome nella posizione {@code i} del array {@link #nomi}
      */
     public String getNome(int i){
         String nome=nomi[i];

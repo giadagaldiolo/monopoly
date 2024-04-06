@@ -4,9 +4,24 @@ import monopoly.Coordinate;
 
 
 public class MovimentoGiocatore  implements MovimentoGiocatoreSupporto {
+    /**
+     * Coordinate giocatore
+     */
     Coordinate coordinate;
+    /**
+     * Limite in x del movimento
+     */
     private final int xMax;
+    /**
+     * Limite in y del movimento
+     */
     private final int yMax;
+
+    /**
+     * Costruttore che setta i limiti di movimento e le coordinate iniziali
+     * @param xMax limite x
+     * @param yMax limite y
+     */
     public MovimentoGiocatore(int xMax,int yMax){
         this.xMax=xMax;
         this.yMax=yMax;
@@ -14,7 +29,15 @@ public class MovimentoGiocatore  implements MovimentoGiocatoreSupporto {
 
     }
 
-
+    /**
+     * <p>Metodo più importante per il movimento del giocatore.</p>
+     * <p>Attraverso il metodo {@link #controlloAngoli(int prodotto, int nuovaCoordinataY, int nuovaCoordinataX)} controlla se il giocatore
+     * si trova in uno dei due angoli dove il giocatore deve "salire".</p>
+     * @return Vero se dopo l'aggiornamento delle Coordinate è stato completato un giro.
+     * @see  #movimentoOrizzontale(int, int)
+     * @see  #movimentoVerticale(int, int)
+     * @see #isGiroCompleto()
+     */
     public boolean cambioCoordinate(){ // boolean cosi so se ha fatto un giro
         int nuovaCoordinataX=this.coordinate.getX();
         int nuovaCoordinataY= this.coordinate.getY();
@@ -34,29 +57,59 @@ public class MovimentoGiocatore  implements MovimentoGiocatoreSupporto {
         }
         return isGiroCompleto();
     }
-    private boolean controlloAngoli(int prodotto , int nuovaCoordinataY, int nuovaCoordinataX){
-        return (prodotto!=0 && nuovaCoordinataY==this.yMax) || (nuovaCoordinataY==0 && nuovaCoordinataX!=this.xMax);
+
+    /**
+     *
+     * @param prodotto prodotto coordinate
+     * @param coordinataY ultimaCoordinata Y
+     * @param coordinataX ultimaCoordinata X
+     * @return {@code False} se la posizione del giocatore è in uno degli angoli dove dobbiamo salire o scendere (angolo sinistro-basso, destro-alto).
+     */
+    private boolean controlloAngoli(int prodotto , int coordinataY, int coordinataX){
+        return (prodotto!=0 && coordinataY==this.yMax) || (coordinataY==0 && coordinataX!=this.xMax);
     }
 
+    /**
+     *
+     * @return {@code True} se si è completato un giro
+     */
     private boolean isGiroCompleto(){
         return this.coordinate.getX()==this.xMax && this.coordinate.getY()==this.yMax;
     }
 
-    private void movimentoOrizzontale(int movimento,int x){ // sinistra -1 destra 1
+    /**
+     * Metodo che cambia la coordinata x del giocatore.
+     * @param movimento sinistra -1 destra 1
+     * @param x coordinata x vecchia
+     */
+    private void movimentoOrizzontale(int movimento,int x){
         x+=movimento;
         this.coordinate.setX(x);
     }
-
+    /**
+     * Metodo che cambia la coordinata y del giocatore.
+     * @param movimento sopra -1, sotto 1
+     * @param y coordinata y vecchia
+     */
     private void movimentoVerticale(int movimento,int y){ // sopra -1, sotto 1
         y+=movimento;
         this.coordinate.setY(y);
 
     }
 
+    /**
+     *
+     * @return {@code int}coordinata x
+     */
+
     @Override
     public int getX() {
         return this.coordinate.getX();
     }
+    /**
+     *
+     * @return {@code int}coordinata y
+     */
     @Override
     public int getY() {
         return this.coordinate.getY();

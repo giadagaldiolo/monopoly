@@ -41,8 +41,8 @@ public abstract class  NomiHelper {
      * Metodo utilizzato nel metodo {@link Casella#setNomeColoreDefault()} per trovare il colore e nome adatto. <p>
      * Inizia richiamando il metodo {@link #mischiaColori()}. <p>
      * Successivamente insieme al metodo {@link #controlloNomiRimasti()} si occuperà di prendere il primo colore/categoria con almeno un nome disponibile. <p>
-     * Nel caso che il numero di caselle necessarie superi il numero di nomi saranno chiamate <font color="green">"????"</font>  : vedi {@link #casellaSconosciuta()}
-       per far questo controllo utilizzo una variabile <font color="green">"c"</font> che controlla se tutte le categorie del Enum {@link NomiCaselle} sono state prese in considerazione.<p>
+     * Nel caso che il numero di caselle necessarie superi il numero di nomi saranno chiamate {@code ????}  : vedi {@link #casellaSconosciuta()}
+       per far questo controllo utilizzo una variabile {@code c} che controlla se tutte le categorie del Enum {@link NomiCaselle} sono state prese in considerazione.<p>
      * Modifica l'attributo di classe {@link #ultimoColore} tramite il metodo {@link #prossimoColore()} <p>
      * @return String[] {@link #sceltaRandom()} Array contenente un Nome e un Colore <p>
      */
@@ -60,7 +60,7 @@ public abstract class  NomiHelper {
 
     /**
      * Metodo per continuare a creare caselle {@link Proprieta} in assenza di nomi
-     * @return String[] contenete il nome <font color="green">"????"</font>  e il colore corrispondente alla prima categoria del enum {@link NomiCaselle}.
+     * @return String[] contenete il nome {@code ????}  e il colore corrispondente alla prima categoria del enum {@link NomiCaselle}.
      */
     private static String[] casellaSconosciuta(){
         return  new String[]{"????", nomiCaselle[0].getColore()};

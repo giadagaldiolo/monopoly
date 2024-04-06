@@ -36,10 +36,7 @@ public abstract class Colori  {
     }
 
 
-    /**
-     * @param coloreScelto
-     * @return void
-     */
+
     private static Boolean isColoreUtilizzato(int coloreScelto){
         boolean utilizzato=false;
         resetContatoreColori();
