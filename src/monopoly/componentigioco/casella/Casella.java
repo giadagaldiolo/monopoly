@@ -154,7 +154,6 @@ public abstract class Casella implements CasellaInterface {
     }
 
     public void setPedaggio(int pedaggio) {
-
         this.pedaggio = pedaggio;
     }
 }
