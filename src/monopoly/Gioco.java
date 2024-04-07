@@ -54,6 +54,10 @@ public class Gioco {
 
     private void menuTurno() {
         Giocatore currentGiocatore = giocatori[numeroGiocatoreCorrente];
+        while (currentGiocatore.isBancarotta()){
+            turnoSuccessivo();
+            currentGiocatore = giocatori[numeroGiocatoreCorrente];
+        }
         this.menuGioco.menu(currentGiocatore);
         turno(currentGiocatore);
 
