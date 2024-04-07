@@ -175,7 +175,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
      *
      * @return utile per sapere se il giocatore è in bancarotta.
      */
-    public boolean isBancarotta(){return this.soldi<=0; }
+    public boolean isBancarotta(){return this.soldi<0; }
 
     /**
      *
