@@ -9,7 +9,7 @@ public abstract class  Costanti {
     public static final int IMPORTO_PEDAGGIO_MAX = -50;
     public static final int NUMERO_GIOCATORI = 4; //fino a 10 giocatori data l'ampiezza della casella
     public static final int NUMERO_DADO_MIN = 1;
-    public static final int NUMERO_DADO_MAX = 1;
+    public static final int NUMERO_DADO_MAX = 6;
     public static final String ANSI_RESET = "\u001B[0m";
     public static final int ANSI_MIN = 210;
     public static final int ANSI_MAX = 230;
