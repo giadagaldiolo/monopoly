@@ -46,7 +46,6 @@ public class SchermataIniziale extends Schermata{
         } while (controlloSimboli(simbolo,giocatori));
 
         giocatori[i] = new Giocatore(nome,simbolo,Costanti.RIGHE-1,Costanti.CASELLE_PER_RIGA-1);
-
     }
 
     private boolean controlloSimboli(char simbolo,Giocatore[] giocatori){

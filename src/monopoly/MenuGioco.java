@@ -8,7 +8,7 @@ public class MenuGioco implements MenuInterfaccia{
     public String toString(){
         return """
                 1. Mostra il capitale del giocatore corrente
-                2. Tira il dado
+                2. Tira i dadi
                 """;
     }
     @Override

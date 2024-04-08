@@ -78,8 +78,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
        this.simboloChar = controlloSimbolo(simbolo) ? 'X' : simbolo;
        this.soldi = Costanti.IMPORTO_INIZIALE_GIOCATORE;
        Banca.addImporto(-Costanti.IMPORTO_INIZIALE_GIOCATORE);
-
-
    }
 
     /**
@@ -91,7 +89,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
        String colore = Colori.sceltaColore(false);
        this.colore=colore;
        this.simbolo = colore+this.simboloChar+Costanti.ANSI_RESET;
-
    }
 
     /**
