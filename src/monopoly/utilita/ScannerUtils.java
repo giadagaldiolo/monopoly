@@ -6,7 +6,7 @@ public abstract class  ScannerUtils {
     private static final Scanner scanner=new Scanner(System.in);
     private static final int charMax=8;
 
-    static void chiudiScanner(){
+    public static void chiudiScanner(){
         scanner.close();
     }
 

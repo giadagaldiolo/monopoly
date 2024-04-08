@@ -7,7 +7,7 @@ public class MovimentoGiocatore  implements MovimentoGiocatoreSupporto {
     /**
      * Coordinate giocatore
      */
-    Coordinate coordinate;
+    private Coordinate coordinate;
     /**
      * Limite in x del movimento
      */
@@ -31,25 +31,25 @@ public class MovimentoGiocatore  implements MovimentoGiocatoreSupporto {
 
     /**
      * <p>Metodo più importante per il movimento del giocatore.</p>
-     * <p>Attraverso il metodo {@link #controlloAngoli(int prodotto, int nuovaCoordinataY, int nuovaCoordinataX)} controlla se il giocatore
-     * si trova in uno dei due angoli dove il giocatore deve "salire".</p>
+     * <p>Attraverso il metodo {@link #controlloPosizione(int prodotto, int nuovaCoordinataY, int nuovaCoordinataX)} controlla se il giocatore
+     * si trova nelle caselle dove il giocatore deve "salire o scendere".</p>
      * @return Vero se dopo l'aggiornamento delle Coordinate è stato completato un giro.
      * @see  #movimentoOrizzontale(int, int)
      * @see  #movimentoVerticale(int, int)
      * @see #isGiroCompleto()
      */
     public boolean cambioCoordinate(){ // boolean cosi so se ha fatto un giro
-        int nuovaCoordinataX=this.coordinate.getX();
+        int nuovaCoordinataX = this.coordinate.getX();
         int nuovaCoordinataY= this.coordinate.getY();
         int prodotto = nuovaCoordinataY*nuovaCoordinataX;
 
         int movimento = 1; // destraSotto = 1 // sinistraSopra = -1
-        if (controlloAngoli(prodotto,nuovaCoordinataY,nuovaCoordinataX) ){
+        if (controlloPosizione(prodotto,nuovaCoordinataY,nuovaCoordinataX) ){
             if (nuovaCoordinataY==this.yMax){
                 movimento*=-1;
             }
             movimentoOrizzontale(movimento,nuovaCoordinataX);
-        }else{
+        } else{
             if (nuovaCoordinataX!=this.xMax){
                 movimento*=-1;
             }
@@ -63,9 +63,9 @@ public class MovimentoGiocatore  implements MovimentoGiocatoreSupporto {
      * @param prodotto prodotto coordinate
      * @param coordinataY ultimaCoordinata Y
      * @param coordinataX ultimaCoordinata X
-     * @return {@code False} se la posizione del giocatore è in uno degli angoli dove dobbiamo salire o scendere (angolo sinistro-basso, destro-alto).
+     * @return {@code False} se la posizione del giocatore è in una delle caselle dove dobbiamo salire o scendere
      */
-    private boolean controlloAngoli(int prodotto , int coordinataY, int coordinataX){
+    private boolean controlloPosizione(int prodotto , int coordinataY, int coordinataX){
         return (prodotto!=0 && coordinataY==this.yMax) || (coordinataY==0 && coordinataX!=this.xMax);
     }
 

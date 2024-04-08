@@ -24,7 +24,7 @@ public abstract class Colori  {
         }
         colore = colore + numeroColore + "m";
         if (ripetuto) colore+=Costanti.COLORE_SFONDO; // da migliorare in futuro se serve per lo sfondo
-        return colore  ;
+        return colore;
     }
 
     private static void resetContatoreColori(){

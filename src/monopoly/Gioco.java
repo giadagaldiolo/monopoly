@@ -8,6 +8,8 @@ import monopoly.schermate.SchermataFinale;
 import monopoly.schermate.SchermataIniziale;
 import monopoly.utilita.ScannerUtils;
 
+import static monopoly.utilita.ScannerUtils.chiudiScanner;
+
 public class Gioco {
     private Tabellone tabellone;
     private Giocatore[] giocatori;
@@ -40,6 +42,7 @@ public class Gioco {
             menuTurno();
 
         }
+        chiudiScanner();
         fineGioco();
     }
 
