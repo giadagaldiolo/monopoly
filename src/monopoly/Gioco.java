@@ -13,7 +13,7 @@ import static monopoly.utilita.ScannerUtils.chiudiScanner;
 public class Gioco {
     private Tabellone tabellone;
     private Giocatore[] giocatori;
-    private Dado dado;
+    private Dado[] dado={new Dado(0), new Dado(0)};
     private int numeroGiocatoreCorrente = 0;
     private final MenuInterfaccia menuGioco= new MenuGioco(); // cosi non si possono usare altri metodi di menuGioco che non sono presenti nella interfaccia
     private Schermata schermataCorrente= new SchermataIniziale();
@@ -46,9 +46,11 @@ public class Gioco {
         fineGioco();
     }
 
-    private void creaDado(){
-        this.dado = new Dado();
+    private void creaDado() {
+        this.dado[0] = dado[0].controllo(dado[0]) ? new Dado(1) : dado[0];
+        this.dado[1] = dado[1].controllo(dado[1]) ? new Dado(1) : dado[1];
     }
+
 
     private void creaGiocatori() {
         this.giocatori= new SchermataIniziale().creaGiocatori(this.tabellone);
@@ -57,10 +59,6 @@ public class Gioco {
 
     private void menuTurno() {
         Giocatore currentGiocatore = giocatori[numeroGiocatoreCorrente];
-        while (currentGiocatore.isBancarotta()){
-            turnoSuccessivo();
-            currentGiocatore = giocatori[numeroGiocatoreCorrente];
-        }
         this.menuGioco.menu(currentGiocatore);
         turno(currentGiocatore);
 
@@ -72,12 +70,16 @@ public class Gioco {
         } else{
             this.numeroGiocatoreCorrente++;
         }
+        if (giocatori[numeroGiocatoreCorrente].isBancarotta()) turnoSuccessivo();
+
     }
     private void turno(Giocatore currentGiocatore){
        if (isGiocatore(currentGiocatore)) {
-            currentGiocatore.updatePosizione(dado.lancioDadi(), tabellone, numeroGiocatoreCorrente);
+
+            currentGiocatore.updatePosizione(dado[0].lancioDadi()+dado[1].lancioDadi(), tabellone, numeroGiocatoreCorrente);
             System.out.println(tabellone);
-            System.out.println(dado);
+            System.out.println(dado[0]);
+           System.out.println(dado[1]);
             turnoSuccessivo();
         }
     }
