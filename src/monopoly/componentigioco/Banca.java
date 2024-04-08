@@ -18,7 +18,7 @@ public abstract  class  Banca {
             aggiungiSoldiImporto();
         }
 
-        Banca.importo += importo;
+        Banca.importo += importo; // nota i soldi delle caselle sono negativi
         System.out.println(Banca.importo);
 
     }

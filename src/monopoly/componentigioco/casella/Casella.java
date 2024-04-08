@@ -27,13 +27,13 @@ public abstract class Casella implements CasellaInterface {
 
 
 
-    public Casella(){ // assi
+    protected Casella(){ // assi
         svuotaCasella();
         setNomeColoreDefault();
         setPedaggioDefault();
     }
 
-    public void setCoordinate(Coordinate coordinate) {
+    protected void setCoordinate(Coordinate coordinate) {
         this.coordinate=coordinate;
     }
 
@@ -49,14 +49,14 @@ public abstract class Casella implements CasellaInterface {
 
     }
 
-    public String getCharGiocatore(final int i) {
+    private String getCharGiocatore(final int i) {
         return giocatoriPresenti[i];
     }
 
     public void aggiungiCarattere(String ch, int giocatore) {
         if (ch.isBlank()){
             nGiocatoriPresenti--;
-        }else{
+        } else{
             nGiocatoriPresenti++;
         }
         giocatoriPresenti[giocatore] = ch;
@@ -133,7 +133,7 @@ public abstract class Casella implements CasellaInterface {
     public  int getPedaggio(){
         return this.pedaggio;
     }
-    public String getColore(){
+    private String getColore(){
         return this.colore;
     }
 
@@ -144,7 +144,7 @@ public abstract class Casella implements CasellaInterface {
         this.colore=nomeColore[1];
     }
 
-    public void setNomeColore(String nome , String colore){
+    protected void setNomeColore(String nome , String colore){
         this.nome=nome;
         this.colore=colore;
     }
@@ -154,7 +154,6 @@ public abstract class Casella implements CasellaInterface {
     }
 
     public void setPedaggio(int pedaggio) {
-
         this.pedaggio = pedaggio;
     }
 }

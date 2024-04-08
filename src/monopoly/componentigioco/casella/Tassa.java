@@ -14,7 +14,7 @@ public abstract class Tassa extends Casella {
 
     }
 
-    public void setCasella(Casella [][] caselle){
+    protected void setCasella(Casella [][] caselle){
         int[] coordinate = calcoloCoordinate(caselle);
         setCoordinate(new Coordinate(coordinate[0],coordinate[0]));
         caselle[coordinate[0]][coordinate[1]]=this;
@@ -23,7 +23,6 @@ public abstract class Tassa extends Casella {
 
     private int[] calcoloCoordinate(Casella [][]caselle){
         int y,x;
-
         do{
             Random random= new Random();
             y= random.nextInt(Costanti.RIGHE);

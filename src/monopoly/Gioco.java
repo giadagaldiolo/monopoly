@@ -67,6 +67,8 @@ public class Gioco {
         } else{
             this.numeroGiocatoreCorrente++;
         }
+        if (giocatori[numeroGiocatoreCorrente].isBancarotta()) turnoSuccessivo();
+
     }
     private void turno(Giocatore currentGiocatore){
        if (isGiocatore(currentGiocatore)) {

@@ -7,8 +7,6 @@ public class TassaDiLusso extends Tassa {
     public TassaDiLusso(Casella[][] caselle) {
         super();
         setCasella(caselle);
-
-
     }
 
     @Override
