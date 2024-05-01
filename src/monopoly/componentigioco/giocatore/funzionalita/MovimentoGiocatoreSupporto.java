@@ -15,6 +15,8 @@ public interface MovimentoGiocatoreSupporto {
 
     int getY();
 
+    void spostaGiocatoreInPrigione();
+
     default boolean isTabellone(Tabellone tabellone){
         return tabellone != null;
     }
@@ -30,6 +32,7 @@ public interface MovimentoGiocatoreSupporto {
             tabellone.modificaCasella(simbolo, getY(), getX(), giocatore);
         }
     }
+
 
 
 }

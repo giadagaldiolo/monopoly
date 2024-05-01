@@ -94,7 +94,6 @@ public class MovimentoGiocatore  implements MovimentoGiocatoreSupporto {
     private void movimentoVerticale(int movimento,int y){ // sopra -1, sotto 1
         y+=movimento;
         this.coordinate.setY(y);
-
     }
 
     /**
@@ -116,8 +115,8 @@ public class MovimentoGiocatore  implements MovimentoGiocatoreSupporto {
     }
 
 
-
-
-
-
+    public void spostaGiocatoreInPrigione() {
+        this.coordinate.setY(yMax);
+        this.coordinate.setX(0);
+    }
 }

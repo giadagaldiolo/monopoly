@@ -84,6 +84,8 @@ public class Tabellone {
         }
         this.caselle[0][0] = new Parcheggio();
         Tassa.creaTasse(this.caselle);
+        this.caselle[righeMatrice][0] = new Prigione();
+        this.caselle[0][elementiMatrice] = new VaiInPrigione();
     }
 
     /**
@@ -141,4 +143,10 @@ public class Tabellone {
     private boolean isTassaPatrimoniale(int i, int j) {
         return caselle[i][j] instanceof TassaPatrimoniale;
     }
+
+    public boolean isVaiInPrigione(int i, int j) {
+        return caselle[i][j] instanceof VaiInPrigione;
+    }
+
+
 }

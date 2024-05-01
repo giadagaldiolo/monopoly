@@ -1,8 +1,8 @@
 package monopoly.utilita;
 
 public abstract class  Costanti {
-    public static final int RIGHE = 9;
-    public static final int CASELLE_PER_RIGA = 9;
+    public static final int RIGHE = 11;
+    public static final int CASELLE_PER_RIGA = 11;
     public static final int LARGHEZZA_CASELLA = 25;
     public static final int IMPORTO_DEL_VIA = 100;
     public static final int IMPORTO_PEDAGGIO_MIN = -150;
@@ -21,6 +21,8 @@ public abstract class  Costanti {
     public static final String COLORE_SFONDO_NULL = "\u001B[1;48;5;253m";
     public static final int IMPORTO_TASSA_LUSSO = -200;
     public static final double PERCENTUALE_TASSA_PATRIMONIALE = 0.1;
+    public static final int TENTATIVI_PRIGIONE = 3;
+    public static final int IMPORTO_PER_USCIRE_PRIGIONE = 50;
 
 
 

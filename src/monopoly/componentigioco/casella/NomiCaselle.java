@@ -13,7 +13,7 @@ import monopoly.utilita.Costanti;
  */
 public enum NomiCaselle {
     TRENO(new String[]{"Stazione Nord","Stazione Sud","Stazione Ovest","Stazione Est"},233),
-    SINGOLE (new String[]{"Parcheggio","VIA"},233),
+    SINGOLE (new String[]{"Parcheggio","VIA","Prigione","Vai in prigione"},233),
     MARRONE(new String[]{"Vicolo Corto", "Vicolo Stretto"},172),
     AZZURO(new String[]{"Bastioni Gran Sasso", "Viale Monterosa", "Viale Vesuvio"},32),
     ROSA(new String[]{"Via Accademia", "Corso Ateneo", "Piazza Università"},13),

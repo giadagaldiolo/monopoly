@@ -20,6 +20,9 @@ public class Dado {
         return (dado.ultimoLancio>0 && dado.ultimoLancio<7);
     }
 
+    public int getUltimoLancio() {
+        return ultimoLancio;
+    }
 
     @Override
     public String toString(){

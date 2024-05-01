@@ -41,6 +41,10 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
      */
     private  String colore;
 
+    private boolean imprigionato;
+
+    private int tentativiPerPrigione = Costanti.TENTATIVI_PRIGIONE;
+
     /**
      * Si occupa di contenere tutti i metodi e attributi riguardante il movimento del giocatore
      */
@@ -139,8 +143,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
      */
     private void addSoldi(final int soldi) {
         this.soldi += soldi;
-
-
     }
 
     /**
@@ -212,7 +214,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
                 Banca.addImporto(-Costanti.IMPORTO_DEL_VIA);
             }
         }
-
     }
 
     /**
@@ -268,9 +269,19 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
         if (isTabellone(tabellone)) {
             spostaSimbolo(" ", tabellone, giocatore);
             spostamentoGiocatore(passi);
+            if (controlloGiocatoreInVaiInPrigione(tabellone)) {
+                spostaGiocatoreInPrigione();
+                spostaSimbolo(this.simbolo, tabellone, giocatore);
+            }
             spostaSimbolo(this.simbolo, tabellone, giocatore);
             pagamentoPedaggio(tabellone,giocatore);
         }
+    }
+
+    @Override
+    public void spostaGiocatoreInPrigione() {
+        this.imprigionato = true;
+        this.movimentoGiocatore.spostaGiocatoreInPrigione();
     }
 
     /**
@@ -297,5 +308,24 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
      */
     public String getColore() {
         return colore;
+    }
+
+    private boolean controlloGiocatoreInVaiInPrigione(Tabellone tabellone){
+        return tabellone.isVaiInPrigione(getY(), getX());
+    }
+
+    public boolean isImprigionato() {
+        return imprigionato;
+    }
+
+    public boolean tryToEscape(int i, int i1, Tabellone tabellone, int numeroGiocatoreCorrente) {
+        tentativiPerPrigione--;
+        if (tentativiPerPrigione <= 0) {
+            Banca.addImporto(Costanti.IMPORTO_PER_USCIRE_PRIGIONE);
+            addSoldi(-Costanti.IMPORTO_PER_USCIRE_PRIGIONE);
+            controlloSoldi(tabellone,numeroGiocatoreCorrente);
+            return true;
+        }
+        return i == i1;
     }
 }

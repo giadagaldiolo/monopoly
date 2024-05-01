@@ -1,6 +1,7 @@
 package monopoly;
 
 import monopoly.componentigioco.Dado;
+import monopoly.componentigioco.casella.TassaPatrimoniale;
 import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.componentigioco.Tabellone;
 import monopoly.schermate.Schermata;
@@ -74,12 +75,23 @@ public class Gioco {
     }
     private void turno(Giocatore currentGiocatore){
        if (isGiocatore(currentGiocatore)) {
-
-            currentGiocatore.updatePosizione(dado[0].lancioDadi()+dado[1].lancioDadi(), tabellone, numeroGiocatoreCorrente);
-            System.out.println(tabellone);
-            System.out.println(dado[0]);
-           System.out.println(dado[1]);
-            turnoSuccessivo();
+           if(!isGiocatoreInPrigione(currentGiocatore)) {
+               currentGiocatore.updatePosizione(dado[0].lancioDadi() + dado[1].lancioDadi(), tabellone, numeroGiocatoreCorrente);
+               System.out.println(tabellone);
+               System.out.println(dado[0]);
+               System.out.println(dado[1]);
+               turnoSuccessivo();
+           } else {
+                // prova a uscire di prigione
+               if (currentGiocatore.tryToEscape(dado[0].lancioDadi(), dado[1].lancioDadi(), tabellone, numeroGiocatoreCorrente)){
+                   currentGiocatore.updatePosizione(dado[0].getUltimoLancio() + dado[1].getUltimoLancio(), tabellone, numeroGiocatoreCorrente);
+               }
+               System.out.println(tabellone);
+               System.out.println(dado[0]);
+               System.out.println(dado[1]);
+               System.out.println("Non sei riuscito ad uscire");
+               turnoSuccessivo();
+           }
         }
     }
 
@@ -102,8 +114,11 @@ public class Gioco {
         ScannerUtils.chiudiScanner();
     }
 
-
     private boolean isGiocatore(Giocatore giocatore){
         return giocatore!=null;
+    }
+
+    private boolean isGiocatoreInPrigione(Giocatore giocatore){
+        return giocatore.isImprigionato();
     }
 }
