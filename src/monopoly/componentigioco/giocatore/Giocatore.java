@@ -90,7 +90,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
      * @see Colori#sceltaColore(boolean) Metodo utilizzato per generare il colore.
      */
    private void impostaColore(){
-       String colore = Colori.sceltaColore(false);
+       String colore = Colori.sceltaColore();
        this.colore=colore;
        this.simbolo = colore+this.simboloChar+Costanti.ANSI_RESET;
    }

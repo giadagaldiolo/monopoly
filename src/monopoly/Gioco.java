@@ -47,8 +47,11 @@ public class Gioco {
     }
 
     private void creaDado() {
-        this.dado[0] = dado[0].controllo(dado[0]) ? new Dado(1) : dado[0];
-        this.dado[1] = dado[1].controllo(dado[1]) ? new Dado(1) : dado[1];
+        for (int i = 0; i <this.dado.length ; i++) {
+            this.dado[i] = dado[i].controllo(dado[i]) ? new Dado(1) : dado[i];
+
+        }
+
     }
 
 
