@@ -296,6 +296,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
     @Override
     public void spostaGiocatoreInPrigione() {
         this.imprigionato = true;
+        this.tentativiPerPrigione = Costanti.TENTATIVI_PRIGIONE;
         this.movimentoGiocatore.spostaGiocatoreInPrigione();
     }
 
@@ -336,6 +337,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
     public boolean tryToEscape(int i, int i1, Tabellone tabellone, int numeroGiocatoreCorrente) {
         tentativiPerPrigione--;
         boolean uscita= i == i1;
+        System.out.println(uscita);
         if (tentativiPerPrigione <= 0) {
             Banca.addImporto(Costanti.IMPORTO_PER_USCIRE_PRIGIONE);
             addSoldi(-Costanti.IMPORTO_PER_USCIRE_PRIGIONE);
@@ -345,4 +347,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
         }
         return uscita;
     }
+
+
 }
