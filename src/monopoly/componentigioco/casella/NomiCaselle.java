@@ -12,8 +12,9 @@ import monopoly.utilita.Costanti;
  * Ogni istanza contiene un <i>array String</i> con i rispettivi nomi e un <i>int </i> corrispondente al colore. <p>
  */
 public enum NomiCaselle {
-    TRENO(new String[]{"Stazione Nord","Stazione Sud","Stazione Ovest","Stazione Est"},233),
-    SINGOLE (new String[]{"Parcheggio","VIA","Prigione","Vai in prigione"},233),
+    TRENO(new String[]{"Stazione Nord","Stazione Sud","Stazione Ovest","Stazione Est"},CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA),
+    SINGOLE (new String[]{"Parcheggio","VIA","Prigione","Vai in prigione"},CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA),
+
     MARRONE(new String[]{"Vicolo Corto", "Vicolo Stretto"},172),
     AZZURO(new String[]{"Bastioni Gran Sasso", "Viale Monterosa", "Viale Vesuvio"},32),
     ROSA(new String[]{"Via Accademia", "Corso Ateneo", "Piazza Università"},13),
@@ -22,12 +23,25 @@ public enum NomiCaselle {
     GIALLO(new String[]{"Viale Costantino", "Viale Traiano", "Piazza Giulio Cesare"},220),
     VERDE(new String[]{"Via Roma", "Corso Impero", "Largo Augusto"},28),
     BLU(new String[]{"Viale dei Giardini", "Parco della Vittoria"},21),
-    TASSE(new String[]{"Tassa di Lusso","Tassa Patrimoniale"},233),
-    SOCIETA(new String[]{"Società Acqua Potabile", "Società Elettrica"},233);
+
+    TASSE(new String[]{"Tassa di Lusso","Tassa Patrimoniale"},CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA),
+    SOCIETA(new String[]{"Società Acqua Potabile", "Società Elettrica"},CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA);
 
     private String [] nomi;
 
     private final String colore;
+
+    private final int posizioneArrayCaselleGiocatore;
+    private static int ultimaPosizioneArray;
+
+    private static int calcoloUltimaPosizione(){
+        NomiCaselle.ultimaPosizioneArray++;
+
+        return NomiCaselle.ultimaPosizioneArray-1;
+    }
+    public static int getUltimaPosizione(){
+        return NomiCaselle.ultimaPosizioneArray;
+    }
 
     /**
      * Semplice getter del attributo colore
@@ -42,9 +56,12 @@ public enum NomiCaselle {
      * @param nomi array di nomi
      * @param colore numero corrispondente al colore con i codici ANSI
      */
-    NomiCaselle(String [] nomi ,int colore ){
+    NomiCaselle(String [] nomi ,int colore){
         this.nomi=nomi;
         this.colore= "\u001B[1;38;5;"+colore+"m"+Costanti.COLORE_SFONDO ; // bold;background/coloreScritta;? ; colore
+        if (colore!= CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA) this.posizioneArrayCaselleGiocatore=NomiCaselle.calcoloUltimaPosizione();
+        else this.posizioneArrayCaselleGiocatore=CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA;
+
 
     }
 
@@ -67,6 +84,9 @@ public enum NomiCaselle {
         return nome;
     }
 
+    public int getPosizioneArrayCaselleGiocatore() {
+        return posizioneArrayCaselleGiocatore;
+    }
 
     private boolean isNomi(){
         return nomi!=null;

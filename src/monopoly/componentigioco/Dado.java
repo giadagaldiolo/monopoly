@@ -13,7 +13,7 @@ public class Dado {
 
     public int lancioDadi(){
         Random random = new Random();
-        return this.ultimoLancio = random.nextInt(Costanti.NUMERO_DADO_MIN,Costanti.NUMERO_DADO_MAX+1);
+        return this.ultimoLancio = random.nextInt(Costanti.NUMERO_DADO_MIN,Costanti.NUMERO_DADO_MAX+1); // il secondo numero non è compreso
     }
 
     public boolean controllo (Dado dado){

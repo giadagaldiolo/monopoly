@@ -2,6 +2,7 @@ package monopoly.componentigioco.giocatore;
 
 import monopoly.componentigioco.Banca;
 import monopoly.componentigioco.Tabellone;
+import monopoly.componentigioco.casella.NomiCaselle;
 import monopoly.componentigioco.giocatore.funzionalita.MovimentoGiocatore;
 import monopoly.componentigioco.giocatore.funzionalita.MovimentoGiocatoreSupporto;
 import monopoly.utilita.Costanti;
@@ -45,6 +46,8 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
 
     private int tentativiPerPrigione = Costanti.TENTATIVI_PRIGIONE;
 
+    private int[] nCaselleAcquistate;
+
     /**
      * Si occupa di contenere tutti i metodi e attributi riguardante il movimento del giocatore
      */
@@ -66,6 +69,19 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
 
         impostaCaratteristiche(nome,simbolo);
         impostaColore();
+        svuotaArrayCaselle();
+
+
+    }
+
+    private void svuotaArrayCaselle(){
+        this.nCaselleAcquistate=new int[NomiCaselle.getUltimaPosizione()];
+
+        for (int i = 0; i <nCaselleAcquistate.length ; i++) {
+            this.nCaselleAcquistate[i]=0;
+
+        }
+
 
     }
 
@@ -87,7 +103,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
     /**
      * Metodo utilizzato nel costruttore per richiedere un colore random per il giocatore. <p>
      * Alla fine salva nell'attributo simbolo tutto il necessario per generare un simbolo colorato.
-     * @see Colori#sceltaColore(boolean) Metodo utilizzato per generare il colore.
+     * @see Colori#sceltaColore()  Metodo utilizzato per generare il colore.
      */
    private void impostaColore(){
        String colore = Colori.sceltaColore();
@@ -235,7 +251,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
      * @see #calcoloSoldiBanca(int)
      */
     private void pagamentoPedaggio(Tabellone tabellone,int nGiocatore){
-        if (isTabellone(tabellone)) {
+        if (isTabellone(tabellone) && !this.imprigionato) {
             int importo = tabellone.getImporto(getY(), getX(),this.soldi);
             Banca.addImporto(calcoloSoldiBanca(importo));
             addSoldi(importo);
@@ -271,7 +287,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
             spostamentoGiocatore(passi);
             if (controlloGiocatoreInVaiInPrigione(tabellone)) {
                 spostaGiocatoreInPrigione();
-                spostaSimbolo(this.simbolo, tabellone, giocatore);
             }
             spostaSimbolo(this.simbolo, tabellone, giocatore);
             pagamentoPedaggio(tabellone,giocatore);
@@ -320,12 +335,14 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
 
     public boolean tryToEscape(int i, int i1, Tabellone tabellone, int numeroGiocatoreCorrente) {
         tentativiPerPrigione--;
+        boolean uscita= i == i1;
         if (tentativiPerPrigione <= 0) {
             Banca.addImporto(Costanti.IMPORTO_PER_USCIRE_PRIGIONE);
             addSoldi(-Costanti.IMPORTO_PER_USCIRE_PRIGIONE);
             controlloSoldi(tabellone,numeroGiocatoreCorrente);
-            return true;
+            uscita=true;
+            this.imprigionato=false;
         }
-        return i == i1;
+        return uscita;
     }
 }

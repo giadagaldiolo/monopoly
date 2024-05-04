@@ -1,7 +1,6 @@
 package monopoly;
 
 import monopoly.componentigioco.Dado;
-import monopoly.componentigioco.casella.TassaPatrimoniale;
 import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.componentigioco.Tabellone;
 import monopoly.schermate.Schermata;
@@ -33,6 +32,7 @@ public class Gioco {
     private void creaGioco(){
         creaTabellone();
         creaGiocatori();
+
         creaDado();
     }
 
