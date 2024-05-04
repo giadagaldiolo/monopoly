@@ -88,11 +88,13 @@ public class Gioco {
                 // prova a uscire di prigione
                if (currentGiocatore.tryToEscape(dado[0].lancioDadi(), dado[1].lancioDadi(), tabellone, numeroGiocatoreCorrente)){
                    currentGiocatore.updatePosizione(dado[0].getUltimoLancio() + dado[1].getUltimoLancio(), tabellone, numeroGiocatoreCorrente);
+               }else {
+                   System.out.println("Non sei riuscito ad uscire");
                }
                System.out.println(tabellone);
                System.out.println(dado[0]);
                System.out.println(dado[1]);
-               System.out.println("Non sei riuscito ad uscire");
+
                turnoSuccessivo();
            }
         }
