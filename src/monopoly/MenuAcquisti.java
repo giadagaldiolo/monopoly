@@ -56,7 +56,7 @@ public class MenuAcquisti implements MenuInterfaccia {
      @Override
      public String toString(){
         this.nLine=1;
-        StringBuilder menu = new StringBuilder("%d Pagare Pedaggio alla banca di %d \n".formatted(nLine,-((Casella) this.terreno).getPedaggio()));
+        StringBuilder menu = new StringBuilder("%d Pagare Pedaggio alla banca di %d \n".formatted(nLine,Math.abs(((Casella) this.terreno).getPedaggio())));
          int soldiGiocatore= giocatoreCorrente.getSoldi();
         menu.append(sceltaStringa(soldiGiocatore));
         return menu.toString();

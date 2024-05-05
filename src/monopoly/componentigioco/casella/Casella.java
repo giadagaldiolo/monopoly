@@ -68,7 +68,7 @@ public abstract class Casella implements CasellaInterface {
         return casella==null;
     }
 
-    private String dettagliCasella(int d) {
+    public String dettagliCasella(int d) {
         StringBuilder dettagli=new StringBuilder();
         String spazio = " ";
         String trattino = "-";
@@ -95,25 +95,12 @@ public abstract class Casella implements CasellaInterface {
                 break;
             case 3:
                 StringBuilder terzaRiga = new StringBuilder();
-                if (this instanceof Proprieta proprieta) {
-                    if (proprieta.getProprietario()!=null) {
-                        terzaRiga.append(infoCasellaPrezziEdifici());
 
-                    } else {
-                        terzaRiga.append("Paga ").append(Math.abs(this.pedaggio)).append("CHF alla banca");
-                    }
-                }
                 dettagli.append(terzaRiga).append(spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - terzaRiga.length())));
                 break;
             case 4:
                 StringBuilder quartaRiga = new StringBuilder();
-                if (this instanceof Proprieta proprieta) {
-                    if (proprieta.getProprietario()!=null) {
-                        quartaRiga.append(infoCasellaNumeroEdifici());
-                    } else {
-                        quartaRiga.append(infoCasellaPrezziEdifici());
-                    }
-                }
+
                 dettagli.append(quartaRiga).append(spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - quartaRiga.length())));
                 break;
             case 5: // proviamo a dividere i giocatori in prigione
@@ -136,6 +123,7 @@ public abstract class Casella implements CasellaInterface {
         if (PrimaUltimaRiga) dettagli.append("|").append(spazio); // if in una sola riga // spazio per avere tutte le caselle separate come sopra
         return  dettagli.toString();
     }
+
     public String getNome(){
         return this.nome;
     }
@@ -173,23 +161,7 @@ public abstract class Casella implements CasellaInterface {
         return info.toString();
     }
 
-    public String infoCasellaPrezziEdifici() { // non ci sta CHF, come possiamo ridurre la lunghezza di questa riga?
-        StringBuilder info = new StringBuilder();
-        if (this instanceof Proprieta proprieta) {
-            info.append("\uD83C\uDFE0").append(proprieta.getPrezzoCasa()).append("CHF");
-            info.append("\uD83C\uDFE8").append(proprieta.getPrezzoHotel()).append("CHF");
-        }
-        return info.toString();
-    }
 
-    public String infoCasellaNumeroEdifici() {
-        StringBuilder info = new StringBuilder();
-        if (this instanceof Proprieta proprieta)  {
-            info.append("⌂".repeat(Math.max(0, proprieta.getnCase()))).append(" ");
-            info.append("⎕").append(proprieta.isHotel());
-        }
-        return info.toString();
-    }
 
     public void setPedaggio(int pedaggio) {
         this.pedaggio = pedaggio;

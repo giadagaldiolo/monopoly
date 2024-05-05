@@ -3,7 +3,7 @@ package monopoly.utilita;
 public abstract class  Costanti {
     public static final int RIGHE = 11;
     public static final int CASELLE_PER_RIGA = 11;
-    public static final int LARGHEZZA_CASELLA = 25;
+    public static final int LARGHEZZA_CASELLA = 30;
     public static final int IMPORTO_DEL_VIA = 100;
     public static final int IMPORTO_PEDAGGIO_MIN = -150;
     public static final int IMPORTO_PEDAGGIO_MAX = -50;

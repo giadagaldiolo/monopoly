@@ -13,10 +13,30 @@ public class Proprieta extends Casella implements CaseHotel {
     private int prezzoHotel;
     private int prezzoTerreno;
     private Giocatore proprietario=null;
+    private PrintCasellaProprieta print= new PrintCasellaProprieta();
 
     public Proprieta(int y, int x) {
         super();
         setCoordinate(new Coordinate(y,x));
+    }
+
+    @Override
+    public String dettagliCasella(int d) {
+
+        return dettagliCasellaExtra(d);
+    }
+    private String dettagliCasellaExtra(int d){
+        StringBuilder dettagli=new StringBuilder();
+        dettagli.append(CostantiCaselle.SPAZIO);
+
+        return switch (d) {
+            case 3 ->
+                    this.print.printRigaTre(this.proprietario, infoCasellaPrezziEdifici(), super.getPedaggio(), dettagli);
+            case 4 ->
+                    this.print.printRigaQuattro(this.proprietario, infoCasellaPrezziEdifici(), infoCasellaNumeroEdifici(), dettagli,getNCase());
+            default -> super.dettagliCasella(d);
+        };
+
     }
 
     @Override
@@ -103,25 +123,36 @@ public class Proprieta extends Casella implements CaseHotel {
         return prezzoTerreno;
     }
 
-    public int getnCase() {
-        return nCase;
-    }
 
-    public boolean isHotel() {
-        return hotel;
-    }
-
-    public int getPrezzoCasa() {
-        return prezzoCasa;
-    }
-
-    public int getPrezzoHotel() {
-        return prezzoHotel;
-    }
     public void resetAcquisti(){
         this.proprietario=null;
         this.nCase=0;
         this.hotel=false;
+
+    }
+
+    private String infoCasellaPrezziEdifici() { // non ci sta CHF, come possiamo ridurre la lunghezza di questa riga?
+        StringBuilder info = new StringBuilder();
+        info.append("\uD83C\uDFE0").append(this.prezzoCasa).append("CHF");
+        info.append("\uD83C\uDFE8").append(this.prezzoHotel).append("CHF");
+
+        return info.toString();
+    }
+
+    private String infoCasellaNumeroEdifici() {
+        StringBuilder info = new StringBuilder();
+        if (this.nCase<=0) info.append("\uD83C\uDFE0".repeat(Math.max(2, this.nCase)));
+        info.append("\uD83C\uDFE8").append(this.hotel);
+        return info.toString();
+    }
+
+    public int getNCase(){
+        if (!this.hotel){
+            return 2+1;
+
+        }else {
+            return 1;
+        }
 
     }
 }
