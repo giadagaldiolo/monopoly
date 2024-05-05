@@ -19,7 +19,7 @@ public abstract  class  Banca {
         }
 
         Banca.importo += importo; // nota i soldi delle caselle sono negativi
-//        System.out.println(Banca.importo);
+
     }
 
     private static boolean controlloImportoBanca(final int importo){

@@ -12,7 +12,7 @@ import monopoly.utilita.Colori;
  * <i>Classe che gestisce le funzionalità del giocatore</i>
  */
 
-public class Giocatore  implements MovimentoGiocatoreSupporto {
+public class Giocatore  implements MovimentoGiocatoreSupporto  {
     /**
      * Contatore dei giocatori in Gioco.
      */
@@ -159,6 +159,17 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
      */
     private void addSoldi(final int soldi) {
         this.soldi += soldi;
+    }
+
+    public boolean compraMiglioramentiTerreno(int acquisto){
+        boolean acquistatoAvvenuto = false;
+        if (acquisto <= this.soldi) {
+            acquistatoAvvenuto = true;
+            addSoldi(-acquisto);
+        }
+        return acquistatoAvvenuto;
+
+
     }
 
     /**
@@ -326,7 +337,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
         return colore;
     }
 
-    private boolean controlloGiocatoreInVaiInPrigione(Tabellone tabellone){
+    private boolean controlloGiocatoreInVaiInPrigione(Tabellone tabellone){ // da cambiare il movimento modificando il cambio delle coordinate
         return tabellone.isVaiInPrigione(getY(), getX());
     }
 
@@ -337,7 +348,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto {
     public boolean tryToEscape(int i, int i1, Tabellone tabellone, int numeroGiocatoreCorrente) {
         tentativiPerPrigione--;
         boolean uscita= i == i1;
-        System.out.println(uscita);
+
         if (tentativiPerPrigione <= 0) {
             Banca.addImporto(Costanti.IMPORTO_PER_USCIRE_PRIGIONE);
             addSoldi(-Costanti.IMPORTO_PER_USCIRE_PRIGIONE);
