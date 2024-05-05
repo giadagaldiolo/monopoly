@@ -1,5 +1,8 @@
 package monopoly.componentigioco.casella;
 
+import monopoly.componentigioco.Tabellone;
+import monopoly.utilita.Costanti;
+
 import java.util.Random;
 
 /**
@@ -119,6 +122,17 @@ public abstract class  NomiHelper {
         } else {
             ultimoColore=caselleNotRandom;
         }
+
+    }
+
+    public static int[] calcoloCoordinate(Casella [][]caselle){
+        int y,x;
+        do{
+            Random random= new Random();
+            y= random.nextInt(Costanti.RIGHE);
+            x= random.nextInt(Costanti.CASELLE_PER_RIGA);
+        }while (Tabellone.controlloPosizione(y,x) || (caselle[y][x]!=null) );
+        return new int[]{y,x};
 
     }
 }
