@@ -31,5 +31,4 @@ public abstract class Tassa extends Casella {
         return new int[]{y,x};
 
     }
-
 }

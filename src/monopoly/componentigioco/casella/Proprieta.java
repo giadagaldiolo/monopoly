@@ -92,4 +92,24 @@ public class Proprieta extends Casella implements CaseHotel {
     public Giocatore getProprietario() {
         return proprietario;
     }
+
+    public int getPrezzoTerreno() {
+        return prezzoTerreno;
+    }
+
+    public int getnCase() {
+        return nCase;
+    }
+
+    public boolean isHotel() {
+        return hotel;
+    }
+
+    public int getPrezzoCasa() {
+        return prezzoCasa;
+    }
+
+    public int getPrezzoHotel() {
+        return prezzoHotel;
+    }
 }

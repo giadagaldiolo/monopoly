@@ -16,7 +16,6 @@ public class TassaDiLusso extends Tassa {
 
     }
 
-
     @Override
     public void setPedaggioDefault() {
         super.setPedaggio(Costanti.IMPORTO_TASSA_LUSSO);

@@ -92,18 +92,21 @@ public abstract class Casella implements CasellaInterface {
             case 1:
                 String primaRiga = this.nome; // Per sapere quanti spazi aggiungere
                 int nSpazi=Costanti.LARGHEZZA_CASELLA-2- primaRiga.length();
-
                 dettagli.append(primaRiga).append(spazio.repeat(nSpazi ));
                 break;
             case 2:
-
-                String secondaRiga =infoCasella();
+                String secondaRiga = infoCasella();
                 dettagli.append(secondaRiga).append(spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - secondaRiga.length())));
                 break;
-            case 3: case 4: // per adesso non si deve stampare niente
-                dettagli.append(spazio.repeat((Costanti.LARGHEZZA_CASELLA - 2)));
+            case 3:
+                String terzaRiga = infoCasellaPrezziEdifici();
+                dettagli.append(terzaRiga).append(spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - terzaRiga.length())));
                 break;
-            case 5:
+            case 4:
+                String quartaRiga = infoCasellaNumeroEdifici();
+                dettagli.append(quartaRiga).append(spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - quartaRiga.length())));
+                break;
+            case 5: // proviamo a dividere i giocatori in prigione
                 StringBuilder quintaRiga = new StringBuilder();
                 int spaziDaFare = Costanti.LARGHEZZA_CASELLA-(Costanti.LARGHEZZA_CASELLA-(2*this.nGiocatoriPresenti));
 
@@ -121,15 +124,11 @@ public abstract class Casella implements CasellaInterface {
 
         }
         if (PrimaUltimaRiga) dettagli.append("|").append(spazio); // if in una sola riga // spazio per avere tutte le caselle separate come sopra
-
-
         return  dettagli.toString();
     }
     public String getNome(){
         return this.nome;
     }
-
-
     public  int getPedaggio(){
         return this.pedaggio;
     }
@@ -150,11 +149,39 @@ public abstract class Casella implements CasellaInterface {
     }
     @Override
     public String infoCasella() {
-        return "Paga " + Math.abs(this.pedaggio);
+        StringBuilder info = new StringBuilder();
+        if (this instanceof Proprieta proprieta) {
+            if (proprieta.getProprietario() != null) {
+                info.append("Paga ").append(Math.abs(this.pedaggio));
+                info.append(" a ").append(proprieta.getProprietario());
+            } else {
+                info.append("Prezzo di vendita: ").append(proprieta.getPrezzoTerreno());
+            }
+        } else {
+            info.append("Paga ").append(Math.abs(this.pedaggio));
+        }
+        return info.toString();
+    }
+
+    public String infoCasellaPrezziEdifici() { // non ci sta CHF, come possiamo ridurre la lunghezza di questa riga?
+        StringBuilder info = new StringBuilder();
+        if (this instanceof Proprieta proprieta) {
+            info.append("Casa: ").append(proprieta.getPrezzoCasa());
+            info.append(" Albergo ").append(proprieta.getPrezzoHotel());
+        }
+        return info.toString();
+    }
+
+    public String infoCasellaNumeroEdifici() {
+        StringBuilder info = new StringBuilder();
+        if (this instanceof Proprieta proprieta)  {
+            info.append("Case: ").append(proprieta.getnCase());
+            info.append(" Albergo: ").append(proprieta.isHotel());
+        }
+        return info.toString();
     }
 
     public void setPedaggio(int pedaggio) {
         this.pedaggio = pedaggio;
     }
 }
-
