@@ -12,11 +12,8 @@ public abstract class Casella implements CasellaInterface {
     private String colore;
     private String nome;
     private Coordinate coordinate;
-
     private int nGiocatoriPresenti = 0;
     private String[] giocatoriPresenti = new String[Costanti.NUMERO_GIOCATORI]; // poi aggiustiamo la costante
-
-
 
 
     @Override
@@ -24,8 +21,6 @@ public abstract class Casella implements CasellaInterface {
         Random random = new Random();
         this.pedaggio = random.nextInt(Costanti.IMPORTO_PEDAGGIO_MIN,Costanti.IMPORTO_PEDAGGIO_MAX+1);
     }
-
-
 
     protected Casella(){ // assi
         svuotaCasella();
@@ -99,11 +94,25 @@ public abstract class Casella implements CasellaInterface {
                 dettagli.append(secondaRiga).append(spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - secondaRiga.length())));
                 break;
             case 3:
-                String terzaRiga = infoCasellaPrezziEdifici();
+                StringBuilder terzaRiga = new StringBuilder();
+                if (this instanceof Proprieta proprieta) {
+                    if (proprieta.getProprietario()!=null) {
+                        terzaRiga.append(infoCasellaPrezziEdifici());
+                    } else {
+                        terzaRiga.append("Paga ").append(Math.abs(this.pedaggio)).append("CHF alla banca");
+                    }
+                }
                 dettagli.append(terzaRiga).append(spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - terzaRiga.length())));
                 break;
             case 4:
-                String quartaRiga = infoCasellaNumeroEdifici();
+                StringBuilder quartaRiga = new StringBuilder();
+                if (this instanceof Proprieta proprieta) {
+                    if (proprieta.getProprietario()!=null) {
+                        quartaRiga.append(infoCasellaNumeroEdifici());
+                    } else {
+                        quartaRiga.append(infoCasellaPrezziEdifici());
+                    }
+                }
                 dettagli.append(quartaRiga).append(spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - quartaRiga.length())));
                 break;
             case 5: // proviamo a dividere i giocatori in prigione
@@ -153,7 +162,7 @@ public abstract class Casella implements CasellaInterface {
         if (this instanceof Proprieta proprieta) {
             if (proprieta.getProprietario() != null) {
                 info.append("Paga ").append(Math.abs(this.pedaggio));
-                info.append(" a ").append(proprieta.getProprietario());
+                info.append(" a ").append(proprieta.getProprietario().getNome());
             } else {
                 info.append("Prezzo di vendita: ").append(proprieta.getPrezzoTerreno());
             }
@@ -166,8 +175,8 @@ public abstract class Casella implements CasellaInterface {
     public String infoCasellaPrezziEdifici() { // non ci sta CHF, come possiamo ridurre la lunghezza di questa riga?
         StringBuilder info = new StringBuilder();
         if (this instanceof Proprieta proprieta) {
-            info.append("Casa: ").append(proprieta.getPrezzoCasa());
-            info.append(" Albergo ").append(proprieta.getPrezzoHotel());
+            info.append("⌂ ").append(proprieta.getPrezzoCasa()).append("CHF");
+            info.append(" ⎕ ").append(proprieta.getPrezzoHotel()).append("CHF");
         }
         return info.toString();
     }
@@ -175,8 +184,8 @@ public abstract class Casella implements CasellaInterface {
     public String infoCasellaNumeroEdifici() {
         StringBuilder info = new StringBuilder();
         if (this instanceof Proprieta proprieta)  {
-            info.append("Case: ").append(proprieta.getnCase());
-            info.append(" Albergo: ").append(proprieta.isHotel());
+            info.append("⌂".repeat(Math.max(0, proprieta.getnCase()))).append(" ");
+            info.append("⎕").append(proprieta.isHotel());
         }
         return info.toString();
     }
