@@ -13,7 +13,7 @@ public class MenuAcquisti implements MenuInterfaccia {
 
     public void menu(Giocatore currentGiocatore,Acquistabile terreno) {
         this.terreno=terreno;
-        if (this.terreno.getProprietario()!=null) menu(currentGiocatore);
+        if (this.terreno.getProprietario()==null) menu(currentGiocatore);
 
     }
     @Override
