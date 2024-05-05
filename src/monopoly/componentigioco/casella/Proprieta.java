@@ -141,14 +141,14 @@ public class Proprieta extends Casella implements CaseHotel {
 
     private String infoCasellaNumeroEdifici() {
         StringBuilder info = new StringBuilder();
-        if (this.nCase<=0) info.append("\uD83C\uDFE0".repeat(Math.max(2, this.nCase)));
-        info.append("\uD83C\uDFE8").append(this.hotel);
+        if (this.nCase>0) info.append("\uD83C\uDFE0".repeat(Math.max(0, this.nCase)));
+        if (this.hotel)info.append("\uD83C\uDFE8");
         return info.toString();
     }
 
     public int getNCase(){
         if (!this.hotel){
-            return 2+1;
+            return this.nCase;
 
         }else {
             return 1;

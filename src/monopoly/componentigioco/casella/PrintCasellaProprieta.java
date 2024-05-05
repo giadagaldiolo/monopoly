@@ -42,18 +42,23 @@ public class PrintCasellaProprieta {
                 quartaRiga.append(edifici);
 
                 miniSpazio=calcoloMiniSpazi(nEdifici);
+                if (miniSpazio==0) nSpazi=1;
+
 
 
         }else{
                 quartaRiga.append(infoEdificiPrezzi);
 
             }
-        dettagli.append(quartaRiga).append(" ".repeat(((Costanti.LARGHEZZA_CASELLA-nSpazi ) - quartaRiga.length()))).append("\u2009".repeat(miniSpazio)); //spazio sottile
+        dettagli.append(quartaRiga).append(CostantiCaselle.SPAZIO.repeat(((Costanti.LARGHEZZA_CASELLA-nSpazi ) - quartaRiga.length()))).append("\u2009".repeat(miniSpazio)); //spazio sottile
         dettagli.append(printRighetta()).append(CostantiCaselle.SPAZIO);
         return dettagli.toString();
     }
 
     private int calcoloMiniSpazi(int edifici){
+        if (edifici==0){
+            return 0;
+        }
         int miniSpazi=2;
         int counter=0;
         for (int i=0;i<=edifici;i++){

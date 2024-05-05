@@ -39,7 +39,7 @@ public abstract class  ScannerUtils {
 
     public static int readIntegerInRange(int min, int max) {
         while (true) {
-            System.out.print("Inserisci un numero tra " + min + " e " + max + ": ");
+            System.out.println("Inserisci un numero tra " + min + " e " + max + ": ");
             if (scanner.hasNextInt()) {
                 int inputUser = scanner.nextInt();
                 if (!(inputUser < min || inputUser > max)){

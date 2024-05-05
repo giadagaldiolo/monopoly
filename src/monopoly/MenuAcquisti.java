@@ -24,9 +24,8 @@ public class MenuAcquisti implements MenuInterfaccia {
             this.giocatoreCorrente = currentGiocatore;
             String stringaMenu=toString(); // lo faccio cosi perche mi serve effettuarlo senza stamparlo
             if (this.nLine>1 ) {
-                System.out.println(stringaMenu); // gia che l'ho gia pronta uso quella
                 System.out.println("MENU ACQUISTO/PAGAMENTO TERRENO/PEDAGGIO");
-                System.out.print(this);
+                System.out.print(stringaMenu); //dato che l'ho gia calcolato uso questa
                 scelta = ScannerUtils.readIntegerInRange(1, 2);
                 if (scelta == 2) {
                     this.giaPagato=this.terreno.acquistoTerreno(currentGiocatore);
