@@ -36,17 +36,17 @@ public class PrintCasellaProprieta {
     public String printRigaQuattro(Giocatore proprietario,String infoEdificiPrezzi,String edifici,StringBuilder dettagli,int nEdifici){
         StringBuilder quartaRiga = new StringBuilder();
         quartaRiga.append(printRighetta());
-        int nSpazi=1;
+        int nSpazi=2;
         int miniSpazio=1;
         if (proprietario!=null) { // per 3 emoji 2 spazi e 1 minispazio // pwr 1 2 spazi e 2 mispazio // per 2 2 spazi 1 minispazio // per 4 2 mini 0
                 quartaRiga.append(edifici);
-                nSpazi=2;
+
                 miniSpazio=calcoloMiniSpazi(nEdifici);
 
 
         }else{
                 quartaRiga.append(infoEdificiPrezzi);
-                nSpazi=2;
+
             }
         dettagli.append(quartaRiga).append(" ".repeat(((Costanti.LARGHEZZA_CASELLA-nSpazi ) - quartaRiga.length()))).append("\u2009".repeat(miniSpazio)); //spazio sottile
         dettagli.append(printRighetta()).append(CostantiCaselle.SPAZIO);
