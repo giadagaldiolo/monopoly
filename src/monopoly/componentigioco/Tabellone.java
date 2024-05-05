@@ -148,5 +148,7 @@ public class Tabellone {
         return caselle[i][j] instanceof VaiInPrigione;
     }
 
-
+    public Casella getCasella(int i, int j) {
+        return caselle[i][j];
+    }
 }

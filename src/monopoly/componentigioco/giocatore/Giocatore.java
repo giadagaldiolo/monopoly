@@ -1,7 +1,10 @@
 package monopoly.componentigioco.giocatore;
 
+import monopoly.MenuAcquisti;
 import monopoly.componentigioco.Banca;
 import monopoly.componentigioco.Tabellone;
+import monopoly.componentigioco.casella.Acquistabile;
+import monopoly.componentigioco.casella.Casella;
 import monopoly.componentigioco.casella.NomiCaselle;
 import monopoly.componentigioco.giocatore.funzionalita.MovimentoGiocatore;
 import monopoly.componentigioco.giocatore.funzionalita.MovimentoGiocatoreSupporto;
@@ -13,6 +16,7 @@ import monopoly.utilita.Colori;
  */
 
 public class Giocatore  implements MovimentoGiocatoreSupporto  {
+    private final MenuAcquisti menuAcquisti= new MenuAcquisti();
     /**
      * Contatore dei giocatori in Gioco.
      */
@@ -300,8 +304,27 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
                 spostaGiocatoreInPrigione();
             }
             spostaSimbolo(this.simbolo, tabellone, giocatore);
-            pagamentoPedaggio(tabellone,giocatore);
+
+
+
         }
+    }
+
+    public void pagamento(Tabellone tabellone,int giocatore){
+        if (!acquistoTerreno(tabellone)){
+            pagamentoPedaggio(tabellone,giocatore);
+
+        }
+
+    }
+    private boolean acquistoTerreno(Tabellone tabellone){
+        Casella currentCasella=tabellone.getCasella(getY(),getX());
+        boolean risposta=false;
+        if (currentCasella instanceof Acquistabile){
+            this.menuAcquisti.menu(this,(Acquistabile) currentCasella);
+            risposta=this.menuAcquisti.pagamentoGiaEffettuato();
+        }
+        return risposta;
     }
 
     @Override

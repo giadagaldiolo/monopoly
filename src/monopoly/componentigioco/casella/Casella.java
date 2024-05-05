@@ -98,6 +98,7 @@ public abstract class Casella implements CasellaInterface {
                 if (this instanceof Proprieta proprieta) {
                     if (proprieta.getProprietario()!=null) {
                         terzaRiga.append(infoCasellaPrezziEdifici());
+
                     } else {
                         terzaRiga.append("Paga ").append(Math.abs(this.pedaggio)).append("CHF alla banca");
                     }
@@ -175,8 +176,8 @@ public abstract class Casella implements CasellaInterface {
     public String infoCasellaPrezziEdifici() { // non ci sta CHF, come possiamo ridurre la lunghezza di questa riga?
         StringBuilder info = new StringBuilder();
         if (this instanceof Proprieta proprieta) {
-            info.append("⌂ ").append(proprieta.getPrezzoCasa()).append("CHF");
-            info.append(" ⎕ ").append(proprieta.getPrezzoHotel()).append("CHF");
+            info.append("\uD83C\uDFE0").append(proprieta.getPrezzoCasa()).append("CHF");
+            info.append("\uD83C\uDFE8").append(proprieta.getPrezzoHotel()).append("CHF");
         }
         return info.toString();
     }
@@ -193,4 +194,6 @@ public abstract class Casella implements CasellaInterface {
     public void setPedaggio(int pedaggio) {
         this.pedaggio = pedaggio;
     }
+
+
 }

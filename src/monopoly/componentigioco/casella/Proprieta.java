@@ -48,11 +48,17 @@ public class Proprieta extends Casella implements CaseHotel {
          return new Random();
     }
 
-    public void acquistoTerreno(Giocatore proprietario) {
-        if (!isProprietario() && controlloAcquistoEffettuato(proprietario,this.prezzoTerreno)) {
-            setProprietario(proprietario);
+    public boolean acquistoTerreno(Giocatore proprietario) {
+        boolean acquistoTerreno=false;
+        if (!isProprietario()) {
+            acquistoTerreno=controlloAcquistoEffettuato(proprietario,this.prezzoTerreno);
+            if (acquistoTerreno){
+                setProprietario(proprietario);
+
+            }
 
         }
+        return  acquistoTerreno;
 
     }
     public void acquistoCasaHotel() {
@@ -111,5 +117,11 @@ public class Proprieta extends Casella implements CaseHotel {
 
     public int getPrezzoHotel() {
         return prezzoHotel;
+    }
+    public void resetAcquisti(){
+        this.proprietario=null;
+        this.nCase=0;
+        this.hotel=false;
+
     }
 }
