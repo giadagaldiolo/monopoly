@@ -5,17 +5,32 @@ import monopoly.componentigioco.casella.Casella;
 import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.utilita.ScannerUtils;
 
-public class MenuAcquisti implements MenuInterfaccia {
+public class MenuAcquisti implements MenuAcquistiInterfaccia{
     private Giocatore giocatoreCorrente;
     private Acquistabile terreno;
     private int nLine;
     private boolean giaPagato=false;
 
     public void menu(Giocatore currentGiocatore,Acquistabile terreno) {
-        this.terreno=terreno;
-        if (this.terreno.getProprietario()==null) menu(currentGiocatore);
+        if (isGiocatoreAndTerreno(currentGiocatore, terreno)){
+            this.terreno=terreno;
+            if (this.terreno.getProprietario()==null) menu(currentGiocatore);
+
+        }
+        resetProprieta();
+
 
     }
+
+    @Override
+    public void resetProprieta() {
+        this.giocatoreCorrente=null;
+        this.terreno=null;
+        this.nLine=0;
+        this.giaPagato=false;
+
+    }
+
     @Override
     public void menu(Giocatore currentGiocatore) {
 
@@ -25,7 +40,6 @@ public class MenuAcquisti implements MenuInterfaccia {
             this.giocatoreCorrente = currentGiocatore;
             String stringaMenu=toString(); // lo faccio cosi perche mi serve effettuarlo senza stamparlo
             if (this.nLine>1 ) {
-                System.out.println("MENU ACQUISTO/PAGAMENTO TERRENO/PEDAGGIO");
                 System.out.print(stringaMenu); //dato che l'ho gia calcolato uso questa
                 scelta = ScannerUtils.readIntegerInRange(1, 2);
                 if (scelta == 2) {
@@ -55,6 +69,7 @@ public class MenuAcquisti implements MenuInterfaccia {
 
      @Override
      public String toString(){
+        System.out.println("MENU ACQUISTO/PAGAMENTO TERRENO/PEDAGGIO");
         this.nLine=1;
         StringBuilder menu = new StringBuilder("%d Pagare Pedaggio alla banca di %d \n".formatted(nLine,Math.abs(((Casella) this.terreno).getPedaggio())));
          int soldiGiocatore= giocatoreCorrente.getSoldi();
@@ -62,8 +77,5 @@ public class MenuAcquisti implements MenuInterfaccia {
         return menu.toString();
      }
 
-    @Override
-    public boolean isGiocatore(Giocatore giocatore) {
-        return MenuInterfaccia.super.isGiocatore(giocatore);
-    }
+
 }

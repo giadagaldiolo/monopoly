@@ -49,7 +49,7 @@ public class Proprieta extends Casella implements CaseHotel {
         this.proprietario=proprietario;
     }
 
-    private void setPrezzi(){
+    private void setPrezzi(){ // da migliorare
         this.prezzoTerreno=creaSeedRandom().nextInt(CostantiCaselle.PREZZO_TERRENO_MIN,CostantiCaselle.PREZZO_TERRENO_MAX);
         this.prezzoCasa=creaSeedRandom().nextInt(CostantiCaselle.PREZZO_CASA_MIN,CostantiCaselle.PREZZO_CASA_MAX);
         this.prezzoHotel=creaSeedRandom().nextInt(calcoloPrezzoMinimoHotel(),CostantiCaselle.PREZZO_HOTEL_MAX);
@@ -123,6 +123,38 @@ public class Proprieta extends Casella implements CaseHotel {
         return prezzoTerreno;
     }
 
+
+
+    @Override
+    public boolean isHotelAcquistabile() {
+        boolean risposta=false;
+        if (isProprietario()){
+            risposta=(this.nCase>CostantiCaselle.MAX_CASE-1) && (!this.hotel) && (this.proprietario.getSoldi()>=this.prezzoHotel);
+        }
+        return risposta;
+    }
+
+    public int caseAcquistabili(){
+        int houses =0;
+        if (isProprietario()){
+            houses= calcoloCaseAcquistabili(maxAcquistabili());
+
+        }
+        return houses;
+
+    }
+    private int calcoloCaseAcquistabili(int maxAcquistabili) {
+        int soldiGiocatore= this.proprietario.getSoldi();
+
+        if (soldiGiocatore < this.prezzoCasa*maxAcquistabili) {
+            return calcoloCaseAcquistabili(--maxAcquistabili);
+        }else {
+            return maxAcquistabili;
+        }
+    }
+    private int maxAcquistabili(){
+        return CostantiCaselle.MAX_CASE-this.nCase;
+    }
 
     public void resetAcquisti(){
         this.proprietario=null;
