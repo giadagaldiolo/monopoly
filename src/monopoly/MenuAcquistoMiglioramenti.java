@@ -21,7 +21,7 @@ public class MenuAcquistoMiglioramenti implements MenuMiglioramentiTerreni {
                 if (scelta >= this.opzioniMenu) {
                     System.out.println("Nessun Acquisto effettuato");
                 }else {
-                    // acquuisto case/hotel
+                    this.proprieta.acquistoCasaHotel(scelta);
                 }
 
             }

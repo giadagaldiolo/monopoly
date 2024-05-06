@@ -81,16 +81,22 @@ public class Proprieta extends Casella implements CaseHotel {
         return  acquistoTerreno;
 
     }
-    public void acquistoCasaHotel() {
+    public void acquistoCasaHotel(int numeroAcquisti) {
+
         if (isProprietario() && (!this.hotel)) {
             if ((this.nCase<CostantiCaselle.MAX_CASE)) {
-                addCasa();
-            } else{
+                for (int i = 0; i <numeroAcquisti ; i++) {
+                    addCasa();
+                    
+                }
+            } else if(acquistareHotel(numeroAcquisti)){
                 addHotel();
-
             }
 
         }
+    }
+    private boolean acquistareHotel(int numeroAcquisti){
+        return ((numeroAcquisti==CostantiCaselle.MAX_HOTEL) && (this.nCase>=CostantiCaselle.MAX_CASE));
     }
     private void addHotel(){
         if (controlloAcquistoEffettuato(this.proprietario,this.prezzoHotel)){

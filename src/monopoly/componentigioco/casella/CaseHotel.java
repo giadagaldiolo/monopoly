@@ -1,9 +1,10 @@
 package monopoly.componentigioco.casella;
 
 public interface CaseHotel extends Acquistabile {
-    void acquistoCasaHotel();
+    void acquistoCasaHotel(int numeroAcquisti);
     int getNCase();
     boolean isHotelAcquistabile();
     int caseAcquistabili();
+
 
 }
