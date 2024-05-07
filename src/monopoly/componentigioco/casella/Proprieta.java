@@ -171,16 +171,16 @@ public class Proprieta extends Casella implements CaseHotel {
 
     private String infoCasellaPrezziEdifici() { // non ci sta CHF, come possiamo ridurre la lunghezza di questa riga?
         StringBuilder info = new StringBuilder();
-        info.append("\uD83C\uDFE0").append(this.prezzoCasa).append("CHF");
-        info.append("\uD83C\uDFE8").append(this.prezzoHotel).append("CHF");
+        info.append("⌂").append(this.prezzoCasa).append("CHF");
+        info.append("۩").append(this.prezzoHotel).append("CHF");
 
         return info.toString();
     }
 
     private String infoCasellaNumeroEdifici() {
         StringBuilder info = new StringBuilder();
-        if (this.nCase>0) info.append("\uD83C\uDFE0".repeat(Math.max(0, this.nCase)));
-        if (this.hotel)info.append("\uD83C\uDFE8");
+        if (this.nCase>0) info.append("⌂".repeat(Math.max(0, this.nCase)));
+        if (this.hotel)info.append("۩");
         return info.toString();
     }
 

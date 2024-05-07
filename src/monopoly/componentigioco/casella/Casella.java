@@ -93,15 +93,9 @@ public abstract class Casella implements CasellaInterface {
                 String secondaRiga = infoCasella();
                 dettagli.append(secondaRiga).append(spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - secondaRiga.length())));
                 break;
-            case 3:
+            case 3, 4:
                 StringBuilder terzaRiga = new StringBuilder();
-
                 dettagli.append(terzaRiga).append(spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - terzaRiga.length())));
-                break;
-            case 4:
-                StringBuilder quartaRiga = new StringBuilder();
-
-                dettagli.append(quartaRiga).append(spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - quartaRiga.length())));
                 break;
             case 5: // proviamo a dividere i giocatori in prigione
                 StringBuilder quintaRiga = new StringBuilder();
@@ -114,7 +108,6 @@ public abstract class Casella implements CasellaInterface {
                     if (!(giocatore.isBlank()))
                         quintaRiga.append(giocatore).append(Costanti.COLORE_SFONDO).append(" ");
                 }
-
                 dettagli.append(quintaRiga).append(spazio.repeat((Costanti.LARGHEZZA_CASELLA - 2) - spaziDaFare));
                 dettagli.append(getColore());
                 break;
