@@ -15,4 +15,6 @@ public class CostantiCaselle {
     public static final String TRATTINO = "-";
     public static final String RIGHETTE=TRATTINO.repeat((Costanti.LARGHEZZA_CASELLA));
     public static final int MAX_HOTEL=1;
+    public static final char CHAR_HOTEL='⎕';
+    public static final String CHAR_CASA="⌂";
 }
