@@ -81,36 +81,46 @@ public class Proprieta extends Casella implements CaseHotel {
         return  acquistoTerreno;
 
     }
-    public void acquistoCasaHotel(int numeroAcquisti) {
-
+    public boolean acquistoCasaHotel(int numeroAcquisti) {
+        boolean acquistoAvvenuto=false;
         if (isProprietario() && (!this.hotel)) {
             if ((this.nCase<CostantiCaselle.MAX_CASE)) {
-                for (int i = 0; i <numeroAcquisti ; i++) {
-                    addCasa();
-                    
+
+                for (int i = 0; i <numeroAcquisti ; i++) { // da migliorare
+                    if (!acquistoAvvenuto){
+                        acquistoAvvenuto=addCasa();
+                    }else {
+                        addCasa();
+                    }
+
                 }
             } else if(acquistareHotel(numeroAcquisti)){
-                addHotel();
+                acquistoAvvenuto=addHotel();
             }
 
         }
+        return acquistoAvvenuto;
     }
     private boolean acquistareHotel(int numeroAcquisti){
-        return ((numeroAcquisti==CostantiCaselle.MAX_HOTEL) && (this.nCase>=CostantiCaselle.MAX_CASE));
+        return ((numeroAcquisti<=CostantiCaselle.MAX_HOTEL) && (this.nCase>=CostantiCaselle.MAX_CASE));
     }
-    private void addHotel(){
-        if (controlloAcquistoEffettuato(this.proprietario,this.prezzoHotel)){
+    private boolean addHotel(){
+        boolean acquistoAvvenuto=controlloAcquistoEffettuato(this.proprietario,this.prezzoHotel);
+        if (acquistoAvvenuto){
             this.nCase=0;
             this.hotel=true;
 
         }
+        return acquistoAvvenuto;
 
     }
-    private void addCasa(){
-        if (controlloAcquistoEffettuato(this.proprietario,this.prezzoCasa)){
+    private boolean addCasa(){
+        boolean acquistoAvvenuto=controlloAcquistoEffettuato(this.proprietario,this.prezzoCasa);
+        if (acquistoAvvenuto){
             this.nCase++;
 
         }
+        return acquistoAvvenuto;
     }
 
     private boolean controlloAcquistoEffettuato(Giocatore proprietario,int prezzo){

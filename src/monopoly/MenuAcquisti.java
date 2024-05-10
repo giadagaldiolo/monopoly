@@ -51,6 +51,7 @@ public class MenuAcquisti implements MenuAcquistiInterfaccia{
         }
 
     }
+    @Override
     public boolean pagamentoGiaEffettuato(){
         return this.giaPagato ;
     }

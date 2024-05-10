@@ -13,5 +13,6 @@ public interface MenuAcquistiInterfaccia extends MenuInterfaccia {
     default boolean isGiocatoreAndTerreno(Giocatore giocatore,Acquistabile terreno){
         return isTerreno(terreno) && isGiocatore(giocatore);
     }
+    boolean pagamentoGiaEffettuato();
 
 }

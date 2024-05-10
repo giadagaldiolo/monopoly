@@ -1,9 +1,12 @@
 package monopoly.componentigioco.giocatore;
 
 import monopoly.MenuAcquisti;
+import monopoly.MenuAcquistiInterfaccia;
+import monopoly.MenuAcquistoMiglioramenti;
 import monopoly.componentigioco.Banca;
 import monopoly.componentigioco.Tabellone;
 import monopoly.componentigioco.casella.Acquistabile;
+import monopoly.componentigioco.casella.CaseHotel;
 import monopoly.componentigioco.casella.Casella;
 import monopoly.componentigioco.casella.NomiCaselle;
 import monopoly.componentigioco.giocatore.funzionalita.MovimentoGiocatore;
@@ -16,7 +19,8 @@ import monopoly.utilita.Colori;
  */
 
 public class Giocatore  implements MovimentoGiocatoreSupporto  {
-    private final MenuAcquisti menuAcquisti= new MenuAcquisti();
+    private final MenuAcquistiInterfaccia menuAcquisti[]= {new MenuAcquisti(),new MenuAcquistoMiglioramenti()};
+
     /**
      * Contatore dei giocatori in Gioco.
      */
@@ -321,10 +325,21 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
         Casella currentCasella=tabellone.getCasella(getY(),getX());
         boolean risposta=false;
         if (currentCasella instanceof Acquistabile){
-            this.menuAcquisti.menu(this,(Acquistabile) currentCasella);
-            risposta=this.menuAcquisti.pagamentoGiaEffettuato();
+            this.menuAcquisti[0].menu(this,(Acquistabile) currentCasella);
+            risposta=((this.menuAcquisti[0]).pagamentoGiaEffettuato());
         }
         return risposta;
+    }
+    public boolean acquistoCaseHotel(Tabellone tabellone){
+        Casella currentCasella=tabellone.getCasella(getY(),getX());
+        boolean risposta=false;
+        if (currentCasella instanceof CaseHotel){
+            this.menuAcquisti[1].menu(this, (Acquistabile) currentCasella);
+            risposta=true;
+
+        }
+        return risposta;
+
     }
 
     @Override

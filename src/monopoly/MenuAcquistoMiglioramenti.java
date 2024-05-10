@@ -7,6 +7,7 @@ public class MenuAcquistoMiglioramenti implements MenuMiglioramentiTerreni {
     private Giocatore giocatoreCorrente;
     private CaseHotel proprieta;
     private int opzioniMenu;
+    private boolean acquistoEfettuato=false;
 
 
     @Override
@@ -20,8 +21,9 @@ public class MenuAcquistoMiglioramenti implements MenuMiglioramentiTerreni {
                 scelta = ScannerUtils.readIntegerInRange(1, this.opzioniMenu);
                 if (scelta >= this.opzioniMenu) {
                     System.out.println("Nessun Acquisto effettuato");
+                    acquistoEfettuato=false;
                 }else {
-                    this.proprieta.acquistoCasaHotel(scelta);
+                    acquistoEfettuato=this.proprieta.acquistoCasaHotel(scelta);
                 }
 
             }
@@ -74,6 +76,12 @@ public class MenuAcquistoMiglioramenti implements MenuMiglioramentiTerreni {
         this.giocatoreCorrente=null;
         this.proprieta=null;
         this.opzioniMenu=0;
+        this.acquistoEfettuato=false;
 
+    }
+
+    @Override
+    public boolean pagamentoGiaEffettuato() {
+        return this.acquistoEfettuato;
     }
 }
