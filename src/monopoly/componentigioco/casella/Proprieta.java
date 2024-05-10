@@ -14,11 +14,34 @@ public class Proprieta extends Casella implements CaseHotel {
     private int prezzoTerreno;
     private Giocatore proprietario=null;
     private PrintCasellaProprieta print= new PrintCasellaProprieta();
+    private int nArrayGiocatore;
+    private int nCaselleCategoria;
 
     public Proprieta(int y, int x) {
         super();
+        this.nCaselleCategoria=setNArrayGiocatore();
         setCoordinate(new Coordinate(y,x));
     }
+
+    public int getNCaselleCategoria() {
+        return nCaselleCategoria;
+    }
+
+    private int setNArrayGiocatore(){
+        int max=0;
+        if (NomiHelper.getFakeCaselle()){
+            this.nArrayGiocatore=CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA;
+
+        }else {
+            this.nArrayGiocatore=NomiHelper.nArrayUltimoColore();
+            max=NomiHelper.getMaxCaselle();
+        }
+        return max;
+    }
+    public int getNumeroArrayGiocatore(){
+        return this.nArrayGiocatore;
+    }
+
 
     @Override
     public String dettagliCasella(int d) {
@@ -138,8 +161,6 @@ public class Proprieta extends Casella implements CaseHotel {
     public int getPrezzoTerreno() {
         return prezzoTerreno;
     }
-
-
 
     @Override
     public boolean isHotelAcquistabile() {

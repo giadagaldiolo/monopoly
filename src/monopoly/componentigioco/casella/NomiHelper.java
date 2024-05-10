@@ -17,6 +17,7 @@ public abstract class  NomiHelper {
     private static int ultimoColore=caselleNotRandom;
 
     private static NomiCaselle [] nomiCaselle = NomiCaselle.values(); // contiene il valori del enum NomiCaselle
+    private static boolean fakeCaselle=false;
 
 /**
  * Mischia l'array {@link #nomiCaselle} dove serve.<p>
@@ -35,6 +36,16 @@ public abstract class  NomiHelper {
             nomiCaselle[numeroRandom]=nomiCaselle[i];
             nomiCaselle[i]=tmp;
         }
+
+    }
+    public static int nArrayUltimoColore(){
+        NomiCaselle categoriaCasella =nomiCaselle[ultimoColore];
+        return categoriaCasella.getPosizioneArrayCaselleGiocatore();
+
+    }
+    public static int getMaxCaselle(){
+        NomiCaselle categoriaCasella =nomiCaselle[ultimoColore];
+        return categoriaCasella.getCaselleUguali();
 
     }
 
@@ -66,8 +77,12 @@ public abstract class  NomiHelper {
      * @return String[] contenete il nome {@code ????}  e il colore corrispondente alla prima categoria del enum {@link NomiCaselle}.
      */
     private static String[] casellaSconosciuta(){
+        fakeCaselle=true;
         return  new String[]{"????", nomiCaselle[0].getColore()};
 
+    }
+    static boolean getFakeCaselle(){
+        return fakeCaselle;
     }
 
     /**

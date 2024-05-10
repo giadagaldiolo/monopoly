@@ -30,7 +30,7 @@ public enum NomiCaselle {
     private String [] nomi;
 
     private final String colore;
-
+    private final int caselleUguali;
     private final int posizioneArrayCaselleGiocatore;
     private static int ultimaPosizioneArray;
 
@@ -58,11 +58,16 @@ public enum NomiCaselle {
      */
     NomiCaselle(String [] nomi ,int colore){
         this.nomi=nomi;
+        this.caselleUguali= nomi.length;
         this.colore= "\u001B[1;38;5;"+colore+"m"+Costanti.COLORE_SFONDO ; // bold;background/coloreScritta;? ; colore
         if (colore!= CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA) this.posizioneArrayCaselleGiocatore=NomiCaselle.calcoloUltimaPosizione();
         else this.posizioneArrayCaselleGiocatore=CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA;
 
 
+    }
+
+    public int getCaselleUguali() {
+        return caselleUguali;
     }
 
     /**

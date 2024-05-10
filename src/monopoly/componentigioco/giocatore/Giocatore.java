@@ -5,10 +5,7 @@ import monopoly.MenuAcquistiInterfaccia;
 import monopoly.MenuAcquistoMiglioramenti;
 import monopoly.componentigioco.Banca;
 import monopoly.componentigioco.Tabellone;
-import monopoly.componentigioco.casella.Acquistabile;
-import monopoly.componentigioco.casella.CaseHotel;
-import monopoly.componentigioco.casella.Casella;
-import monopoly.componentigioco.casella.NomiCaselle;
+import monopoly.componentigioco.casella.*;
 import monopoly.componentigioco.giocatore.funzionalita.MovimentoGiocatore;
 import monopoly.componentigioco.giocatore.funzionalita.MovimentoGiocatoreSupporto;
 import monopoly.utilita.Costanti;
@@ -343,19 +340,54 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
         if (currentCasella instanceof Acquistabile) {
                 this.menuAcquisti[0].menu(this, (Acquistabile) currentCasella);
                 risposta = ((this.menuAcquisti[0]).pagamentoGiaEffettuato());
+                if (risposta) aggiungiTerreno(tabellone);
         }
         return risposta;
     }
-    public boolean acquistoCaseHotel(Tabellone tabellone){
-        Casella currentCasella=casellaCorrente(tabellone);
-        boolean risposta=false;
-        if (currentCasella instanceof CaseHotel){
-            this.menuAcquisti[1].menu(this, (Acquistabile) currentCasella);
-            risposta=menuAcquisti[1].pagamentoGiaEffettuato();
+
+    private void aggiungiTerreno(Tabellone tabellone){
+        Casella casellaAcquistata= casellaCorrente(tabellone);
+        if (casellaAcquistata instanceof Proprieta proprieta){
+            int index =proprieta.getNumeroArrayGiocatore();
+            if (index<=NomiCaselle.getUltimaPosizione()){
+                this.nCaselleAcquistate[index]++;
+            }
+
+
 
         }
+
+    }
+    public boolean acquistoCaseHotel(Tabellone tabellone){
+        boolean risposta=false;
+        if (isTabellone(tabellone) && controlloCaseAcquistate(tabellone)){
+          Casella currentCasella=casellaCorrente(tabellone);
+
+          if (currentCasella instanceof CaseHotel){
+              this.menuAcquisti[1].menu(this, (Acquistabile) currentCasella);
+              risposta=menuAcquisti[1].pagamentoGiaEffettuato();
+
+          }
+
+
+       }
         return risposta;
 
+
+    }
+
+    private boolean controlloCaseAcquistate(Tabellone tabellone){
+        boolean risposta=false;
+        if (isTabellone(tabellone)){
+            Casella casellaCorrente=casellaCorrente(tabellone);
+            if (casellaCorrente instanceof Proprieta proprieta ){
+                if (proprieta.getNumeroArrayGiocatore()==CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA){
+                    return true;
+                }
+                risposta=this.nCaselleAcquistate[proprieta.getNumeroArrayGiocatore()]>=proprieta.getNCaselleCategoria();
+            }
+        }
+        return risposta;
     }
 
 
