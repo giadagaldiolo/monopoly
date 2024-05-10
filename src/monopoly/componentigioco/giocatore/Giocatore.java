@@ -14,6 +14,8 @@ import monopoly.componentigioco.giocatore.funzionalita.MovimentoGiocatoreSupport
 import monopoly.utilita.Costanti;
 import monopoly.utilita.Colori;
 
+
+
 /**
  * <i>Classe che gestisce le funzionalità del giocatore</i>
  */
@@ -321,26 +323,41 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
         }
 
     }
+
+    private Casella casellaCorrente(Tabellone tabellone){
+        Casella casella=null;
+        if (isTabellone(tabellone)){
+            casella= tabellone.getCasella(getY(),getX());
+
+        }
+        return casella;
+
+    }
+
+
+
+
     private boolean acquistoTerreno(Tabellone tabellone){
-        Casella currentCasella=tabellone.getCasella(getY(),getX());
+        Casella currentCasella=casellaCorrente(tabellone);
         boolean risposta=false;
-        if (currentCasella instanceof Acquistabile){
-            this.menuAcquisti[0].menu(this,(Acquistabile) currentCasella);
-            risposta=((this.menuAcquisti[0]).pagamentoGiaEffettuato());
+        if (currentCasella instanceof Acquistabile) {
+                this.menuAcquisti[0].menu(this, (Acquistabile) currentCasella);
+                risposta = ((this.menuAcquisti[0]).pagamentoGiaEffettuato());
         }
         return risposta;
     }
     public boolean acquistoCaseHotel(Tabellone tabellone){
-        Casella currentCasella=tabellone.getCasella(getY(),getX());
+        Casella currentCasella=casellaCorrente(tabellone);
         boolean risposta=false;
         if (currentCasella instanceof CaseHotel){
             this.menuAcquisti[1].menu(this, (Acquistabile) currentCasella);
-            risposta=true;
+            risposta=menuAcquisti[1].pagamentoGiaEffettuato();
 
         }
         return risposta;
 
     }
+
 
     @Override
     public void spostaGiocatoreInPrigione() {
@@ -395,6 +412,17 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
             this.imprigionato=false;
         }
         return uscita;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Giocatore giocatore = (Giocatore) o;
+        if ( (giocatore.nome == null) || (giocatore.simbolo == null) || (giocatore.colore == null)) {
+            return false;
+        }
+        return this.simboloChar == giocatore.simboloChar && this.nome.equals(giocatore.nome) && this.colore.equals(giocatore.colore);
     }
 
 

@@ -39,9 +39,10 @@ public class MenuAcquistoMiglioramenti implements MenuMiglioramentiTerreni {
     @Override
     public String toString(){
         StringBuilder stringa=new StringBuilder();
-        System.out.println("MENU ACQUISTO MIGLIORAMENTI PER IL TERRENO");
+
         int caseAcquistabili= this.proprieta.caseAcquistabili();
         if (caseAcquistabili>0) {
+            System.out.println("MENU ACQUISTO MIGLIORAMENTI PER IL TERRENO");
             this.opzioniMenu=caseAcquistabili+1;
             stringa.append("Case acquistabili : NUMERO MASSIMO %d \n".formatted(caseAcquistabili));
             stringa.append("Inserire la quantità di case da acquistare o premere %d per non compare niente\n".formatted(this.opzioniMenu));
@@ -60,13 +61,17 @@ public class MenuAcquistoMiglioramenti implements MenuMiglioramentiTerreni {
 
     @Override
     public void menu(Giocatore currentGiocatore, CaseHotel terreno) {
+        resetProprieta();
         if (isTerreno(terreno)){
-            this.giocatoreCorrente = terreno.getProprietario();
-            this.proprieta=terreno;
-            menu(currentGiocatore);
+           if (terreno.getProprietario().equals(currentGiocatore)){
+               this.giocatoreCorrente = terreno.getProprietario();
+               this.proprieta=terreno;
+               menu(this.giocatoreCorrente);
+
+           }
 
         }
-        resetProprieta();
+
 
 
     }

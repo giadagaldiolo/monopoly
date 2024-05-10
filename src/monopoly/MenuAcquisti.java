@@ -12,12 +12,13 @@ public class MenuAcquisti implements MenuAcquistiInterfaccia{
     private boolean giaPagato=false;
 
     public void menu(Giocatore currentGiocatore,Acquistabile terreno) {
+        resetProprieta();
         if (isGiocatoreAndTerreno(currentGiocatore, terreno)){
             this.terreno=terreno;
             if (this.terreno.getProprietario()==null) menu(currentGiocatore);
 
         }
-        resetProprieta();
+
 
 
     }
