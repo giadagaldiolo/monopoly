@@ -384,7 +384,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
                 if (proprieta.getNumeroArrayGiocatore()==CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA){
                     return true;
                 }
-                risposta=this.nCaselleAcquistate[proprieta.getNumeroArrayGiocatore()]>=proprieta.getNCaselleCategoria();
+                risposta=this.nCaselleAcquistate[proprieta.getNumeroArrayGiocatore()]==proprieta.getNCaselleCategoria();
             }
         }
         return risposta;
