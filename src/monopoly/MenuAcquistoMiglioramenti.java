@@ -41,15 +41,16 @@ public class MenuAcquistoMiglioramenti implements MenuMiglioramentiTerreni {
         StringBuilder stringa=new StringBuilder();
 
         int caseAcquistabili= this.proprieta.caseAcquistabili();
+        System.out.println("MENU ACQUISTO MIGLIORAMENTI PER IL TERRENO");
         if (caseAcquistabili>0) {
-            System.out.println("MENU ACQUISTO MIGLIORAMENTI PER IL TERRENO");
+
             this.opzioniMenu=caseAcquistabili+1;
             stringa.append("Case acquistabili : NUMERO MASSIMO %d \n".formatted(caseAcquistabili));
             stringa.append("Inserire la quantità di case da acquistare o premere %d per non compare niente\n".formatted(this.opzioniMenu));
 
         } else if (this.proprieta.isHotelAcquistabile()){
             this.opzioniMenu=2;
-            stringa.append("HOTEL ACQUISTABILE");
+            stringa.append("HOTEL ACQUISTABILE \n");
             stringa.append("1 per acquistare \n");
             stringa.append("2 per non acquistare \n");
 
