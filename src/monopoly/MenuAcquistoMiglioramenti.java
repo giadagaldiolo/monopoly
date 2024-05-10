@@ -63,7 +63,7 @@ public class MenuAcquistoMiglioramenti implements MenuMiglioramentiTerreni {
     public void menu(Giocatore currentGiocatore, CaseHotel terreno) {
         resetProprieta();
         if (isTerreno(terreno)){
-           if (terreno.getProprietario().equals(currentGiocatore)){
+           if (currentGiocatore.equals(terreno.getProprietario())){
                this.giocatoreCorrente = terreno.getProprietario();
                this.proprieta=terreno;
                menu(this.giocatoreCorrente);
