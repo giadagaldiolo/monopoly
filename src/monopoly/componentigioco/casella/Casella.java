@@ -26,9 +26,7 @@ public abstract class Casella implements CasellaInterface {
         svuotaCasella();
         setNomeColoreDefault();
         setPedaggioDefault();
-
     }
-
 
     protected void setCoordinate(Coordinate coordinate) {
         this.coordinate=coordinate;

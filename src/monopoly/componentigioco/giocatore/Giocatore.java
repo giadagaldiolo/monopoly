@@ -17,7 +17,7 @@ import monopoly.utilita.Colori;
  * <i>Classe che gestisce le funzionalità del giocatore</i>
  */
 
-public class Giocatore implements MovimentoGiocatoreSupporto  {
+public class Giocatore  implements MovimentoGiocatoreSupporto  {
     private final MenuAcquistiInterfaccia menuAcquisti[]= {new MenuAcquisti(),new MenuAcquistoMiglioramenti()};
 
     /**
@@ -270,30 +270,12 @@ public class Giocatore implements MovimentoGiocatoreSupporto  {
      */
     private void pagamentoPedaggio(Tabellone tabellone,int nGiocatore){
         if (isTabellone(tabellone) && !this.imprigionato) {
-                Banca.addImporto(calcoloSoldiBanca(importo));
-                addSoldi(importo);
-                controlloSoldi(tabellone, nGiocatore);
+            int importo = tabellone.getImporto(getY(), getX(),this.soldi);
+            Banca.addImporto(calcoloSoldiBanca(importo));
+            addSoldi(importo);
+            controlloSoldi(tabellone,nGiocatore);
+
         }
-    }
-
-
-    public void pagamento(Tabellone tabellone, Giocatore numeroGiocatoreCorrente){
-        int importo = tabellone.getImporto(getY(), getX(), numeroGiocatoreCorrente.getSoldi());
-        Casella casella = tabellone.getCasella(getY(), getX());
-
-        if (casella instanceof Proprieta) {
-            Proprieta proprieta = (Proprieta) casella;
-            int nCase = proprieta.getNCase;
-        }
-       if(nCase != 1){
-           importo += (nCase*15);
-       }else{
-           importo += (nCase * 100);
-        }
-
-       numeroGiocatoreCorrente.soldi-=importo;
-       proprieta.proprietario.soldi+=importo;
-
     }
 
     /**
@@ -474,5 +456,6 @@ public class Giocatore implements MovimentoGiocatoreSupporto  {
         }
         return this.simboloChar == giocatore.simboloChar && this.nome.equals(giocatore.nome) && this.colore.equals(giocatore.colore);
     }
+
 
 }
