@@ -182,10 +182,10 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
      * <p>Metodo che si occupa di controllare quando un giocatore va in bancarotta.</p>
 
      */
-    private void controlloSoldi(Casella casella,int nGiocatore){
+    private void controlloSoldi(Casella casella,int nGiocatore,Tabellone tabellone){
         if(this.soldi <= 0){
             System.out.println("Il giocatore "+ nome +" ha perso" );
-            cancellaGiocatore(casella,nGiocatore);
+            cancellaGiocatore(casella,nGiocatore,tabellone);
         }
     }
 
@@ -195,14 +195,33 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
 
      * @param nGiocatore indica la posizione del giocatore nel array {@link monopoly.Gioco#giocatori}
      */
-    private void cancellaGiocatore(Casella casella,int nGiocatore){
+    private void cancellaGiocatore(Casella casella,int nGiocatore,Tabellone tabellone){
         this.simbolo="";
         this.simboloChar=' ';
         nGiocatoriInGioco--;
         spostaSimbolo(this.simbolo, casella, nGiocatore);
+        resettaCaselleGiocatore(tabellone);
+
 
 
     }
+    private void resettaCaselleGiocatore(Tabellone tabellone){
+        svuotaArrayCaselle();
+        Casella[][] caselle = tabellone.getCaselle();
+        for (Casella[] righe : caselle) {
+            for (Casella casella : righe) {
+                if (casella instanceof Acquistabile acquistabile){
+                    if (acquistabile.getProprietario().equals(this)){
+                        acquistabile.resetAcquisti();
+                    }
+                }
+
+            }
+
+        }
+
+    }
+
 
     /**
      *
@@ -273,7 +292,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
             int importo = casella.getPedaggio();
             Banca.addImporto(calcoloSoldiBanca(importo));
             addSoldi(importo);
-            controlloSoldi(casella,nGiocatore);
+
 
         }
     }
@@ -281,7 +300,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
     public void pagamentoAffitto(Giocatore proprietario,int importo,Casella casella,int nGiocatore){
         proprietario.addSoldi(calcoloSoldiBanca(importo));
         addSoldi(importo);
-        controlloSoldi(casella,nGiocatore);
+        ;
 
     }
 
@@ -333,6 +352,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
         if (isTabellone(tabellone)){
             Casella casella = casellaCorrente(tabellone);
             casella.azioneCasella(this, nGiocatore);
+            controlloSoldi(casella,nGiocatore,tabellone);
         }
 
 
@@ -441,7 +461,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
         if (tentativiPerPrigione <= 0) {
             Banca.addImporto(Costanti.IMPORTO_PER_USCIRE_PRIGIONE);
             addSoldi(-Costanti.IMPORTO_PER_USCIRE_PRIGIONE);
-            controlloSoldi(tabellone.getCasella(getY(),getX()),numeroGiocatoreCorrente);
+            controlloSoldi(tabellone.getCasella(getY(),getX()),numeroGiocatoreCorrente,tabellone);
             uscita=true;
             this.imprigionato=false;
         }

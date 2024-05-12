@@ -112,38 +112,9 @@ public class Tabellone {
         caselle[i][j].aggiungiCarattere(simbolo, giocatore);
     }
 
-    /**
-     *
-     * @param i posizione y giocatore
-     * @param j posizione x giocatore
-     * @return {@code int} importo della casella corrispondente alle coordinate.
-     */
-    private int getImporto(int i, int j) {
-        return caselle[i][j].getPedaggio();
-    }
 
-    /**
-     * <p>Nel caso delle caselle {@link TassaPatrimoniale} il pedaggio deve essere settato prima di poter essere utilizzato.</p>
-     * <p>Qui entra in gioco questo metodo che si occupa di richiamare il metodo {@link TassaPatrimoniale#setPedaggio(int soldiGiocatore)}</p>
-     * <p>Per poi fare un normale {@link #getImporto(int i, int j)}</p>
-     * @param i posizione y giocatore
-     * @param j posizione x giocatore
-     * @param soldiGiocatore soldi giocatore peri il calcolo sulla percentuale.
-     * @return {@code int } importo da pagare
-     */
-    public int getImporto(int i, int j, int soldiGiocatore ){
-        if (isTassaPatrimoniale(i,j)) caselle[i][j].setPedaggio(soldiGiocatore);
-        return getImporto(i,j);
-    }
-
-    /**
-     *
-     * @param i posizione y della casella
-     * @param j posizione x della casella
-     * @return {@code True} se una casella è compatibile con {@link TassaPatrimoniale}
-     */
-    private boolean isTassaPatrimoniale(int i, int j) {
-        return caselle[i][j] instanceof TassaPatrimoniale;
+    public Casella[][] getCaselle() {
+        return caselle;
     }
 
     public boolean isVaiInPrigione(int i, int j) {
