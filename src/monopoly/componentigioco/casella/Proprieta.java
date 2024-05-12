@@ -64,10 +64,11 @@ public class Proprieta extends Casella implements CaseHotel {
 
     @Override
     public void setPedaggioDefault() {
-        super.setPedaggioDefault();
-        setPrezzi();
-
+            super.setPedaggioDefault();
+            setPrezzi();
+        }
     }
+
     private void setProprietario(Giocatore proprietario) {
         this.proprietario=proprietario;
     }
@@ -87,7 +88,6 @@ public class Proprieta extends Casella implements CaseHotel {
 
     }
     private Random creaSeedRandom(){
-
          return new Random();
     }
 
@@ -148,7 +148,6 @@ public class Proprieta extends Casella implements CaseHotel {
 
     private boolean controlloAcquistoEffettuato(Giocatore proprietario,int prezzo){
         return proprietario.compraMiglioramentiTerreno(prezzo);
-
     }
     private boolean isProprietario(){
         return this.proprietario!=null;
@@ -224,4 +223,8 @@ public class Proprieta extends Casella implements CaseHotel {
         }
 
     }
+
+    public String getProprietario(){return this.proprietario;}
+
+
 }
