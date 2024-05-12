@@ -2,6 +2,10 @@ package monopoly.componentigioco.casella;
 
 
 import monopoly.Coordinate;
+import monopoly.MenuAcquisti;
+import monopoly.MenuAcquistiInterfaccia;
+import monopoly.MenuAcquistoMiglioramenti;
+import monopoly.componentigioco.Tabellone;
 import monopoly.componentigioco.giocatore.Giocatore;
 
 import java.util.Random;
@@ -16,6 +20,7 @@ public class Proprieta extends Casella implements CaseHotel {
     private PrintCasellaProprieta print= new PrintCasellaProprieta();
     private int nArrayGiocatore;
     private int nCaselleCategoria;
+    private static final MenuAcquistiInterfaccia[] menuAcquisti = {new MenuAcquisti(),new MenuAcquistoMiglioramenti()};
 
     public Proprieta(int y, int x) {
         super();
@@ -53,6 +58,8 @@ public class Proprieta extends Casella implements CaseHotel {
         dettagli.append(CostantiCaselle.SPAZIO);
 
         return switch (d) {
+            case 2 ->
+                this.print.printRigaDue(this.proprietario,getPedaggio(),this.prezzoTerreno);
             case 3 ->
                     this.print.printRigaTre(this.proprietario, infoCasellaPrezziEdifici(), super.getPedaggio(), dettagli);
             case 4 ->
@@ -222,6 +229,64 @@ public class Proprieta extends Casella implements CaseHotel {
         }else {
             return 1;
         }
+
+    }
+    @Override
+    public void azioneCasella(Giocatore giocatorePagante,int nGiocatore){
+        if (this.proprietario==null){
+            if (!menuAcquistoTerreno(giocatorePagante)){
+                super.azioneCasella(giocatorePagante,nGiocatore);
+
+            }
+
+        }else if (!(this.proprietario.equals(giocatorePagante))){
+            giocatorePagante.pagamentoAffitto(this.proprietario,getPedaggio(),this, nGiocatore);
+        }
+
+
+    }
+
+    @Override
+    public int getPedaggio() {
+        int pedaggio=super.getPedaggio();;
+        if (this.proprietario!=null){
+            pedaggio-=calcoloAffitto();
+        }
+
+        return pedaggio;
+    }
+    private int calcoloAffitto(){
+        int affitto=0;
+        if (this.hotel){
+            affitto=CostantiCaselle.AUMENTO_PREZZO_HOTEL;
+
+        }else {
+            affitto=CostantiCaselle.AUMENTO_PREZZO_CASA*this.nCase;
+        }
+        return affitto;
+
+    }
+
+
+
+    private boolean menuAcquistoTerreno(Giocatore giocatorePagante){
+
+        boolean risposta=false;
+        menuAcquisti[0].menu(giocatorePagante, this);
+        risposta = ((menuAcquisti[0]).pagamentoGiaEffettuato());
+        if (risposta) aggiungiTerreno(giocatorePagante);
+
+        return risposta;
+    }
+    private void aggiungiTerreno(Giocatore giocatoreCorrente){
+
+            if (this.nArrayGiocatore<=NomiCaselle.getUltimaPosizione()){
+                giocatoreCorrente.aggiuntaTerreno(this.nArrayGiocatore);
+            }
+
+
+
+
 
     }
 }

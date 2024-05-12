@@ -1,12 +1,16 @@
 package monopoly.componentigioco.casella;
 
 import monopoly.Coordinate;
+import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.utilita.Costanti;
 
 public class Prigione extends Casella {
+
     public Prigione() {
         super();
         setCoordinate(new Coordinate(Costanti.RIGHE-1,0));
+
+
     }
 
     @Override
@@ -23,5 +27,10 @@ public class Prigione extends Casella {
     @Override
     public String infoCasella() {
         return "";
+    }
+
+    public  void spostaGiocatore(Giocatore giocatore, int nGiocatore){
+        giocatore.riempiCasella(this,nGiocatore);
+
     }
 }

@@ -16,7 +16,7 @@ public interface MovimentoGiocatoreSupporto {
 
     int getY();
 
-    void spostaGiocatoreInPrigione();
+    void spostaGiocatoreInPrigione(Casella casella,int nGiocatore);
 
     default boolean isTabellone(Tabellone tabellone){
         return tabellone != null;
@@ -28,12 +28,12 @@ public interface MovimentoGiocatoreSupporto {
     /**
      * Modifica una casella con il carattere in ingresso.
      * @param simbolo simboloGiocatore
-     * @param tabellone per modificare le caselle
+
      * @param giocatore indica la posizione del giocatore nel array {@link monopoly.Gioco#giocatori}.
      */
-    default void spostaSimbolo(String simbolo,Tabellone tabellone,int giocatore){
-        if (isTabellone(tabellone)) {
-            tabellone.modificaCasella(simbolo, getY(), getX(), giocatore);
+    default void spostaSimbolo(String simbolo,Casella casella,int giocatore){
+        if (isCasella(casella)) {
+            casella.aggiungiCarattere(simbolo, giocatore);
         }
     }
 

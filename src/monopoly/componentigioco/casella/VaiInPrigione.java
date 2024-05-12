@@ -1,13 +1,15 @@
 package monopoly.componentigioco.casella;
 
 import monopoly.Coordinate;
+import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.utilita.Costanti;
 
 public class VaiInPrigione extends Casella {
-
-    public VaiInPrigione() {
+    private Prigione prigione;
+    public VaiInPrigione(Prigione prigione) {
         super();
         setCoordinate(new Coordinate(0,Costanti.CASELLE_PER_RIGA-1));
+        this.prigione=prigione;
 
     }
 
@@ -25,5 +27,10 @@ public class VaiInPrigione extends Casella {
     @Override
     public String infoCasella() {
         return "";
+    }
+    @Override
+    public void azioneCasella(Giocatore giocatoreCorrente, int nGiocatore) {
+        giocatoreCorrente.spostaGiocatoreInPrigione(this, nGiocatore);
+        this.prigione.spostaGiocatore(giocatoreCorrente,nGiocatore);
     }
 }

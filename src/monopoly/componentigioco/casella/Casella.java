@@ -2,6 +2,9 @@ package monopoly.componentigioco.casella;
 
 import monopoly.Coordinate;
 
+import monopoly.componentigioco.Banca;
+import monopoly.componentigioco.Tabellone;
+import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.utilita.Costanti;
 
 import java.util.Random;
@@ -91,7 +94,7 @@ public abstract class Casella implements CasellaInterface {
                 break;
             case 2:
                 String secondaRiga = infoCasella();
-                dettagli.append(secondaRiga).append(spazio.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - secondaRiga.length())));
+                dettagli.append(secondaRiga).append(CostantiCaselle.SPAZIO.repeat(((Costanti.LARGHEZZA_CASELLA - 2) - secondaRiga.length())));
                 break;
             case 3, 4:
                 StringBuilder terzaRiga = new StringBuilder();
@@ -141,18 +144,21 @@ public abstract class Casella implements CasellaInterface {
     @Override
     public String infoCasella() {
         StringBuilder info = new StringBuilder();
-        if (this instanceof Proprieta proprieta) {
-            if (proprieta.getProprietario() != null) {
-                info.append("Paga ").append(Math.abs(this.pedaggio));
-                info.append(" a ").append(proprieta.getProprietario().getNome());
-            } else {
-                info.append("Prezzo di vendita: ").append(proprieta.getPrezzoTerreno());
-            }
-        } else {
-            info.append("Paga ").append(Math.abs(this.pedaggio));
-        }
+
+        info.append("Paga ").append(Math.abs(this.pedaggio));
+
         return info.toString();
     }
+
+    private void pagamento(Giocatore giocatorePagante,int nGiocatore){
+        giocatorePagante.pagamentoPedaggio(this,nGiocatore);
+    }
+
+    public void azioneCasella(Giocatore giocatoreCorrente,int nGiocatore){
+       pagamento(giocatoreCorrente,nGiocatore);
+    }
+
+
 
 
 

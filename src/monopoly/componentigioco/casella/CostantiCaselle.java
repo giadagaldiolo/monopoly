@@ -12,9 +12,9 @@ public class CostantiCaselle {
     public static final int COLORE_CASELLE_NON_PROPRIETA=233;
     public static final int MAX_CASE=4;
     public static final String SPAZIO = " ";
-    public static final String TRATTINO = "-";
-    public static final String RIGHETTE=TRATTINO.repeat((Costanti.LARGHEZZA_CASELLA));
     public static final int MAX_HOTEL=1;
     public static final char CHAR_HOTEL='⎕';
     public static final String CHAR_CASA="⌂";
+    public static final int AUMENTO_PREZZO_HOTEL=100;
+    public static final int AUMENTO_PREZZO_CASA=15;
 }

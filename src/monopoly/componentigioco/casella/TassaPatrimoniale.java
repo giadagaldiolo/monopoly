@@ -1,5 +1,6 @@
 package monopoly.componentigioco.casella;
 
+import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.utilita.Costanti;
 
 public class TassaPatrimoniale extends Tassa {
@@ -31,5 +32,10 @@ public class TassaPatrimoniale extends Tassa {
 
     }
 
+    @Override
+    public void azioneCasella(Giocatore giocatoreCorrente, int nGiocatore) {
+        setPedaggio(giocatoreCorrente.getSoldi());
+        super.azioneCasella(giocatoreCorrente, nGiocatore);
 
+    }
 }

@@ -11,6 +11,20 @@ public class PrintCasellaProprieta {
         riga.append("|");
         return riga.toString();
     }
+    public String printRigaDue(Giocatore proprietario,int affitto,int terreno){
+        StringBuilder secondaRiga = new StringBuilder();
+        secondaRiga.append(CostantiCaselle.SPAZIO).append(printRighetta());
+        if (proprietario != null) {
+            secondaRiga.append("Paga ").append(Math.abs(affitto));
+            secondaRiga.append(" a ").append(proprietario.getNome());
+        } else {
+            secondaRiga.append("Prezzo di vendita: ").append(terreno);
+        }
+        secondaRiga.append(CostantiCaselle.SPAZIO.repeat(((Costanti.LARGHEZZA_CASELLA ) - secondaRiga.length())));
+        secondaRiga.append(printRighetta()).append(CostantiCaselle.SPAZIO);
+        return secondaRiga.toString();
+
+    }
     public String printRigaTre(Giocatore proprietario, String infoEdificiPrezzi, int pedaggio,StringBuilder dettagli){
         StringBuilder terzaRiga = new StringBuilder();
         terzaRiga.append(printRighetta());

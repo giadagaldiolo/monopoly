@@ -83,7 +83,8 @@ public class Gioco {
                System.out.println(tabellone);
                System.out.println(dado[0]);
                System.out.println(dado[1]);
-               currentGiocatore.pagamento(tabellone, numeroGiocatoreCorrente);
+               currentGiocatore.pagamento(tabellone, numeroGiocatoreCorrente); //bug
+
                currentGiocatore.acquistoCaseHotel(tabellone);
                turnoSuccessivo();
            } else {

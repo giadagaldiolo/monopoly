@@ -1,6 +1,7 @@
 package monopoly.componentigioco.giocatore.funzionalita;
 
 import monopoly.Coordinate;
+import monopoly.componentigioco.casella.Casella;
 
 
 public class MovimentoGiocatore  implements MovimentoGiocatoreSupporto {
@@ -115,8 +116,10 @@ public class MovimentoGiocatore  implements MovimentoGiocatoreSupporto {
     }
 
 
-    public void spostaGiocatoreInPrigione() {
+    public void spostaGiocatoreInPrigione(Casella casella, int nGiocatore) {
+
         this.coordinate.setY(yMax);
         this.coordinate.setX(0);
     }
+
 }
