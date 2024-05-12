@@ -43,11 +43,7 @@ public abstract class  NomiHelper {
         return categoriaCasella.getPosizioneArrayCaselleGiocatore();
 
     }
-    public static int getMaxCaselle(){
-        NomiCaselle categoriaCasella =nomiCaselle[ultimoColore];
-        return categoriaCasella.getCaselleUguali();
 
-    }
 
 
 
@@ -102,6 +98,7 @@ public abstract class  NomiHelper {
         nomeColore[0]= nomi[numeroRandom(nomi.length)];
         categoriaCasella.removeName(nomeColore[0]);
         nomeColore[1]= categoriaCasella.getColore();
+
         return nomeColore;
 
     }

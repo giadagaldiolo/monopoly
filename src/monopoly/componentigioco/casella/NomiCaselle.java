@@ -30,9 +30,9 @@ public enum NomiCaselle {
     private String [] nomi;
 
     private final String colore;
-    private final int caselleUguali;
     private final int posizioneArrayCaselleGiocatore;
     private static int ultimaPosizioneArray;
+
 
     private static int calcoloUltimaPosizione(){
         NomiCaselle.ultimaPosizioneArray++;
@@ -58,7 +58,6 @@ public enum NomiCaselle {
      */
     NomiCaselle(String [] nomi ,int colore){
         this.nomi=nomi;
-        this.caselleUguali= nomi.length;
         this.colore= "\u001B[1;38;5;"+colore+"m"+Costanti.COLORE_SFONDO ; // bold;background/coloreScritta;? ; colore
         if (colore!= CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA) this.posizioneArrayCaselleGiocatore=NomiCaselle.calcoloUltimaPosizione();
         else this.posizioneArrayCaselleGiocatore=CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA;
@@ -66,9 +65,7 @@ public enum NomiCaselle {
 
     }
 
-    public int getCaselleUguali() {
-        return caselleUguali;
-    }
+
 
     /**
      * Semplice getter del array {@link #nomi} dell'istanza
@@ -78,6 +75,7 @@ public enum NomiCaselle {
         return nomi;
     }
 
+
     /**
      * <p> Un getter che contiene contiene il metodo {@link #removeName(String nomeTrovato)}.</p>
      * @param i Indice indicante il nome da prendere in considerazione nel array {@link #nomi}
@@ -85,7 +83,10 @@ public enum NomiCaselle {
      */
     public String getNome(int i){
         String nome=nomi[i];
+
+
         removeName(nome);
+
         return nome;
     }
 

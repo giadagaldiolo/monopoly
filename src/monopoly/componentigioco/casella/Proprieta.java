@@ -19,29 +19,34 @@ public class Proprieta extends Casella implements CaseHotel {
     private Giocatore proprietario=null;
     private PrintCasellaProprieta print= new PrintCasellaProprieta();
     private int nArrayGiocatore;
-    private int nCaselleCategoria;
+    private static int[] nCaselleCategoria=new int[NomiCaselle.getUltimaPosizione()];
     private static final MenuAcquistiInterfaccia[] menuAcquisti = {new MenuAcquisti(),new MenuAcquistoMiglioramenti()};
 
     public Proprieta(int y, int x) {
         super();
-        this.nCaselleCategoria=setNArrayGiocatore();
+        setNArrayGiocatore();
         setCoordinate(new Coordinate(y,x));
     }
 
     public int getNCaselleCategoria() {
-        return nCaselleCategoria;
+        if (this.nArrayGiocatore>=nCaselleCategoria.length){
+            return 0;
+
+        }
+        return Proprieta.nCaselleCategoria[this.nArrayGiocatore];
     }
 
-    private int setNArrayGiocatore(){
-        int max=0;
+    private void setNArrayGiocatore(){
+
         if (NomiHelper.getFakeCaselle()){
             this.nArrayGiocatore=CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA;
 
         }else {
             this.nArrayGiocatore=NomiHelper.nArrayUltimoColore();
-            max=NomiHelper.getMaxCaselle();
+            Proprieta.nCaselleCategoria[this.nArrayGiocatore]++;
+
         }
-        return max;
+
     }
     public int getNumeroArrayGiocatore(){
         return this.nArrayGiocatore;

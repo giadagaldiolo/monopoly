@@ -81,7 +81,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
     }
 
     private void svuotaArrayCaselle(){
-        this.nCaselleAcquistate=new int[NomiCaselle.getUltimaPosizione()];
+        this.nCaselleAcquistate=new int[NomiCaselle.getUltimaPosizione()]; //lenght 8
 
         for (int i = 0; i <nCaselleAcquistate.length ; i++) {
             this.nCaselleAcquistate[i]=0;
