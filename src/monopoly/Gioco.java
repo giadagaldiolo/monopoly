@@ -85,7 +85,6 @@ public class Gioco {
                System.out.println(dado[1]);
                currentGiocatore.pagamento(tabellone, numeroGiocatoreCorrente); //bug
 
-               currentGiocatore.acquistoCaseHotel(tabellone);
                turnoSuccessivo();
            } else {
                 // prova a uscire di prigione

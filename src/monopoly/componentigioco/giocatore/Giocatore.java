@@ -18,7 +18,7 @@ import monopoly.utilita.Colori;
  */
 
 public class Giocatore  implements MovimentoGiocatoreSupporto  {
-    private final MenuAcquistiInterfaccia menuAcquisti[]= {new MenuAcquisti(),new MenuAcquistoMiglioramenti()};
+
 
     /**
      * Contatore dei giocatori in Gioco.
@@ -191,9 +191,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
 
     /**
      * <p>Metodo che cancella il giocatore dal tabellone.</p>
-     * <p>Per adesso array {@link monopoly.Gioco#giocatori} rimane invariato</p>
 
-     * @param nGiocatore indica la posizione del giocatore nel array {@link monopoly.Gioco#giocatori}
      */
     private void cancellaGiocatore(Casella casella,int nGiocatore,Tabellone tabellone){
         this.simbolo="";
@@ -282,7 +280,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
     /**
      * Metodo che si occupa di gestire l'aggiornamento dei soldi.
 
-     * @param nGiocatore posizione giocatore in {@link monopoly.Gioco#giocatori}
      * @see Banca#addImporto(int)
      * @see #addSoldi(int) 
      * @see #calcoloSoldiBanca(int)
@@ -317,10 +314,10 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
     }
 
     /**
-     * <p>Metodo utilizzato {@link monopoly.Gioco#turno(Giocatore)} si occupa di aggiornare la posizione del giocatore </p>
+
      * @param passi numero ottenuto dai dadi.
 
-     * @param giocatore indica la posizione del giocatore nel array {@link monopoly.Gioco#giocatori}.
+
 
      * @see #spostamentoGiocatore(int) Metodo per cambiare le coordinate del giocatore
 
@@ -351,8 +348,10 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
     public void pagamento(Tabellone tabellone,int nGiocatore){
         if (isTabellone(tabellone)){
             Casella casella = casellaCorrente(tabellone);
-            casella.azioneCasella(this, nGiocatore);
-            controlloSoldi(casella,nGiocatore,tabellone);
+            if (isCasella(casella)) {
+                casella.azioneCasella(this, nGiocatore);
+                controlloSoldi(casella, nGiocatore, tabellone);
+            }
         }
 
 
@@ -376,23 +375,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
 
     }
 
-    public boolean acquistoCaseHotel(Tabellone tabellone){
-        boolean risposta=false;
-        if (isTabellone(tabellone) && controlloCaseAcquistate(tabellone)){
-          Casella currentCasella=casellaCorrente(tabellone);
 
-          if (currentCasella instanceof CaseHotel){
-              this.menuAcquisti[1].menu(this, (Acquistabile) currentCasella);
-              risposta=menuAcquisti[1].pagamentoGiaEffettuato();
-
-          }
-
-
-       }
-        return risposta;
-
-
-    }
 
     private boolean controlloCaseAcquistate(Tabellone tabellone){
         boolean risposta=false;
@@ -420,7 +403,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
     }
 
     /**
-     * Metodo utilizzato {@link monopoly.schermate.SchermataIniziale#controlloSimboli(char, Giocatore[])} per poter gestire l'inserimento giocatori.
+
      * @param giocatoreDaControllare {@code char} del giocatore da controllare
      * @return True se due giocatori hanno lo stesso simbolo.
      */

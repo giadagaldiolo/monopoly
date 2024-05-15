@@ -242,13 +242,21 @@ public class Proprieta extends Casella implements CaseHotel {
             if (!menuAcquistoTerreno(giocatorePagante)){
                 super.azioneCasella(giocatorePagante,nGiocatore);
 
-            }
+            }else azioneCasella(giocatorePagante,nGiocatore); // se si vuole far compare le case nello stesso turno
 
         }else if (!(this.proprietario.equals(giocatorePagante))){
             giocatorePagante.pagamentoAffitto(this.proprietario,getPedaggio(),this, nGiocatore);
+        }else {
+            acquistaHotelCase();
         }
 
 
+
+    }
+
+    private void acquistaHotelCase(){
+        Proprieta.menuAcquisti[1].menu(this.proprietario, this);
+        menuAcquisti[1].pagamentoGiaEffettuato();
     }
 
     @Override
