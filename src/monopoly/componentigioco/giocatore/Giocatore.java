@@ -1,8 +1,5 @@
 package monopoly.componentigioco.giocatore;
 
-import monopoly.MenuAcquisti;
-import monopoly.MenuAcquistiInterfaccia;
-import monopoly.MenuAcquistoMiglioramenti;
 import monopoly.componentigioco.Banca;
 import monopoly.componentigioco.Tabellone;
 import monopoly.componentigioco.casella.*;
