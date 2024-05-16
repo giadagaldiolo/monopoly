@@ -1,12 +1,16 @@
 package monopoly;
 
 import monopoly.componentigioco.Dado;
+import monopoly.componentigioco.carte.Carta;
 import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.componentigioco.Tabellone;
 import monopoly.schermate.Schermata;
 import monopoly.schermate.SchermataFinale;
 import monopoly.schermate.SchermataIniziale;
 import monopoly.utilita.ScannerUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Gioco {
@@ -16,6 +20,7 @@ public class Gioco {
     private int numeroGiocatoreCorrente = 0;
     private final MenuInterfaccia menuGioco= new MenuGioco(); // cosi non si possono usare altri metodi di menuGioco che non sono presenti nella interfaccia
     private Schermata schermataCorrente= new SchermataIniziale();
+
 
     public Gioco() {
 
@@ -32,6 +37,7 @@ public class Gioco {
     private void creaGioco(){
         creaTabellone();
         creaGiocatori();
+        Carta.creaCarte();
 
         creaDado();
     }
