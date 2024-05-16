@@ -16,7 +16,7 @@ public class LeggiFile {
 
         try (Scanner scanner = new Scanner(new FileInputStream(file))) {
             while (scanner.hasNextLine()) {
-                String[] tokens = scanner.nextLine().split(",");
+                String[] tokens = scanner.nextLine().split(";");
                 if (tokens.length != 3)
                     continue;
 
