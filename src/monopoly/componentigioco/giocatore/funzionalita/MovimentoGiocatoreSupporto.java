@@ -28,7 +28,7 @@ public interface MovimentoGiocatoreSupporto {
 
 
     default void cancellaSimbolo(String simbolo,Casella casella){
-        casella.togliCarattere(simbolo);
+        casella.togliCarattere();
     }
     default void aggiungiSimbolo(String simbolo,Casella casella){
         casella.aggiungiCarattere(simbolo);

@@ -276,7 +276,7 @@ public class Proprieta extends Casella implements CaseHotel {
 
     @Override
     public int getPedaggio() {
-        int pedaggio=super.getPedaggio();;
+        int pedaggio=super.getPedaggio();
         if (this.proprietario!=null){
             pedaggio-=calcoloAffitto();
         }

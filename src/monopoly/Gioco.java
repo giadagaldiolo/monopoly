@@ -17,7 +17,6 @@ import java.util.LinkedHashSet;
 public class Gioco {
     private Tabellone tabellone;
     private LinkedHashSet<Giocatore> giocatori=new LinkedHashSet<>();
-    private int numeroGiocatoreCorrente = 0;
     private final MenuInterfaccia menuGioco= new MenuGioco(); // cosi non si possono usare altri metodi di menuGioco che non sono presenti nella interfaccia
     private Schermata schermataCorrente= new SchermataIniziale();
 
@@ -49,7 +48,6 @@ public class Gioco {
 
         while (sizeGiocatori > 1) {
             Iterator<Giocatore> iteratorGiocatori = giocatori.iterator(); //per resettare il loop
-            this.numeroGiocatoreCorrente=0;
             while (iteratorGiocatori.hasNext()) { // parte dal primo elemento
                 Giocatore next = iteratorGiocatori.next();
                 menuTurno(next);
@@ -58,7 +56,6 @@ public class Gioco {
                     sizeGiocatori--;
                     if (sizeGiocatori==1) break;
                 }
-                this.numeroGiocatoreCorrente++;
 
             }
 

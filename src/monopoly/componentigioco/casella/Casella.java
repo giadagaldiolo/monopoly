@@ -43,7 +43,7 @@ public abstract class Casella implements CasellaInterface {
 
         giocatoriPresenti.addFirst(ch);
     }
-    public void togliCarattere(String ch){
+    public void togliCarattere(){
         giocatoriPresenti.removeLast();
     }
 
@@ -132,11 +132,8 @@ public abstract class Casella implements CasellaInterface {
     }
     @Override
     public String infoCasella() {
-        StringBuilder info = new StringBuilder();
 
-        info.append("Paga ").append(Math.abs(this.pedaggio));
-
-        return info.toString();
+        return "Paga " + Math.abs(this.pedaggio);
     }
 
     private void pagamento(Giocatore giocatorePagante){

@@ -5,7 +5,7 @@ import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.utilita.Costanti;
 
 public class VaiInPrigione extends Casella {
-    private Prigione prigione;
+    private final Prigione prigione;
     public VaiInPrigione(Prigione prigione) {
         super();
         setCoordinate(new Coordinate(0,Costanti.CASELLE_PER_RIGA-1));

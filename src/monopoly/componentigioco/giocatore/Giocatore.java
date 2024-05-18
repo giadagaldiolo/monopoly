@@ -318,7 +318,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
     }
 
     public void pulisciCasella(Casella casella ){
-        casella.togliCarattere(this.simbolo);
+        casella.togliCarattere();
 
     }
     public void riempiCasella(Casella casella){
