@@ -342,7 +342,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
     }
 
 
-    public void pagamento(Tabellone tabellone,int nGiocatore){
+    public void azioneCasella(Tabellone tabellone,int nGiocatore){
         if (isTabellone(tabellone)){
             Casella casella = casellaCorrente(tabellone);
             if (isCasella(casella)) {
@@ -432,21 +432,18 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
     public boolean isImprigionato() {
         return imprigionato;
     }
-
-    public boolean tryToEscape(int i, int i1, Tabellone tabellone, int numeroGiocatoreCorrente) {
-        tentativiPerPrigione--;
-        boolean uscita= i == i1;
-        if (uscita) System.out.println("Sei uscito dalla prigione");
-
-        if (tentativiPerPrigione <= 0) {
-            Banca.addImporto(Costanti.IMPORTO_PER_USCIRE_PRIGIONE);
-            addSoldi(-Costanti.IMPORTO_PER_USCIRE_PRIGIONE);
-            controlloSoldi(tabellone.getCasella(getY(),getX()),numeroGiocatoreCorrente,tabellone);
-            uscita=true;
-            this.imprigionato=false;
-        }
-        return uscita;
+    public void riduciTurniPrigione(){
+        this.tentativiPerPrigione--;
     }
+    public int getTentativiPerPrigione(){
+        return this.tentativiPerPrigione;
+    }
+
+    public void setImprigionato(boolean imprigionato) {
+        this.imprigionato = imprigionato;
+    }
+
+
 
     @Override
     public boolean equals(Object o) {

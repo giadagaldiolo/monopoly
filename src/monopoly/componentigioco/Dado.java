@@ -2,23 +2,73 @@ package monopoly.componentigioco;
 
 import monopoly.utilita.Costanti;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class Dado {
+    public static Dado[] dadi;
     private int ultimoLancio;
 
     public Dado(int ultimoLancio) {
         this.ultimoLancio = ultimoLancio;
     }
+    public static void printDadi(){
+        for (Dado dado : dadi) {
+            System.out.println(dado);
+        }
 
-    public int lancioDadi(){
+
+    }
+    public static boolean confrontaDadi(){
+        boolean uguali=true;
+        for (Dado dado : dadi) {
+            if (!(Dado.dadi[0].equals(dado))){
+                uguali=false;
+                break;
+            }
+
+        }
+        return uguali;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Dado dado = (Dado) o;
+        return this.ultimoLancio == dado.ultimoLancio;
+    }
+
+
+
+    public static int sommaDadi(){
+        int somma=0;
+        for (Dado dado : dadi) {
+            somma+=dado.ultimoLancio;
+        }
+        return somma;
+    }
+    public static void creaDadi(){
+
+            Dado.dadi=new Dado[Costanti.NUMERO_DADI];
+            for (int i = 0; i < Dado.dadi.length; i++) {
+                dadi[i]=new Dado(i);
+            }
+
+
+    }
+    public static void lancioDadi(){
+        for (Dado dado : dadi) {
+            dado.lancioDado();
+        }
+    }
+
+
+    private void lancioDado(){
         Random random = new Random();
-        return this.ultimoLancio = random.nextInt(Costanti.NUMERO_DADO_MIN,Costanti.NUMERO_DADO_MAX+1); // il secondo numero non è compreso
+        this.ultimoLancio = random.nextInt(Costanti.NUMERO_DADO_MIN,Costanti.NUMERO_DADO_MAX+1); // il secondo numero non è compreso
     }
 
-    public boolean controllo (Dado dado){
-        return (dado.ultimoLancio>0 && dado.ultimoLancio<7);
-    }
 
     public int getUltimoLancio() {
         return ultimoLancio;
@@ -81,7 +131,7 @@ public class Dado {
                                             
                     E' uscito 6
                     """);
-            default -> "";
+            default -> ""+this.ultimoLancio;
         };
     }
 }

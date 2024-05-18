@@ -1,6 +1,8 @@
 package monopoly.componentigioco.casella;
 
 import monopoly.Coordinate;
+import monopoly.componentigioco.Banca;
+import monopoly.componentigioco.Dado;
 import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.utilita.Costanti;
 
@@ -21,7 +23,7 @@ public class Prigione extends Casella {
 
     @Override
     public void setPedaggioDefault() {
-        super.setPedaggio(0);
+        super.setPedaggio(Costanti.IMPORTO_PER_USCIRE_PRIGIONE);
     }
 
     @Override
@@ -33,4 +35,26 @@ public class Prigione extends Casella {
         giocatore.riempiCasella(this,nGiocatore);
 
     }
+
+    @Override
+    public void azioneCasella(Giocatore giocatoreCorrente, int nGiocatore) {
+        if( super.isGiocatore(giocatoreCorrente) &&giocatoreCorrente.isImprigionato() ){
+            giocatoreCorrente.riduciTurniPrigione();
+            boolean uscita= Dado.confrontaDadi();
+            if (!uscita){
+                if (giocatoreCorrente.getTentativiPerPrigione() <= 0) {
+                    super.azioneCasella(giocatoreCorrente,nGiocatore);
+                }else{
+                    System.out.println("Turni per uscire dalla prigione "+giocatoreCorrente.getTentativiPerPrigione());
+                    return;
+                }
+            }
+            giocatoreCorrente.setImprigionato(false);
+            System.out.println("Sei uscito dalla prigione");
+
+        }
+
+
+    }
+
 }

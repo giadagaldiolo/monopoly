@@ -158,6 +158,10 @@ public abstract class Casella implements CasellaInterface {
        pagamento(giocatoreCorrente,nGiocatore);
     }
 
+    public boolean isGiocatore(Giocatore giocatoreCorrente){
+        return  giocatoreCorrente!=null;
+    }
+
 
 
 

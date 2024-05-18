@@ -9,14 +9,12 @@ import monopoly.schermate.SchermataFinale;
 import monopoly.schermate.SchermataIniziale;
 import monopoly.utilita.ScannerUtils;
 
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class Gioco {
     private Tabellone tabellone;
     private Giocatore[] giocatori;
-    private Dado[] dado={new Dado(0), new Dado(0)};
+
     private int numeroGiocatoreCorrente = 0;
     private final MenuInterfaccia menuGioco= new MenuGioco(); // cosi non si possono usare altri metodi di menuGioco che non sono presenti nella interfaccia
     private Schermata schermataCorrente= new SchermataIniziale();
@@ -53,10 +51,7 @@ public class Gioco {
     }
 
     private void creaDado() {
-        for (int i = 0; i <this.dado.length ; i++) {
-            this.dado[i] = dado[i].controllo(dado[i]) ? new Dado(1) : dado[i];
-
-        }
+       Dado.creaDadi();
 
     }
 
@@ -84,28 +79,33 @@ public class Gioco {
     }
     private void turno(Giocatore currentGiocatore){
        if (isGiocatore(currentGiocatore)) {
-           if(!isGiocatoreInPrigione(currentGiocatore)) {
-               currentGiocatore.updatePosizione(dado[0].lancioDadi() + dado[1].lancioDadi(), tabellone, numeroGiocatoreCorrente);
-               System.out.println(tabellone);
-               System.out.println(dado[0]);
-               System.out.println(dado[1]);
-               currentGiocatore.pagamento(tabellone, numeroGiocatoreCorrente); //bug
+           Dado.lancioDadi();
+            if (!aggiornamentoPosizione(currentGiocatore,true)){
+                aggiornamentoPosizione(currentGiocatore,false);
 
-               turnoSuccessivo();
-           } else {
-                // prova a uscire di prigione
-               if (currentGiocatore.tryToEscape(dado[0].lancioDadi(), dado[1].lancioDadi(), tabellone, numeroGiocatoreCorrente)){
-                   currentGiocatore.updatePosizione(dado[0].getUltimoLancio() + dado[1].getUltimoLancio(), tabellone, numeroGiocatoreCorrente);
-               }else {
-                   System.out.println("Non sei riuscito ad uscire");
-               }
-               System.out.println(tabellone);
-               System.out.println(dado[0]);
-               System.out.println(dado[1]);
-
-               turnoSuccessivo();
            }
+           turnoSuccessivo();
         }
+    }
+
+    private Boolean aggiornamentoPosizione(Giocatore currentGiocatore,boolean possibilityUscita){
+        boolean movimento=false;
+        if (isGiocatore(currentGiocatore)){
+            if (!isGiocatoreInPrigione(currentGiocatore)){
+                currentGiocatore.updatePosizione(Dado.sommaDadi(), tabellone, numeroGiocatoreCorrente);
+                System.out.println(tabellone);
+                Dado.printDadi();
+                movimento=true;
+
+            }
+            if (possibilityUscita || movimento){
+                currentGiocatore.azioneCasella(tabellone, numeroGiocatoreCorrente);
+            }
+
+
+        }
+        return movimento;
+
     }
 
 
@@ -124,6 +124,7 @@ public class Gioco {
                 break;
             }
         }
+
         ScannerUtils.chiudiScanner();
     }
 

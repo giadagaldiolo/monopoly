@@ -8,8 +8,9 @@ public abstract class  Costanti {
     public static final int IMPORTO_PEDAGGIO_MIN = -150;
     public static final int IMPORTO_PEDAGGIO_MAX = -50;
     public static final int NUMERO_GIOCATORI = 2; //fino a 10 giocatori data l'ampiezza della casella
-    public static final int NUMERO_DADO_MIN = 1;
-    public static final int NUMERO_DADO_MAX = 1;
+    public static final int NUMERO_DADO_MIN = 30;
+    public static final int NUMERO_DADO_MAX = 30;
+    public static final int NUMERO_DADI=1;
     public static final String ANSI_RESET = "\u001B[0m";
     public static final int ANSI_MIN = 63;
     public static final int ANSI_MAX = 80;
@@ -23,6 +24,7 @@ public abstract class  Costanti {
     public static final double PERCENTUALE_TASSA_PATRIMONIALE = 0.1;
     public static final int TENTATIVI_PRIGIONE = 3;
     public static final int IMPORTO_PER_USCIRE_PRIGIONE = 50;
+
 
 
 
