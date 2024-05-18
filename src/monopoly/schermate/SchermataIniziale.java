@@ -5,6 +5,9 @@ import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.utilita.Costanti;
 import monopoly.utilita.ScannerUtils;
 
+import java.util.LinkedHashSet;
+
+
 public class SchermataIniziale extends Schermata{
 
     @Override
@@ -24,26 +27,29 @@ public class SchermataIniziale extends Schermata{
                                                                                                            \s
                 Premere invio per Iniziare...""" + Costanti.ANSI_RESET;
     }
-    public Giocatore[] creaGiocatori(Tabellone tabellone) {
-        Giocatore[] giocatori = new Giocatore[Costanti.NUMERO_GIOCATORI];
+    public LinkedHashSet<Giocatore> creaGiocatori(Tabellone tabellone) {
+        LinkedHashSet<Giocatore> giocatori = new LinkedHashSet<>();
 
-        for (int i = 0; i < giocatori.length; i++) {
-            inserisciGiocatore(i,giocatori);
-            tabellone.modificaCasella(giocatori[i].getSimbolo(), Costanti.RIGHE-1, Costanti.CASELLE_PER_RIGA-1, i);
+        for (int i = 0; i < Costanti.NUMERO_GIOCATORI; i++) {
+            tabellone.modificaCasella(inserisciGiocatore(i,giocatori).getSimbolo(), Costanti.RIGHE-1, Costanti.CASELLE_PER_RIGA-1, i);
         }
         return giocatori;
 
     }
 
-    private void inserisciGiocatore(int i,Giocatore[] giocatori){
+    private Giocatore inserisciGiocatore(int i,LinkedHashSet<Giocatore> giocatori){
         char simbolo;
+        Giocatore giocatore;
         String nome = ScannerUtils.inputNomeGiocatore(i+1);
         do {
             simbolo = ScannerUtils.inputSimboloGiocatore(i + 1);
+            giocatore =new Giocatore(nome,simbolo,Costanti.RIGHE-1,Costanti.CASELLE_PER_RIGA-1);
 
-        } while (controlloSimboli(simbolo,giocatori));
+        } while (!giocatori.add(giocatore));
 
-        giocatori[i] = new Giocatore(nome,simbolo,Costanti.RIGHE-1,Costanti.CASELLE_PER_RIGA-1);
+        giocatore.impostaColore();
+        return giocatore;
+
     }
 
     private boolean controlloSimboli(char simbolo,Giocatore[] giocatori){

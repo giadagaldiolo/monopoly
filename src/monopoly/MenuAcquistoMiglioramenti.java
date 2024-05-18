@@ -38,10 +38,10 @@ public class MenuAcquistoMiglioramenti implements MenuMiglioramentiTerreni {
 
     @Override
     public String toString(){
-        StringBuilder stringa=new StringBuilder();
+        StringBuilder stringa=new StringBuilder("MENU ACQUISTO MIGLIORAMENTI PER IL TERRENO\n");
 
         int caseAcquistabili= this.proprieta.caseAcquistabili();
-        System.out.println("MENU ACQUISTO MIGLIORAMENTI PER IL TERRENO");
+
         if (caseAcquistabili>0) {
 
             this.opzioniMenu=caseAcquistabili+1;
@@ -54,6 +54,8 @@ public class MenuAcquistoMiglioramenti implements MenuMiglioramentiTerreni {
             stringa.append("1 per acquistare \n");
             stringa.append("2 per non acquistare \n");
 
+        }else {
+            return "";
         }
         return stringa.toString();
 

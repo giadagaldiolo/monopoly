@@ -8,6 +8,7 @@ import monopoly.componentigioco.giocatore.funzionalita.MovimentoGiocatoreSupport
 import monopoly.utilita.Costanti;
 import monopoly.utilita.Colori;
 
+import java.util.Objects;
 
 
 /**
@@ -17,10 +18,6 @@ import monopoly.utilita.Colori;
 public class Giocatore  implements MovimentoGiocatoreSupporto  {
 
 
-    /**
-     * Contatore dei giocatori in Gioco.
-     */
-    private static int nGiocatoriInGioco= Costanti.NUMERO_GIOCATORI;
     /**
      * Nome giocatore.
      */
@@ -65,13 +62,12 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
      * @param yMax coordinata y della casella iniziale
      * @param xMax  coordinata x della casella iniziale
      * @see #impostaCaratteristiche(String, char) impostaCaratteristiche(String nome,char simbolo)
-     * @see #impostaColore() impostaColore().
+
      */
     public Giocatore(String nome, char simbolo, int yMax, int xMax) {
 
         this.movimentoGiocatore= new MovimentoGiocatore(xMax,yMax);
         impostaCaratteristiche(nome,simbolo);
-        impostaColore();
         svuotaArrayCaselle();
 
 
@@ -108,7 +104,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
      * Alla fine salva nell'attributo simbolo tutto il necessario per generare un simbolo colorato.
      * @see Colori#sceltaColore()  Metodo utilizzato per generare il colore.
      */
-   private void impostaColore(){
+   public void impostaColore(){
        String colore = Colori.sceltaColore();
        this.colore=colore;
        this.simbolo = colore+this.simboloChar+Costanti.ANSI_RESET;
@@ -132,13 +128,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
     }
 
 
-    /**
-     *
-     * @return {@code int} numero di giocatori in gioco
-     */
-    public static int getNGiocatoriInGioco() {
-        return nGiocatoriInGioco;
-    }
+
 
     /**
      *
@@ -193,7 +183,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
     private void cancellaGiocatore(Casella casella,int nGiocatore,Tabellone tabellone){
         this.simbolo="";
         this.simboloChar=' ';
-        nGiocatoriInGioco--;
         spostaSimbolo(this.simbolo, casella, nGiocatore);
         resettaCaselleGiocatore(tabellone);
 
@@ -206,7 +195,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
         for (Casella[] righe : caselle) {
             for (Casella casella : righe) {
                 if (casella instanceof Acquistabile acquistabile){
-                    if (acquistabile.getProprietario().equals(this)){
+                    if (this.equals(acquistabile.getProprietario())){
                         acquistabile.resetAcquisti();
                     }
                 }
@@ -224,11 +213,16 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
      */
     public boolean isBancarotta(){return this.soldi<0; }
 
+    public void setSoldi(int soldi) {
+        this.soldi = soldi;
+    }
+
     /**
      *
      * @return {@code String} nome giocatore
      */
     public String getNome() {
+
         return nome;
     }
 
@@ -294,7 +288,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
     public void pagamentoAffitto(Giocatore proprietario,int importo,Casella casella,int nGiocatore){
         proprietario.addSoldi(calcoloSoldiBanca(importo));
         addSoldi(importo);
-        ;
+
 
     }
 
@@ -444,6 +438,10 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
     }
 
 
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(simboloChar);
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -453,7 +451,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
         if ( (giocatore.nome == null) || (giocatore.simbolo == null) || (giocatore.colore == null)) {
             return false;
         }
-        return this.simboloChar == giocatore.simboloChar && this.nome.equals(giocatore.nome) && this.colore.equals(giocatore.colore);
+        return this.simboloChar == giocatore.simboloChar;
     }
 
 

@@ -1,6 +1,8 @@
 package monopoly.schermate;
 
 import monopoly.componentigioco.giocatore.Giocatore;
+import monopoly.utilita.Costanti;
+
 
 public class SchermataFinale extends Schermata{
     private final Giocatore vincitore;
@@ -20,7 +22,8 @@ public class SchermataFinale extends Schermata{
     @Override
     public String toString(){
         String nomeGiocatore = getStringaDaStampare(this.vincitore.getNome());
-        return this.colore+ """
+
+        return this.colore+Costanti.RESET_SFONDO+ """
                         * * * * * * * * * * * * * * * * * * * * * * *
                         *                                           *
                         *              PARTITA FINITA!              *

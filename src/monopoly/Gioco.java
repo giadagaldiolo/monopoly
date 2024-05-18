@@ -9,12 +9,14 @@ import monopoly.schermate.SchermataFinale;
 import monopoly.schermate.SchermataIniziale;
 import monopoly.utilita.ScannerUtils;
 
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+
 
 
 public class Gioco {
     private Tabellone tabellone;
-    private Giocatore[] giocatori;
-
+    private LinkedHashSet<Giocatore> giocatori=new LinkedHashSet<>();
     private int numeroGiocatoreCorrente = 0;
     private final MenuInterfaccia menuGioco= new MenuGioco(); // cosi non si possono usare altri metodi di menuGioco che non sono presenti nella interfaccia
     private Schermata schermataCorrente= new SchermataIniziale();
@@ -42,12 +44,30 @@ public class Gioco {
 
     private void gameFlow() {
         System.out.println(tabellone);
-        while (Giocatore.getNGiocatoriInGioco()>1) {
-            menuTurno();
+        int sizeGiocatori=giocatori.size();
+
+
+        while (sizeGiocatori > 1) {
+            Iterator<Giocatore> iteratorGiocatori = giocatori.iterator(); //per resettare il loop
+            this.numeroGiocatoreCorrente=0;
+            while (iteratorGiocatori.hasNext()) { // parte dal primo elemento
+                Giocatore next = iteratorGiocatori.next();
+                menuTurno(next);
+                if (next.isBancarotta()) {
+                    iteratorGiocatori.remove();
+                    sizeGiocatori--;
+                    if (sizeGiocatori==1) break;
+                }
+                this.numeroGiocatoreCorrente++;
+
+            }
+
 
         }
 
-        fineGioco();
+        fineGioco(giocatori.iterator().next());
+
+
     }
 
     private void creaDado() {
@@ -61,22 +81,13 @@ public class Gioco {
 
     }
 
-    private void menuTurno() {
-        Giocatore currentGiocatore = giocatori[numeroGiocatoreCorrente];
+    private void menuTurno(Giocatore currentGiocatore) {
         this.menuGioco.menu(currentGiocatore);
         turno(currentGiocatore);
 
     }
 
-    private void turnoSuccessivo(){
-        if (this.numeroGiocatoreCorrente==(this.giocatori.length-1)){
-            this.numeroGiocatoreCorrente=0;
-        } else{
-            this.numeroGiocatoreCorrente++;
-        }
-        if (giocatori[numeroGiocatoreCorrente].isBancarotta()) turnoSuccessivo();
 
-    }
     private void turno(Giocatore currentGiocatore){
        if (isGiocatore(currentGiocatore)) {
            Dado.lancioDadi();
@@ -84,13 +95,13 @@ public class Gioco {
                 aggiornamentoPosizione(currentGiocatore,false);
 
            }
-           turnoSuccessivo();
+
         }
     }
 
     private Boolean aggiornamentoPosizione(Giocatore currentGiocatore,boolean possibilityUscita){
         boolean movimento=false;
-        if (isGiocatore(currentGiocatore)){
+        if (isGiocatore(currentGiocatore)&& !currentGiocatore.isBancarotta()){
             if (!isGiocatoreInPrigione(currentGiocatore)){
                 currentGiocatore.updatePosizione(Dado.sommaDadi(), tabellone, numeroGiocatoreCorrente);
                 System.out.println(tabellone);
@@ -99,8 +110,10 @@ public class Gioco {
 
             }
             if (possibilityUscita || movimento){
+
                 currentGiocatore.azioneCasella(tabellone, numeroGiocatoreCorrente);
             }
+
 
 
         }
@@ -116,14 +129,10 @@ public class Gioco {
 
 
 
-    private void fineGioco() {
-        for (Giocatore giocatore : giocatori) {
-            if (!giocatore.isBancarotta()) {
-                this.schermataCorrente=new SchermataFinale(giocatore);
-                System.out.println(this.schermataCorrente);
-                break;
-            }
-        }
+    private void fineGioco(Giocatore giocatore) {
+
+        this.schermataCorrente=new SchermataFinale(giocatore);
+        System.out.println(this.schermataCorrente);
 
         ScannerUtils.chiudiScanner();
     }

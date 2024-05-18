@@ -71,10 +71,9 @@ public class MenuAcquisti implements MenuAcquistiInterfaccia{
 
      @Override
      public String toString(){
-        System.out.println("MENU ACQUISTO/PAGAMENTO TERRENO/PEDAGGIO");
         this.nLine=1;
-        StringBuilder menu = new StringBuilder("%d Pagare Pedaggio alla banca di %d \n".formatted(nLine,Math.abs(((Casella) this.terreno).getPedaggio())));
-         int soldiGiocatore= giocatoreCorrente.getSoldi();
+        StringBuilder menu = new StringBuilder("MENU ACQUISTO/PAGAMENTO TERRENO/PEDAGGIO\n%d Pagare Pedaggio alla banca di %d \n".formatted(nLine,Math.abs(((Casella) this.terreno).getPedaggio())));
+        int soldiGiocatore= giocatoreCorrente.getSoldi();
         menu.append(sceltaStringa(soldiGiocatore));
         return menu.toString();
      }
