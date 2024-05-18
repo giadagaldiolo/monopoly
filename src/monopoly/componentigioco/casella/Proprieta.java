@@ -5,7 +5,6 @@ import monopoly.Coordinate;
 import monopoly.MenuAcquisti;
 import monopoly.MenuAcquistiInterfaccia;
 import monopoly.MenuAcquistoMiglioramenti;
-import monopoly.componentigioco.Tabellone;
 import monopoly.componentigioco.giocatore.Giocatore;
 
 import java.util.Random;
@@ -237,15 +236,15 @@ public class Proprieta extends Casella implements CaseHotel {
 
     }
     @Override
-    public void azioneCasella(Giocatore giocatorePagante,int nGiocatore){
+    public void azioneCasella(Giocatore giocatorePagante){
         if (this.proprietario==null){
             if (!menuAcquistoTerreno(giocatorePagante)){
-                super.azioneCasella(giocatorePagante,nGiocatore);
+                super.azioneCasella(giocatorePagante);
 
-            }else azioneCasella(giocatorePagante,nGiocatore); // se si vuole far compare le case nello stesso turno
+            }else azioneCasella(giocatorePagante); // se si vuole far compare le case nello stesso turno
 
         }else if (!(this.proprietario.equals(giocatorePagante))){
-            giocatorePagante.pagamentoAffitto(this.proprietario,getPedaggio(),this, nGiocatore);
+            giocatorePagante.pagamentoAffitto(this.proprietario,getPedaggio());
         }else {
             acquistaHotelCase();
         }
@@ -254,9 +253,25 @@ public class Proprieta extends Casella implements CaseHotel {
 
     }
 
+    private boolean controlloCaseAcquistate(){
+        boolean risposta=false;
+
+        if (this.getNumeroArrayGiocatore()==CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA){
+            return true;
+        }
+
+        risposta=proprietario.getNCaselleAcquistate(this.nArrayGiocatore)>=this.getNCaselleCategoria();
+
+        return risposta;
+    }
+
     private void acquistaHotelCase(){
-        Proprieta.menuAcquisti[1].menu(this.proprietario, this);
-        menuAcquisti[1].pagamentoGiaEffettuato();
+        if (this.proprietario!=null && controlloCaseAcquistate()){
+            Proprieta.menuAcquisti[1].menu(this.proprietario, this);
+            menuAcquisti[1].pagamentoGiaEffettuato();
+
+        }
+
     }
 
     @Override

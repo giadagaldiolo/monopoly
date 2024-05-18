@@ -103,7 +103,7 @@ public class Gioco {
         boolean movimento=false;
         if (isGiocatore(currentGiocatore)&& !currentGiocatore.isBancarotta()){
             if (!isGiocatoreInPrigione(currentGiocatore)){
-                currentGiocatore.updatePosizione(Dado.sommaDadi(), tabellone, numeroGiocatoreCorrente);
+                currentGiocatore.updatePosizione(Dado.sommaDadi(), tabellone);
                 System.out.println(tabellone);
                 Dado.printDadi();
                 movimento=true;
@@ -111,7 +111,7 @@ public class Gioco {
             }
             if (possibilityUscita || movimento){
 
-                currentGiocatore.azioneCasella(tabellone, numeroGiocatoreCorrente);
+                currentGiocatore.azioneCasella(tabellone);
             }
 
 

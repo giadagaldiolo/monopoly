@@ -29,8 +29,11 @@ public class VaiInPrigione extends Casella {
         return "";
     }
     @Override
-    public void azioneCasella(Giocatore giocatoreCorrente, int nGiocatore) {
-        giocatoreCorrente.spostaGiocatoreInPrigione(this, nGiocatore);
-        this.prigione.spostaGiocatore(giocatoreCorrente,nGiocatore);
+    public void azioneCasella(Giocatore giocatoreCorrente) {
+        if (isGiocatore(giocatoreCorrente)){
+            giocatoreCorrente.spostaGiocatoreInPrigione(this);
+            this.prigione.spostaGiocatore(giocatoreCorrente);
+        }
+
     }
 }

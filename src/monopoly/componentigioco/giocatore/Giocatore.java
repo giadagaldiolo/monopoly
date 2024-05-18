@@ -34,10 +34,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
      * Semplicemente i soldi rimasti al giocatore.
      */
     private int soldi;
-    /**
-     * Per sapere se è il turno di un giocatore, da implementare
-     */
-    private boolean turno;
+
     /**
      * Stringa contenente solo il colore
      */
@@ -169,10 +166,10 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
      * <p>Metodo che si occupa di controllare quando un giocatore va in bancarotta.</p>
 
      */
-    private void controlloSoldi(Casella casella,int nGiocatore,Tabellone tabellone){
+    private void controlloSoldi(Casella casella,Tabellone tabellone){
         if(this.soldi <= 0){
             System.out.println("Il giocatore "+ nome +" ha perso" );
-            cancellaGiocatore(casella,nGiocatore,tabellone);
+            cancellaGiocatore(casella, tabellone);
         }
     }
 
@@ -180,10 +177,8 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
      * <p>Metodo che cancella il giocatore dal tabellone.</p>
 
      */
-    private void cancellaGiocatore(Casella casella,int nGiocatore,Tabellone tabellone){
-        this.simbolo="";
-        this.simboloChar=' ';
-        spostaSimbolo(this.simbolo, casella, nGiocatore);
+    private void cancellaGiocatore(Casella casella,Tabellone tabellone){
+        this.movimentoGiocatore.cancellaSimbolo(this.simbolo,casella);
         resettaCaselleGiocatore(tabellone);
 
 
@@ -273,20 +268,20 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
 
      * @see Banca#addImporto(int)
      * @see #addSoldi(int) 
-     * @see #calcoloSoldiBanca(int)
+     * @see #calcoloSoldiResidui(int)
      */
-    public void pagamentoPedaggio(Casella casella,int nGiocatore){ // solo per la banca
+    public void pagamentoPedaggio(Casella casella){ // solo per la banca
         if (isCasella(casella) && !this.imprigionato) {
             int importo = casella.getPedaggio();
-            Banca.addImporto(calcoloSoldiBanca(importo));
+            Banca.addImporto(calcoloSoldiResidui(importo));
             addSoldi(importo);
 
 
         }
     }
 
-    public void pagamentoAffitto(Giocatore proprietario,int importo,Casella casella,int nGiocatore){
-        proprietario.addSoldi(calcoloSoldiBanca(importo));
+    public void pagamentoAffitto(Giocatore proprietario,int importo){
+        proprietario.addSoldi(calcoloSoldiResidui(importo));
         addSoldi(importo);
 
 
@@ -297,7 +292,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
      * @param pedaggio somma da pagare
      * @return somma che il giocatore riesce a pagare 
      */
-    private int calcoloSoldiBanca(int pedaggio){
+    private int calcoloSoldiResidui(int pedaggio){
         int soldiDaAggiungere=-pedaggio;
         if (pedaggio>0 || (soldiDaAggiungere <this.soldi)) return soldiDaAggiungere;
         return this.soldi; //positivo
@@ -305,43 +300,38 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
     }
 
     /**
-
      * @param passi numero ottenuto dai dadi.
-
-
-
      * @see #spostamentoGiocatore(int) Metodo per cambiare le coordinate del giocatore
-
      */
-    public void updatePosizione(int passi, Tabellone tabellone,int giocatore){
+    public void updatePosizione(int passi, Tabellone tabellone){
         Casella casella;
         if (isTabellone(tabellone) && isCasella((casella=tabellone.getCasella(getY(),getX()))) ) {
 
-            pulisciCasella(casella,giocatore);
+            pulisciCasella(casella);
             spostamentoGiocatore(passi);
             casella=tabellone.getCasella(getY(),getX());
-            riempiCasella(casella,giocatore);
+            riempiCasella(casella);
 
 
 
         }
     }
 
-    public void pulisciCasella(Casella casella ,int giocatore){
-        spostaSimbolo(" ", casella, giocatore);
+    public void pulisciCasella(Casella casella ){
+        casella.togliCarattere(this.simbolo);
 
     }
-    public void riempiCasella(Casella casella ,int giocatore){
-        spostaSimbolo(this.simbolo, casella, giocatore);
+    public void riempiCasella(Casella casella){
+        aggiungiSimbolo(this.simbolo, casella);
     }
 
 
-    public void azioneCasella(Tabellone tabellone,int nGiocatore){
+    public void azioneCasella(Tabellone tabellone){
         if (isTabellone(tabellone)){
             Casella casella = casellaCorrente(tabellone);
             if (isCasella(casella)) {
-                casella.azioneCasella(this, nGiocatore);
-                controlloSoldi(casella, nGiocatore, tabellone);
+                casella.azioneCasella(this);
+                controlloSoldi(casella, tabellone);
             }
         }
 
@@ -367,49 +357,21 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
     }
 
 
-
-    private boolean controlloCaseAcquistate(Tabellone tabellone){
-        boolean risposta=false;
-        if (isTabellone(tabellone)){
-            Casella casellaCorrente=casellaCorrente(tabellone);
-            if (casellaCorrente instanceof Proprieta proprieta ){
-                if (proprieta.getNumeroArrayGiocatore()==CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA){
-                    return true;
-                }
-                risposta=this.nCaselleAcquistate[proprieta.getNumeroArrayGiocatore()]==proprieta.getNCaselleCategoria();
-            }
-        }
-        return risposta;
+    public int getNCaselleAcquistate(int index) {
+        return nCaselleAcquistate[index];
     }
-
 
     @Override
-    public void spostaGiocatoreInPrigione(Casella casella,int nGiocatore) {
-        pulisciCasella(casella,nGiocatore);
+    public void spostaGiocatoreInPrigione(Casella casella) {
+        pulisciCasella(casella);
         this.imprigionato = true;
         this.tentativiPerPrigione = Costanti.TENTATIVI_PRIGIONE;
-        this.movimentoGiocatore.spostaGiocatoreInPrigione(casella,nGiocatore);
+        this.movimentoGiocatore.spostaGiocatoreInPrigione(casella);
 
 
     }
 
-    /**
 
-     * @param giocatoreDaControllare {@code char} del giocatore da controllare
-     * @return True se due giocatori hanno lo stesso simbolo.
-     */
-    public boolean isSimboloUguale(char giocatoreDaControllare){
-        boolean risposta = giocatoreDaControllare==this.simboloChar;
-        if (risposta){
-            System.out.println("Simbolo gia utilizzato dal giocatore: " + this.nome);
-        }
-        return risposta;
-
-    }
-
-    public static boolean checkForNullGiocatore(Giocatore giocatore){
-        return giocatore == null;
-    }
 
     /**
      *
@@ -419,9 +381,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
         return colore;
     }
 
-    private boolean controlloGiocatoreInVaiInPrigione(Tabellone tabellone){ // da cambiare il movimento modificando il cambio delle coordinate
-        return tabellone.isVaiInPrigione(getY(), getX());
-    }
 
     public boolean isImprigionato() {
         return imprigionato;

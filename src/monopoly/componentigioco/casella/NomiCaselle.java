@@ -17,7 +17,7 @@ public enum NomiCaselle {
 
     MARRONE(new String[]{"Vicolo Corto", "Vicolo Stretto"},172),
     AZZURO(new String[]{"Bastioni Gran Sasso", "Viale Monterosa", "Viale Vesuvio"},32),
-    ROSA(new String[]{"Via Accademia", "Corso Ateneo", "Piazza Università"},13),
+    ROSA(new String[]{"Via Accademia", "Corso Ateneo", "Piazza Università"},200),
     GRIGIO(new String[]{"Via Verdi", "Corso Raffaello", "Piazza Dante"},244),
     ROSSO(new String[]{"Via Marco Polo", "Corso Magellano", "Largo Colombo"},9),
     GIALLO(new String[]{"Viale Costantino", "Viale Traiano", "Piazza Giulio Cesare"},220),

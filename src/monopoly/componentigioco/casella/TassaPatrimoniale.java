@@ -33,9 +33,9 @@ public class TassaPatrimoniale extends Tassa {
     }
 
     @Override
-    public void azioneCasella(Giocatore giocatoreCorrente, int nGiocatore) {
+    public void azioneCasella(Giocatore giocatoreCorrente) {
         setPedaggio(giocatoreCorrente.getSoldi());
-        super.azioneCasella(giocatoreCorrente, nGiocatore);
+        super.azioneCasella(giocatoreCorrente);
 
     }
 }

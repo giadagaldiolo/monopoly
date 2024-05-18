@@ -31,7 +31,7 @@ public class SchermataIniziale extends Schermata{
         LinkedHashSet<Giocatore> giocatori = new LinkedHashSet<>();
 
         for (int i = 0; i < Costanti.NUMERO_GIOCATORI; i++) {
-            tabellone.modificaCasella(inserisciGiocatore(i,giocatori).getSimbolo(), Costanti.RIGHE-1, Costanti.CASELLE_PER_RIGA-1, i);
+            tabellone.modificaCasella(inserisciGiocatore(i,giocatori).getSimbolo(), Costanti.RIGHE-1, Costanti.CASELLE_PER_RIGA-1);
         }
         return giocatori;
 
@@ -52,23 +52,6 @@ public class SchermataIniziale extends Schermata{
 
     }
 
-    private boolean controlloSimboli(char simbolo,Giocatore[] giocatori){
-        boolean trovato = false;
-        if (isGiocatori(giocatori)) {
-            for (Giocatore giocatore : giocatori) { // da spostare se si trova il modo
-
-                if (!(Giocatore.checkForNullGiocatore(giocatore)) && giocatore.isSimboloUguale(simbolo)) {
-                    trovato = true;
-                    break;
-                }
-            }
-        }
-        return trovato;
-    }
-
-    private boolean isGiocatori(Giocatore[] giocatori){
-        return giocatori!=null;
-    }
 
 
 }

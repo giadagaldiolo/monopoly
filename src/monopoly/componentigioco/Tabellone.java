@@ -106,10 +106,10 @@ public class Tabellone {
      * @param simbolo simbolo giocatore
      * @param i posizione y giocatore
      * @param j posizione x giocatore
-     * @param giocatore posizione giocatore nel array {@link monopoly.Gioco#giocatori}
+
      */
-    public void modificaCasella(String simbolo, int i, int j, int giocatore) {
-        caselle[i][j].aggiungiCarattere(simbolo, giocatore);
+    public void modificaCasella(String simbolo, int i, int j) {
+        caselle[i][j].aggiungiCarattere(simbolo);
     }
 
 

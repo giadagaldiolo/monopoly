@@ -116,7 +116,7 @@ public class MovimentoGiocatore  implements MovimentoGiocatoreSupporto {
     }
 
 
-    public void spostaGiocatoreInPrigione(Casella casella, int nGiocatore) {
+    public void spostaGiocatoreInPrigione(Casella casella) {
 
         this.coordinate.setY(yMax);
         this.coordinate.setX(0);

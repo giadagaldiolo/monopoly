@@ -2,11 +2,10 @@ package monopoly.componentigioco.casella;
 
 import monopoly.Coordinate;
 
-import monopoly.componentigioco.Banca;
-import monopoly.componentigioco.Tabellone;
 import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.utilita.Costanti;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 public abstract class Casella implements CasellaInterface {
@@ -15,8 +14,7 @@ public abstract class Casella implements CasellaInterface {
     private String colore;
     private String nome;
     private Coordinate coordinate;
-    private int nGiocatoriPresenti = 0;
-    private String[] giocatoriPresenti = new String[Costanti.NUMERO_GIOCATORI]; // poi aggiustiamo la costante
+    private LinkedList<String> giocatoriPresenti = new LinkedList<>(); // poi aggiustiamo la costante
 
 
     @Override
@@ -26,7 +24,7 @@ public abstract class Casella implements CasellaInterface {
     }
 
     protected Casella(){ // assi
-        svuotaCasella();
+
         setNomeColoreDefault();
         setPedaggioDefault();
     }
@@ -35,29 +33,18 @@ public abstract class Casella implements CasellaInterface {
         this.coordinate=coordinate;
     }
 
-    private boolean checkForNullNome(String nome){
-        return nome == null || nome.isBlank();
 
+
+
+
+
+
+    public void aggiungiCarattere(String ch) {
+
+        giocatoriPresenti.addFirst(ch);
     }
-
-    private void svuotaCasella(){
-        for (int i = 0; i < giocatoriPresenti.length; i++) {
-            this.giocatoriPresenti[i]=" ";
-        }
-
-    }
-
-    private String getCharGiocatore(final int i) {
-        return giocatoriPresenti[i];
-    }
-
-    public void aggiungiCarattere(String ch, int giocatore) {
-        if (ch.isBlank()){
-            nGiocatoriPresenti--;
-        } else{
-            nGiocatoriPresenti++;
-        }
-        giocatoriPresenti[giocatore] = ch;
+    public void togliCarattere(String ch){
+        giocatoriPresenti.removeLast();
     }
 
 
@@ -102,15 +89,17 @@ public abstract class Casella implements CasellaInterface {
                 break;
             case 5: // proviamo a dividere i giocatori in prigione
                 StringBuilder quintaRiga = new StringBuilder();
-                int spaziDaFare = Costanti.LARGHEZZA_CASELLA-(Costanti.LARGHEZZA_CASELLA-(2*this.nGiocatoriPresenti));
+                int spaziDaFare = Costanti.LARGHEZZA_CASELLA-(Costanti.LARGHEZZA_CASELLA-(2*giocatoriPresenti.size()));
 
-                  // 2 sono i | |
-                for (int i = 0; i < Costanti.NUMERO_GIOCATORI; i++) {
-                    String giocatore=getCharGiocatore(i);
+                for (String giocatore : giocatoriPresenti) {
+                        if (!(giocatore.isBlank()))
+                            quintaRiga.append(giocatore).append(Costanti.COLORE_SFONDO).append(" ");
 
-                    if (!(giocatore.isBlank()))
-                        quintaRiga.append(giocatore).append(Costanti.COLORE_SFONDO).append(" ");
                 }
+
+
+
+
                 dettagli.append(quintaRiga).append(spazio.repeat((Costanti.LARGHEZZA_CASELLA - 2) - spaziDaFare));
                 dettagli.append(getColore());
                 break;
@@ -150,12 +139,12 @@ public abstract class Casella implements CasellaInterface {
         return info.toString();
     }
 
-    private void pagamento(Giocatore giocatorePagante,int nGiocatore){
-        giocatorePagante.pagamentoPedaggio(this,nGiocatore);
+    private void pagamento(Giocatore giocatorePagante){
+        giocatorePagante.pagamentoPedaggio(this);
     }
 
-    public void azioneCasella(Giocatore giocatoreCorrente,int nGiocatore){
-       pagamento(giocatoreCorrente,nGiocatore);
+    public void azioneCasella(Giocatore giocatoreCorrente){
+       pagamento(giocatoreCorrente);
     }
 
     public boolean isGiocatore(Giocatore giocatoreCorrente){
