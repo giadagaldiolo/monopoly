@@ -1,6 +1,6 @@
 package monopoly.componentigioco.giocatore.funzionalita;
 
-import monopoly.componentigioco.Tabellone;
+
 import monopoly.componentigioco.casella.Casella;
 import monopoly.componentigioco.giocatore.Giocatore;
 
