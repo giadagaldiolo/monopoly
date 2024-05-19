@@ -83,10 +83,15 @@ public class Proprieta extends Casella implements CaseHotel {
         this.proprietario=proprietario;
     }
 
-    private void setPrezzi(){ // da migliorare
-        this.prezzoTerreno=creaSeedRandom().nextInt(CostantiCaselle.PREZZO_TERRENO_MIN,CostantiCaselle.PREZZO_TERRENO_MAX);
-        this.prezzoCasa=creaSeedRandom().nextInt(CostantiCaselle.PREZZO_CASA_MIN,CostantiCaselle.PREZZO_CASA_MAX);
-        this.prezzoHotel=creaSeedRandom().nextInt(calcoloPrezzoMinimoHotel(),CostantiCaselle.PREZZO_HOTEL_MAX);
+    private void setPrezzi(){  // da migliorare
+       this.prezzoTerreno=generaPrezzo(CostantiCaselle.PREZZO_TERRENO_MIN,CostantiCaselle.PREZZO_TERRENO_MAX);
+       this.prezzoCasa=generaPrezzo(CostantiCaselle.PREZZO_CASA_MIN,CostantiCaselle.PREZZO_CASA_MAX);
+       this.prezzoHotel=generaPrezzo(calcoloPrezzoMinimoHotel(),CostantiCaselle.PREZZO_HOTEL_MAX);
+    }
+
+    private int generaPrezzo(int min,int max){
+        return creaSeedRandom().nextInt(min,max);
+
     }
     private int calcoloPrezzoMinimoHotel(){ // non avrebbe senso che l'hotel costi meno di una casa
         int prezzoMinimoHotel=CostantiCaselle.PREZZO_HOTEL_MIN;
