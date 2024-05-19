@@ -98,24 +98,29 @@ public class Gioco {
 
     private Boolean aggiornamentoPosizione(Giocatore currentGiocatore,boolean possibilityUscita){
         boolean movimento=false;
+        boolean print=false;
         if (isGiocatore(currentGiocatore)&& !currentGiocatore.isBancarotta()){
             if (!isGiocatoreInPrigione(currentGiocatore)){
                 currentGiocatore.updatePosizione(Dado.sommaDadi(), tabellone);
-                System.out.println(tabellone);
-                Dado.printDadi();
+                printDadoTabellone();
                 movimento=true;
+                print=true;
 
             }
             if (possibilityUscita || movimento){
 
-                currentGiocatore.azioneCasella(tabellone);
+                currentGiocatore.azioneCasella(tabellone); // fa prima l'azione della prigione dei dadi e poi aggiorna la posizione con il simbolo inserito alla fine
+                if (!print) printDadoTabellone();
+
             }
-
-
 
         }
         return movimento;
 
+    }
+    private void printDadoTabellone(){
+        System.out.println(this.tabellone);
+        Dado.printDadi();
     }
 
 

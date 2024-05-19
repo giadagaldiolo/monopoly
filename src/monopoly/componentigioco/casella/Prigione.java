@@ -5,6 +5,8 @@ import monopoly.componentigioco.Dado;
 import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.utilita.Costanti;
 
+import java.util.LinkedList;
+
 public class Prigione extends Casella {
 
     public Prigione() {
@@ -49,9 +51,18 @@ public class Prigione extends Casella {
                 }
             }
             giocatoreCorrente.setImprigionato(false);
+            ordinaLinkedList(giocatoreCorrente);
             System.out.println("Sei uscito dalla prigione");
 
         }
+
+
+    }
+
+    private void ordinaLinkedList(Giocatore giocatore){
+        LinkedList<String> giocatori=super.getGiocatoriPresenti();
+        giocatori.remove(giocatore.getSimbolo());
+        giocatori.addLast(giocatore.getSimbolo());
 
 
     }

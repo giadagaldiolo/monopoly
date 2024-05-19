@@ -393,7 +393,10 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
     }
 
     public void setImprigionato(boolean imprigionato) {
+
         this.imprigionato = imprigionato;
+
+
     }
 
 

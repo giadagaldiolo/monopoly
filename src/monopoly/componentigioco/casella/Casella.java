@@ -16,7 +16,9 @@ public abstract class Casella implements CasellaInterface {
     private Coordinate coordinate;
     private LinkedList<String> giocatoriPresenti = new LinkedList<>(); // poi aggiustiamo la costante
 
-
+    public LinkedList<String> getGiocatoriPresenti() {
+        return this.giocatoriPresenti;
+    }
     @Override
     public void setPedaggioDefault() {
         Random random = new Random();
