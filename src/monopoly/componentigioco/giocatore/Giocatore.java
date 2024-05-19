@@ -5,6 +5,8 @@ import monopoly.componentigioco.Tabellone;
 import monopoly.componentigioco.casella.*;
 import monopoly.componentigioco.giocatore.funzionalita.MovimentoGiocatore;
 import monopoly.componentigioco.giocatore.funzionalita.MovimentoGiocatoreSupporto;
+import monopoly.componentigioco.giocatore.funzionalita.Pagamenti;
+import monopoly.componentigioco.giocatore.funzionalita.PagamentiSupporto;
 import monopoly.utilita.Costanti;
 import monopoly.utilita.Colori;
 
@@ -15,7 +17,7 @@ import java.util.Objects;
  * <i>Classe che gestisce le funzionalità del giocatore</i>
  */
 
-public class Giocatore  implements MovimentoGiocatoreSupporto  {
+public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
 
 
     /**
@@ -30,10 +32,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
      * Simbolo giocatore senza colore.
      */
     private char simboloChar;
-    /**
-     * Semplicemente i soldi rimasti al giocatore.
-     */
-    private int soldi;
 
     /**
      * Stringa contenente solo il colore
@@ -44,12 +42,13 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
 
     private int tentativiPerPrigione = Costanti.TENTATIVI_PRIGIONE;
 
-    private int[] nCaselleAcquistate;
+
 
     /**
      * Si occupa di contenere tutti i metodi e attributi riguardante il movimento del giocatore
      */
     private final MovimentoGiocatoreSupporto movimentoGiocatore; // se faccio cosi invece di usare direttamente la classe limito le funzioni
+    private final Pagamenti pagamentiGiocatore;
 
 
     /**
@@ -64,20 +63,13 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
     public Giocatore(String nome, char simbolo, int yMax, int xMax) {
 
         this.movimentoGiocatore= new MovimentoGiocatore(xMax,yMax);
+        this.pagamentiGiocatore=new PagamentiSupporto();
         impostaCaratteristiche(nome,simbolo);
-        svuotaArrayCaselle();
-
 
     }
 
-    private void svuotaArrayCaselle(){
-        this.nCaselleAcquistate=new int[NomiCaselle.getUltimaPosizione()]; //lenght 8
-
-        for (int i = 0; i <nCaselleAcquistate.length ; i++) {
-            this.nCaselleAcquistate[i]=0;
-
-        }
-
+    public void svuotaArrayCaselle(){
+        this.pagamentiGiocatore.svuotaArrayCaselle();
 
     }
 
@@ -92,14 +84,13 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
 
        this.nome = controlloNome(nome) ? "Nome sconosciuto" : nome;
        this.simboloChar = controlloSimbolo(simbolo) ? 'X' : simbolo;
-       this.soldi = Costanti.IMPORTO_INIZIALE_GIOCATORE;
-       Banca.addImporto(-Costanti.IMPORTO_INIZIALE_GIOCATORE);
+
    }
 
     /**
      * Metodo utilizzato nel costruttore per richiedere un colore random per il giocatore. <p>
      * Alla fine salva nell'attributo simbolo tutto il necessario per generare un simbolo colorato.
-     * @see Colori#sceltaColore()  Metodo utilizzato per generare il colore.
+     * @see Colori#sceltaColore() Metodo utilizzato per generare il colore.
      */
    public void impostaColore(){
        String colore = Colori.sceltaColore();
@@ -124,9 +115,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
         return simbolo==' ' ;
     }
 
-
-
-
     /**
      *
      * @return {@code String} simbolo giocatore con il colore.
@@ -140,25 +128,18 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
      * @return {@code int} soldi disponibili al giocatore
      */
     public int getSoldi() {
-        return soldi;
+        return this.pagamentiGiocatore.getSoldi();
     }
 
     /**
-     * Metodo per variare la quantità di soldi disponibili al giocatore. {@link #soldi}
      * @param soldi importo da aggiungere al giocatore o togliere nel caso di importo negativo.
      */
-    private void addSoldi(final int soldi) {
-        this.soldi += soldi;
+    public void addSoldi(final int soldi) {
+        this.pagamentiGiocatore.addSoldi(soldi);
     }
 
     public boolean compraMiglioramentiTerreno(int acquisto){
-        boolean acquistatoAvvenuto = false;
-        if (acquisto <= this.soldi) {
-            acquistatoAvvenuto = true;
-            addSoldi(-acquisto);
-        }
-        return acquistatoAvvenuto;
-
+       return this.pagamentiGiocatore.compraMiglioramentiTerreno(acquisto);
 
     }
 
@@ -167,7 +148,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
 
      */
     private void controlloSoldi(Casella casella,Tabellone tabellone){
-        if(this.soldi <= 0){
+        if(this.pagamentiGiocatore.getSoldi() <= 0){
             System.out.println("Il giocatore "+ nome +" ha perso" );
             cancellaGiocatore(casella, tabellone);
         }
@@ -181,8 +162,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
         this.movimentoGiocatore.cancellaSimbolo(this.simbolo,casella);
         resettaCaselleGiocatore(tabellone);
 
-
-
     }
     private void resettaCaselleGiocatore(Tabellone tabellone){
         svuotaArrayCaselle();
@@ -194,24 +173,15 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
                         acquistabile.resetAcquisti();
                     }
                 }
-
             }
-
         }
-
     }
-
 
     /**
      *
      * @return utile per sapere se il giocatore è in bancarotta.
      */
-    public boolean isBancarotta(){return this.soldi<0; }
-
-    public void setSoldi(int soldi) {
-        this.soldi = soldi;
-    }
-
+    public boolean isBancarotta(){return this.pagamentiGiocatore.isBancarotta(); }
     /**
      *
      * @return {@code String} nome giocatore
@@ -267,37 +237,21 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
      * Metodo che si occupa di gestire l'aggiornamento dei soldi.
 
      * @see Banca#addImporto(int)
-     * @see #addSoldi(int) 
-     * @see #calcoloSoldiResidui(int)
+     * @see #addSoldi(int)
      */
     public void pagamentoPedaggio(Casella casella){ // solo per la banca
         if (isCasella(casella) && !this.imprigionato) {
-            int importo = casella.getPedaggio();
-            Banca.addImporto(calcoloSoldiResidui(importo));
-            addSoldi(importo);
-
+            this.pagamentiGiocatore.pagamentoPedaggio(casella);
 
         }
     }
 
     public void pagamentoAffitto(Giocatore proprietario,int importo){
-        proprietario.addSoldi(calcoloSoldiResidui(importo));
-        addSoldi(importo);
+        this.pagamentiGiocatore.pagamentoAffitto(proprietario,importo);
 
 
     }
 
-    /**
-     * <p>Metodo utile nel caso un giocatore non riesca a pagare la somma corrispondente alla banca.</p>
-     * @param pedaggio somma da pagare
-     * @return somma che il giocatore riesce a pagare 
-     */
-    private int calcoloSoldiResidui(int pedaggio){
-        int soldiDaAggiungere=-pedaggio;
-        if (pedaggio>0 || (soldiDaAggiungere <this.soldi)) return soldiDaAggiungere;
-        return this.soldi; //positivo
-
-    }
 
     /**
      * @param passi numero ottenuto dai dadi.
@@ -311,8 +265,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
             spostamentoGiocatore(passi);
             casella=tabellone.getCasella(getY(),getX());
             riempiCasella(casella);
-
-
 
         }
     }
@@ -352,13 +304,13 @@ public class Giocatore  implements MovimentoGiocatoreSupporto  {
 
 
     public void aggiuntaTerreno(int index){
-        this.nCaselleAcquistate[index]++;
+        this.pagamentiGiocatore.aggiuntaTerreno(index);
 
     }
 
 
     public int getNCaselleAcquistate(int index) {
-        return nCaselleAcquistate[index];
+        return this.pagamentiGiocatore.getNCaselleAcquistate(index);
     }
 
     @Override
