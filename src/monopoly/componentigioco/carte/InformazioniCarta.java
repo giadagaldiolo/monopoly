@@ -4,12 +4,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.*;
+import java.util.LinkedList;
+public class InformazioniCarta {
 
-public class LeggiFile {
 
-
-    static List<Carta> readFromFile(File file) {
-        List<Carta> carte = new ArrayList<>();
+    static LinkedList<Carta> readFromFile(File file) {
+        LinkedList<Carta> carte = new LinkedList<>();
 
         if (file == null)
             return carte;
@@ -20,11 +20,7 @@ public class LeggiFile {
                 if (tokens.length != 3)
                     continue;
 
-                Carta carta = trovaTipo(tokens[1]);
-                carta.setDescrizione(tokens[0]);
-                carta.setAzione(tokens[1]);
-                carta.setTerzaInformazione(tokens[2]);
-
+                Carta carta = CreaCarta(tokens[1].toLowerCase().trim(),tokens[0],tokens[2]);
                 carte.add(carta);
             }
         } catch (final IOException e) {
@@ -35,11 +31,11 @@ public class LeggiFile {
         return carte;
     }
 
-    private static Carta trovaTipo(String stringa) {
-        return switch (stringa) {
-            case "vai a" -> new VaiA();
-            case "paga" -> new Paga();
-            default -> new Ricevi();
+    private static Carta CreaCarta(String tipo, String descrizione,String terzaInformazione) {
+        return switch (tipo) {
+            case "vaia" -> new VaiA( descrizione,  terzaInformazione);
+            case"ricevi"-> new ModificaBudget(descrizione,terzaInformazione);
+            default -> new ModificaBudget( descrizione,  "-"+terzaInformazione);
         };
     }
 }

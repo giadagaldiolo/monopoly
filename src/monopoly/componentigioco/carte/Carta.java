@@ -1,37 +1,28 @@
 package monopoly.componentigioco.carte;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 
-public class Carta {
+public abstract class Carta {
 
-    private static List<Carta> imprevisti = new ArrayList<>();
-    private static List<Carta> probabilita = new ArrayList<>();
+    private static LinkedList<Carta> imprevisti = new LinkedList<>();
+    private static LinkedList<Carta> probabilita = new LinkedList<>();
     private String descrizione;
-    private String azione;
-    private String terzaInformazione;
 
 
-    public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
-    }
-
-    public void setAzione(String azione) {
-        this.azione = azione;
-    }
-
-    public void setTerzaInformazione(String terzaInformazione) {
-        this.terzaInformazione = terzaInformazione;
-    }
-
-    private static List<Carta> creaImprevisti() {
-        return LeggiFile.readFromFile(new File("Imprevisti.txt"));
+    public Carta(String descrizione) {
+        this.descrizione=descrizione;
 
     }
 
-    private static List<Carta> creaProbabilita() {
-        return LeggiFile.readFromFile(new File("Probabilita.txt"));
+
+    private static LinkedList<Carta> creaImprevisti() {
+        return InformazioniCarta.readFromFile(new File("Imprevisti.txt"));
+
+    }
+
+    private static LinkedList<Carta> creaProbabilita() {
+        return InformazioniCarta.readFromFile(new File("Probabilita.txt"));
     }
 
     public static void creaCarte() {
