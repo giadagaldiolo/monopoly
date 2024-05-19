@@ -1,9 +1,9 @@
-package monopoly;
+package monopoly.menus;
 
 import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.utilita.ScannerUtils;
 
-public class MenuGioco implements MenuInterfaccia{
+public class MenuGioco implements MenuInterfaccia {
     @Override
     public String toString(){
         return """

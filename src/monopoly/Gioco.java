@@ -4,6 +4,8 @@ import monopoly.componentigioco.Dado;
 import monopoly.componentigioco.carte.Carta;
 import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.componentigioco.Tabellone;
+import monopoly.menus.MenuGioco;
+import monopoly.menus.MenuInterfaccia;
 import monopoly.schermate.Schermata;
 import monopoly.schermate.SchermataFinale;
 import monopoly.schermate.SchermataIniziale;

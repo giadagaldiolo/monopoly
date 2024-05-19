@@ -1,4 +1,4 @@
-package monopoly;
+package monopoly.menus;
 import monopoly.componentigioco.casella.CaseHotel;
 import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.utilita.ScannerUtils;

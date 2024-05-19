@@ -1,11 +1,11 @@
-package monopoly;
+package monopoly.menus;
 
 import monopoly.componentigioco.casella.Acquistabile;
 import monopoly.componentigioco.casella.Casella;
 import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.utilita.ScannerUtils;
 
-public class MenuAcquisti implements MenuAcquistiInterfaccia{
+public class MenuAcquisti implements MenuAcquistiInterfaccia {
     private Giocatore giocatoreCorrente;
     private Acquistabile terreno;
     private int nLine;

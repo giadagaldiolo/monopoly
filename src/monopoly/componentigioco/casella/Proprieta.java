@@ -2,9 +2,9 @@ package monopoly.componentigioco.casella;
 
 
 import monopoly.Coordinate;
-import monopoly.MenuAcquisti;
-import monopoly.MenuAcquistiInterfaccia;
-import monopoly.MenuAcquistoMiglioramenti;
+import monopoly.menus.MenuAcquisti;
+import monopoly.menus.MenuAcquistiInterfaccia;
+import monopoly.menus.MenuAcquistoMiglioramenti;
 import monopoly.componentigioco.giocatore.Giocatore;
 
 import java.util.Random;

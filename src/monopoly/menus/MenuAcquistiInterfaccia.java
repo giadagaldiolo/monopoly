@@ -1,4 +1,4 @@
-package monopoly;
+package monopoly.menus;
 
 import monopoly.componentigioco.casella.Acquistabile;
 import monopoly.componentigioco.giocatore.Giocatore;
