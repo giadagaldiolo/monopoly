@@ -29,6 +29,11 @@ public class MovimentoGiocatore  implements MovimentoGiocatoreSupporto {
         this.coordinate=new Coordinate(yMax,xMax);
 
     }
+    @Override
+    public int getYMax() {
+        return yMax;
+    }
+
 
     /**
      * <p>Metodo più importante per il movimento del giocatore.</p>
@@ -120,6 +125,13 @@ public class MovimentoGiocatore  implements MovimentoGiocatoreSupporto {
 
         this.coordinate.setY(yMax);
         this.coordinate.setX(0);
+    }
+
+    @Override
+    public void spostaGiocatore(Coordinate coordinate) {
+        this.coordinate.setY(coordinate.getY());
+        this.coordinate.setX(coordinate.getX());
+
     }
 
 }

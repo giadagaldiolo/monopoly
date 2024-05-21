@@ -1,6 +1,7 @@
 package monopoly.componentigioco.giocatore.funzionalita;
 
 
+import monopoly.Coordinate;
 import monopoly.componentigioco.Tabellone;
 import monopoly.componentigioco.casella.Casella;
 
@@ -16,7 +17,8 @@ public interface MovimentoGiocatoreSupporto {
 
     int getY();
 
-    void spostaGiocatoreInPrigione(Casella casella);
+    int getYMax();
+    void spostaGiocatore(Coordinate coordinate);
 
     default boolean isTabellone(Tabellone tabellone){
         return tabellone != null;

@@ -1,5 +1,6 @@
 package monopoly.componentigioco.giocatore;
 
+import monopoly.Coordinate;
 import monopoly.componentigioco.Banca;
 import monopoly.componentigioco.Tabellone;
 import monopoly.componentigioco.casella.*;
@@ -208,6 +209,11 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
         return this.movimentoGiocatore.getY();
     }
 
+    @Override
+    public void spostaGiocatore(Coordinate coordinate) {
+        this.movimentoGiocatore.spostaGiocatore(coordinate);
+    }
+
     /**
      * <p>Il metodo si occupa di gestire l'aggiornamento delle coordinate del giocatore salvate in {@link #movimentoGiocatore}.</p>
      * <p>Il metodo {@link #cambioCoordinate()} è importante per aggiungere i soldi del via al giocatore (oltre che ad aggiornare le coordinate): dato che controlla se un giocatore passa per il via.</p>
@@ -311,17 +317,20 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
         return this.pagamentiGiocatore.getNCaselleAcquistate(index);
     }
 
-    @Override
+
     public void spostaGiocatoreInPrigione(Casella casella) {
         pulisciCasella(casella);
         this.imprigionato = true;
         this.tentativiPerPrigione = Costanti.TENTATIVI_PRIGIONE;
-        this.movimentoGiocatore.spostaGiocatoreInPrigione(casella);
+        spostaGiocatore(new Coordinate(this.movimentoGiocatore.getYMax(),0));
 
 
     }
 
-
+    @Override
+    public int getYMax() {
+        return this.movimentoGiocatore.getYMax();
+    }
 
     /**
      *
