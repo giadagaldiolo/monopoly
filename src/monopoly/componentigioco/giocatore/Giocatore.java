@@ -159,7 +159,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
 
      */
     private void cancellaGiocatore(Casella casella,Tabellone tabellone){
-        this.movimentoGiocatore.cancellaSimbolo(this.simbolo,casella);
+        casella.togliCarattere();
         resettaCaselleGiocatore(tabellone);
 
     }
@@ -264,7 +264,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
             pulisciCasella(casella);
             spostamentoGiocatore(passi);
             casella=tabellone.getCasella(getY(),getX());
-            riempiCasella(casella);
+            casella.aggiungiCarattere(this.simbolo);
 
         }
     }
@@ -273,9 +273,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
         casella.togliCarattere();
 
     }
-    public void riempiCasella(Casella casella){
-        aggiungiSimbolo(this.simbolo, casella);
-    }
+
 
 
     public void azioneCasella(Tabellone tabellone){

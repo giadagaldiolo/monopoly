@@ -32,11 +32,6 @@ public class Prigione extends Casella {
         return "";
     }
 
-    public  void spostaGiocatore(Giocatore giocatore){
-        giocatore.riempiCasella(this);
-
-    }
-
     @Override
     public void azioneCasella(Giocatore giocatoreCorrente) {
         if( super.isGiocatore(giocatoreCorrente) &&giocatoreCorrente.isImprigionato() ){

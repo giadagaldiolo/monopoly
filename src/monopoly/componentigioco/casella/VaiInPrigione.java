@@ -32,7 +32,7 @@ public class VaiInPrigione extends Casella {
     public void azioneCasella(Giocatore giocatoreCorrente) {
         if (isGiocatore(giocatoreCorrente)){
             giocatoreCorrente.spostaGiocatoreInPrigione(this);
-            this.prigione.spostaGiocatore(giocatoreCorrente);
+            this.prigione.aggiungiCarattere(giocatoreCorrente.getSimbolo());
         }
 
     }
