@@ -24,5 +24,10 @@ public abstract class Carta {
         return InformazioniCarta.readFromFile(new File(percorsoFile+"Probabilita.txt"));
     }
 
-
+    @Override
+    public String toString() {
+        return "Carta{" +
+                "descrizione='" + descrizione + '\'' +
+                '}';
+    }
 }

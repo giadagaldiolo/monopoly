@@ -36,10 +36,6 @@ public abstract class Casella implements CasellaInterface {
 
 
 
-
-
-
-
     public void aggiungiCarattere(String ch) {
 
         giocatoriPresenti.addFirst(ch);
@@ -149,12 +145,12 @@ public abstract class Casella implements CasellaInterface {
         return  giocatoreCorrente!=null;
     }
 
-
-
-
-
     public void setPedaggio(int pedaggio) {
         this.pedaggio = pedaggio;
+    }
+
+    public Coordinate getCoordinate() {
+        return coordinate;
     }
 
 

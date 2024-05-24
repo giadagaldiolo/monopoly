@@ -1,15 +1,18 @@
 package monopoly.componentigioco;
 
 
+import monopoly.Coordinate;
 import monopoly.componentigioco.casella.*;
 import monopoly.utilita.Costanti;
+
+import java.util.Objects;
 
 /**
  * <i>Classe che gestisce il tabellone e ciò che ne deriva (Caselle)</i>
  */
 
 public class Tabellone {
-    private Casella[][] caselle ;
+    private static Casella[][] caselle ;
 
     /**
      * Genera la stringa del tabellone
@@ -122,7 +125,17 @@ public class Tabellone {
         return caselle[i][j] instanceof VaiInPrigione;
     }
 
-    public Casella getCasella(int i, int j) {
+    public static Casella getCasella(int i, int j) {
         return caselle[i][j];
+    }
+
+    public static Coordinate controlloCasella(String nomeCasella) {
+        for (Casella[] righeCasella : caselle) {
+            for (Casella casella : righeCasella)
+                if (casella != null)
+                    if (nomeCasella.equalsIgnoreCase(casella.getNome()))
+                        return casella.getCoordinate();
+        }
+        return null;
     }
 }

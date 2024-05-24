@@ -1,8 +1,12 @@
 package monopoly.componentigioco.casella;
 
 import monopoly.Coordinate;
+import monopoly.componentigioco.Banca;
 import monopoly.componentigioco.carte.Carta;
+import monopoly.componentigioco.carte.ModificaBudget;
+import monopoly.componentigioco.carte.VaiA;
 import monopoly.componentigioco.giocatore.Giocatore;
+import monopoly.componentigioco.giocatore.funzionalita.MovimentoGiocatore;
 
 import java.util.LinkedList;
 
@@ -27,6 +31,18 @@ public abstract class CaselleCarte extends Casella{
     @Override
     public String infoCasella() {
         return "Pesca una carta";
+    }
+
+    @Override
+    public void azioneCasella(Giocatore giocatoreCorrente) {
+        Carta carta = probabilita.remove(0);
+        System.out.println(carta.toString());
+        if (carta instanceof VaiA) {
+            giocatoreCorrente.spostaGiocatore(((VaiA) carta).getCoordinateDiArrivo());
+        } else {
+            giocatoreCorrente.addSoldi(((ModificaBudget) carta).getValore());
+            Banca.addImporto(((ModificaBudget) carta).getValore());
+        };
     }
 
     public static void creaCarte() {

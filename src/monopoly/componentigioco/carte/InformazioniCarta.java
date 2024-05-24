@@ -21,7 +21,7 @@ public class InformazioniCarta {
                 if (tokens.length != 3)
                     continue;
 
-                Carta carta = CreaCarta(tokens[1].toLowerCase().trim(),tokens[0],tokens[2]);
+                Carta carta = CreaCarta(tokens[1].toLowerCase().trim(),tokens[0],tokens[2].trim().trim());
                 carte.add(carta);
             }
         } catch (final IOException e) {
@@ -34,8 +34,8 @@ public class InformazioniCarta {
 
     private static Carta CreaCarta(String tipo, String descrizione,String terzaInformazione) {
         return switch (tipo) {
-            case "vaia" -> new VaiA( descrizione,  terzaInformazione);
-            case"ricevi"-> new ModificaBudget(descrizione,terzaInformazione);
+            case "vai a" -> new VaiA( descrizione,  terzaInformazione);
+            case "ricevi"-> new ModificaBudget(descrizione,terzaInformazione);
             default -> new ModificaBudget( descrizione,  "-"+terzaInformazione);
         };
     }

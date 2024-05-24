@@ -1,5 +1,6 @@
 package monopoly;
 
+import monopoly.componentigioco.Tabellone;
 import monopoly.utilita.Costanti;
 
 public class Coordinate  {
@@ -42,5 +43,10 @@ public class Coordinate  {
         }
         this.y = y;
 
+    }
+
+    @Override
+    public String toString() {
+        return Tabellone.getCasella(x,y).getNome();
     }
 }

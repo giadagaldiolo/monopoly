@@ -11,5 +11,14 @@ public class ModificaBudget extends Carta{
         }
     }
 
+    public int getValore() {
+        return valore;
+    }
 
+    @Override
+    public String toString() {
+        return super.toString() + "ModificaBudget{" +
+                "valore=" + valore +
+                '}';
+    }
 }

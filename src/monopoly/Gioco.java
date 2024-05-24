@@ -39,7 +39,7 @@ public class Gioco {
     private void creaGioco(){
         creaTabellone();
         creaGiocatori();
-        CaselleCarte. creaCarte();
+        CaselleCarte.creaCarte();
 
         creaDado();
     }

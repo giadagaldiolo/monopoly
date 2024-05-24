@@ -248,15 +248,18 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
     public void pagamentoPedaggio(Casella casella){ // solo per la banca
         if (isCasella(casella) && !this.imprigionato) {
             this.pagamentiGiocatore.pagamentoPedaggio(casella);
-
         }
     }
 
     public void pagamentoAffitto(Giocatore proprietario,int importo){
         this.pagamentiGiocatore.pagamentoAffitto(proprietario,importo);
-
-
     }
+
+    public void pagamentoCarta(Giocatore pagante,int importo){
+        this.pagamentiGiocatore.pagamentoAffitto(pagante,importo);
+    }
+
+
 
 
     /**
