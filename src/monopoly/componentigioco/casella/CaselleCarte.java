@@ -29,12 +29,6 @@ public abstract class CaselleCarte extends Casella{
         return "Pesca una carta";
     }
 
-    @Override
-    public void azioneCasella(Giocatore giocatoreCorrente) {
-        setPedaggio(giocatoreCorrente.getSoldi());
-        super.azioneCasella(giocatoreCorrente);
-    }
-
     public static void creaCarte() {
         CaselleCarte.probabilita = Carta.creaProbabilita();
         CaselleCarte.imprevisti = Carta.creaImprevisti();
