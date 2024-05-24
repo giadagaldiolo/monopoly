@@ -2,6 +2,7 @@ package monopoly;
 
 import monopoly.componentigioco.Dado;
 import monopoly.componentigioco.carte.Carta;
+import monopoly.componentigioco.casella.CaselleCarte;
 import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.componentigioco.Tabellone;
 import monopoly.menus.MenuGioco;
@@ -38,7 +39,7 @@ public class Gioco {
     private void creaGioco(){
         creaTabellone();
         creaGiocatori();
-        Carta.creaCarte();
+        CaselleCarte. creaCarte();
 
         creaDado();
     }
