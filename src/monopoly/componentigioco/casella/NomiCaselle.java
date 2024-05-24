@@ -14,7 +14,6 @@ import monopoly.utilita.Costanti;
 public enum NomiCaselle {
     TRENO(new String[]{"Stazione Nord","Stazione Sud","Stazione Ovest","Stazione Est"},CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA),
     SINGOLE (new String[]{"Parcheggio","VIA","Prigione","Vai in prigione"},CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA),
-
     MARRONE(new String[]{"Vicolo Corto", "Vicolo Stretto"},172),
     AZZURO(new String[]{"Bastioni Gran Sasso", "Viale Monterosa", "Viale Vesuvio"},32),
     ROSA(new String[]{"Via Accademia", "Corso Ateneo", "Piazza Università"},200),
@@ -23,9 +22,10 @@ public enum NomiCaselle {
     GIALLO(new String[]{"Viale Costantino", "Viale Traiano", "Piazza Giulio Cesare"},220),
     VERDE(new String[]{"Via Roma", "Corso Impero", "Largo Augusto"},28),
     BLU(new String[]{"Viale dei Giardini", "Parco della Vittoria"},21),
-
     TASSE(new String[]{"Tassa di Lusso","Tassa Patrimoniale"},CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA),
-    SOCIETA(new String[]{"Società Acqua Potabile", "Società Elettrica"},CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA);
+    SOCIETA(new String[]{"Società Acqua Potabile", "Società Elettrica"},CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA),
+    IMPREVISTI(new String[]{"Imprevisti 1", "Imprevisti 2", "Imprevisti 3"},CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA),
+    PROBABILITA(new String[]{"Probabilita 1", "Probabilita 2", "Probabilita 3"},CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA);
 
     private String [] nomi;
 

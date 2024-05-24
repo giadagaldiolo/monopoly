@@ -5,7 +5,7 @@ import monopoly.utilita.Costanti;
 public class TassaDiLusso extends Tassa {
 
     public TassaDiLusso(Casella[][] caselle) {
-        super();
+        super(); // serve a qualcosa questo super??
         setCasella(caselle);
     }
 

@@ -26,7 +26,6 @@ public abstract class Casella implements CasellaInterface {
     }
 
     protected Casella(){ // assi
-
         setNomeColoreDefault();
         setPedaggioDefault();
     }

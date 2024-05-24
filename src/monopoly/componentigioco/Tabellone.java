@@ -85,6 +85,7 @@ public class Tabellone {
         this.caselle[0][0] = new Parcheggio();
         Tassa.creaTasse(this.caselle);
         Societa.creaSocieta(this.caselle);
+        CaselleCarte.creaCaselleCarte(this.caselle);
         Prigione prigione = new Prigione();
         this.caselle[righeMatrice][0]=prigione;
         this.caselle[0][elementiMatrice] = new VaiInPrigione(prigione);

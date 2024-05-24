@@ -7,4 +7,7 @@ public class VaiA extends Carta{
     public VaiA(String descrizione, String terzaInformazione) {
         super(descrizione);
     }
+
+
+
 }
