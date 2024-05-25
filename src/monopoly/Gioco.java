@@ -93,9 +93,7 @@ public class Gioco {
            Dado.lancioDadi();
             if (!aggiornamentoPosizione(currentGiocatore,true)){
                 aggiornamentoPosizione(currentGiocatore,false);
-
            }
-
         }
     }
 

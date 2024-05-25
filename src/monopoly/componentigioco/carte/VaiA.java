@@ -5,7 +5,7 @@ import monopoly.Coordinate;
 import monopoly.componentigioco.Tabellone;
 
 public class VaiA extends Carta{
-    private Coordinate coordinateDiArrivo;
+    private final Coordinate coordinateDiArrivo;
     public VaiA(String descrizione, String terzaInformazione) {
         super(descrizione);
         this.coordinateDiArrivo = Tabellone.controlloCasella(terzaInformazione);

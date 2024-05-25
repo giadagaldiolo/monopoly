@@ -268,11 +268,11 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
      */
     public void updatePosizione(int passi, Tabellone tabellone){
         Casella casella;
-        if (isTabellone(tabellone) && isCasella((casella=tabellone.getCasella(getY(),getX()))) ) {
+        if (isTabellone(tabellone) && isCasella((casella= Tabellone.getCasella(getY(),getX()))) ) {
 
             pulisciCasella(casella);
             spostamentoGiocatore(passi);
-            casella=tabellone.getCasella(getY(),getX());
+            casella= Tabellone.getCasella(getY(),getX());
             casella.aggiungiCarattere(this.simbolo);
 
         }

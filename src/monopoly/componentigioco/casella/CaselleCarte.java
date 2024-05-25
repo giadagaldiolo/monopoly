@@ -2,6 +2,7 @@ package monopoly.componentigioco.casella;
 
 import monopoly.Coordinate;
 import monopoly.componentigioco.Banca;
+import monopoly.componentigioco.Tabellone;
 import monopoly.componentigioco.carte.Carta;
 import monopoly.componentigioco.carte.ModificaBudget;
 import monopoly.componentigioco.carte.VaiA;
@@ -38,7 +39,10 @@ public abstract class CaselleCarte extends Casella{
         Carta carta = probabilita.remove(0);
         System.out.println(carta.toString());
         if (carta instanceof VaiA) {
+            giocatoreCorrente.pulisciCasella(Tabellone.getCasella(giocatoreCorrente.getY(),giocatoreCorrente.getX()));
             giocatoreCorrente.spostaGiocatore(((VaiA) carta).getCoordinateDiArrivo());
+            Tabellone.getCasella(giocatoreCorrente.getY(),giocatoreCorrente.getX()).aggiungiCarattere(giocatoreCorrente.getSimbolo());
+            super.azioneCasella(giocatoreCorrente);
         } else {
             giocatoreCorrente.addSoldi(((ModificaBudget) carta).getValore());
             Banca.addImporto(((ModificaBudget) carta).getValore());
