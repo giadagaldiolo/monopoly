@@ -81,17 +81,17 @@ public class Tabellone {
         int elementiMatrice=Costanti.CASELLE_PER_RIGA-1;
         int numeroStazioni=4;
 
-        this.caselle[righeMatrice][elementiMatrice] = new Via();
+        caselle[righeMatrice][elementiMatrice] = new Via();
         for (int i = 0; i < numeroStazioni ; i++) {
             new Stazione(caselle);
         }
-        this.caselle[0][0] = new Parcheggio();
-        Tassa.creaTasse(this.caselle);
-        Societa.creaSocieta(this.caselle);
-        CaselleCarte.creaCaselleCarte(this.caselle);
+        caselle[0][0] = new Parcheggio();
+        Tassa.creaTasse(caselle);
+        Societa.creaSocieta(caselle);
+        CaselleCarte.creaCaselleCarte(caselle);
         Prigione prigione = new Prigione();
-        this.caselle[righeMatrice][0]=prigione;
-        this.caselle[0][elementiMatrice] = new VaiInPrigione(prigione);
+        caselle[righeMatrice][0]=prigione;
+        caselle[0][elementiMatrice] = new VaiInPrigione(prigione);
     }
 
     /**

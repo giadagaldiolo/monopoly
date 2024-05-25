@@ -34,7 +34,7 @@ public class InformazioniCarta {
 
     private static Carta CreaCarta(String tipo, String descrizione,String terzaInformazione) {
         return switch (tipo) {
-            case "vai a" -> new VaiA( descrizione,  terzaInformazione);
+            case "vai a" -> new VaiA(descrizione, terzaInformazione);
             case "ricevi"-> new ModificaBudget(descrizione,terzaInformazione);
             default -> new ModificaBudget( descrizione,  "-"+terzaInformazione);
         };
