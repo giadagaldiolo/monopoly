@@ -43,10 +43,6 @@ public enum NomiCaselle {
         return NomiCaselle.ultimaPosizioneArray;
     }
 
-    /**
-     * Semplice getter del attributo colore
-     * @return int colore
-     */
     public String getColore(){
         return colore;
     }
@@ -61,16 +57,8 @@ public enum NomiCaselle {
         this.colore= "\u001B[1;38;5;"+colore+"m"+Costanti.COLORE_SFONDO ; // bold;background/coloreScritta;? ; colore
         if (colore!= CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA) this.posizioneArrayCaselleGiocatore=NomiCaselle.calcoloUltimaPosizione();
         else this.posizioneArrayCaselleGiocatore=CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA;
-
-
     }
 
-
-
-    /**
-     * Semplice getter del array {@link #nomi} dell'istanza
-     * @return String[] array di nomi
-     */
     public String[] getNomi() {
         return nomi;
     }
@@ -83,10 +71,7 @@ public enum NomiCaselle {
      */
     public String getNome(int i){
         String nome=nomi[i];
-
-
         removeName(nome);
-
         return nome;
     }
 
@@ -118,9 +103,6 @@ public enum NomiCaselle {
                 }
             }
         }
-
         this.nomi=nuoviNomi;
-
-
     }
 }

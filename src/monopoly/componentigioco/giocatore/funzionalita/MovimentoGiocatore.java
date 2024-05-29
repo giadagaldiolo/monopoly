@@ -27,7 +27,6 @@ public class MovimentoGiocatore  implements MovimentoGiocatoreSupporto {
         this.xMax=xMax;
         this.yMax=yMax;
         this.coordinate=new Coordinate(yMax,xMax);
-
     }
     @Override
     public int getYMax() {

@@ -28,7 +28,7 @@ public class Imprevisti extends CaselleCarte{
         Carta carta = getImprevisti().remove(0);
         super.azioneCasellaCarte(carta, giocatoreCorrente);
         getImprevisti().add(carta);
-//        Collections.shuffle(getImprevisti());
+        Collections.shuffle(getImprevisti());
     }
 
     @Override

@@ -45,8 +45,6 @@ public class Stazione extends Casella{
             default -> x;
         };
         setCoordinate(new Coordinate(y,x));
-
-
         caselle[y][x]=this;
         stazioniRimaste--;
 
@@ -65,6 +63,4 @@ public class Stazione extends Casella{
         super.setNomeColore(tipo.getNome(stazioniRimaste-1),tipo.getColore());
 
     }
-
-
 }

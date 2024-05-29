@@ -6,7 +6,6 @@ import monopoly.componentigioco.giocatore.Giocatore;
 public interface MenuAcquistiInterfaccia extends MenuInterfaccia {
     void menu(Giocatore currentGiocatore, Acquistabile terreno);
     void resetProprieta();
-
     default boolean isTerreno(Acquistabile terreno){
         return terreno!=null;
     }

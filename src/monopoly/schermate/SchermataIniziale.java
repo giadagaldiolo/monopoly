@@ -34,7 +34,6 @@ public class SchermataIniziale extends Schermata{
             tabellone.modificaCasella(inserisciGiocatore(i,giocatori).getSimbolo(), Costanti.RIGHE-1, Costanti.CASELLE_PER_RIGA-1);
         }
         return giocatori;
-
     }
 
     private Giocatore inserisciGiocatore(int i,LinkedHashSet<Giocatore> giocatori){
@@ -49,9 +48,5 @@ public class SchermataIniziale extends Schermata{
 
         giocatore.impostaColore();
         return giocatore;
-
     }
-
-
-
 }

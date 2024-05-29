@@ -9,10 +9,5 @@ public interface MenuInterfaccia {
     default boolean isGiocatore(Giocatore giocatore){
         return giocatore!=null;
     }
-
 }
 
-
-
-
-//implements se servono i metodi se no direttamente composizione

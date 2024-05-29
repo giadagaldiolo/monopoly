@@ -25,11 +25,5 @@ public class MenuGioco implements MenuInterfaccia {
                 }
             } while (scelta != 2);
         }
-
     }
-
-
-
-
-
 }

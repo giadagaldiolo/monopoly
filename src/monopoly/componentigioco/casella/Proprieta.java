@@ -30,7 +30,6 @@ public class Proprieta extends Casella implements CaseHotel {
     public int getNCaselleCategoria() {
         if (this.nArrayGiocatore>=nCaselleCategoria.length){
             return 0;
-
         }
         return Proprieta.nCaselleCategoria[this.nArrayGiocatore];
     }
@@ -39,13 +38,10 @@ public class Proprieta extends Casella implements CaseHotel {
 
         if (NomiHelper.getFakeCaselle()){
             this.nArrayGiocatore=CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA;
-
-        }else {
+        } else {
             this.nArrayGiocatore=NomiHelper.nArrayUltimoColore();
             Proprieta.nCaselleCategoria[this.nArrayGiocatore]++;
-
         }
-
     }
     public int getNumeroArrayGiocatore(){
         return this.nArrayGiocatore;
@@ -54,7 +50,6 @@ public class Proprieta extends Casella implements CaseHotel {
 
     @Override
     public String dettagliCasella(int d) {
-
         return dettagliCasellaExtra(d);
     }
     private String dettagliCasellaExtra(int d){
@@ -70,14 +65,12 @@ public class Proprieta extends Casella implements CaseHotel {
                     this.print.printRigaQuattro(this.proprietario, infoCasellaPrezziEdifici(), infoCasellaNumeroEdifici(), dettagli,getNCase());
             default -> super.dettagliCasella(d);
         };
-
     }
 
     @Override
     public void setPedaggioDefault() {
         super.setPedaggioDefault();
         setPrezzi();
-
     }
     private void setProprietario(Giocatore proprietario) {
         this.proprietario=proprietario;
@@ -91,7 +84,6 @@ public class Proprieta extends Casella implements CaseHotel {
 
     private int generaPrezzo(int min,int max){
         return creaSeedRandom().nextInt(min,max);
-
     }
     private int calcoloPrezzoMinimoHotel(){ // non avrebbe senso che l'hotel costi meno di una casa
         int prezzoMinimoHotel=CostantiCaselle.PREZZO_HOTEL_MIN;
@@ -100,10 +92,8 @@ public class Proprieta extends Casella implements CaseHotel {
             prezzoMinimoHotel=this.prezzoCasa+aumentoPrezzo;
         }
         return prezzoMinimoHotel;
-
     }
     private Random creaSeedRandom(){
-
          return new Random();
     }
 
@@ -113,30 +103,24 @@ public class Proprieta extends Casella implements CaseHotel {
             acquistoTerreno=controlloAcquistoEffettuato(proprietario,this.prezzoTerreno);
             if (acquistoTerreno){
                 setProprietario(proprietario);
-
             }
-
         }
         return  acquistoTerreno;
-
     }
     public boolean acquistoCasaHotel(int numeroAcquisti) {
         boolean acquistoAvvenuto=false;
         if (isProprietario() && (!this.hotel)) {
             if ((this.nCase<CostantiCaselle.MAX_CASE)) {
-
                 for (int i = 0; i <numeroAcquisti ; i++) { // da migliorare
                     if (!acquistoAvvenuto){
                         acquistoAvvenuto=addCasa();
-                    }else {
+                    } else {
                         addCasa();
                     }
-
                 }
             } else if(acquistareHotel(numeroAcquisti)){
                 acquistoAvvenuto=addHotel();
             }
-
         }
         return acquistoAvvenuto;
     }
@@ -146,9 +130,8 @@ public class Proprieta extends Casella implements CaseHotel {
     private boolean addHotel(){
         boolean acquistoAvvenuto=controlloAcquistoEffettuato(this.proprietario,this.prezzoHotel);
         if (acquistoAvvenuto){
-            this.nCase=0;
-            this.hotel=true;
-
+            this.nCase = 0;
+            this.hotel = true;
         }
         return acquistoAvvenuto;
 
@@ -157,14 +140,12 @@ public class Proprieta extends Casella implements CaseHotel {
         boolean acquistoAvvenuto=controlloAcquistoEffettuato(this.proprietario,this.prezzoCasa);
         if (acquistoAvvenuto){
             this.nCase++;
-
         }
         return acquistoAvvenuto;
     }
 
     private boolean controlloAcquistoEffettuato(Giocatore proprietario,int prezzo){
         return proprietario.compraMiglioramentiTerreno(prezzo);
-
     }
     private boolean isProprietario(){
         return this.proprietario!=null;
@@ -191,7 +172,6 @@ public class Proprieta extends Casella implements CaseHotel {
         int houses =0;
         if (isProprietario()){
             houses= calcoloCaseAcquistabili(maxAcquistabili());
-
         }
         return houses;
 
@@ -201,7 +181,7 @@ public class Proprieta extends Casella implements CaseHotel {
 
         if (soldiGiocatore < this.prezzoCasa*maxAcquistabili) {
             return calcoloCaseAcquistabili(--maxAcquistabili);
-        }else {
+        } else {
             return maxAcquistabili;
         }
     }
@@ -213,14 +193,12 @@ public class Proprieta extends Casella implements CaseHotel {
         this.proprietario=null;
         this.nCase=0;
         this.hotel=false;
-
     }
 
     private String infoCasellaPrezziEdifici() { // non ci sta CHF, come possiamo ridurre la lunghezza di questa riga?
         StringBuilder info = new StringBuilder();
         info.append(CostantiCaselle.SPAZIO+CostantiCaselle.CHAR_CASA).append(this.prezzoCasa).append("CHF ");
         info.append(CostantiCaselle.CHAR_HOTEL).append(this.prezzoHotel).append("CHF");
-
         return info.toString();
     }
 
@@ -234,8 +212,7 @@ public class Proprieta extends Casella implements CaseHotel {
     public int getNCase(){
         if (!this.hotel){
             return this.nCase;
-
-        }else {
+        } else {
             return 1;
         }
 
@@ -245,28 +222,20 @@ public class Proprieta extends Casella implements CaseHotel {
         if (this.proprietario==null){
             if (!menuAcquistoTerreno(giocatorePagante)){
                 super.azioneCasella(giocatorePagante);
-
-            }else azioneCasella(giocatorePagante); // se si vuole far compare le case nello stesso turno
-
-        }else if (!(this.proprietario.equals(giocatorePagante))){
+            } else azioneCasella(giocatorePagante); // se si vuole far compare le case nello stesso turno
+        } else if (!(this.proprietario.equals(giocatorePagante))){
             giocatorePagante.pagamentoAffitto(this.proprietario,getPedaggio());
-        }else {
+        } else {
             acquistaHotelCase();
         }
-
-
-
     }
 
     private boolean controlloCaseAcquistate(){
         boolean risposta=false;
-
         if (this.getNumeroArrayGiocatore()==CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA){
             return true;
         }
-
         risposta=proprietario.getNCaselleAcquistate(this.nArrayGiocatore)>=this.getNCaselleCategoria();
-
         return risposta;
     }
 
@@ -274,9 +243,7 @@ public class Proprieta extends Casella implements CaseHotel {
         if (this.proprietario!=null && controlloCaseAcquistate()){
             Proprieta.menuAcquisti[1].menu(this.proprietario, this);
             menuAcquisti[1].pagamentoGiaEffettuato();
-
         }
-
     }
 
     @Override
@@ -285,41 +252,30 @@ public class Proprieta extends Casella implements CaseHotel {
         if (this.proprietario!=null){
             pedaggio-=calcoloAffitto();
         }
-
         return pedaggio;
     }
     private int calcoloAffitto(){
         int affitto=0;
         if (this.hotel){
             affitto=CostantiCaselle.AUMENTO_PREZZO_HOTEL;
-
-        }else {
+        } else {
             affitto=CostantiCaselle.AUMENTO_PREZZO_CASA*this.nCase;
         }
         return affitto;
-
     }
 
 
 
     private boolean menuAcquistoTerreno(Giocatore giocatorePagante){
-
         boolean risposta=false;
         menuAcquisti[0].menu(giocatorePagante, this);
         risposta = ((menuAcquisti[0]).pagamentoGiaEffettuato());
         if (risposta) aggiungiTerreno(giocatorePagante);
-
         return risposta;
     }
     private void aggiungiTerreno(Giocatore giocatoreCorrente){
-
-            if (this.nArrayGiocatore<=NomiCaselle.getUltimaPosizione()){
-                giocatoreCorrente.aggiuntaTerreno(this.nArrayGiocatore);
-            }
-
-
-
-
-
+        if (this.nArrayGiocatore<=NomiCaselle.getUltimaPosizione()){
+            giocatoreCorrente.aggiuntaTerreno(this.nArrayGiocatore);
+        }
     }
 }

@@ -16,8 +16,6 @@ public class Dado {
         for (Dado dado : dadi) {
             System.out.println(dado);
         }
-
-
     }
     public static boolean confrontaDadi(){
         boolean uguali=true;
@@ -26,7 +24,6 @@ public class Dado {
                 uguali=false;
                 break;
             }
-
         }
         return uguali;
     }
@@ -40,7 +37,6 @@ public class Dado {
     }
 
 
-
     public static int sommaDadi(){
         int somma=0;
         for (Dado dado : dadi) {
@@ -49,13 +45,10 @@ public class Dado {
         return somma;
     }
     public static void creaDadi(){
-
-            Dado.dadi=new Dado[Costanti.NUMERO_DADI];
-            for (int i = 0; i < Dado.dadi.length; i++) {
-                dadi[i]=new Dado(i);
-            }
-
-
+        Dado.dadi=new Dado[Costanti.NUMERO_DADI];
+        for (int i = 0; i < Dado.dadi.length; i++) {
+            dadi[i]=new Dado(i);
+        }
     }
     public static void lancioDadi(){
         for (Dado dado : dadi) {

@@ -11,7 +11,6 @@ public abstract class Tassa extends Casella {
     public static void creaTasse(Casella[][] caselle){
         new TassaDiLusso(caselle);
         new TassaPatrimoniale(caselle);
-
     }
 
     protected void setCasella(Casella [][] caselle){
@@ -19,7 +18,4 @@ public abstract class Tassa extends Casella {
         setCoordinate(new Coordinate(coordinate[0],coordinate[0]));
         caselle[coordinate[0]][coordinate[1]]=this;
     }
-
-
-
 }

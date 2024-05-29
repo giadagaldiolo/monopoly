@@ -15,7 +15,6 @@ public abstract class  NomiHelper {
 
     private static final int caselleNotRandom = 2; // dato che nel enum NomiCaselle non serve mischiare Treno e singole
     private static int ultimoColore=caselleNotRandom;
-
     private static NomiCaselle [] nomiCaselle = NomiCaselle.values(); // contiene il valori del enum NomiCaselle
     private static boolean fakeCaselle=false;
 
@@ -26,7 +25,6 @@ public abstract class  NomiHelper {
  *
  */
     private static void mischiaColori(){
-
         for (int i = caselleNotRandom; i < nomiCaselle.length; i++) {
             Random random = new Random();
             NomiCaselle tmp;
@@ -36,15 +34,11 @@ public abstract class  NomiHelper {
             nomiCaselle[numeroRandom]=nomiCaselle[i];
             nomiCaselle[i]=tmp;
         }
-
     }
     public static int nArrayUltimoColore(){
         NomiCaselle categoriaCasella =nomiCaselle[ultimoColore];
         return categoriaCasella.getPosizioneArrayCaselleGiocatore();
-
     }
-
-
 
 
     /**
@@ -75,7 +69,6 @@ public abstract class  NomiHelper {
     private static String[] casellaSconosciuta(){
         fakeCaselle=true;
         return  new String[]{"????", nomiCaselle[0].getColore()};
-
     }
     static boolean getFakeCaselle(){
         return fakeCaselle;
@@ -100,7 +93,6 @@ public abstract class  NomiHelper {
         nomeColore[1]= categoriaCasella.getColore();
 
         return nomeColore;
-
     }
 
     /**
@@ -134,17 +126,15 @@ public abstract class  NomiHelper {
         } else {
             ultimoColore=caselleNotRandom;
         }
-
     }
 
     public static int[] calcoloCoordinate(Casella [][]caselle){
         int y,x;
-        do{
+        do {
             Random random= new Random();
             y= random.nextInt(Costanti.RIGHE);
             x= random.nextInt(Costanti.CASELLE_PER_RIGA);
-        }while (Tabellone.controlloPosizione(y,x) || (caselle[y][x]!=null) );
+        } while (Tabellone.controlloPosizione(y,x) || (caselle[y][x]!=null) );
         return new int[]{y,x};
-
     }
 }

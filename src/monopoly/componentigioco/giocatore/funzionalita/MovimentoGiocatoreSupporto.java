@@ -12,11 +12,8 @@ import monopoly.componentigioco.casella.Casella;
 public interface MovimentoGiocatoreSupporto {
 
     boolean cambioCoordinate();
-
     int  getX();
-
     int getY();
-
     int getYMax();
     void spostaGiocatore(Coordinate coordinate);
 
@@ -26,6 +23,4 @@ public interface MovimentoGiocatoreSupporto {
     default boolean isCasella(Casella casella){
         return casella != null;
     }
-
-
 }

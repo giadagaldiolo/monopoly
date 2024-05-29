@@ -18,25 +18,19 @@ public abstract class Colori  {
         int numeroColore;
         do {
             numeroColore = random.nextInt(Costanti.ANSI_MIN, Costanti.ANSI_MAX + 1);
-
-        }while (isColoreUtilizzato(numeroColore));
+        } while (isColoreUtilizzato(numeroColore));
 
         coloriUsati[++cntColori] = numeroColore;
-
         colore = colore + numeroColore + "m";
         colore+=Costanti.COLORE_SFONDO; // da migliorare in futuro se serve per lo sfondo
         return colore;
     }
-
     private static void resetContatoreColori(){
-
         if (cntColori>=coloriUsati.length-1){
             cntColori=0;
             coloriUsati= new int[Costanti.ANSI_MAX-Costanti.ANSI_MIN+1];
         }
     }
-
-
 
     private static Boolean isColoreUtilizzato(int coloreScelto){
         boolean utilizzato=false;
@@ -46,7 +40,6 @@ public abstract class Colori  {
                 utilizzato=true;
                 break;
             }
-
         }
         return utilizzato;
     }

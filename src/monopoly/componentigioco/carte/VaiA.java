@@ -14,11 +14,4 @@ public class VaiA extends Carta{
     public Coordinate getCoordinateDiArrivo() {
         return coordinateDiArrivo;
     }
-
-    @Override
-    public String toString() {
-        return super.toString() + "VaiA{" +
-                "coordinateDiArrivo=" + coordinateDiArrivo +
-                '}';
-    }
 }

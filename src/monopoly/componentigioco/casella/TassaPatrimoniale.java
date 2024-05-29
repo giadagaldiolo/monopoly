@@ -5,8 +5,6 @@ import monopoly.utilita.Costanti;
 
 public class TassaPatrimoniale extends Tassa {
 
-
-
     public TassaPatrimoniale(Casella[][] caselle) {
         super();
         setCasella(caselle);
@@ -29,13 +27,11 @@ public class TassaPatrimoniale extends Tassa {
     @Override
     public void setPedaggio( int soldiGiocatore) {
         super.setPedaggio((int) -(Costanti.PERCENTUALE_TASSA_PATRIMONIALE*soldiGiocatore));
-
     }
 
     @Override
     public void azioneCasella(Giocatore giocatoreCorrente) {
         setPedaggio(giocatoreCorrente.getSoldi());
         super.azioneCasella(giocatoreCorrente);
-
     }
 }

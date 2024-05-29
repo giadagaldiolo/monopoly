@@ -25,11 +25,9 @@ public class Gioco {
 
 
     public Gioco() {
-
         System.out.println(this.schermataCorrente);
         ScannerUtils.emptyTheScanner();
         avviaGioco();
-
     }
 
     private void avviaGioco(){
@@ -40,14 +38,12 @@ public class Gioco {
         creaTabellone();
         creaGiocatori();
         CaselleCarte.creaCarte();
-
         creaDado();
     }
 
     private void gameFlow() {
         System.out.println(tabellone);
         int sizeGiocatori=giocatori.size();
-
 
         while (sizeGiocatori > 1) {
             Iterator<Giocatore> iteratorGiocatori = giocatori.iterator(); //per resettare il loop
@@ -59,32 +55,23 @@ public class Gioco {
                     sizeGiocatori--;
                     if (sizeGiocatori==1) break;
                 }
-
             }
-
-
         }
-
         fineGioco(giocatori.iterator().next());
-
-
     }
 
     private void creaDado() {
        Dado.creaDadi();
-
     }
 
 
     private void creaGiocatori() {
         this.giocatori= new SchermataIniziale().creaGiocatori(this.tabellone);
-
     }
 
     private void menuTurno(Giocatore currentGiocatore) {
         this.menuGioco.menu(currentGiocatore);
         turno(currentGiocatore);
-
     }
 
 
@@ -127,12 +114,9 @@ public class Gioco {
     }
 
 
-
     private void fineGioco(Giocatore giocatore) {
-
         this.schermataCorrente=new SchermataFinale(giocatore);
         System.out.println(this.schermataCorrente);
-
         ScannerUtils.chiudiScanner();
     }
 

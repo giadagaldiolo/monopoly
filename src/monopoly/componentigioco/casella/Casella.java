@@ -34,8 +34,6 @@ public abstract class Casella implements CasellaInterface {
         this.coordinate=coordinate;
     }
 
-
-
     public void aggiungiCarattere(String ch) {
         giocatoriPresenti.addFirst(ch);
     }
@@ -64,7 +62,6 @@ public abstract class Casella implements CasellaInterface {
         boolean PrimaUltimaRiga=d>0 && d<Costanti.RIGHE_CASELLA-1;
         if (PrimaUltimaRiga) dettagli.append("|");
 
-
         switch (d) {
             case 0: case 6:
                 dettagli.append(righette);
@@ -90,13 +87,11 @@ public abstract class Casella implements CasellaInterface {
                 for (String giocatore : giocatoriPresenti) {
                         if (!(giocatore.isBlank()))
                             quintaRiga.append(giocatore).append(Costanti.COLORE_SFONDO).append(" ");
-
                 }
 
                 dettagli.append(quintaRiga).append(spazio.repeat((Costanti.LARGHEZZA_CASELLA - 2) - spaziDaFare));
                 dettagli.append(getColore());
                 break;
-
         }
         if (PrimaUltimaRiga) dettagli.append("|").append(spazio); // if in una sola riga // spazio per avere tutte le caselle separate come sopra
         return  dettagli.toString();
@@ -125,7 +120,6 @@ public abstract class Casella implements CasellaInterface {
     }
     @Override
     public String infoCasella() {
-
         return "Paga " + Math.abs(this.pedaggio);
     }
 
@@ -144,7 +138,6 @@ public abstract class Casella implements CasellaInterface {
     public void setPedaggio(int pedaggio) {
         this.pedaggio = pedaggio;
     }
-
     public Coordinate getCoordinate() {
         return coordinate;
     }

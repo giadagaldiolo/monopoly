@@ -9,7 +9,6 @@ public class Parcheggio extends Casella {
     public Parcheggio() {
         super();
         setCoordinate(new Coordinate(0,0));
-
     }
     @Override
     public void setNomeColoreDefault(){

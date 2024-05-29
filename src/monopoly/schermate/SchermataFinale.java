@@ -10,7 +10,6 @@ public class SchermataFinale extends Schermata{
     public SchermataFinale(Giocatore vincitore){
         this.vincitore = isGiocatore(vincitore) ? vincitore : giocatoreDefault() ;
         this.colore=vincitore.getColore();
-
     }
     private Giocatore giocatoreDefault(){
         return new Giocatore("Sconosciuto",'S',0,0);
@@ -44,10 +43,8 @@ public class SchermataFinale extends Schermata{
             int nSpaziRichiestiPrima = (nSpaziRichiestiTotali / 2);
             String spazio = " ";
             return spazio.repeat(nSpaziRichiestiPrima) + giocatore + spazio.repeat(nSpaziRichiestiTotali - nSpaziRichiestiPrima);
-        }else {
+        } else {
             return "Stringa vuota";
         }
     }
-
-
 }

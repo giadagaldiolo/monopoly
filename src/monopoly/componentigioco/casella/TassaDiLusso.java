@@ -13,7 +13,6 @@ public class TassaDiLusso extends Tassa {
     public void setNomeColoreDefault(){
         NomiCaselle tipo=NomiCaselle.TASSE;
         super.setNomeColore(tipo.getNome(0),tipo.getColore());
-
     }
 
     @Override

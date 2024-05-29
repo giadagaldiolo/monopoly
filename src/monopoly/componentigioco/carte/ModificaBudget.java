@@ -6,19 +6,12 @@ public class ModificaBudget extends Carta{
         super(descrizione);
         try {
             this.valore=Integer.parseInt(terzaInformazione.trim().toLowerCase());
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e){
            this.valore=1;
         }
     }
 
     public int getValore() {
         return valore;
-    }
-
-    @Override
-    public String toString() {
-        return super.toString() + "ModificaBudget{" +
-                "valore=" + valore +
-                '}';
     }
 }

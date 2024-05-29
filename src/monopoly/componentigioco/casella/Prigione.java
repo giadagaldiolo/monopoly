@@ -12,8 +12,6 @@ public class Prigione extends Casella {
     public Prigione() {
         super();
         setCoordinate(new Coordinate(Costanti.RIGHE-1,0));
-
-
     }
 
     @Override
@@ -56,5 +54,4 @@ public class Prigione extends Casella {
         giocatori.remove(giocatore.getSimbolo());
         giocatori.addLast(giocatore.getSimbolo());
     }
-
 }

@@ -10,7 +10,6 @@ public class VaiInPrigione extends Casella {
         super();
         setCoordinate(new Coordinate(0,Costanti.CASELLE_PER_RIGA-1));
         this.prigione=prigione;
-
     }
 
     @Override

@@ -19,12 +19,7 @@ public abstract class  ScannerUtils {
             }
             System.out.println("Il nome deve avere al massimo " + charMax + " caratteri e non può essere vuoto");
         }
-
     }
-
-
-
-
 
     public static char inputSimboloGiocatore(final int numeroGiocatore){
         while (true) {
@@ -47,7 +42,7 @@ public abstract class  ScannerUtils {
                     return inputUser;
                 }
                 System.out.println("Errore: il numero non è valido.");
-            }else {
+            } else {
                 System.out.println("Errore: non hai inserito un numero.");
             }
             emptyTheScanner();

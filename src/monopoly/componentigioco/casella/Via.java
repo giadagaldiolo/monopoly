@@ -5,11 +5,9 @@ import monopoly.utilita.Costanti;
 
 public class Via extends Casella {
 
-
     public Via() {
         super();
         setCoordinate(new Coordinate(Costanti.RIGHE-1,Costanti.CASELLE_PER_RIGA-1));
-
     }
 
     @Override
@@ -20,7 +18,6 @@ public class Via extends Casella {
     public void setNomeColoreDefault(){
         NomiCaselle tipo=NomiCaselle.SINGOLE;
         super.setNomeColore(tipo.getNome(1),tipo.getColore());
-
     }
     @Override
     public String infoCasella() {

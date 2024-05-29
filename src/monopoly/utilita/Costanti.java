@@ -26,10 +26,4 @@ public abstract class  Costanti {
     public static final int TENTATIVI_PRIGIONE = 3;
     public static final int IMPORTO_PER_USCIRE_PRIGIONE = 50;
 
-
-
-
-
-
-
 }

@@ -11,13 +11,11 @@ public abstract class Carta {
 
     public Carta(String descrizione) {
         this.descrizione=descrizione;
-
     }
 
 
     public static LinkedList<Carta> creaImprevisti() {
         return InformazioniCarta.readFromFile(new File(percorsoFile+"Imprevisti.txt"));
-
     }
 
     public static LinkedList<Carta> creaProbabilita() {
@@ -26,8 +24,6 @@ public abstract class Carta {
 
     @Override
     public String toString() {
-        return "Carta{" +
-                "descrizione='" + descrizione + '\'' +
-                '}';
+        return "Hai pescato: '" + descrizione + '\'';
     }
 }

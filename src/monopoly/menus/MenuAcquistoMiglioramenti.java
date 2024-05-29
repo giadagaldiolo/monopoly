@@ -12,7 +12,7 @@ public class MenuAcquistoMiglioramenti implements MenuMiglioramentiTerreni {
 
     @Override
     public void menu(Giocatore currentGiocatore) {
-        int scelta=2;
+        int scelta = 2;
 
         if (isGiocatore(currentGiocatore) ){
 
@@ -21,20 +21,13 @@ public class MenuAcquistoMiglioramenti implements MenuMiglioramentiTerreni {
                 scelta = ScannerUtils.readIntegerInRange(1, this.opzioniMenu);
                 if (scelta >= this.opzioniMenu) {
                     System.out.println("Nessun Acquisto effettuato");
-                    acquistoEfettuato=false;
-                }else {
-                    acquistoEfettuato=this.proprieta.acquistoCasaHotel(scelta);
+                    acquistoEfettuato = false;
+                } else {
+                    acquistoEfettuato = this.proprieta.acquistoCasaHotel(scelta);
                 }
-
             }
-
         }
-
     }
-
-
-
-
 
     @Override
     public String toString(){
@@ -45,7 +38,7 @@ public class MenuAcquistoMiglioramenti implements MenuMiglioramentiTerreni {
         if (caseAcquistabili>0) {
 
             this.opzioniMenu=caseAcquistabili+1;
-            stringa.append("Case acquistabili : NUMERO MASSIMO %d \n".formatted(caseAcquistabili));
+            stringa.append("Numero massimo di case acquistabili: %d \n".formatted(caseAcquistabili));
             stringa.append("Inserire la quantità di case da acquistare o premere %d per non compare niente\n".formatted(this.opzioniMenu));
 
         } else if (this.proprieta.isHotelAcquistabile()){
@@ -53,13 +46,10 @@ public class MenuAcquistoMiglioramenti implements MenuMiglioramentiTerreni {
             stringa.append("HOTEL ACQUISTABILE \n");
             stringa.append("1 per acquistare \n");
             stringa.append("2 per non acquistare \n");
-
-        }else {
+        } else {
             return "";
         }
         return stringa.toString();
-
-
     }
 
     @Override
@@ -70,13 +60,8 @@ public class MenuAcquistoMiglioramenti implements MenuMiglioramentiTerreni {
                this.giocatoreCorrente = terreno.getProprietario();
                this.proprieta=terreno;
                menu(this.giocatoreCorrente);
-
            }
-
         }
-
-
-
     }
 
     @Override
@@ -85,7 +70,6 @@ public class MenuAcquistoMiglioramenti implements MenuMiglioramentiTerreni {
         this.proprieta=null;
         this.opzioniMenu=0;
         this.acquistoEfettuato=false;
-
     }
 
     @Override

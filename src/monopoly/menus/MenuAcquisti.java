@@ -16,11 +16,7 @@ public class MenuAcquisti implements MenuAcquistiInterfaccia {
         if (isGiocatoreAndTerreno(currentGiocatore, terreno)){
             this.terreno=terreno;
             if (this.terreno.getProprietario()==null) menu(currentGiocatore);
-
         }
-
-
-
     }
 
     @Override
@@ -29,12 +25,10 @@ public class MenuAcquisti implements MenuAcquistiInterfaccia {
         this.terreno=null;
         this.nLine=0;
         this.giaPagato=false;
-
     }
 
     @Override
     public void menu(Giocatore currentGiocatore) {
-
         int scelta=1;
         this.giaPagato=false;
         if (isGiocatore(currentGiocatore) ){
@@ -45,12 +39,9 @@ public class MenuAcquisti implements MenuAcquistiInterfaccia {
                 scelta = ScannerUtils.readIntegerInRange(1, 2);
                 if (scelta == 2) {
                     this.giaPagato=this.terreno.acquistoTerreno(currentGiocatore);
-
                 }
             }
-
         }
-
     }
     @Override
     public boolean pagamentoGiaEffettuato(){
@@ -60,23 +51,19 @@ public class MenuAcquisti implements MenuAcquistiInterfaccia {
        String stringaTerreno="";
         int prezzoTerreno= this.terreno.getPrezzoTerreno();
 
-        if(soldiGiocatore >= prezzoTerreno ){
+        if (soldiGiocatore >= prezzoTerreno ){
             this.nLine++;
-            stringaTerreno="%d Comprare terreno al prezzo di %d \n".formatted(this.nLine,prezzoTerreno);
-
+            stringaTerreno="%d Comprare terreno al prezzo di %dCHF\n".formatted(this.nLine,prezzoTerreno);
         }
         return stringaTerreno;
     }
 
-
      @Override
      public String toString(){
         this.nLine=1;
-        StringBuilder menu = new StringBuilder("MENU ACQUISTO/PAGAMENTO TERRENO/PEDAGGIO\n%d Pagare Pedaggio alla banca di %d \n".formatted(nLine,Math.abs(((Casella) this.terreno).getPedaggio())));
+        StringBuilder menu = new StringBuilder("MENU ACQUISTO/PAGAMENTO TERRENO/PEDAGGIO\n%d Pagare pedaggio alla banca di %dCHF \n".formatted(nLine,Math.abs(((Casella) this.terreno).getPedaggio())));
         int soldiGiocatore= giocatoreCorrente.getSoldi();
         menu.append(sceltaStringa(soldiGiocatore));
         return menu.toString();
      }
-
-
 }

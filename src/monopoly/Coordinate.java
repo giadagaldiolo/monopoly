@@ -19,11 +19,9 @@ public class Coordinate  {
     private boolean controlloX (int x){
         return (x > Costanti.CASELLE_PER_RIGA || x<0);
     }
-
     public int getX() {
         return x;
     }
-
     public int getY() {
         return y;
     }
@@ -42,7 +40,6 @@ public class Coordinate  {
             return;
         }
         this.y = y;
-
     }
 
     @Override
