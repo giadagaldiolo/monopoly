@@ -34,9 +34,7 @@ public abstract class CaselleCarte extends Casella{
         return "Pesca una carta";
     }
 
-    @Override
-    public void azioneCasella(Giocatore giocatoreCorrente) {
-        Carta carta = probabilita.remove(0);
+    public void azioneCasellaCarte(Carta carta, Giocatore giocatoreCorrente) {
         System.out.println(carta.toString());
         if (carta instanceof VaiA) {
             giocatoreCorrente.pulisciCasella(Tabellone.getCasella(giocatoreCorrente.getY(),giocatoreCorrente.getX()));
@@ -47,6 +45,14 @@ public abstract class CaselleCarte extends Casella{
             giocatoreCorrente.addSoldi(((ModificaBudget) carta).getValore());
             Banca.addImporto(((ModificaBudget) carta).getValore());
         };
+    }
+
+    public static LinkedList<Carta> getImprevisti() {
+        return imprevisti;
+    }
+
+    public static LinkedList<Carta> getProbabilita() {
+        return probabilita;
     }
 
     public static void creaCarte() {
