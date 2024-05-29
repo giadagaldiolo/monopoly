@@ -3,6 +3,8 @@ package monopoly.componentigioco.giocatore;
 import monopoly.Coordinate;
 import monopoly.componentigioco.Banca;
 import monopoly.componentigioco.Tabellone;
+import monopoly.componentigioco.carte.Carta;
+import monopoly.componentigioco.carte.VaiA;
 import monopoly.componentigioco.casella.*;
 import monopoly.componentigioco.giocatore.funzionalita.MovimentoGiocatore;
 import monopoly.componentigioco.giocatore.funzionalita.MovimentoGiocatoreSupporto;
@@ -82,10 +84,8 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
      * @see #controlloSimbolo(char) metodo di controllo per il simbolo.
      */
    private void impostaCaratteristiche(String nome,char simbolo){
-
        this.nome = controlloNome(nome) ? "Nome sconosciuto" : nome;
        this.simboloChar = controlloSimbolo(simbolo) ? 'X' : simbolo;
-
    }
 
     /**
@@ -116,18 +116,9 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
         return simbolo==' ' ;
     }
 
-    /**
-     *
-     * @return {@code String} simbolo giocatore con il colore.
-     */
     public String getSimbolo() {
         return simbolo;
     }
-
-    /**
-     *
-     * @return {@code int} soldi disponibili al giocatore
-     */
     public int getSoldi() {
         return this.pagamentiGiocatore.getSoldi();
     }
@@ -141,7 +132,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
 
     public boolean compraMiglioramentiTerreno(int acquisto){
        return this.pagamentiGiocatore.compraMiglioramentiTerreno(acquisto);
-
     }
 
     /**
@@ -162,7 +152,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
     private void cancellaGiocatore(Casella casella,Tabellone tabellone){
         casella.togliCarattere();
         resettaCaselleGiocatore(tabellone);
-
     }
     private void resettaCaselleGiocatore(Tabellone tabellone){
         svuotaArrayCaselle();
@@ -178,32 +167,16 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
         }
     }
 
-    /**
-     *
-     * @return utile per sapere se il giocatore è in bancarotta.
-     */
     public boolean isBancarotta(){return this.pagamentiGiocatore.isBancarotta(); }
-    /**
-     *
-     * @return {@code String} nome giocatore
-     */
     public String getNome() {
 
         return nome;
     }
 
-    /**
-     *
-     * @return {@code int} coordinata x giocatore.
-     */
     @Override
     public int getX() {
         return this.movimentoGiocatore.getX();
     }
-    /**
-     *
-     * @return {@code int} coordinata y giocatore.
-     */
     @Override
     public int getY() {
         return this.movimentoGiocatore.getY();
@@ -254,12 +227,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
     public void pagamentoAffitto(Giocatore proprietario,int importo){
         this.pagamentiGiocatore.pagamentoAffitto(proprietario,importo);
     }
-
-    public void pagamentoCarta(Giocatore pagante,int importo){
-        this.pagamentiGiocatore.pagamentoAffitto(pagante,importo);
-    }
-
-
 
 
     /**
@@ -312,9 +279,13 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
 
     public void spostaGiocatoreInPrigione(Casella casella) {
         pulisciCasella(casella);
+        setImpostazioniPrigione();
+        spostaGiocatore(new Coordinate(this.movimentoGiocatore.getYMax(),0));
+    }
+
+    public void setImpostazioniPrigione() {
         this.imprigionato = true;
         this.tentativiPerPrigione = Costanti.TENTATIVI_PRIGIONE;
-        spostaGiocatore(new Coordinate(this.movimentoGiocatore.getYMax(),0));
     }
 
     @Override
@@ -325,7 +296,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
     public String getColore() {
         return colore;
     }
-
 
     public boolean isImprigionato() {
         return imprigionato;
@@ -340,7 +310,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
     public void setImprigionato(boolean imprigionato) {
         this.imprigionato = imprigionato;
     }
-
 
     @Override
     public int hashCode() {
@@ -358,5 +327,14 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
         return this.simboloChar == giocatore.simboloChar;
     }
 
-
+    public void spostaGiocatoreConCarta(Carta carta) {
+        pulisciCasella(Tabellone.getCasella(getY(),getX()));
+        spostaGiocatore(((VaiA) carta).getCoordinateDiArrivo());
+        Tabellone.getCasella(getY(),getX()).aggiungiCarattere(getSimbolo());
+        if (Tabellone.getCasella(getY(),getX()) instanceof Prigione) {
+            setImpostazioniPrigione();
+            return;
+        }
+        Tabellone.getCasella(getY(),getX()).azioneCasella(this);
+    }
 }

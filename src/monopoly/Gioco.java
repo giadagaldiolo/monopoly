@@ -107,7 +107,7 @@ public class Gioco {
                 movimento=true;
                 print=true;
             }
-            if (possibilityUscita || movimento){
+            if (possibilityUscita || movimento ){
                 currentGiocatore.azioneCasella(tabellone); // fa prima l'azione della prigione dei dadi e poi aggiorna la posizione con il simbolo inserito alla fine
                 if (!print) printDadoTabellone();
             }

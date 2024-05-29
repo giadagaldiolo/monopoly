@@ -102,19 +102,10 @@ public class MovimentoGiocatore  implements MovimentoGiocatoreSupporto {
         this.coordinate.setY(y);
     }
 
-    /**
-     *
-     * @return {@code int}coordinata x
-     */
-
     @Override
     public int getX() {
         return this.coordinate.getX();
     }
-    /**
-     *
-     * @return {@code int}coordinata y
-     */
     @Override
     public int getY() {
         return this.coordinate.getY();

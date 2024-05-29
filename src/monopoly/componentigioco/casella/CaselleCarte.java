@@ -2,15 +2,11 @@ package monopoly.componentigioco.casella;
 
 import monopoly.Coordinate;
 import monopoly.componentigioco.Banca;
-import monopoly.componentigioco.Tabellone;
 import monopoly.componentigioco.carte.Carta;
 import monopoly.componentigioco.carte.ModificaBudget;
 import monopoly.componentigioco.carte.VaiA;
 import monopoly.componentigioco.giocatore.Giocatore;
-import monopoly.componentigioco.giocatore.funzionalita.MovimentoGiocatore;
-import monopoly.utilita.Costanti;
 
-import java.util.Collections;
 import java.util.LinkedList;
 
 public abstract class CaselleCarte extends Casella{
@@ -39,10 +35,7 @@ public abstract class CaselleCarte extends Casella{
     public void azioneCasellaCarte(Carta carta, Giocatore giocatoreCorrente) {
         System.out.println(carta.toString());
         if (carta instanceof VaiA) {
-            giocatoreCorrente.pulisciCasella(Tabellone.getCasella(giocatoreCorrente.getY(),giocatoreCorrente.getX()));
-            giocatoreCorrente.spostaGiocatore(((VaiA) carta).getCoordinateDiArrivo());
-            Tabellone.getCasella(giocatoreCorrente.getY(),giocatoreCorrente.getX()).aggiungiCarattere(giocatoreCorrente.getSimbolo());
-            Tabellone.getCasella(giocatoreCorrente.getY(),giocatoreCorrente.getX()).azioneCasella(giocatoreCorrente);
+            giocatoreCorrente.spostaGiocatoreConCarta(carta);
         } else {
             giocatoreCorrente.addSoldi(((ModificaBudget) carta).getValore());
             Banca.addImporto(((ModificaBudget) carta).getValore());

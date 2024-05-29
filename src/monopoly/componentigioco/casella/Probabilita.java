@@ -28,7 +28,7 @@ public class Probabilita extends CaselleCarte{
         Carta carta = getProbabilita().remove(0);
         super.azioneCasellaCarte(carta, giocatoreCorrente);
         getProbabilita().add(carta);
-        Collections.shuffle(getProbabilita());
+//        Collections.shuffle(getProbabilita());
     }
 
 

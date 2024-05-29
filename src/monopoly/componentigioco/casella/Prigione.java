@@ -34,14 +34,14 @@ public class Prigione extends Casella {
 
     @Override
     public void azioneCasella(Giocatore giocatoreCorrente) {
-        if (super.isGiocatore(giocatoreCorrente) &&giocatoreCorrente.isImprigionato() ){
+        if (super.isGiocatore(giocatoreCorrente) && giocatoreCorrente.isImprigionato() ){
             giocatoreCorrente.riduciTurniPrigione();
             boolean uscita= Dado.confrontaDadi();
             if (!uscita){
                 if (giocatoreCorrente.getTentativiPerPrigione() <= 0) {
                     super.azioneCasella(giocatoreCorrente);
                 } else{
-                    System.out.println("Turni per uscire dalla prigione "+giocatoreCorrente.getTentativiPerPrigione());
+                    System.out.println("Turni per uscire dalla prigione " + giocatoreCorrente.getTentativiPerPrigione());
                     return;
                 }
             }

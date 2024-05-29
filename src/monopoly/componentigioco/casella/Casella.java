@@ -37,7 +37,6 @@ public abstract class Casella implements CasellaInterface {
 
 
     public void aggiungiCarattere(String ch) {
-
         giocatoriPresenti.addFirst(ch);
     }
     public void togliCarattere(){
