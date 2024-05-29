@@ -9,6 +9,7 @@ import monopoly.componentigioco.carte.VaiA;
 import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.componentigioco.giocatore.funzionalita.MovimentoGiocatore;
 
+import java.util.Collections;
 import java.util.LinkedList;
 
 public abstract class CaselleCarte extends Casella{
@@ -22,6 +23,8 @@ public abstract class CaselleCarte extends Casella{
             new Imprevisti(caselle);
             new Probabilita(caselle);
         }
+        Collections.shuffle(imprevisti);
+        Collections.shuffle(probabilita);
     }
 
     protected void setCasella(Casella [][] caselle){

@@ -8,6 +8,8 @@ import monopoly.componentigioco.carte.ModificaBudget;
 import monopoly.componentigioco.carte.VaiA;
 import monopoly.componentigioco.giocatore.Giocatore;
 
+import java.util.Collections;
+
 public class Imprevisti extends CaselleCarte{
 
     public Imprevisti(Casella[][] caselle) {
@@ -25,6 +27,8 @@ public class Imprevisti extends CaselleCarte{
     public void azioneCasella(Giocatore giocatoreCorrente) {
         Carta carta = getImprevisti().remove(0);
         super.azioneCasellaCarte(carta, giocatoreCorrente);
+        getImprevisti().add(carta);
+        Collections.shuffle(getImprevisti());
     }
 
     @Override

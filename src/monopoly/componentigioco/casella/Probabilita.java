@@ -8,6 +8,8 @@ import monopoly.componentigioco.carte.ModificaBudget;
 import monopoly.componentigioco.carte.VaiA;
 import monopoly.componentigioco.giocatore.Giocatore;
 
+import java.util.Collections;
+
 public class Probabilita extends CaselleCarte{
 
     public Probabilita(Casella[][] caselle) {
@@ -25,6 +27,8 @@ public class Probabilita extends CaselleCarte{
     public void azioneCasella(Giocatore giocatoreCorrente) {
         Carta carta = getProbabilita().remove(0);
         super.azioneCasellaCarte(carta, giocatoreCorrente);
+        getProbabilita().add(carta);
+        Collections.shuffle(getProbabilita());
     }
 
 
