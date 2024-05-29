@@ -94,9 +94,6 @@ public abstract class Casella implements CasellaInterface {
 
                 }
 
-
-
-
                 dettagli.append(quintaRiga).append(spazio.repeat((Costanti.LARGHEZZA_CASELLA - 2) - spaziDaFare));
                 dettagli.append(getColore());
                 break;

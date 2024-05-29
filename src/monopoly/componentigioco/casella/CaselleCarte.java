@@ -8,6 +8,7 @@ import monopoly.componentigioco.carte.ModificaBudget;
 import monopoly.componentigioco.carte.VaiA;
 import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.componentigioco.giocatore.funzionalita.MovimentoGiocatore;
+import monopoly.utilita.Costanti;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -23,8 +24,6 @@ public abstract class CaselleCarte extends Casella{
             new Imprevisti(caselle);
             new Probabilita(caselle);
         }
-        Collections.shuffle(imprevisti);
-        Collections.shuffle(probabilita);
     }
 
     protected void setCasella(Casella [][] caselle){
@@ -43,11 +42,11 @@ public abstract class CaselleCarte extends Casella{
             giocatoreCorrente.pulisciCasella(Tabellone.getCasella(giocatoreCorrente.getY(),giocatoreCorrente.getX()));
             giocatoreCorrente.spostaGiocatore(((VaiA) carta).getCoordinateDiArrivo());
             Tabellone.getCasella(giocatoreCorrente.getY(),giocatoreCorrente.getX()).aggiungiCarattere(giocatoreCorrente.getSimbolo());
-            super.azioneCasella(giocatoreCorrente);
+            Tabellone.getCasella(giocatoreCorrente.getY(),giocatoreCorrente.getX()).azioneCasella(giocatoreCorrente);
         } else {
             giocatoreCorrente.addSoldi(((ModificaBudget) carta).getValore());
             Banca.addImporto(((ModificaBudget) carta).getValore());
-        };
+        }
     }
 
     public static LinkedList<Carta> getImprevisti() {

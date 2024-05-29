@@ -269,20 +269,16 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
     public void updatePosizione(int passi, Tabellone tabellone){
         Casella casella;
         if (isTabellone(tabellone) && isCasella((casella= Tabellone.getCasella(getY(),getX()))) ) {
-
             pulisciCasella(casella);
             spostamentoGiocatore(passi);
-            casella= Tabellone.getCasella(getY(),getX());
+            casella = Tabellone.getCasella(getY(),getX());
             casella.aggiungiCarattere(this.simbolo);
-
         }
     }
 
     public void pulisciCasella(Casella casella ){
         casella.togliCarattere();
-
     }
-
 
 
     public void azioneCasella(Tabellone tabellone){
@@ -293,26 +289,19 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
                 controlloSoldi(casella, tabellone);
             }
         }
-
-
     }
 
     private Casella casellaCorrente(Tabellone tabellone){
         Casella casella=null;
         if (isTabellone(tabellone)){
-            casella= tabellone.getCasella(getY(),getX());
-
+            casella= Tabellone.getCasella(getY(),getX());
         }
         return casella;
-
     }
-
-
 
 
     public void aggiuntaTerreno(int index){
         this.pagamentiGiocatore.aggiuntaTerreno(index);
-
     }
 
 
@@ -326,8 +315,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
         this.imprigionato = true;
         this.tentativiPerPrigione = Costanti.TENTATIVI_PRIGIONE;
         spostaGiocatore(new Coordinate(this.movimentoGiocatore.getYMax(),0));
-
-
     }
 
     @Override
@@ -335,10 +322,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
         return this.movimentoGiocatore.getYMax();
     }
 
-    /**
-     *
-     * @return {@code String} stringa con solo il colore del giocatore
-     */
     public String getColore() {
         return colore;
     }
@@ -355,10 +338,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
     }
 
     public void setImprigionato(boolean imprigionato) {
-
         this.imprigionato = imprigionato;
-
-
     }
 
 

@@ -28,6 +28,7 @@ public class VaiInPrigione extends Casella {
     public String infoCasella() {
         return "";
     }
+
     @Override
     public void azioneCasella(Giocatore giocatoreCorrente) {
         if (isGiocatore(giocatoreCorrente)){

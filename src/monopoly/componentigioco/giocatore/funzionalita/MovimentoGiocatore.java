@@ -125,7 +125,6 @@ public class MovimentoGiocatore  implements MovimentoGiocatoreSupporto {
     public void spostaGiocatore(Coordinate coordinate) {
         this.coordinate.setY(coordinate.getY());
         this.coordinate.setX(coordinate.getX());
-
     }
 
 }
