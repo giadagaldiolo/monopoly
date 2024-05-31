@@ -35,7 +35,7 @@ public abstract class CaselleCarte extends Casella{
     public void azioneCasellaCarte(Carta carta, Giocatore giocatoreCorrente) {
         System.out.println(carta.toString());
         if (carta instanceof VaiA) {
-            giocatoreCorrente.spostaGiocatoreConCarta(carta);
+            giocatoreCorrente.spostaGiocatoreConCarta((VaiA) carta);
         } else {
             giocatoreCorrente.addSoldi(((ModificaBudget) carta).getValore());
             Banca.addImporto(((ModificaBudget) carta).getValore());

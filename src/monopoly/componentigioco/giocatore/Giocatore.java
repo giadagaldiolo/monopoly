@@ -228,7 +228,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
         this.pagamentiGiocatore.pagamentoAffitto(proprietario,importo);
     }
 
-
     /**
      * @param passi numero ottenuto dai dadi.
      * @see #spostamentoGiocatore(int) Metodo per cambiare le coordinate del giocatore
@@ -266,16 +265,13 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
         return casella;
     }
 
-
     public void aggiuntaTerreno(int index){
         this.pagamentiGiocatore.aggiuntaTerreno(index);
     }
 
-
     public int getNCaselleAcquistate(int index) {
         return this.pagamentiGiocatore.getNCaselleAcquistate(index);
     }
-
 
     public void spostaGiocatoreInPrigione(Casella casella) {
         pulisciCasella(casella);
@@ -327,9 +323,13 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
         return this.simboloChar == giocatore.simboloChar;
     }
 
-    public void spostaGiocatoreConCarta(Carta carta) {
-        pulisciCasella(Tabellone.getCasella(getY(),getX()));
-        spostaGiocatore(((VaiA) carta).getCoordinateDiArrivo());
+    public void spostaGiocatoreConCarta(VaiA carta) {
+        Casella casellaCorrente = Tabellone.getCasella(getY(),getX());
+        Coordinate coordinateDiArrivo = carta.getCoordinateDiArrivo();
+        pulisciCasella(casellaCorrente);
+        spostaGiocatore(coordinateDiArrivo);
+        if (coordinateDiArrivo.checkPassaggioVia(casellaCorrente.getCoordinate()))
+            addSoldi(Costanti.IMPORTO_DEL_VIA);
         Tabellone.getCasella(getY(),getX()).aggiungiCarattere(getSimbolo());
         if (Tabellone.getCasella(getY(),getX()) instanceof Prigione) {
             setImpostazioniPrigione();

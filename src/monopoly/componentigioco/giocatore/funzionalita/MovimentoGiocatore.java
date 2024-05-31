@@ -79,7 +79,7 @@ public class MovimentoGiocatore  implements MovimentoGiocatoreSupporto {
      * @return {@code True} se si è completato un giro
      */
     private boolean isGiroCompleto(){
-        return this.coordinate.getX()==this.xMax && this.coordinate.getY()==this.yMax;
+        return this.coordinate.getX() == this.xMax && this.coordinate.getY() == this.yMax;
     }
 
     /**

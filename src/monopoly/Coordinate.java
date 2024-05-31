@@ -11,8 +11,6 @@ public class Coordinate  {
         this.x = controlloX(x) ? Costanti.CASELLE_PER_RIGA : x;
         this.y = controlloY(y) ? Costanti.RIGHE : y;
     }
-
-
     private boolean controlloY (int y){
         return (y > Costanti.RIGHE || y<0 );
     }
@@ -45,5 +43,10 @@ public class Coordinate  {
     @Override
     public String toString() {
         return Tabellone.getCasella(x,y).getNome();
+    }
+
+    public boolean checkPassaggioVia(Coordinate coordinateDiArrivo) {
+        // da completare
+        return true;
     }
 }
