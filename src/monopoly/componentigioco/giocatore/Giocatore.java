@@ -183,8 +183,10 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
     }
 
     @Override
-    public void spostaGiocatore(Coordinate coordinate) {
-        this.movimentoGiocatore.spostaGiocatore(coordinate);
+    public void spostaGiocatore(Coordinate coordinate){
+        if(getY()==coordinate.getY() && getX() == coordinate.getX()) {
+            spostamentoGiocatore(1);
+        }
     }
 
     /**
@@ -328,8 +330,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
         Coordinate coordinateDiArrivo = carta.getCoordinateDiArrivo();
         pulisciCasella(casellaCorrente);
         spostaGiocatore(coordinateDiArrivo);
-        if (coordinateDiArrivo.checkPassaggioVia(casellaCorrente.getCoordinate()))
-            addSoldi(Costanti.IMPORTO_DEL_VIA);
         Tabellone.getCasella(getY(),getX()).aggiungiCarattere(getSimbolo());
         if (Tabellone.getCasella(getY(),getX()) instanceof Prigione) {
             setImpostazioniPrigione();

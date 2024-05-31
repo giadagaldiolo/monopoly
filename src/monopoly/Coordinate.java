@@ -45,8 +45,5 @@ public class Coordinate  {
         return Tabellone.getCasella(x,y).getNome();
     }
 
-    public boolean checkPassaggioVia(Coordinate coordinateDiArrivo) {
-        // da completare
-        return true;
-    }
+
 }
