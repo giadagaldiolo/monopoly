@@ -1,5 +1,7 @@
 package monopoly.componentigioco.carte;
 
+import monopoly.componentigioco.giocatore.Giocatore;
+
 import java.io.File;
 import java.util.LinkedList;
 
@@ -21,6 +23,7 @@ public abstract class Carta {
     public static LinkedList<Carta> creaProbabilita() {
         return InformazioniCarta.readFromFile(new File(percorsoFile+"Probabilita.txt"));
     }
+    public abstract void azioneCarta(Giocatore giocatoreCorrente);
 
     @Override
     public String toString() {

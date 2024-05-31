@@ -1,5 +1,8 @@
 package monopoly.componentigioco.carte;
 
+import monopoly.componentigioco.Banca;
+import monopoly.componentigioco.giocatore.Giocatore;
+
 public class ModificaBudget extends Carta{
     private int valore;
     public ModificaBudget(String descrizione, String terzaInformazione) {
@@ -11,7 +14,11 @@ public class ModificaBudget extends Carta{
         }
     }
 
-    public int getValore() {
-        return valore;
+
+
+    @Override
+    public void azioneCarta(Giocatore giocatoreCorrente) {
+        giocatoreCorrente.addSoldi(this.valore);
+        Banca.addImporto(this.valore);
     }
 }
