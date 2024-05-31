@@ -1,10 +1,7 @@
 package monopoly.componentigioco.casella;
 
 import monopoly.Coordinate;
-import monopoly.componentigioco.Banca;
 import monopoly.componentigioco.carte.Carta;
-import monopoly.componentigioco.carte.ModificaBudget;
-import monopoly.componentigioco.carte.VaiA;
 import monopoly.componentigioco.giocatore.Giocatore;
 
 import java.util.LinkedList;
