@@ -20,7 +20,7 @@ public class Imprevisti extends CaselleCarte{
     @Override
     public void setNomeColoreDefault(){
         NomiCaselle tipo=NomiCaselle.IMPREVISTI;
-        super.setNomeColore(tipo.getNome(0),tipo.getColore());
+        super.setNomeColore(tipo.getNome(),tipo.getColore());
     }
 
     @Override
