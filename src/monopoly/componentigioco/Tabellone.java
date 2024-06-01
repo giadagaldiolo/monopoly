@@ -86,12 +86,14 @@ public class Tabellone {
             new Stazione(caselle);
         }
         caselle[0][0] = new Parcheggio();
-        Tassa.creaTasse(caselle);
-        Societa.creaSocieta(caselle);
-        CaselleCarte.creaCaselleCarte(caselle);
         Prigione prigione = new Prigione();
         caselle[righeMatrice][0]=prigione;
         caselle[0][elementiMatrice] = new VaiInPrigione(prigione);
+        CaselleCarte.creaCaselleCarte(caselle);
+        Tassa.creaTasse(caselle);
+        Societa.creaSocieta(caselle);
+
+
     }
 
     /**
@@ -121,9 +123,7 @@ public class Tabellone {
         return caselle;
     }
 
-    public boolean isVaiInPrigione(int i, int j) {
-        return caselle[i][j] instanceof VaiInPrigione;
-    }
+
 
     public static Casella getCasella(int i, int j) {
         return caselle[i][j];
