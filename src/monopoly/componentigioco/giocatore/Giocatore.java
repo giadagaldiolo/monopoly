@@ -329,6 +329,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
         spostaGiocatoreConCarta(coordinateDiArrivo);
         Tabellone.getCasella(getY(),getX()).aggiungiCarattere(getSimbolo());
         if (Tabellone.getCasella(getY(),getX()) instanceof Prigione) {
+            addSoldi(-100); //Tolgo i soldi che gli dà se passa dal via
             setImpostazioniPrigione();
             return;
         }

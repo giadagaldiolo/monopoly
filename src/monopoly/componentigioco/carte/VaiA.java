@@ -20,9 +20,4 @@ public class VaiA extends Carta{
     public void azioneCarta(Giocatore giocatoreCorrente) {
         giocatoreCorrente.spostaGiocatoreConCarta(this);
     }
-
-    @Override
-    public String toString() {
-        return super.toString() +                "coordinateDiArrivo=" + coordinateDiArrivo;
-    }
 }
