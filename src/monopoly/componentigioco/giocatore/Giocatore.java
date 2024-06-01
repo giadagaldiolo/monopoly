@@ -85,6 +85,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
    private void impostaCaratteristiche(String nome,char simbolo){
        this.nome = controlloNome(nome) ? "Nome sconosciuto" : nome;
        this.simboloChar = controlloSimbolo(simbolo) ? 'X' : simbolo;
+       impostaColore();
    }
 
     /**
@@ -233,6 +234,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
      */
     public void updatePosizione(int passi, Tabellone tabellone){
         Casella casella;
+        System.out.println(getX()+" "+getY());
         if (isTabellone(tabellone) && isCasella((casella= Tabellone.getCasella(getY(),getX()))) ) {
             pulisciCasella(casella);
             spostamentoGiocatore(passi);
@@ -316,10 +318,16 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Giocatore giocatore = (Giocatore) o;
-        if ( (giocatore.nome == null) || (giocatore.simbolo == null) || (giocatore.colore == null)) {
+        if ( (giocatore.nome == null) || (giocatore.simboloChar=='\u0000')) {
+
             return false;
         }
+
         return this.simboloChar == giocatore.simboloChar;
+    }
+
+    public char getSimboloChar() {
+        return simboloChar;
     }
 
     public void spostaGiocatoreConCarta(VaiA carta) {

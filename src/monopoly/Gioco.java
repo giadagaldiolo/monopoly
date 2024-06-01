@@ -23,25 +23,35 @@ public class Gioco {
     private final MenuInterfaccia menuGioco= new MenuGioco(); // cosi non si possono usare altri metodi di menuGioco che non sono presenti nella interfaccia
     private Schermata schermataCorrente= new SchermataIniziale();
 
+    public LinkedHashSet<Giocatore> getGiocatori() {
+        return giocatori;
+    }
 
     public Gioco() {
         System.out.println(this.schermataCorrente);
         ScannerUtils.emptyTheScanner();
         avviaGioco();
     }
-
-    private void avviaGioco(){
+    public Gioco(boolean visuale){
         creaGioco();
+    }
+
+
+
+    public void avviaGioco(){
+        creaGioco();
+        creaGiocatori();
         gameFlow();
     }
     private void creaGioco(){
         creaTabellone();
-        creaGiocatori();
+
         CaselleCarte.creaCarte();
         creaDado();
     }
 
-    private void gameFlow() {
+
+    public void gameFlow() {
         System.out.println(tabellone);
         int sizeGiocatori=giocatori.size();
 
@@ -65,8 +75,12 @@ public class Gioco {
     }
 
 
-    private void creaGiocatori() {
+    public void creaGiocatori() {
         this.giocatori= new SchermataIniziale().creaGiocatori(this.tabellone);
+    }
+
+    public Tabellone getTabellone() {
+        return tabellone;
     }
 
     private void menuTurno(Giocatore currentGiocatore) {

@@ -126,6 +126,7 @@ public class Tabellone {
 
 
     public static Casella getCasella(int i, int j) {
+
         return caselle[i][j];
     }
 

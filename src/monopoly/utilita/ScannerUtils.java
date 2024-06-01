@@ -1,5 +1,7 @@
 package monopoly.utilita;
 
+import monopoly.componentigioco.giocatore.Giocatore;
+
 import java.util.Scanner;
 
 public abstract class  ScannerUtils {
@@ -47,6 +49,15 @@ public abstract class  ScannerUtils {
             }
             emptyTheScanner();
         }
+    }
+    public static Giocatore leggiSimboloStringa(String[] stringa){
+
+        if (stringa[0].length()>8 || stringa[0].isBlank() || stringa[1].isBlank()){
+            return null;
+        }
+
+
+        return new Giocatore(stringa[0],stringa[1].strip().toLowerCase().charAt(0),Costanti.RIGHE-1,Costanti.CASELLE_PER_RIGA-1);
     }
 
     public static void emptyTheScanner() { scanner.nextLine(); }

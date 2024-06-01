@@ -46,7 +46,7 @@ public class SchermataIniziale extends Schermata{
 
         } while (!giocatori.add(giocatore));
 
-        giocatore.impostaColore();
+
         return giocatore;
     }
 }
