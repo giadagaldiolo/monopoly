@@ -44,7 +44,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Label fx:id="NumeroGiocatore" layoutX="64.0" layoutY="192.0" prefHeight="45.0" prefWidth="205.0" text="Inserisci giocatore " textFill="#ecff00">
+            <Label fx:id="NumeroGiocatore" layoutX="64.0" layoutY="192.0" prefHeight="45.0" prefWidth="236.0" text="Inserisci giocatore " textFill="#ecff00">
                <font>
                   <Font name="System Bold" size="21.0" />
                </font>

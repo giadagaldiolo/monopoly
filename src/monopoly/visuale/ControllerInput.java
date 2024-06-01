@@ -1,5 +1,6 @@
 package monopoly.visuale;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -43,6 +44,7 @@ public class ControllerInput {
         if (this.nPlayer>Costanti.NUMERO_GIOCATORI) {
 
             GiocoVisuale.stage.close();
+            Platform.exit();
             gioco.avviaGioco();
         }
 
