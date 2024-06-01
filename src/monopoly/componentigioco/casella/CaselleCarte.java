@@ -19,11 +19,13 @@ public abstract class CaselleCarte extends Casella{
         }
     }
 
-    protected void setCasella(Casella [][] caselle){
-        int[] coordinate = NomiHelper.calcoloCoordinate(caselle);
-        setCoordinate(new Coordinate(coordinate[0],coordinate[0]));
-        caselle[coordinate[0]][coordinate[1]]=this;
+    public CaselleCarte(Casella [][] caselle){
+        super();
+        super.setCasella(caselle);
+
     }
+
+
     @Override
     public String infoCasella() {
         return "Pesca una carta";

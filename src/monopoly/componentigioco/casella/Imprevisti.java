@@ -12,9 +12,9 @@ import java.util.Collections;
 
 public class Imprevisti extends CaselleCarte{
 
+
     public Imprevisti(Casella[][] caselle) {
-        super();
-        setCasella(caselle);
+        super(caselle);
     }
 
     @Override

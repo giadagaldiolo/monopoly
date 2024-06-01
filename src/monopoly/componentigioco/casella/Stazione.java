@@ -26,7 +26,7 @@ public class Stazione extends Casella{
      * @param caselle per rendere più facile la creazione delle caselle ho preferito crearle dentro la classe Stazione.<p>
      */
 
-    private void setCasella(Casella [][] caselle){
+    protected void setCasella(Casella [][] caselle){
         int y=0 ,x=0;
         x = switch (stazioniRimaste) {
             case 1 -> Costanti.CASELLE_PER_RIGA / 2;

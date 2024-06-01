@@ -13,8 +13,7 @@ import java.util.Collections;
 public class Probabilita extends CaselleCarte{
 
     public Probabilita(Casella[][] caselle) {
-        super();
-        setCasella(caselle);
+        super(caselle);
     }
 
     @Override

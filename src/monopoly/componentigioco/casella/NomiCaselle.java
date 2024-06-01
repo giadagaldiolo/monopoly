@@ -12,8 +12,10 @@ import monopoly.utilita.Costanti;
  * Ogni istanza contiene un <i>array String</i> con i rispettivi nomi e un <i>int </i> corrispondente al colore. <p>
  */
 public enum NomiCaselle {
+    //notRandom
     TRENO(new String[]{"Stazione Nord","Stazione Sud","Stazione Ovest","Stazione Est"},CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA),
     SINGOLE (new String[]{"Parcheggio","VIA","Prigione","Vai in prigione"},CostantiCaselle.COLORE_CASELLE_NON_PROPRIETA),
+    //random
     MARRONE(new String[]{"Vicolo Corto", "Vicolo Stretto"},172),
     AZZURO(new String[]{"Bastioni Gran Sasso", "Viale Monterosa", "Viale Vesuvio"},32),
     ROSA(new String[]{"Via Accademia", "Corso Ateneo", "Piazza Università"},200),

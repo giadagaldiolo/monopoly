@@ -14,6 +14,7 @@ import java.util.Random;
 public abstract class  NomiHelper {
 
     private static final int caselleNotRandom = 2; // dato che nel enum NomiCaselle non serve mischiare Treno e singole
+    // da migliorare il random
     private static int ultimoColore=caselleNotRandom;
     private static NomiCaselle [] nomiCaselle = NomiCaselle.values(); // contiene il valori del enum NomiCaselle
     private static boolean fakeCaselle=false;
