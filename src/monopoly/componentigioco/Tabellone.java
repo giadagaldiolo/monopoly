@@ -130,11 +130,15 @@ public class Tabellone {
     }
 
     public static Coordinate controlloCasella(String nomeCasella) {
+        nomeCasella = nomeCasella.trim().toLowerCase();
+        String nomeDaComparare = "";
         for (Casella[] righeCasella : caselle) {
             for (Casella casella : righeCasella)
-                if (casella != null)
-                    if (nomeCasella.equalsIgnoreCase(casella.getNome()))
+                if (casella != null) {
+                    nomeDaComparare = casella.getNome().trim().toLowerCase();
+                    if (nomeCasella.equals(nomeDaComparare))
                         return casella.getCoordinate();
+                }
         }
         return null;
     }

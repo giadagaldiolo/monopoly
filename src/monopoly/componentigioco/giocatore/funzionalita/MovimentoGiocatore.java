@@ -110,7 +110,6 @@ public class MovimentoGiocatore  implements MovimentoGiocatoreSupporto {
         return this.coordinate.getY();
     }
 
-
     @Override
     public void spostaGiocatore(Coordinate coordinate) {
         this.coordinate.setY(coordinate.getY());

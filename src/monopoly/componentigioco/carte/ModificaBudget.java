@@ -14,8 +14,6 @@ public class ModificaBudget extends Carta{
         }
     }
 
-
-
     @Override
     public void azioneCarta(Giocatore giocatoreCorrente) {
         giocatoreCorrente.addSoldi(this.valore);

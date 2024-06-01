@@ -24,10 +24,10 @@ public class Probabilita extends CaselleCarte{
 
     @Override
     public void azioneCasella(Giocatore giocatoreCorrente) {
-        Carta carta = getProbabilita().remove(0);
-        super.azioneCasellaCarte(carta, giocatoreCorrente);
+        Carta carta = getProbabilita().poll();
+        if (carta != null)
+            super.azioneCasellaCarte(carta, giocatoreCorrente);
         getProbabilita().add(carta);
-        Collections.shuffle(getProbabilita());
     }
 
 

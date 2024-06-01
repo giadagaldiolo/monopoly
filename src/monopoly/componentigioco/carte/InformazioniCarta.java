@@ -29,7 +29,7 @@ public class InformazioniCarta {
             System.out.println(e.getMessage());
             return null;
         }
-        Collections.shuffle(carte);
+//        Collections.shuffle(carte);
         return carte;
     }
 

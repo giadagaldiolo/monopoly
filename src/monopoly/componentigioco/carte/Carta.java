@@ -6,7 +6,6 @@ import java.io.File;
 import java.util.LinkedList;
 
 public abstract class Carta {
-
     private final String descrizione;
     private static final String percorsoFile="src/monopoly/componentigioco/carte/".replace("/",File.separator);
 

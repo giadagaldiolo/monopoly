@@ -5,11 +5,12 @@ import monopoly.componentigioco.carte.Carta;
 import monopoly.componentigioco.giocatore.Giocatore;
 
 import java.util.LinkedList;
+import java.util.Queue;
 
 public abstract class CaselleCarte extends Casella{
 
-    private static LinkedList<Carta> imprevisti = new LinkedList<>();
-    private static LinkedList<Carta> probabilita = new LinkedList<>();
+    private static Queue<Carta> imprevisti = new LinkedList<>();
+    private static Queue<Carta> probabilita = new LinkedList<>();
 
 
     public static void creaCaselleCarte(Casella[][] caselle){
@@ -22,9 +23,7 @@ public abstract class CaselleCarte extends Casella{
     public CaselleCarte(Casella [][] caselle){
         super();
         super.setCasella(caselle);
-
     }
-
 
     @Override
     public String infoCasella() {
@@ -34,13 +33,14 @@ public abstract class CaselleCarte extends Casella{
     public void azioneCasellaCarte(Carta carta, Giocatore giocatoreCorrente) {
         System.out.println(carta.toString());
         carta.azioneCarta(giocatoreCorrente);
+        System.out.println("Il tuo importo è ora " + giocatoreCorrente.getSoldi() + "CHF\n" );
     }
 
-    public static LinkedList<Carta> getImprevisti() {
+    public static Queue<Carta> getImprevisti() {
         return imprevisti;
     }
 
-    public static LinkedList<Carta> getProbabilita() {
+    public static Queue<Carta> getProbabilita() {
         return probabilita;
     }
 

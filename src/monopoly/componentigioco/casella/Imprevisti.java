@@ -25,10 +25,10 @@ public class Imprevisti extends CaselleCarte{
 
     @Override
     public void azioneCasella(Giocatore giocatoreCorrente) {
-        Carta carta = getImprevisti().remove(0);
-        super.azioneCasellaCarte(carta, giocatoreCorrente);
+        Carta carta = getImprevisti().poll();
+        if (carta != null)
+            super.azioneCasellaCarte(carta, giocatoreCorrente);
         getImprevisti().add(carta);
-        Collections.shuffle(getImprevisti());
     }
 
     @Override

@@ -64,7 +64,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
 
      */
     public Giocatore(String nome, char simbolo, int yMax, int xMax) {
-
         this.movimentoGiocatore= new MovimentoGiocatore(xMax,yMax);
         this.pagamentiGiocatore=new PagamentiSupporto();
         impostaCaratteristiche(nome,simbolo);
@@ -183,10 +182,8 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
     }
 
     @Override
-    public void spostaGiocatore(Coordinate coordinate){
-        if(getY()==coordinate.getY() && getX() == coordinate.getX()) {
-            spostamentoGiocatore(1);
-        }
+    public void spostaGiocatore(Coordinate coordinate) {
+        this.movimentoGiocatore.spostaGiocatore(coordinate);
     }
 
     /**
@@ -329,12 +326,18 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
         Casella casellaCorrente = Tabellone.getCasella(getY(),getX());
         Coordinate coordinateDiArrivo = carta.getCoordinateDiArrivo();
         pulisciCasella(casellaCorrente);
-        spostaGiocatore(coordinateDiArrivo);
+        spostaGiocatoreConCarta(coordinateDiArrivo);
         Tabellone.getCasella(getY(),getX()).aggiungiCarattere(getSimbolo());
         if (Tabellone.getCasella(getY(),getX()) instanceof Prigione) {
             setImpostazioniPrigione();
             return;
         }
         Tabellone.getCasella(getY(),getX()).azioneCasella(this);
+    }
+
+    private void spostaGiocatoreConCarta(Coordinate coordinateDiArrivo){
+        do {
+            spostamentoGiocatore(1);
+        } while (getY() != coordinateDiArrivo.getY() || getX() != coordinateDiArrivo.getX());
     }
 }
