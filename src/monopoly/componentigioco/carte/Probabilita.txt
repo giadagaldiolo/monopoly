@@ -1,4 +1,3 @@
-Vai in prigione. Sposta direttamente la tua pedina lì senza passare dal "VIA!" e senza raccogliere 100CHF.;vai a;prigione
 Avanza fino al "VIA!" (Ricevi 100CHF);vai a;via
 Avanza fino a Piazza Dante (Se passi dal "VIA!" ricevi 100CHF).;vai a;piazza dante
 Avanza fino a Corso Magellano (Se passi dal "VIA!" ricevi 100CHF.);vai a;corso magellano

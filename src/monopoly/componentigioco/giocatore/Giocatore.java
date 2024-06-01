@@ -329,16 +329,20 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
         spostaGiocatoreConCarta(coordinateDiArrivo);
         Tabellone.getCasella(getY(),getX()).aggiungiCarattere(getSimbolo());
         if (Tabellone.getCasella(getY(),getX()) instanceof Prigione) {
-            addSoldi(-100); //Tolgo i soldi che gli dà se passa dal via
             setImpostazioniPrigione();
             return;
         }
         Tabellone.getCasella(getY(),getX()).azioneCasella(this);
+
     }
 
     private void spostaGiocatoreConCarta(Coordinate coordinateDiArrivo){
         do {
             spostamentoGiocatore(1);
+            if (!(coordinateDiArrivo.getY() == Costanti.RIGHE-1 && coordinateDiArrivo.getX() == 0) && !(coordinateDiArrivo.getX() == Costanti.CASELLE_PER_RIGA-1 && coordinateDiArrivo.getY() == Costanti.RIGHE-1)) { // non aggiunge i soldi se deve andare in prigione
+                if (getX() == Costanti.CASELLE_PER_RIGA-1 && getY() == Costanti.RIGHE-1) //aggiunge i soldi del via
+                    addSoldi(100);
+            }
         } while (getY() != coordinateDiArrivo.getY() || getX() != coordinateDiArrivo.getX());
     }
 }
