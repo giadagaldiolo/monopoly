@@ -42,11 +42,12 @@ public class ControllerInput {
         Giocatore giocatore=ScannerUtils.leggiSimboloStringa(new String[]{this.InserisciNome.getText().strip(),this.InserisciSimbolo.getText().strip()});
         if (this.giocatori.add(giocatore)) this.NumeroGiocatore.setText(this.NumeroGiocatore.getText()+ ++nPlayer);
         if (this.nPlayer>Costanti.NUMERO_GIOCATORI) {
-
-            GiocoVisuale.stage.close();
             Platform.exit();
-            gioco.avviaGioco();
+
+
+
         }
+
 
 
     }

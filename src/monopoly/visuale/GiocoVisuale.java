@@ -11,11 +11,11 @@ import java.io.IOException;
 
 
 public class GiocoVisuale extends Gioco {
-    public static Stage stage;
+    private Stage stage;
 
     public GiocoVisuale(Stage primaryStage)throws IOException  {
         super(true);
-        GiocoVisuale.stage=primaryStage;
+        stage=primaryStage;
         stage.setResizable(false);
         inizio();
 
