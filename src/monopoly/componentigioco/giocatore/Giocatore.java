@@ -167,7 +167,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
 
     public boolean isBancarotta(){return this.pagamentiGiocatore.isBancarotta(); }
     public String getNome() {
-
         return nome;
     }
 
@@ -324,9 +323,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
         return this.simboloChar == giocatore.simboloChar;
     }
 
-    public char getSimboloChar() {
-        return simboloChar;
-    }
 
     public void spostaGiocatoreConCarta(VaiA carta) {
         Casella casellaCorrente = Tabellone.getCasella(getY(),getX());

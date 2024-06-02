@@ -21,11 +21,11 @@ import java.util.LinkedList;
 public class Gioco {
     private Tabellone tabellone;
 
-    private LinkedList<Giocatore> giocatori=new LinkedList<>();
+    private static LinkedList<Giocatore> giocatori = new LinkedList<>();
     private final MenuInterfaccia menuGioco= new MenuGioco(); // cosi non si possono usare altri metodi di menuGioco che non sono presenti nella interfaccia
     private Schermata schermataCorrente= new SchermataIniziale();
 
-    public LinkedList<Giocatore> getGiocatori() {
+    public static LinkedList<Giocatore> getGiocatori() {
         return giocatori;
     }
 
@@ -53,8 +53,8 @@ public class Gioco {
     }
 
     protected void cambiaGiocatore(Giocatore giocatore){
-        this.giocatori.removeFirst();
-        this.giocatori.addLast(giocatore);
+        giocatori.removeFirst();
+        giocatori.addLast(giocatore);
     }
 
 
@@ -68,13 +68,10 @@ public class Gioco {
 
             if (giocatoreCorrente.isBancarotta()) {
                 nGiocatori--;
-                this.giocatori.removeFirst();
+                giocatori.removeFirst();
 
 
-            }else cambiaGiocatore(giocatoreCorrente);
-
-
-
+            } else cambiaGiocatore(giocatoreCorrente);
         }
         fineGioco(giocatori.getFirst());
     }
@@ -85,8 +82,7 @@ public class Gioco {
 
 
     public void creaGiocatori() {
-
-        this.giocatori.addAll(new SchermataIniziale().creaGiocatori(this.tabellone));
+        giocatori.addAll(new SchermataIniziale().creaGiocatori(this.tabellone));
     }
 
     public Tabellone getTabellone() {
@@ -111,7 +107,7 @@ public class Gioco {
         }
     }
 
-    private Boolean aggiornamentoPosizione(Giocatore currentGiocatore,boolean possibilityUscita){
+    private Boolean aggiornamentoPosizione(Giocatore currentGiocatore, boolean possibilityUscita){
         boolean movimento=false;
         boolean print=false;
         if (isGiocatore(currentGiocatore)&& !currentGiocatore.isBancarotta()){
@@ -154,4 +150,7 @@ public class Gioco {
     private boolean isGiocatoreInPrigione(Giocatore giocatore){
         return giocatore.isImprigionato();
     }
+
+
 }
+

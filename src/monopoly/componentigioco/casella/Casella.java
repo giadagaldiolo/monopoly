@@ -14,9 +14,10 @@ public abstract class Casella implements CasellaInterface {
     private String colore;
     private String nome;
     private Coordinate coordinate;
-    private LinkedList<String> giocatoriPresenti = new LinkedList<>(); // poi aggiustiamo la costante
+    private LinkedList<String> giocatoriPresenti = new LinkedList<>();
 
-    public LinkedList<String> getGiocatoriPresenti() {
+    public LinkedList<String>
+    getGiocatoriPresenti() {
         return this.giocatoriPresenti;
     }
     @Override
@@ -103,7 +104,7 @@ public abstract class Casella implements CasellaInterface {
     public  int getPedaggio(){
         return this.pedaggio;
     }
-    private String getColore(){
+    String getColore(){
         return this.colore;
     }
 

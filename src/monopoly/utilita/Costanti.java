@@ -14,7 +14,7 @@ public abstract class  Costanti {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final int ANSI_MIN = 63;
     public static final int ANSI_MAX = 80;
-    public static final int IMPORTO_INIZIALE_GIOCATORE = 140;
+    public static final int IMPORTO_INIZIALE_GIOCATORE = 2000;
     public static final int IMPORTO_INIZIALE_BANCA = 1000000;
     public static final int IMPORTO_PER_BANCAROTTA = 1000000;
     public static final int RIGHE_CASELLA = 7; //righe dei dettagli della casella

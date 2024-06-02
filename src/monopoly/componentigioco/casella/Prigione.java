@@ -1,13 +1,17 @@
 package monopoly.componentigioco.casella;
 
+
 import monopoly.Coordinate;
 import monopoly.componentigioco.Dado;
 import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.utilita.Costanti;
+import monopoly.Gioco;
 
 import java.util.LinkedList;
 
 public class Prigione extends Casella {
+
+    private final PrintCasellaPrigione print= new PrintCasellaPrigione();
 
     public Prigione() {
         super();
@@ -25,10 +29,6 @@ public class Prigione extends Casella {
         super.setPedaggio(Costanti.IMPORTO_PER_USCIRE_PRIGIONE);
     }
 
-    @Override
-    public String infoCasella() {
-        return "";
-    }
 
     @Override
     public void azioneCasella(Giocatore giocatoreCorrente) {
@@ -44,17 +44,31 @@ public class Prigione extends Casella {
                 }
             }
             giocatoreCorrente.setImprigionato(false);
-
             System.out.println("Sei uscito dalla prigione");
         }
         ordinaLinkedList(giocatoreCorrente);
     }
 
     private void ordinaLinkedList(Giocatore giocatore){
-        LinkedList<String> giocatori=super.getGiocatoriPresenti();
+        LinkedList<String> giocatori = super.getGiocatoriPresenti();
         if (!giocatore.isImprigionato()) giocatori.remove(giocatore.getSimbolo());
     }
     public void togliCarattere(){
-
     }
+
+    @Override
+    public String dettagliCasella(int d) {
+        return switch (d) {
+            case 2 ->
+                    this.print.printRigaDueEQuattro("Giocatori in transito:");
+            case 3 ->
+                    this.print.printRigaTre(super.getGiocatoriPresenti(),super.getColore(), Gioco.getGiocatori());
+            case 4 ->
+                    this.print.printRigaDueEQuattro("Giocatori in prigione:");
+            case 5 ->
+                    this.print.printRigaCinque(super.getGiocatoriPresenti(),super.getColore(), Gioco.getGiocatori());
+            default -> super.dettagliCasella(d);
+        };
+    }
+
 }
