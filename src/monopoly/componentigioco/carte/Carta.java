@@ -5,7 +5,7 @@ import monopoly.componentigioco.giocatore.Giocatore;
 import java.io.File;
 import java.util.LinkedList;
 
-public abstract class Carta {
+public abstract class Carta implements InformazioniCarta {
     private final String descrizione;
     private static final String percorsoFile="src/monopoly/componentigioco/carte/".replace("/",File.separator);
 

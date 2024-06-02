@@ -22,7 +22,6 @@ import java.util.Objects;
 
 public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
 
-
     /**
      * Nome giocatore.
      */
@@ -44,7 +43,6 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
     private boolean imprigionato;
 
     private int tentativiPerPrigione = Costanti.TENTATIVI_PRIGIONE;
-
 
 
     /**

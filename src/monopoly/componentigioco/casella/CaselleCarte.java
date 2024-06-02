@@ -2,12 +2,13 @@ package monopoly.componentigioco.casella;
 
 import monopoly.Coordinate;
 import monopoly.componentigioco.carte.Carta;
+import monopoly.componentigioco.carte.InformazioniCarta;
 import monopoly.componentigioco.giocatore.Giocatore;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
-public abstract class CaselleCarte extends Casella{
+public abstract class CaselleCarte extends Casella {
 
     private static Queue<Carta> imprevisti = new LinkedList<>();
     private static Queue<Carta> probabilita = new LinkedList<>();

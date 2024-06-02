@@ -38,7 +38,7 @@ public class Prigione extends Casella {
             if (!uscita){
                 if (giocatoreCorrente.getTentativiPerPrigione() <= 0) {
                     super.azioneCasella(giocatoreCorrente);
-                } else{
+                } else {
                     System.out.println("Turni per uscire dalla prigione " + giocatoreCorrente.getTentativiPerPrigione());
                     return;
                 }

@@ -5,8 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.*;
 import java.util.LinkedList;
-public class InformazioniCarta {
-
+public interface InformazioniCarta {
 
     static LinkedList<Carta> readFromFile(File file) {
         LinkedList<Carta> carte = new LinkedList<>();
@@ -29,7 +28,7 @@ public class InformazioniCarta {
             System.out.println(e.getMessage());
             return null;
         }
-//        Collections.shuffle(carte);
+        Collections.shuffle(carte);
         return carte;
     }
 
