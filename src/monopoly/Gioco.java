@@ -41,13 +41,13 @@ public class Gioco {
 
 
     public void avviaGioco(){
+
         creaGioco();
         creaGiocatori();
         gameFlow();
     }
     private void creaGioco(){
         creaTabellone();
-
         CaselleCarte.creaCarte();
         creaDado();
     }
@@ -95,16 +95,20 @@ public class Gioco {
 
     protected void menuTurno(Giocatore currentGiocatore) {
         this.menuGioco.menu(currentGiocatore);
-        turno(currentGiocatore);
+        if (isGiocatore(currentGiocatore)){
+            Dado.lancioDadi();
+            turno(currentGiocatore);
+
+        }
+
     }
 
     public MenuGioco getMenuGioco() {
         return  (MenuGioco) menuGioco;
     }
 
-    private void turno(Giocatore currentGiocatore){
+    public void turno(Giocatore currentGiocatore){
        if (isGiocatore(currentGiocatore)) {
-           Dado.lancioDadi();
             if (!aggiornamentoPosizione(currentGiocatore,true)){
                 aggiornamentoPosizione(currentGiocatore,false);
            }
@@ -114,12 +118,15 @@ public class Gioco {
     private Boolean aggiornamentoPosizione(Giocatore currentGiocatore,boolean possibilityUscita){
         boolean movimento=false;
         boolean print=false;
+        System.out.println(Dado.sommaDadi());
         if (isGiocatore(currentGiocatore)&& !currentGiocatore.isBancarotta()){
             if (!isGiocatoreInPrigione(currentGiocatore)){
                 currentGiocatore.updatePosizione(Dado.sommaDadi(), tabellone);
-                printDadoTabellone();
-                movimento=true;
                 print=true;
+                if (!Dado.visivo)printDadoTabellone();
+                else print=false;
+                movimento=true;
+
             }
             if (possibilityUscita || movimento ){
                 currentGiocatore.azioneCasella(tabellone); // fa prima l'azione della prigione dei dadi e poi aggiorna la posizione con il simbolo inserito alla fine
@@ -147,7 +154,7 @@ public class Gioco {
         ScannerUtils.chiudiScanner();
     }
 
-    private boolean isGiocatore(Giocatore giocatore){
+    public boolean isGiocatore(Giocatore giocatore){
         return giocatore!=null;
     }
 
