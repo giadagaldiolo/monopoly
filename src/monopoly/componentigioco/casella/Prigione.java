@@ -12,6 +12,7 @@ import java.util.LinkedList;
 public class Prigione extends Casella {
 
     private final PrintCasellaPrigione print= new PrintCasellaPrigione();
+    private boolean tolto=false;
 
     public Prigione() {
         super();
@@ -45,15 +46,20 @@ public class Prigione extends Casella {
             }
             giocatoreCorrente.setImprigionato(false);
             System.out.println("Sei uscito dalla prigione");
+            ordinaLinkedList(giocatoreCorrente);
         }
-        ordinaLinkedList(giocatoreCorrente);
+
     }
 
     private void ordinaLinkedList(Giocatore giocatore){
         LinkedList<String> giocatori = super.getGiocatoriPresenti();
-        if (!giocatore.isImprigionato()) giocatori.remove(giocatore.getSimbolo());
+        if (!giocatore.isImprigionato()){
+            this.tolto=true;
+            giocatori.remove(giocatore.getSimbolo());}
     }
     public void togliCarattere(){
+        if (!tolto) super.togliCarattere();
+        else tolto=false;
     }
 
     @Override
