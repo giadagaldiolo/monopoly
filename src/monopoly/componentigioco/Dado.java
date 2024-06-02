@@ -8,6 +8,7 @@ import java.util.Random;
 public class Dado {
     public static Dado[] dadi;
     private int ultimoLancio;
+    public static boolean visivo=false;
 
     public Dado(int ultimoLancio) {
         this.ultimoLancio = ultimoLancio;
@@ -26,6 +27,11 @@ public class Dado {
             }
         }
         return uguali;
+    }
+
+    public void setUltimoLancio(int ultimoLancio) {
+        this.visivo=true;
+        this.ultimoLancio = ultimoLancio;
     }
 
     @Override
@@ -47,7 +53,7 @@ public class Dado {
     public static void creaDadi(){
         Dado.dadi=new Dado[Costanti.NUMERO_DADI];
         for (int i = 0; i < Dado.dadi.length; i++) {
-            dadi[i]=new Dado(i);
+            dadi[i]=new Dado(1);
         }
     }
     public static void lancioDadi(){
@@ -72,6 +78,7 @@ public class Dado {
 
     @Override
     public String toString(){
+        if (visivo) return "";
         return switch (this.ultimoLancio) {
             case 1 -> ("""
                     * * * * * *

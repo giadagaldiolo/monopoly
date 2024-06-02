@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 
 import javafx.stage.Stage;
 import monopoly.Gioco;
+import monopoly.componentigioco.Dado;
 import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.menus.MenuGioco;
 import monopoly.utilita.Costanti;
@@ -47,32 +48,49 @@ public class GiocoVisuale extends Gioco {
     }
     @Override
     public void avviaGioco(){
+
         creaGiocatori();
+        System.out.println(super.getTabellone());
+        super.getMenuGioco().menu(super.getGiocatori().getFirst(),true);
+
 
     }
     public void turnoVisuale(){
+        stage.hide();
         gameFlow();
     }
 
     @Override
     protected void menuTurno(Giocatore currentGiocatore) {
-       super.getMenuGioco().menu(currentGiocatore,true);
+
+       turno(currentGiocatore);
+
     }
+
 
     @Override
     public void gameFlow(){
-        System.out.println(super.getTabellone());
+
+
 
         if (super.getGiocatori().size() > 1){
             Giocatore giocatoreCorrente=super.getGiocatori().getFirst();
+
             menuTurno(giocatoreCorrente);
             if (giocatoreCorrente.isBancarotta()) {
                 super.getGiocatori().removeFirst();
 
             }else {
+
                 super.cambiaGiocatore(giocatoreCorrente);
+                if (super.getGiocatori().size() > 1)super.getMenuGioco().menu(super.getGiocatori().getFirst(),true);
             }
+            stage.show();
+        }else {
+            stage.close();
         }
+
+
   }
 
 
