@@ -26,4 +26,14 @@ public class MenuGioco implements MenuInterfaccia {
             } while (scelta != 2);
         }
     }
+
+    public void menu(Giocatore currentGiocatore,Boolean visivo){
+        if (isGiocatore(currentGiocatore)){
+            System.out.println("E' il turno di " + currentGiocatore.getNome());
+            System.out.println("Il tuo capitale ammonta a " + currentGiocatore.getSoldi());
+            System.out.println("Schiaccia sulla finestra per tirare il dado");
+            System.out.println();
+
+        }
+    }
 }

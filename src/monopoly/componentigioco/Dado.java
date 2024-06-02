@@ -66,6 +66,9 @@ public class Dado {
     public int getUltimoLancio() {
         return ultimoLancio;
     }
+    public static Dado[] getDadi(){
+        return Dado.dadi;
+    }
 
     @Override
     public String toString(){

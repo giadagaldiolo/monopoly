@@ -3,6 +3,8 @@ package monopoly.visuale;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -15,6 +17,7 @@ import monopoly.utilita.ScannerUtils;
 
 import java.io.IOException;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 
 public class ControllerInput {
 
@@ -27,24 +30,24 @@ public class ControllerInput {
     @FXML
     private Label NumeroGiocatore;
     private int nPlayer=1;
-    private LinkedHashSet<Giocatore> giocatori;
+    private LinkedList<Giocatore> giocatori;
     private Gioco gioco;
-    public ControllerInput(LinkedHashSet<Giocatore> giocatori, Gioco gioco){
+    public ControllerInput(LinkedList<Giocatore> giocatori, Gioco gioco){
         this.gioco=gioco;
         this.giocatori=giocatori;
 
     }
 
-
+    @FXML
     public void creaGiocatore(ActionEvent event) throws IOException {
 
         if (this.InserisciSimbolo.getText().isBlank()||this.InserisciNome.getText().isBlank()) return;
         Giocatore giocatore=ScannerUtils.leggiSimboloStringa(new String[]{this.InserisciNome.getText().strip(),this.InserisciSimbolo.getText().strip()});
-        if (this.giocatori.add(giocatore)) this.NumeroGiocatore.setText(this.NumeroGiocatore.getText()+ ++nPlayer);
+        if (this.giocatori.add(giocatore)) this.NumeroGiocatore.setText("Inserisci giocatore "+ ++nPlayer);
         if (this.nPlayer>Costanti.NUMERO_GIOCATORI) {
-            Platform.exit();
-
-
+            Parent pane = FXMLLoader.load(getClass().getResource("DadoVisuale.fxml"));
+            GiocoVisuale.stage.getScene().setRoot(pane);
+            gioco.avviaGioco();
 
         }
 

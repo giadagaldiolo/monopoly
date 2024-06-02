@@ -6,12 +6,13 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import monopoly.Gioco;
 import monopoly.componentigioco.giocatore.Giocatore;
+import monopoly.menus.MenuGioco;
 import monopoly.utilita.Costanti;
 import java.io.IOException;
 
 
 public class GiocoVisuale extends Gioco {
-    private Stage stage;
+    public static Stage stage;
 
     public GiocoVisuale(Stage primaryStage)throws IOException  {
         super(true);
@@ -27,7 +28,7 @@ public class GiocoVisuale extends Gioco {
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainVisuale.class.getResource("PrimaSchermata.fxml"));
 
-        fxmlLoader.setController(controllerInput);
+       fxmlLoader.setController(controllerInput);
         Scene scene = new Scene(fxmlLoader.load(), x, y);
         stage.setTitle("Monopoly");
         stage.setScene(scene);
@@ -47,8 +48,36 @@ public class GiocoVisuale extends Gioco {
     @Override
     public void avviaGioco(){
         creaGiocatori();
+
+    }
+    public void turnoVisuale(){
         gameFlow();
     }
+
+    @Override
+    protected void menuTurno(Giocatore currentGiocatore) {
+       super.getMenuGioco().menu(currentGiocatore,true);
+    }
+
+    @Override
+    public void gameFlow(){
+        System.out.println(super.getTabellone());
+
+        if (super.getGiocatori().size() > 1){
+            Giocatore giocatoreCorrente=super.getGiocatori().getFirst();
+            menuTurno(giocatoreCorrente);
+            if (giocatoreCorrente.isBancarotta()) {
+                super.getGiocatori().removeFirst();
+
+            }else {
+                super.cambiaGiocatore(giocatoreCorrente);
+            }
+        }
+  }
+
+
+
+
 
 
 

@@ -44,14 +44,17 @@ public class Prigione extends Casella {
                 }
             }
             giocatoreCorrente.setImprigionato(false);
-            ordinaLinkedList(giocatoreCorrente);
+
             System.out.println("Sei uscito dalla prigione");
         }
+        ordinaLinkedList(giocatoreCorrente);
     }
 
     private void ordinaLinkedList(Giocatore giocatore){
         LinkedList<String> giocatori=super.getGiocatoriPresenti();
-        giocatori.remove(giocatore.getSimbolo());
-        giocatori.addLast(giocatore.getSimbolo());
+        if (!giocatore.isImprigionato()) giocatori.remove(giocatore.getSimbolo());
+    }
+    public void togliCarattere(){
+
     }
 }

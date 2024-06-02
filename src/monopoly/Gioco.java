@@ -10,20 +10,22 @@ import monopoly.menus.MenuInterfaccia;
 import monopoly.schermate.Schermata;
 import monopoly.schermate.SchermataFinale;
 import monopoly.schermate.SchermataIniziale;
+import monopoly.utilita.Costanti;
 import monopoly.utilita.ScannerUtils;
 
 import java.util.Iterator;
 import java.util.LinkedHashSet;
-
+import java.util.LinkedList;
 
 
 public class Gioco {
     private Tabellone tabellone;
-    private LinkedHashSet<Giocatore> giocatori=new LinkedHashSet<>();
+
+    private LinkedList<Giocatore> giocatori=new LinkedList<>();
     private final MenuInterfaccia menuGioco= new MenuGioco(); // cosi non si possono usare altri metodi di menuGioco che non sono presenti nella interfaccia
     private Schermata schermataCorrente= new SchermataIniziale();
 
-    public LinkedHashSet<Giocatore> getGiocatori() {
+    public LinkedList<Giocatore> getGiocatori() {
         return giocatori;
     }
 
@@ -50,24 +52,31 @@ public class Gioco {
         creaDado();
     }
 
+    protected void cambiaGiocatore(Giocatore giocatore){
+        this.giocatori.removeFirst();
+        this.giocatori.addLast(giocatore);
+    }
+
 
     public void gameFlow() {
         System.out.println(tabellone);
-        int sizeGiocatori=giocatori.size();
+        int nGiocatori=Costanti.NUMERO_GIOCATORI;
 
-        while (sizeGiocatori > 1) {
-            Iterator<Giocatore> iteratorGiocatori = giocatori.iterator(); //per resettare il loop
-            while (iteratorGiocatori.hasNext()) { // parte dal primo elemento
-                Giocatore next = iteratorGiocatori.next();
-                menuTurno(next);
-                if (next.isBancarotta()) {
-                    iteratorGiocatori.remove();
-                    sizeGiocatori--;
-                    if (sizeGiocatori==1) break;
-                }
-            }
+        while (nGiocatori > 1) {
+            Giocatore giocatoreCorrente=giocatori.getFirst();
+            menuTurno(giocatoreCorrente);
+
+            if (giocatoreCorrente.isBancarotta()) {
+                nGiocatori--;
+                this.giocatori.removeFirst();
+
+
+            }else cambiaGiocatore(giocatoreCorrente);
+
+
+
         }
-        fineGioco(giocatori.iterator().next());
+        fineGioco(giocatori.getFirst());
     }
 
     private void creaDado() {
@@ -76,18 +85,22 @@ public class Gioco {
 
 
     public void creaGiocatori() {
-        this.giocatori= new SchermataIniziale().creaGiocatori(this.tabellone);
+
+        this.giocatori.addAll(new SchermataIniziale().creaGiocatori(this.tabellone));
     }
 
     public Tabellone getTabellone() {
         return tabellone;
     }
 
-    private void menuTurno(Giocatore currentGiocatore) {
+    protected void menuTurno(Giocatore currentGiocatore) {
         this.menuGioco.menu(currentGiocatore);
         turno(currentGiocatore);
     }
 
+    public MenuGioco getMenuGioco() {
+        return  (MenuGioco) menuGioco;
+    }
 
     private void turno(Giocatore currentGiocatore){
        if (isGiocatore(currentGiocatore)) {
@@ -128,7 +141,7 @@ public class Gioco {
     }
 
 
-    private void fineGioco(Giocatore giocatore) {
+    protected void fineGioco(Giocatore giocatore) {
         this.schermataCorrente=new SchermataFinale(giocatore);
         System.out.println(this.schermataCorrente);
         ScannerUtils.chiudiScanner();

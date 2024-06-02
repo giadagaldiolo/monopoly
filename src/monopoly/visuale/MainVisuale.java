@@ -12,7 +12,7 @@ public class MainVisuale extends Application {
 
     public static void main(String[] args) {
         launch(args);
-        MainVisuale.giocoVisuale.avviaGioco();
+
 
     }
 
@@ -21,5 +21,9 @@ public class MainVisuale extends Application {
         MainVisuale.giocoVisuale=new GiocoVisuale(primaryStage);
 
 
+    }
+
+    public static GiocoVisuale getGiocoVisuale() {
+        return giocoVisuale;
     }
 }
