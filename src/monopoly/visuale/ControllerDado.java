@@ -33,42 +33,39 @@ public class ControllerDado {
     public static void setUltimoSimbolo(char ultimoSimbolo) {
         ControllerDado.ultimoSimbolo = ultimoSimbolo;
     }
+    private void creaDadoVisivo(int[] last){
+        for (int i = 0; i <Costanti.NUMERO_DADI ; i++) {
+            last[i]=new Random().nextInt(Costanti.NUMERO_DADO_MIN,Costanti.NUMERO_DADO_MAX+1);
+            String dadoScelto="dice_"+ last[i]+".png";
+            File file= new File("risorse/img/".replace("/",File.separator)+dadoScelto);
+            if (i==1) dadoImg1.setImage(new Image(file.toURI().toString()));
+            else dadoImg.setImage(new Image(file.toURI().toString()));
+
+        }
+
+
+
+
+
+
+
+
+    }
 
     @FXML
     public void rollDice(ActionEvent event){
-
         int numeroDiGiriDado=20;
         lanciaDadi.setDisable(true);
         int last[]= new int[2];
-
-
-
         for (int i = 0; i <numeroDiGiriDado ; i++) {
-            last[0]=new Random().nextInt(1,7);
-            String dadoScelto="dice_"+ last[0]+".png";
-            last[1]=new Random().nextInt(1,7);
-            String dadoScelto1="dice_"+ last[1]+".png";
-            File file= new File("risorse/img/".replace("/",File.separator)+dadoScelto);
-            File file1= new File("risorse/img/".replace("/",File.separator)+dadoScelto1);
-            dadoImg.setImage(new Image(file.toURI().toString()));
-            dadoImg1.setImage(new Image(file1.toURI().toString()));
-            try {
-                Thread.sleep(6);
-
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
+            creaDadoVisivo(last);
 
         }
         lanciaDadi.setDisable(false);
-
-        Dado dadi[]= Dado.getDadi();
+        Dado[] dadi = Dado.getDadi();
         for (int i = 0; i < Costanti.NUMERO_DADI; i++) {
             dadi[i].setUltimoLancio(last[i]);
         }
-
-
 
         MainVisuale.getGiocoVisuale().turnoVisuale();
         this.scrittaGiocatore.setText("Simbolo giocatore in gioco: "+ultimoSimbolo);
