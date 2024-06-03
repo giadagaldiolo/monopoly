@@ -12,7 +12,8 @@ import java.util.LinkedList;
 public class Prigione extends Casella {
 
     private final PrintCasellaPrigione print= new PrintCasellaPrigione();
-    private boolean tolto=false;
+
+
 
     public Prigione() {
         super();
@@ -33,33 +34,39 @@ public class Prigione extends Casella {
 
     @Override
     public void azioneCasella(Giocatore giocatoreCorrente) {
+        boolean uscita=false;
         if (super.isGiocatore(giocatoreCorrente) && giocatoreCorrente.isImprigionato() ){
             giocatoreCorrente.riduciTurniPrigione();
-            boolean uscita= Dado.confrontaDadi();
+            uscita= Dado.confrontaDadi();
+            giocatoreCorrente.setImprigionato(false);
             if (!uscita){
+
                 if (giocatoreCorrente.getTentativiPerPrigione() <= 0) {
                     super.azioneCasella(giocatoreCorrente);
+                    System.out.println("Sei uscito dalla prigione pagando");
+
                 } else {
                     System.out.println("Turni per uscire dalla prigione " + giocatoreCorrente.getTentativiPerPrigione());
+                    giocatoreCorrente.setImprigionato(true);
                     return;
                 }
             }
-            giocatoreCorrente.setImprigionato(false);
-            System.out.println("Sei uscito dalla prigione");
-            ordinaLinkedList(giocatoreCorrente);
+
+
+
         }
+        if (!giocatoreCorrente.isImprigionato()|| uscita)ordinaLinkedList(giocatoreCorrente);
 
     }
 
     private void ordinaLinkedList(Giocatore giocatore){
         LinkedList<String> giocatori = super.getGiocatoriPresenti();
-        if (!giocatore.isImprigionato()){
-            this.tolto=true;
-            giocatori.remove(giocatore.getSimbolo());}
+
+        System.out.println(giocatori.remove(giocatore.getSimbolo()));
     }
     public void togliCarattere(){
-        if (!tolto) super.togliCarattere();
-        else tolto=false;
+
+
     }
 
     @Override
