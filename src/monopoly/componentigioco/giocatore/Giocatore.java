@@ -3,7 +3,6 @@ package monopoly.componentigioco.giocatore;
 import monopoly.Coordinate;
 import monopoly.componentigioco.Banca;
 import monopoly.componentigioco.Tabellone;
-import monopoly.componentigioco.carte.Carta;
 import monopoly.componentigioco.carte.VaiA;
 import monopoly.componentigioco.casella.*;
 import monopoly.componentigioco.giocatore.funzionalita.MovimentoGiocatore;
@@ -231,7 +230,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
      */
     public void updatePosizione(int passi, Tabellone tabellone){
         Casella casella;
-        System.out.println(getX()+" "+getY());
+
         if (isTabellone(tabellone) && isCasella((casella= Tabellone.getCasella(getY(),getX()))) ) {
             pulisciCasella(casella);
             spostamentoGiocatore(passi);
