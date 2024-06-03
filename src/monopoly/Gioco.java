@@ -118,14 +118,15 @@ public class Gioco {
             if (!isGiocatoreInPrigione(currentGiocatore)){
                 currentGiocatore.updatePosizione(Dado.sommaDadi(), tabellone);
 
-                if (!Dado.visivo )printDadoTabellone();
+               printDadoTabellone();
 
                 movimento=true;
 
             }
             if (possibilityUscita || movimento ){
                 currentGiocatore.azioneCasella(tabellone); // fa prima l'azione della prigione dei dadi e poi aggiorna la posizione con il simbolo inserito alla fine
-                if (!possibilityUscita && !Dado.visivo) printDadoTabellone();
+                if (!possibilityUscita ) printDadoTabellone();
+
             }
         }
         return movimento;
@@ -133,7 +134,8 @@ public class Gioco {
     }
     private void printDadoTabellone(){
         System.out.println(this.tabellone);
-        Dado.printDadi();
+        if (!Dado.visivo) Dado.printDadi();
+
     }
 
 
