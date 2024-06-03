@@ -24,9 +24,14 @@ public class ControllerDado {
     @FXML
     private ImageView dadoImg1;
     @FXML
+    private static char ultimoSimbolo;
     public void initialize() {
+        ultimoSimbolo=GiocoVisuale.getCurrentPlayer().getSimboloChar();
+        this.scrittaGiocatore.setText("Simbolo giocatore in gioco: "+ultimoSimbolo);
 
-        this.scrittaGiocatore.setText("Simbolo giocatore in gioco: "+GiocoVisuale.getCurrentPlayer().getSimboloChar());
+    }
+    public static void setUltimoSimbolo(char ultimoSimbolo) {
+        ControllerDado.ultimoSimbolo = ultimoSimbolo;
     }
 
     @FXML
@@ -66,6 +71,8 @@ public class ControllerDado {
 
 
         MainVisuale.getGiocoVisuale().turnoVisuale();
+        this.scrittaGiocatore.setText("Simbolo giocatore in gioco: "+ultimoSimbolo);
+
 
 
     }

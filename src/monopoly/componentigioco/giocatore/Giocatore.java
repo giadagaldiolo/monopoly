@@ -151,7 +151,7 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
 
      */
     private void cancellaGiocatore(Casella casella,Tabellone tabellone){
-        casella.togliCarattere();
+        casella.getGiocatoriPresenti().remove(this.getSimbolo());
         resettaCaselleGiocatore(tabellone);
     }
     private void resettaCaselleGiocatore(Tabellone tabellone){

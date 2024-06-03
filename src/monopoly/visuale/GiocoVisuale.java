@@ -1,6 +1,7 @@
 package monopoly.visuale;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 import javafx.scene.image.Image;
@@ -9,10 +10,12 @@ import monopoly.Gioco;
 import monopoly.componentigioco.giocatore.Giocatore;
 import monopoly.utilita.Costanti;
 import java.io.IOException;
+import java.util.Objects;
 
 
 public class GiocoVisuale extends Gioco {
     public static Stage stage;
+
 
     public GiocoVisuale(Stage primaryStage)throws IOException  {
         super(true);
@@ -37,7 +40,7 @@ public class GiocoVisuale extends Gioco {
     @Override
     public void creaGiocatori() {
 
-        for (Giocatore giocatore  : super.getGiocatori() ) {
+        for (Giocatore giocatore  : getGiocatori() ) {
             super.getTabellone().modificaCasella(giocatore.getSimbolo(), Costanti.RIGHE-1, Costanti.CASELLE_PER_RIGA-1);
 
         }
@@ -48,7 +51,7 @@ public class GiocoVisuale extends Gioco {
 
         creaGiocatori();
         System.out.println(super.getTabellone());
-        super.getMenuGioco().menu(super.getGiocatori().getFirst(),true);
+        super.getMenuGioco().menu(getGiocatori().getFirst(),true);
 
 
     }
@@ -64,31 +67,54 @@ public class GiocoVisuale extends Gioco {
 
     }
 
+    private void cambiaGiocatoreVisuale(Giocatore giocatore){
+        if (getCurrentPlayer().isBancarotta()){
+            getGiocatori().removeFirst();
+
+        } else super.cambiaGiocatore(giocatore);
+        ControllerDado.setUltimoSimbolo(getGiocatori().getFirst().getSimboloChar());
+    }
+
 
     @Override
     public void gameFlow(){
+        boolean tolto = false;
 
 
+        if (getGiocatori().size() > 1){
+            Giocatore giocatoreCorrente=getCurrentPlayer();
 
-        if (super.getGiocatori().size() > 1){
-            Giocatore giocatoreCorrente=super.getGiocatori().getFirst();
 
-            menuTurno(giocatoreCorrente);
             if (giocatoreCorrente.isBancarotta()) {
-                super.getGiocatori().removeFirst();
+                getGiocatori().removeFirst();
+                tolto=true;
 
-            }else {
 
-                super.cambiaGiocatore(giocatoreCorrente);
-                if (super.getGiocatori().size() > 1)super.getMenuGioco().menu(super.getGiocatori().getFirst(),true);
-            }
+
+            } else menuTurno(giocatoreCorrente);
+            cambiaGiocatoreVisuale(giocatoreCorrente);
+            if (getGiocatori().size() > 1  )super.getMenuGioco().menu(getGiocatori().getFirst(),true);
+            else schermataFinale();
+
             stage.show();
-        }else {
-            stage.close();
-        }
+        }else schermataFinale();
+
+
+
 
 
   }
+    private void schermataFinale(){
+        Parent pane = null;
+        try {
+            pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SchermataVincitore.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.getScene().setRoot(pane);
+        stage.show();
+
+    }
 
 
 
