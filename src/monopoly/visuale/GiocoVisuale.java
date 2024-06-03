@@ -26,11 +26,7 @@ public class GiocoVisuale extends Gioco {
     private void inizio()throws IOException {
         int x =600;
         int y =400;
-        ControllerInput controllerInput = new ControllerInput(super.getGiocatori(),this); // Passa l'istanza di GiocoVisuale al controller
-
         FXMLLoader fxmlLoader = new FXMLLoader(MainVisuale.class.getResource("PrimaSchermata.fxml"));
-
-       fxmlLoader.setController(controllerInput);
         Scene scene = new Scene(fxmlLoader.load(), x, y);
         stage.setTitle("Monopoly");
         stage.setScene(scene);

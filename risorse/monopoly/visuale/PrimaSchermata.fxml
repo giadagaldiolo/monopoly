@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #7B241C;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #7B241C;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="monopoly.visuale.ControllerInput">
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -39,18 +39,18 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Button fx:id="RegistrazioneCompleta" layoutX="129.0" layoutY="329.0" mnemonicParsing="false" onAction="#creaGiocatore" style="-fx-background-color: #EC7063;" text="Fatto" textFill="#dae010">
+            <Button fx:id="registrazioneCompleta" layoutX="129.0" layoutY="329.0" mnemonicParsing="false" onAction="#creaGiocatore" style="-fx-background-color: #EC7063;" text="Fatto" textFill="#dae010">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Label fx:id="NumeroGiocatore" layoutX="64.0" layoutY="192.0" prefHeight="45.0" prefWidth="236.0" text="Inserisci giocatore " textFill="#ecff00">
+            <Label fx:id="numeroGiocatore" layoutX="64.0" layoutY="192.0" prefHeight="45.0" prefWidth="236.0" text="Inserisci giocatore " textFill="#ecff00">
                <font>
                   <Font name="System Bold" size="21.0" />
                </font>
             </Label>
-            <TextField fx:id="InserisciNome" layoutX="98.0" layoutY="251.0" promptText="Nome" />
-            <TextField fx:id="InserisciSimbolo" layoutX="98.0" layoutY="284.0" promptText="Simbolo" />
+            <TextField fx:id="inserisciNome" layoutX="98.0" layoutY="251.0" promptText="Nome" />
+            <TextField fx:id="inserisciSimbolo" layoutX="98.0" layoutY="284.0" promptText="Simbolo" />
             <ImageView fitHeight="64.0" fitWidth="67.0" layoutX="264.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../img/saber.jpg" />
