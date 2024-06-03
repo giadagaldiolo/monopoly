@@ -3,11 +3,10 @@ package monopoly.visuale;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import monopoly.Gioco;
-import monopoly.componentigioco.Dado;
 import monopoly.componentigioco.giocatore.Giocatore;
-import monopoly.menus.MenuGioco;
 import monopoly.utilita.Costanti;
 import java.io.IOException;
 
@@ -19,6 +18,8 @@ public class GiocoVisuale extends Gioco {
         super(true);
         stage=primaryStage;
         stage.setResizable(false);
+        Image icon = new Image(getClass().getResourceAsStream("komi.jpg"));
+        primaryStage.getIcons().add(icon);
         inizio();
 
     }

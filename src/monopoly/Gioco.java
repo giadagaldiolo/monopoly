@@ -37,6 +37,9 @@ public class Gioco {
     public Gioco(boolean visuale){
         creaGioco();
     }
+    public static Giocatore getCurrentPlayer(){
+        return giocatori.getFirst();
+    }
 
 
 

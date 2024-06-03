@@ -3,25 +3,35 @@ package monopoly.visuale;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import monopoly.componentigioco.Dado;
 import monopoly.utilita.Costanti;
 
 import java.io.File;
-import java.util.Arrays;
+
 import java.util.Random;
 
 public class ControllerDado {
     @FXML
     private Button lanciaDadi;
+    @FXML
+    private Label scrittaGiocatore;
 
     @FXML
     private ImageView dadoImg;
     @FXML
     private ImageView dadoImg1;
     @FXML
+    public void initialize() {
+
+        this.scrittaGiocatore.setText("Simbolo giocatore in gioco: "+GiocoVisuale.getCurrentPlayer().getSimboloChar());
+    }
+
+    @FXML
     public void rollDice(ActionEvent event){
+
         int numeroDiGiriDado=20;
         lanciaDadi.setDisable(true);
         int last[]= new int[2];

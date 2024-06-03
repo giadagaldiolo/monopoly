@@ -1,6 +1,7 @@
 package monopoly.visuale;
 
 import javafx.application.Application;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 
@@ -18,6 +19,7 @@ public class MainVisuale extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+
         MainVisuale.giocoVisuale=new GiocoVisuale(primaryStage);
 
 
@@ -26,4 +28,5 @@ public class MainVisuale extends Application {
     public static GiocoVisuale getGiocoVisuale() {
         return giocoVisuale;
     }
+
 }

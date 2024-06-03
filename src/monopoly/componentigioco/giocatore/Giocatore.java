@@ -67,6 +67,10 @@ public class Giocatore  implements MovimentoGiocatoreSupporto,Pagamenti {
 
     }
 
+    public char getSimboloChar() {
+        return simboloChar;
+    }
+
     public void svuotaArrayCaselle(){
         this.pagamentiGiocatore.svuotaArrayCaselle();
 
