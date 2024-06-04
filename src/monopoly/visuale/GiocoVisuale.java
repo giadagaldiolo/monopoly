@@ -26,6 +26,7 @@ public class GiocoVisuale extends Gioco {
         inizio();
 
     }
+
     private void inizio()throws IOException {
         int x =600;
         int y =400;
@@ -35,26 +36,24 @@ public class GiocoVisuale extends Gioco {
         stage.setScene(scene);
 
         stage.show();
-
     }
+
     @Override
     public void creaGiocatori() {
 
         for (Giocatore giocatore  : getGiocatori() ) {
             super.getTabellone().modificaCasella(giocatore.getSimbolo(), Costanti.RIGHE-1, Costanti.CASELLE_PER_RIGA-1);
-
         }
 
     }
+
     @Override
     public void avviaGioco(){
-
         creaGiocatori();
         System.out.println(super.getTabellone());
         super.getMenuGioco().menu(getGiocatori().getFirst(),true);
-
-
     }
+
     public void turnoVisuale(){
         stage.hide();
         gameFlow();
@@ -62,35 +61,24 @@ public class GiocoVisuale extends Gioco {
 
     @Override
     protected void menuTurno(Giocatore currentGiocatore) {
-
        turno(currentGiocatore);
-
     }
 
     private void cambiaGiocatoreVisuale(Giocatore giocatore){
         if (getCurrentPlayer().isBancarotta()){
             getGiocatori().removeFirst();
-
         } else super.cambiaGiocatore(giocatore);
         ControllerDado.setUltimoSimbolo(getGiocatori().getFirst().getSimboloChar());
     }
 
-
     @Override
     public void gameFlow(){
         boolean tolto = false;
-
-
         if (getGiocatori().size() > 1){
             Giocatore giocatoreCorrente=getCurrentPlayer();
-
-
             if (giocatoreCorrente.isBancarotta()) {
                 getGiocatori().removeFirst();
                 tolto=true;
-
-
-
             } else menuTurno(giocatoreCorrente);
             cambiaGiocatoreVisuale(giocatoreCorrente);
             if (getGiocatori().size() > 1  )super.getMenuGioco().menu(getGiocatori().getFirst(),true);
@@ -98,12 +86,8 @@ public class GiocoVisuale extends Gioco {
 
             stage.show();
         }else schermataFinale();
-
-
-
-
-
   }
+
     private void schermataFinale(){
         Parent pane = null;
         try {
@@ -115,12 +99,4 @@ public class GiocoVisuale extends Gioco {
         stage.show();
 
     }
-
-
-
-
-
-
-
-
 }

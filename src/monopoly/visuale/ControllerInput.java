@@ -37,8 +37,6 @@ public class ControllerInput {
 
     @FXML
     public void creaGiocatore(ActionEvent event) throws IOException {
-
-
         if (this.inserisciSimbolo.getText().isBlank()||this.inserisciNome.getText().isBlank()) return;
         Giocatore giocatore=ScannerUtils.leggiSimboloStringa(new String[]{this.inserisciNome.getText().strip(),this.inserisciSimbolo.getText().strip()});
         if (giocatoriNonDoppi.add(giocatore)){
@@ -48,16 +46,8 @@ public class ControllerInput {
                 MainVisuale.getGiocoVisuale().avviaGioco();
                 Parent pane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("DadoVisuale.fxml")));
                 GiocoVisuale.stage.getScene().setRoot(pane);
-
-
             }
-
         }
-
-
-
-
-
     }
 
 

@@ -25,14 +25,17 @@ public class ControllerDado {
     private ImageView dadoImg1;
     @FXML
     private static char ultimoSimbolo;
+
     public void initialize() {
         ultimoSimbolo=GiocoVisuale.getCurrentPlayer().getSimboloChar();
         this.scrittaGiocatore.setText("Simbolo giocatore in gioco: "+ultimoSimbolo);
 
     }
+
     public static void setUltimoSimbolo(char ultimoSimbolo) {
         ControllerDado.ultimoSimbolo = ultimoSimbolo;
     }
+
     private void creaDadoVisivo(int[] last){
         for (int i = 0; i <Costanti.NUMERO_DADI ; i++) {
             last[i]=new Random().nextInt(Costanti.NUMERO_DADO_MIN,Costanti.NUMERO_DADO_MAX+1);
@@ -40,7 +43,6 @@ public class ControllerDado {
             File file= new File("risorse/img/".replace("/",File.separator)+dadoScelto);
             if (i==1) dadoImg1.setImage(new Image(file.toURI().toString()));
             else dadoImg.setImage(new Image(file.toURI().toString()));
-
         }
 
 
